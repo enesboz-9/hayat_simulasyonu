@@ -1,0 +1,450 @@
+[
+ {
+  "code": "IN",
+  "flag": "🇮🇳",
+  "name": {
+   "tr": "Hindistan",
+   "en": "India"
+  },
+  "region": "south_asia",
+  "births": 23.0,
+  "lifeExp": 70,
+  "marriageAge": 22,
+  "fertility": 2.0,
+  "gdp": 2.5,
+  "edu": 0.65,
+  "risk": 0.45
+ },
+ {
+  "code": "CN",
+  "flag": "🇨🇳",
+  "name": {
+   "tr": "Çin",
+   "en": "China"
+  },
+  "region": "east_asia",
+  "births": 9.0,
+  "lifeExp": 78,
+  "marriageAge": 28,
+  "fertility": 1.1,
+  "gdp": 12.5,
+  "edu": 0.8,
+  "risk": 0.3
+ },
+ {
+  "code": "NG",
+  "flag": "🇳🇬",
+  "name": {
+   "tr": "Nijerya",
+   "en": "Nigeria"
+  },
+  "region": "africa",
+  "births": 7.5,
+  "lifeExp": 54,
+  "marriageAge": 24,
+  "fertility": 5.1,
+  "gdp": 2.2,
+  "edu": 0.5,
+  "risk": 0.65
+ },
+ {
+  "code": "PK",
+  "flag": "🇵🇰",
+  "name": {
+   "tr": "Pakistan",
+   "en": "Pakistan"
+  },
+  "region": "south_asia",
+  "births": 6.9,
+  "lifeExp": 67,
+  "marriageAge": 22,
+  "fertility": 3.6,
+  "gdp": 1.4,
+  "edu": 0.5,
+  "risk": 0.55
+ },
+ {
+  "code": "ID",
+  "flag": "🇮🇩",
+  "name": {
+   "tr": "Endonezya",
+   "en": "Indonesia"
+  },
+  "region": "east_asia",
+  "births": 4.4,
+  "lifeExp": 71,
+  "marriageAge": 24,
+  "fertility": 2.1,
+  "gdp": 4.9,
+  "edu": 0.7,
+  "risk": 0.45
+ },
+ {
+  "code": "US",
+  "flag": "🇺🇸",
+  "name": {
+   "tr": "ABD",
+   "en": "United States"
+  },
+  "region": "west",
+  "births": 3.6,
+  "lifeExp": 79,
+  "marriageAge": 30,
+  "fertility": 1.7,
+  "gdp": 80,
+  "edu": 0.9,
+  "risk": 0.25
+ },
+ {
+  "code": "BR",
+  "flag": "🇧🇷",
+  "name": {
+   "tr": "Brezilya",
+   "en": "Brazil"
+  },
+  "region": "latam",
+  "births": 2.5,
+  "lifeExp": 76,
+  "marriageAge": 27,
+  "fertility": 1.6,
+  "gdp": 10,
+  "edu": 0.75,
+  "risk": 0.35
+ },
+ {
+  "code": "BD",
+  "flag": "🇧🇩",
+  "name": {
+   "tr": "Bangladeş",
+   "en": "Bangladesh"
+  },
+  "region": "south_asia",
+  "births": 3.4,
+  "lifeExp": 73,
+  "marriageAge": 20,
+  "fertility": 2.0,
+  "gdp": 2.5,
+  "edu": 0.6,
+  "risk": 0.5
+ },
+ {
+  "code": "ET",
+  "flag": "🇪🇹",
+  "name": {
+   "tr": "Etiyopya",
+   "en": "Ethiopia"
+  },
+  "region": "africa",
+  "births": 4.0,
+  "lifeExp": 67,
+  "marriageAge": 21,
+  "fertility": 4.0,
+  "gdp": 1.0,
+  "edu": 0.4,
+  "risk": 0.6
+ },
+ {
+  "code": "MX",
+  "flag": "🇲🇽",
+  "name": {
+   "tr": "Meksika",
+   "en": "Mexico"
+  },
+  "region": "latam",
+  "births": 2.0,
+  "lifeExp": 75,
+  "marriageAge": 26,
+  "fertility": 1.8,
+  "gdp": 11,
+  "edu": 0.75,
+  "risk": 0.4
+ },
+ {
+  "code": "EG",
+  "flag": "🇪🇬",
+  "name": {
+   "tr": "Mısır",
+   "en": "Egypt"
+  },
+  "region": "mena",
+  "births": 2.3,
+  "lifeExp": 72,
+  "marriageAge": 25,
+  "fertility": 2.8,
+  "gdp": 3.5,
+  "edu": 0.7,
+  "risk": 0.4
+ },
+ {
+  "code": "PH",
+  "flag": "🇵🇭",
+  "name": {
+   "tr": "Filipinler",
+   "en": "Philippines"
+  },
+  "region": "east_asia",
+  "births": 2.3,
+  "lifeExp": 71,
+  "marriageAge": 26,
+  "fertility": 1.9,
+  "gdp": 3.7,
+  "edu": 0.75,
+  "risk": 0.5
+ },
+ {
+  "code": "CD",
+  "flag": "🇨🇩",
+  "name": {
+   "tr": "Demokratik Kongo",
+   "en": "DR Congo"
+  },
+  "region": "africa",
+  "births": 3.5,
+  "lifeExp": 62,
+  "marriageAge": 20,
+  "fertility": 6.0,
+  "gdp": 0.6,
+  "edu": 0.4,
+  "risk": 0.75
+ },
+ {
+  "code": "JP",
+  "flag": "🇯🇵",
+  "name": {
+   "tr": "Japonya",
+   "en": "Japan"
+  },
+  "region": "east_asia",
+  "births": 0.75,
+  "lifeExp": 85,
+  "marriageAge": 31,
+  "fertility": 1.2,
+  "gdp": 34,
+  "edu": 0.95,
+  "risk": 0.35
+ },
+ {
+  "code": "TR",
+  "flag": "🇹🇷",
+  "name": {
+   "tr": "Türkiye",
+   "en": "Türkiye"
+  },
+  "region": "tr",
+  "births": 1.0,
+  "lifeExp": 77,
+  "marriageAge": 27,
+  "fertility": 1.6,
+  "gdp": 13,
+  "edu": 0.8,
+  "risk": 0.35
+ },
+ {
+  "code": "DE",
+  "flag": "🇩🇪",
+  "name": {
+   "tr": "Almanya",
+   "en": "Germany"
+  },
+  "region": "west",
+  "births": 0.7,
+  "lifeExp": 81,
+  "marriageAge": 33,
+  "fertility": 1.5,
+  "gdp": 52,
+  "edu": 0.93,
+  "risk": 0.1
+ },
+ {
+  "code": "GB",
+  "flag": "🇬🇧",
+  "name": {
+   "tr": "Birleşik Krallık",
+   "en": "United Kingdom"
+  },
+  "region": "west",
+  "births": 0.65,
+  "lifeExp": 81,
+  "marriageAge": 33,
+  "fertility": 1.6,
+  "gdp": 49,
+  "edu": 0.92,
+  "risk": 0.1
+ },
+ {
+  "code": "FR",
+  "flag": "🇫🇷",
+  "name": {
+   "tr": "Fransa",
+   "en": "France"
+  },
+  "region": "west",
+  "births": 0.68,
+  "lifeExp": 82,
+  "marriageAge": 33,
+  "fertility": 1.7,
+  "gdp": 44,
+  "edu": 0.92,
+  "risk": 0.1
+ },
+ {
+  "code": "IT",
+  "flag": "🇮🇹",
+  "name": {
+   "tr": "İtalya",
+   "en": "Italy"
+  },
+  "region": "west",
+  "births": 0.38,
+  "lifeExp": 83,
+  "marriageAge": 33,
+  "fertility": 1.2,
+  "gdp": 37,
+  "edu": 0.9,
+  "risk": 0.15
+ },
+ {
+  "code": "SE",
+  "flag": "🇸🇪",
+  "name": {
+   "tr": "İsveç",
+   "en": "Sweden"
+  },
+  "region": "west",
+  "births": 0.1,
+  "lifeExp": 83,
+  "marriageAge": 33,
+  "fertility": 1.5,
+  "gdp": 56,
+  "edu": 0.95,
+  "risk": 0.05
+ },
+ {
+  "code": "KR",
+  "flag": "🇰🇷",
+  "name": {
+   "tr": "Güney Kore",
+   "en": "South Korea"
+  },
+  "region": "east_asia",
+  "births": 0.23,
+  "lifeExp": 83,
+  "marriageAge": 33,
+  "fertility": 0.8,
+  "gdp": 33,
+  "edu": 0.95,
+  "risk": 0.15
+ },
+ {
+  "code": "SA",
+  "flag": "🇸🇦",
+  "name": {
+   "tr": "Suudi Arabistan",
+   "en": "Saudi Arabia"
+  },
+  "region": "mena",
+  "births": 0.6,
+  "lifeExp": 78,
+  "marriageAge": 27,
+  "fertility": 2.3,
+  "gdp": 32,
+  "edu": 0.8,
+  "risk": 0.25
+ },
+ {
+  "code": "ZA",
+  "flag": "🇿🇦",
+  "name": {
+   "tr": "Güney Afrika",
+   "en": "South Africa"
+  },
+  "region": "africa",
+  "births": 1.2,
+  "lifeExp": 65,
+  "marriageAge": 29,
+  "fertility": 2.3,
+  "gdp": 6.3,
+  "edu": 0.7,
+  "risk": 0.5
+ },
+ {
+  "code": "AR",
+  "flag": "🇦🇷",
+  "name": {
+   "tr": "Arjantin",
+   "en": "Argentina"
+  },
+  "region": "latam",
+  "births": 0.65,
+  "lifeExp": 77,
+  "marriageAge": 29,
+  "fertility": 1.5,
+  "gdp": 13,
+  "edu": 0.85,
+  "risk": 0.3
+ },
+ {
+  "code": "IR",
+  "flag": "🇮🇷",
+  "name": {
+   "tr": "İran",
+   "en": "Iran"
+  },
+  "region": "mena",
+  "births": 1.2,
+  "lifeExp": 77,
+  "marriageAge": 26,
+  "fertility": 1.7,
+  "gdp": 4.5,
+  "edu": 0.8,
+  "risk": 0.45
+ },
+ {
+  "code": "KE",
+  "flag": "🇰🇪",
+  "name": {
+   "tr": "Kenya",
+   "en": "Kenya"
+  },
+  "region": "africa",
+  "births": 1.6,
+  "lifeExp": 67,
+  "marriageAge": 25,
+  "fertility": 3.3,
+  "gdp": 2.1,
+  "edu": 0.6,
+  "risk": 0.5
+ },
+ {
+  "code": "VN",
+  "flag": "🇻🇳",
+  "name": {
+   "tr": "Vietnam",
+   "en": "Vietnam"
+  },
+  "region": "east_asia",
+  "births": 1.5,
+  "lifeExp": 75,
+  "marriageAge": 27,
+  "fertility": 1.9,
+  "gdp": 4.3,
+  "edu": 0.8,
+  "risk": 0.3
+ },
+ {
+  "code": "TZ",
+  "flag": "🇹🇿",
+  "name": {
+   "tr": "Tanzanya",
+   "en": "Tanzania"
+  },
+  "region": "africa",
+  "births": 2.1,
+  "lifeExp": 67,
+  "marriageAge": 22,
+  "fertility": 4.7,
+  "gdp": 1.2,
+  "edu": 0.45,
+  "risk": 0.5
+ }
+]

@@ -1,0 +1,212 @@
+{
+ "tr": {
+  "m": [
+   "Ahmet",
+   "Mehmet",
+   "Mustafa",
+   "Emre",
+   "Burak",
+   "Can",
+   "Kerem",
+   "Ali",
+   "Yusuf",
+   "Eren",
+   "Berk",
+   "Deniz"
+  ],
+  "f": [
+   "Ayşe",
+   "Fatma",
+   "Elif",
+   "Zeynep",
+   "Merve",
+   "Ece",
+   "Selin",
+   "Defne",
+   "Buse",
+   "Esra",
+   "Derya",
+   "Aylin"
+  ]
+ },
+ "south_asia": {
+  "m": [
+   "Arjun",
+   "Rahul",
+   "Amit",
+   "Imran",
+   "Ravi",
+   "Vikram",
+   "Sanjay",
+   "Farhan",
+   "Rohan",
+   "Hassan",
+   "Kabir",
+   "Aman"
+  ],
+  "f": [
+   "Priya",
+   "Anjali",
+   "Ayesha",
+   "Fatima",
+   "Sunita",
+   "Neha",
+   "Pooja",
+   "Nadia",
+   "Meera",
+   "Sana",
+   "Riya",
+   "Zara"
+  ]
+ },
+ "east_asia": {
+  "m": [
+   "Wei",
+   "Hiroshi",
+   "Min-jun",
+   "Kenji",
+   "Jun",
+   "Bao",
+   "Takeshi",
+   "Budi",
+   "Jose",
+   "Hyun",
+   "Minh",
+   "Arif"
+  ],
+  "f": [
+   "Mei",
+   "Yuki",
+   "Seo-yeon",
+   "Sakura",
+   "Lan",
+   "Hana",
+   "Siti",
+   "Maria",
+   "Ji-woo",
+   "Linh",
+   "Ayu",
+   "Mika"
+  ]
+ },
+ "africa": {
+  "m": [
+   "Chidi",
+   "Kwame",
+   "Tadesse",
+   "Juma",
+   "Sipho",
+   "Emeka",
+   "Kofi",
+   "Amani",
+   "Thabo",
+   "Musa",
+   "Tunde",
+   "Baraka"
+  ],
+  "f": [
+   "Amara",
+   "Abena",
+   "Selam",
+   "Zawadi",
+   "Thandi",
+   "Ngozi",
+   "Ama",
+   "Neema",
+   "Lerato",
+   "Fatou",
+   "Chioma",
+   "Tigist"
+  ]
+ },
+ "mena": {
+  "m": [
+   "Omar",
+   "Khalid",
+   "Youssef",
+   "Hamza",
+   "Karim",
+   "Reza",
+   "Ali",
+   "Tariq",
+   "Mahmoud",
+   "Saeed",
+   "Nasser",
+   "Bilal"
+  ],
+  "f": [
+   "Layla",
+   "Noor",
+   "Mariam",
+   "Salma",
+   "Yasmin",
+   "Zahra",
+   "Huda",
+   "Rania",
+   "Leila",
+   "Dalia",
+   "Samira",
+   "Amina"
+  ]
+ },
+ "west": {
+  "m": [
+   "James",
+   "Lukas",
+   "Oliver",
+   "Noah",
+   "Henrik",
+   "Marco",
+   "Pierre",
+   "Jack",
+   "Leon",
+   "Erik",
+   "Matteo",
+   "Daniel"
+  ],
+  "f": [
+   "Emma",
+   "Sophie",
+   "Anna",
+   "Olivia",
+   "Lena",
+   "Giulia",
+   "Camille",
+   "Mia",
+   "Freja",
+   "Hannah",
+   "Chloe",
+   "Sara"
+  ]
+ },
+ "latam": {
+  "m": [
+   "Mateo",
+   "Santiago",
+   "Joao",
+   "Diego",
+   "Carlos",
+   "Luis",
+   "Pedro",
+   "Sebastian",
+   "Gabriel",
+   "Andres",
+   "Rafael",
+   "Javier"
+  ],
+  "f": [
+   "Sofia",
+   "Valentina",
+   "Camila",
+   "Isabella",
+   "Lucia",
+   "Maria",
+   "Ana",
+   "Gabriela",
+   "Mariana",
+   "Paula",
+   "Daniela",
+   "Julia"
+  ]
+ }
+}
