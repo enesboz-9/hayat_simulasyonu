@@ -219,7 +219,29 @@ class GameEngine extends ChangeNotifier {
       }
     }
     if (!ch.alive) return;
-    pending = _forcedDecision(ch) ?? _engineDecision(ch) ?? _eventDecision(ch);
+    pending = _nextDecision(ch);
+  }
+
+  /// Seçim ekranı temposu: 6 yaşından önce hiç seçim çıkmaz; sonra çoğunlukla
+  /// 2-3 yılda bir, nadiren 1 ya da 4 yılda bir çıkar. Aldatılma / ilişkinin
+  /// ortaya çıkması gibi acil sonuç kararları bekletilmez.
+  Decision? _nextDecision(Character ch) {
+    if (ch.age < 6) return null;
+    Decision? d = _affairExposedDecision(ch) ?? _spouseCheatDecision(ch);
+    if (d == null && ch.age >= ch.nextDecisionAge) {
+      d = _forcedDecision(ch) ?? _engineDecision(ch) ?? _eventDecision(ch);
+    }
+    if (d != null) ch.nextDecisionAge = ch.age + _decisionGap();
+    return d;
+  }
+
+  /// Seçimler arası yıl: %6 → 1, %42 → 2, %42 → 3, %10 → 4.
+  int _decisionGap() {
+    final r = rng.nextDouble();
+    if (r < 0.06) return 1;
+    if (r < 0.48) return 2;
+    if (r < 0.90) return 3;
+    return 4;
   }
 
   /// Anne-baba yaşlanır ve ölebilir; torun müjdesi gelebilir.

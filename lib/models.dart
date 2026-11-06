@@ -291,6 +291,9 @@ class Character {
   /// Boşanmalarda alınan ve ödenen toplam tazminat + nafaka (bin dolar).
   double compReceived = 0, compPaid = 0;
 
+  /// Bir sonraki seçim ekranının çıkabileceği en erken yaş (6 yaştan önce seçim yok).
+  int nextDecisionAge = 6;
+
   /// Anne / baba hayatta mı, kardeş var mı (olay koşulları için).
   bool motherAlive = true, fatherAlive = true, hasSiblings = true;
 }
