@@ -61,6 +61,17 @@ void main() {
     }
 
     expect(avg, inInclusiveRange(45, 90));
+    // Ortalama ölüm yaşı, doğum ülkelerinin (doğum oranıyla ağırlıklı) yaşam beklentisine yakın olmalı;
+    // eskiden olaylardan biriken sağlık hasarı yüzünden hep belirgin biçimde altında kalıyordu.
+    var expSum = 0.0;
+    byCountry.forEach((code, ages) {
+      final le = e.countries.firstWhere((c) => c.code == code).lifeExp;
+      expSum += le * ages.length;
+    });
+    final meanExp = expSum / n;
+    // ignore: avoid_print
+    print('Ort. ölüm yaşı ${avg.toStringAsFixed(1)} / ülke beklentisi ${meanExp.toStringAsFixed(1)}');
+    expect(avg - meanExp, inInclusiveRange(-3.5, 4.5));
     // Doğum ülkesi gerçek doğum oranlarını izler (Hindistan ~%17).
     expect(codes.length, greaterThanOrEqualTo(50));
     final inShare = (byCountry['IN']?.length ?? 0) / n;

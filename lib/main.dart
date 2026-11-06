@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'achievements_storage.dart';
 import 'engine.dart';
 import 'screens.dart';
 
@@ -13,7 +14,7 @@ class LifeApp extends StatefulWidget {
 }
 
 class _LifeAppState extends State<LifeApp> {
-  final engine = GameEngine();
+  final engine = GameEngine(storage: PrefsAchievementStorage());
 
   @override
   void initState() {

@@ -12,6 +12,7 @@ dependencies:
   gal: ^2.3.0            # sonuç görselini galeriye kaydeder
   share_plus: ^10.1.4    # sonuç görselini paylaşır
   path_provider: ^2.1.5  # paylaşım için geçici dosya
+  shared_preferences: ^2.3.3  # başarıların kalıcı saklanması
 
 dev_dependencies:
   flutter_test:

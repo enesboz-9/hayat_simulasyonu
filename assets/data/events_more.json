@@ -1786,7 +1786,9 @@
         "single",
         "divorced",
         "widowed"
-      ]
+      ],
+      "partnered": false,
+      "canMarry": true
     }
   },
   {
@@ -1939,7 +1941,9 @@
         "mena",
         "tr",
         "africa"
-      ]
+      ],
+      "partnered": false,
+      "canMarry": true
     }
   },
   {

@@ -80,6 +80,10 @@ class Person {
 
   /// Bu eş oyuncuyu aldattı mı?
   bool cheated = false;
+
+  /// Sevgili / birlikte yaşama aşamasında: kaç yıldır birliktesiniz, ortak evde misiniz.
+  int yearsTogether = 0;
+  bool living = false;
 }
 
 class Child {
@@ -305,6 +309,10 @@ class Character {
   /// 0-100 arası istatistikler. [luck] oyuncudan gizlidir.
   double health, happiness, smarts, looks, social, luck;
 
+  /// Sağlığın "kalıcı" düzeyi (yapı). Hastalık ve kazalar [health]'i düşürür ama
+  /// zamanla bu düzeye geri döner; yaşlanma, sigara ve iş yükü ise ikisini birden düşürür.
+  double healthBase = 0;
+
   /// Ailenin zenginliği (0-100). 18 yaşındaki başlangıç parasını belirler.
   double famWealth;
 
@@ -349,4 +357,28 @@ class Character {
 
   /// Anne / baba hayatta mı, kardeş var mı (olay koşulları için).
   bool motherAlive = true, fatherAlive = true, hasSiblings = true;
+
+  // ── Başarılar için sayaçlar ──
+
+  /// Yaşadığı ülkelerin kodları (doğduğu ülke dahil) ve tuttuğu işlerin kimlikleri.
+  final Set<String> livedIn = {}, jobIds = {};
+
+  /// Ölümden kıl payı dönme sayısı ve ulaştığı en yüksek iş seviyesi.
+  int nearDeaths = 0, bestJobLevel = 0;
+
+  /// Bu hayatta kazanılan başarı kimlikleri; [firstTime], bunlardan oyunda
+  /// ilk kez açılanlar (özet ekranında "yeni" olarak işaretlenir).
+  final Set<String> earned = {}, firstTime = {};
+
+  // ── İlişkiler (evlilik dışı) ──
+
+  /// Evlenmemiş sevgili ya da birlikte yaşadığı kişi (varsa). Evlenince [spouse] olur.
+  Person? partner;
+
+  /// İlgi duyulan cinsiyet: opposite, same, both. [attrRandom]: ayar "rastgele" idi.
+  String attraction = 'opposite';
+  bool attrRandom = false;
+
+  /// Toplam ilişki, ayrılık ve birlikte yaşanan ilişki sayısı.
+  int relationships = 0, breakups = 0, cohabited = 0;
 }

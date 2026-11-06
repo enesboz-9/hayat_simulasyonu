@@ -1,9 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'achievements.dart';
+import 'achievements_screen.dart';
 import 'engine.dart';
 import 'gender_badge.dart';
 import 'models.dart';
+import 'relationships.dart';
 import 'result_image.dart';
 
 // ───────────────────────── Ana ekran ─────────────────────────
@@ -52,7 +57,33 @@ class HomeScreen extends StatelessWidget {
                       icon: const Icon(Icons.play_arrow),
                       label: Text(b('Yeni Hayat', 'New Life')),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 10),
+                    OutlinedButton.icon(
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => AchievementsScreen(engine: engine)),
+                      ),
+                      icon: const Icon(Icons.emoji_events_outlined),
+                      label: Text(b('Başarılar', 'Achievements') + ' · ${engine.unlockedCount}/${engine.achievementTotal}'),
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      b('İlgi duyduğun kişiler (yeni hayat için)', 'Attracted to (applies to new lives)'),
+                      style: const TextStyle(fontSize: 12, color: Colors.grey),
+                    ),
+                    const SizedBox(height: 6),
+                    Wrap(
+                      spacing: 8,
+                      alignment: WrapAlignment.center,
+                      children: [
+                        for (final m in kAttractionModes)
+                          ChoiceChip(
+                            label: Text(attractionLabel(m, b)),
+                            selected: engine.orientationSetting == m,
+                            onSelected: (_) => engine.setOrientation(m),
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
                     SegmentedButton<String>(
                       segments: const [
                         ButtonSegment(value: 'tr', label: Text('Türkçe')),
@@ -74,9 +105,47 @@ class HomeScreen extends StatelessWidget {
 
 // ───────────────────────── Oyun ekranı ─────────────────────────
 
-class GameScreen extends StatelessWidget {
+class GameScreen extends StatefulWidget {
   const GameScreen({super.key, required this.engine});
   final GameEngine engine;
+
+  @override
+  State<GameScreen> createState() => _GameScreenState();
+}
+
+class _GameScreenState extends State<GameScreen> {
+  GameEngine get engine => widget.engine;
+
+  /// Ekranın üstünde gösterilen, yeni açılmış başarılar.
+  List<Achievement> _banner = const [];
+  Timer? _bannerTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    engine.addListener(_onEngine);
+  }
+
+  @override
+  void dispose() {
+    engine.removeListener(_onEngine);
+    _bannerTimer?.cancel();
+    super.dispose();
+  }
+
+  void _onEngine() {
+    final fresh = engine.takeFreshUnlocks();
+    if (fresh.isEmpty || !mounted) return;
+    setState(() => _banner = [..._banner, ...fresh].take(3).toList());
+    _bannerTimer?.cancel();
+    _bannerTimer = Timer(const Duration(seconds: 5), () {
+      if (mounted) setState(() => _banner = const []);
+    });
+  }
+
+  void _openAchievements() {
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) => AchievementsScreen(engine: engine)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,23 +170,46 @@ class GameScreen extends StatelessWidget {
             ),
             actions: [
               IconButton(
+                tooltip: engine.b('Başarılar', 'Achievements'),
+                icon: const Icon(Icons.emoji_events_outlined),
+                onPressed: _openAchievements,
+              ),
+              IconButton(
                 icon: const Icon(Icons.translate),
                 onPressed: () => engine.setLang(engine.lang == 'tr' ? 'en' : 'tr'),
               ),
             ],
           ),
-          body: Column(
+          body: Stack(
             children: [
-              _Header(engine: engine),
-              Expanded(
-                child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  // Karar yoksa ekrana dokunmak 1 yıl ilerletir.
-                  onTap: ch.alive && engine.pending == null ? engine.advanceYear : null,
-                  child: _LogList(entries: ch.log),
-                ),
+              Column(
+                children: [
+                  _Header(engine: engine),
+                  Expanded(
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      // Karar yoksa ekrana dokunmak 1 yıl ilerletir.
+                      onTap: ch.alive && engine.pending == null ? engine.advanceYear : null,
+                      child: _LogList(entries: ch.log),
+                    ),
+                  ),
+                  _Bottom(engine: engine),
+                ],
               ),
-              _Bottom(engine: engine),
+              if (_banner.isNotEmpty)
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  child: UnlockBanner(
+                    engine: engine,
+                    items: _banner,
+                    onTap: () {
+                      setState(() => _banner = const []);
+                      _openAchievements();
+                    },
+                  ),
+                ),
             ],
           ),
         );
@@ -188,6 +280,11 @@ class _Header extends StatelessWidget {
                 Chip(label: Text(engine.eduName(ch.edu)), visualDensity: VisualDensity.compact),
                 if (ch.age >= 18) Chip(label: Text('💰 ${fmtMoney(ch.money)}'), visualDensity: VisualDensity.compact),
                 if (ch.spouse != null) Chip(label: Text('💍 ${ch.spouse!.name}'), visualDensity: VisualDensity.compact),
+                if (ch.partner != null)
+                  Chip(
+                    label: Text('${ch.partner!.living ? '🏡' : '❤️'} ${ch.partner!.name}'),
+                    visualDensity: VisualDensity.compact,
+                  ),
                 if (ch.children.isNotEmpty) Chip(label: Text('👶 ${ch.children.length}'), visualDensity: VisualDensity.compact),
               ],
             ),
@@ -500,6 +597,39 @@ class _SummaryScreenState extends State<SummaryScreen> {
             label: Text(b('Görseli paylaş', 'Share image')),
           ),
           const Divider(height: 28),
+          if (ch.earned.isNotEmpty) ...[
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    '🏆 ${b('Bu hayatta kazanılan başarılar', 'Achievements earned this life')} (${ch.earned.length})',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => AchievementsScreen(engine: engine)),
+                  ),
+                  child: Text(b('Tümü', 'All')),
+                ),
+              ],
+            ),
+            const SizedBox(height: 4),
+            Wrap(
+              spacing: 8,
+              runSpacing: 4,
+              children: [
+                for (final a in kAchievements.where((x) => ch.earned.contains(x.id)))
+                  Chip(
+                    avatar: Text(a.emoji),
+                    label: Text(a.title(engine.lang) + (ch.firstTime.contains(a.id) ? ' · ${b('yeni', 'new')}' : '')),
+                    side: BorderSide(color: tierColor(a.tier)),
+                    visualDensity: VisualDensity.compact,
+                  ),
+              ],
+            ),
+            const Divider(height: 28),
+          ],
           if (engine.lifeMarks(ch).isNotEmpty) ...[
             Text(b('Hayatının izleri', 'Marks of your life'), style: const TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 6),
@@ -516,6 +646,10 @@ class _SummaryScreenState extends State<SummaryScreen> {
           row(b('Doğduğu ülke', 'Born in'), cn),
           row(b('Son ülke', 'Last country'), loc(ch.country.name, engine.lang)),
           row(b('Eğitim', 'Education'), engine.eduName(ch.edu)),
+          row(b('İlgi duyulan', 'Attracted to'), attractionLabel(ch.attraction, b)),
+          row(b('İlişki (evlilik dışı)', 'Relationships (non-marital)'), '${ch.relationships}'),
+          row(b('Ayrılık', 'Breakups'), '${ch.breakups}'),
+          row(b('Birlikte yaşama', 'Lived together'), '${ch.cohabited}'),
           row(b('Evlilik', 'Marriages'), '${ch.marriages}'),
           row(b('Boşanma', 'Divorces'), '${ch.divorces}'),
           row(b('Aldatılma', 'Times cheated on'), '${ch.cheatedOn}'),
