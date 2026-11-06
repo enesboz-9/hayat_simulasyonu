@@ -71,6 +71,19 @@ class Child {
   final String name;
   int age;
   final bool female;
+
+  /// Bu çocuğun (yani senin torunlarının) sayısı.
+  int kids = 0;
+}
+
+/// Anne, baba ve kardeşler. [relation]: mother, father, sibling.
+class Relative {
+  Relative({required this.relation, required this.name, required this.age, required this.female});
+  final String relation;
+  final String name;
+  int age;
+  final bool female;
+  bool alive = true;
 }
 
 class JobDef {
@@ -112,9 +125,12 @@ class DecisionOption {
 }
 
 class Decision {
-  Decision({required this.title, required this.body, required this.options});
+  Decision({required this.title, required this.body, required this.options, this.cat});
   final String title, body;
   final List<DecisionOption> options;
+
+  /// Seçim alanı (okul, kariyer, aşk...). Arayüzde ikon olarak gösterilir.
+  final String? cat;
 }
 
 /// Bir seçimin (ya da otomatik olayın) olası sonuçlarından biri.
@@ -168,6 +184,7 @@ class GameEvent {
         force = j['force'] == true,
         riskScale = j['riskScale'] == true,
         tone = j['tone'] as String?,
+        cat = j['cat'] as String?,
         cond = Map<String, dynamic>.from((j['cond'] as Map?) ?? const {}),
         text = j['text'],
         title = j['title'],
@@ -195,6 +212,9 @@ class GameEvent {
 
   /// good / bad: şansa göre görülme sıklığı değişir.
   final String? tone;
+
+  /// Seçim alanı: aynı alan arka arkaya gelmesin diye motor bunu izler.
+  final String? cat;
   final Json cond;
   final dynamic text, title;
   final List<Choice> choices;
@@ -236,6 +256,13 @@ class Character {
   Job? job;
   Person? spouse;
   final List<Child> children = [];
+
+  /// Anne, baba, kardeşler.
+  final List<Relative> family = [];
+  int grandchildren = 0;
+
+  /// Son gelen karar alanları (çeşitlilik için).
+  final List<String> recentCats = [];
   bool alive = true, retired = false;
   final int retireAge;
   int? uniUntil;
@@ -245,4 +272,25 @@ class Character {
   final Map<String, int> seen = {};
   final List<LogEntry> log = [];
   int marriages = 0, jobsHeld = 0, countriesLived = 1;
+
+  Relative? _rel(String r) {
+    for (final x in family) {
+      if (x.relation == r) return x;
+    }
+    return null;
+  }
+
+  Relative? get mother => _rel('mother');
+  Relative? get father => _rel('father');
+  Iterable<Relative> get siblings => family.where((x) => x.relation == 'sibling');
+  bool get parentAlive => (mother?.alive ?? false) || (father?.alive ?? false);
+
+  /// single, married, divorced, widowed
+  String get marital => spouse != null
+      ? 'married'
+      : flags.contains('widowed')
+          ? 'widowed'
+          : flags.contains('divorced')
+              ? 'divorced'
+              : 'single';
 }

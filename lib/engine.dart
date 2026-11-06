@@ -21,6 +21,12 @@ class GameEngine extends ChangeNotifier {
   Character? c;
   Decision? pending;
 
+  /// Aynı yıl içinde, mevcut karardan sonra gösterilecek ek karar sayısı.
+  int _extra = 0;
+
+  /// Olay dosyaları. Yeni dosya eklemek için buraya yazmak yeterli.
+  static const eventFiles = ['events.json', 'events_more.json'];
+
   static const _traitW = {
     'loyal': 24.0,
     'caring': 20.0,
@@ -37,6 +43,18 @@ class GameEngine extends ChangeNotifier {
     notifyListeners();
   }
 
+  String maritalName(String m) {
+    final tr = {'single': 'Bekar', 'married': 'Evli', 'divorced': 'Boşanmış', 'widowed': 'Dul'};
+    final en = {'single': 'Single', 'married': 'Married', 'divorced': 'Divorced', 'widowed': 'Widowed'};
+    return (lang == 'tr' ? tr : en)[m] ?? m;
+  }
+
+  String relationName(Relative r) => switch (r.relation) {
+        'mother' => b('Annen', 'Your mother'),
+        'father' => b('Baban', 'Your father'),
+        _ => r.female ? b('Kız kardeşin', 'Your sister') : b('Erkek kardeşin', 'Your brother'),
+      };
+
   String eduName(int e) {
     final tr = ['Eğitimsiz', 'İlköğretim', 'Lise', 'Üniversite', 'Yüksek lisans'];
     final en = ['No schooling', 'Primary', 'High school', 'University', 'Postgraduate'];
@@ -52,9 +70,10 @@ class GameEngine extends ChangeNotifier {
     countries
       ..clear()
       ..addAll((await list('countries.json')).map((e) => Country.fromJson(Map<String, dynamic>.from(e as Map))));
-    events
-      ..clear()
-      ..addAll((await list('events.json')).map((e) => GameEvent.fromJson(Map<String, dynamic>.from(e as Map))));
+    events.clear();
+    for (final f in eventFiles) {
+      events.addAll((await list(f)).map((e) => GameEvent.fromJson(Map<String, dynamic>.from(e as Map))));
+    }
     jobs
       ..clear()
       ..addAll((await list('jobs.json')).map((e) => JobDef.fromJson(Map<String, dynamic>.from(e as Map))));
@@ -97,7 +116,18 @@ class GameEngine extends ChangeNotifier {
     final kid = ch.children.isEmpty
         ? b('çocuğun', 'your child')
         : ch.children[rng.nextInt(ch.children.length)].name;
+    final sibs = ch.siblings.where((x) => x.alive).toList();
+    final sib = sibs.isEmpty ? b('kardeşin', 'your sibling') : sibs[rng.nextInt(sibs.length)].name;
+    final liveParents = [
+      if (ch.mother?.alive ?? false) ch.mother!,
+      if (ch.father?.alive ?? false) ch.father!,
+    ];
+    final par = liveParents.isEmpty ? b('ebeveynin', 'your parent') : liveParents[rng.nextInt(liveParents.length)].name;
     return s
+        .replaceAll('{mother}', ch.mother?.name ?? b('annen', 'your mother'))
+        .replaceAll('{father}', ch.father?.name ?? b('baban', 'your father'))
+        .replaceAll('{sibling}', sib)
+        .replaceAll('{parent}', par)
         .replaceAll('{country}', loc(ch.country.name, lang))
         .replaceAll('{spouse}', ch.spouse?.name ?? b('eşin', 'your partner'))
         .replaceAll('{job}', ch.job == null ? b('işin', 'your job') : loc(ch.job!.def.name, lang))
@@ -126,6 +156,7 @@ class GameEngine extends ChangeNotifier {
     );
     c = ch;
     pending = null;
+    _extra = 0;
     final cn = loc(country.name, lang);
     _say(
       ch,
@@ -139,7 +170,34 @@ class GameEngine extends ChangeNotifier {
             ? b('geçim sıkıntısı çekiyor', 'struggling to get by')
             : b('orta halli', 'middle-income');
     _say(ch, b('Ailen $fam.', 'Your family is $fam.'), 'info');
+    _genFamily(ch);
     notifyListeners();
+  }
+
+  /// Anne, baba ve (ülkenin doğurganlığına göre) ağabey/ablalar.
+  void _genFamily(Character ch) {
+    final region = ch.country.region;
+    final mAge = _ri(19, 36);
+    final fAge = max(19, mAge + _ri(-3, 8));
+    ch.family
+      ..add(Relative(relation: 'mother', name: _name(region, true), age: mAge, female: true))
+      ..add(Relative(relation: 'father', name: _name(region, false), age: fAge, female: false));
+    final n = _cl(ch.country.fertility - 1 + _gauss() * 1.1, 0, 6).round();
+    for (var i = 0; i < n; i++) {
+      final girl = _p(0.49);
+      final age = _ri(1, max(1, min(14, mAge - 19)));
+      ch.family.add(Relative(relation: 'sibling', name: _name(region, girl), age: age, female: girl));
+    }
+    final sibs = ch.siblings.length;
+    _say(
+      ch,
+      sibs == 0
+          ? b('Annen ${ch.mother!.name}, baban ${ch.father!.name}. Tek çocuksun.',
+              'Your mother is ${ch.mother!.name}, your father is ${ch.father!.name}. You are an only child.')
+          : b('Annen ${ch.mother!.name}, baban ${ch.father!.name}. $sibs kardeşin var.',
+              'Your mother is ${ch.mother!.name}, your father is ${ch.father!.name}. You have $sibs sibling${sibs > 1 ? 's' : ''}.'),
+      'info',
+    );
   }
 
   // ───────────────────────── Oyun akışı ─────────────────────────
@@ -167,6 +225,11 @@ class GameEngine extends ChangeNotifier {
     pending = null;
     _say(ch, '${d.title}: ${o.label}', 'choice');
     o.pick();
+    // Aynı yıl içinde ikinci bir seçim sırada bekliyorsa onu göster.
+    if (_extra > 0 && ch.alive && pending == null) {
+      _extra--;
+      pending = _eventDecision(ch, always: true);
+    }
     notifyListeners();
   }
 
@@ -181,10 +244,12 @@ class GameEngine extends ChangeNotifier {
     _jobYear(ch);
     if (_deathRoll(ch)) return;
     _spouseYear(ch);
+    _familyYear(ch);
+    _childrenYear(ch);
     _milestones(ch);
 
-    var n = _p(0.55) ? 1 : 0;
-    if (_p(0.15)) n++;
+    var n = _p(0.6) ? 1 : 0;
+    if (_p(0.2)) n++;
     for (var i = 0; i < n && ch.alive; i++) {
       final ev = _pickEvent(ch, auto: true);
       if (ev != null) {
@@ -194,6 +259,8 @@ class GameEngine extends ChangeNotifier {
     }
     if (!ch.alive) return;
     pending = _forcedDecision(ch) ?? _engineDecision(ch) ?? _eventDecision(ch);
+    // Bazı yıllar arka arkaya iki farklı konuda karar gerekir.
+    _extra = (pending != null && _p(0.22)) ? 1 : 0;
   }
 
   // ───────────────────────── Yıllık istatistikler ─────────────────────────
@@ -204,6 +271,7 @@ class GameEngine extends ChangeNotifier {
     if (a < 20) ch.health += 0.6;
     if (a > 35) ch.health -= (a - 35) * 0.035 + 0.1;
     if (ch.flags.contains('smoker')) ch.health -= 0.8;
+    if (ch.flags.contains('drinker')) ch.health -= 0.25;
     if (ch.country.gdp < 3) ch.health -= 0.15;
     if (a > 30) ch.looks -= 0.2 + (a - 30) * 0.01;
     if (a < 25 && ch.edu >= 2) ch.smarts += 0.4;
@@ -363,6 +431,7 @@ class GameEngine extends ChangeNotifier {
       ch.happiness -= 25;
       ch.social -= 4;
       ch.flags.add('widowed');
+      ch.flags.remove('divorced');
       _say(ch, b('Eşini kaybettin. Büyük bir boşluk kaldı geride.', 'You lost your partner. A great emptiness remains.'), 'bad');
       _clampStats(ch);
     }
@@ -415,6 +484,66 @@ class GameEngine extends ChangeNotifier {
       trait: _weighted<String>(_traitW.keys.toList(), (t) => _traitW[t]!),
       bond: _cl(45 + kind * 0.25 + _gauss() * 6),
     );
+  }
+
+  // ───────────────────────── Aile (anne, baba, kardeş, torun) ─────────────────────────
+
+  void _familyYear(Character ch) {
+    for (final r in ch.family) {
+      if (!r.alive) continue;
+      r.age++;
+      final h = _hazard(r.age, ch.country.lifeExp, ch.country.risk, 60, 50, const {}) * (r.relation == 'sibling' ? 0.8 : 1.0);
+      if (_p(h)) {
+        _relativeDied(ch, r);
+        if (!ch.alive) return;
+      }
+    }
+    // Annen yeterince gençse küçük bir kardeşin dünyaya gelebilir.
+    final m = ch.mother;
+    if (ch.age <= 12 && m != null && m.alive && m.age <= 40 && ch.siblings.length < 6 && _p(ch.country.fertility / 60)) {
+      final girl = _p(0.49);
+      final baby = Relative(relation: 'sibling', name: _name(ch.country.region, girl), age: 0, female: girl);
+      ch.family.add(baby);
+      ch.happiness += 2;
+      _say(ch, b('Kardeşin ${baby.name} dünyaya geldi!', 'Your sibling ${baby.name} was born!'), 'good');
+    }
+  }
+
+  void _relativeDied(Character ch, Relative r) {
+    r.alive = false;
+    final young = ch.age < 18;
+    ch.happiness -= (r.relation == 'sibling' ? 10 : 14) + (young ? 6 : 0);
+    ch.social -= 2;
+    if (young && r.relation == 'father') ch.famWealth -= 8;
+    if (young && r.relation == 'mother') ch.famWealth -= 5;
+    _say(
+      ch,
+      b('${relationName(r)} ${r.name} hayatını kaybetti (${r.age} yaşında).', '${relationName(r)} ${r.name} passed away (aged ${r.age}).'),
+      'bad',
+    );
+    _clampStats(ch);
+  }
+
+  void _loseParent(Character ch, String which) {
+    final cands = [
+      for (final r in ch.family)
+        if (r.alive && r.relation != 'sibling' && (which == 'any' || r.relation == which)) r
+    ];
+    if (cands.isEmpty) return;
+    _relativeDied(ch, cands[rng.nextInt(cands.length)]);
+  }
+
+  /// Büyüyen çocuklar zamanla çocuk sahibi olur; torun sayısı artar.
+  void _childrenYear(Character ch) {
+    for (final k in ch.children) {
+      if (k.age >= 22 && k.age <= 40 && k.kids < 4 && _p(ch.country.fertility / 50)) {
+        k.kids++;
+        ch.grandchildren++;
+        ch.happiness += 6;
+        ch.social += 1;
+        _say(ch, b('${k.name} bir çocuk sahibi oldu; torunun dünyaya geldi!', '${k.name} had a child; your grandchild was born!'), 'good');
+      }
+    }
   }
 
   // ───────────────────────── Dönüm noktaları ─────────────────────────
@@ -480,6 +609,7 @@ class GameEngine extends ChangeNotifier {
     if (s == null || s.bond >= 25 || !_p(0.5)) return null;
     final g = ch.country.gdp;
     return Decision(
+      cat: 'love',
       title: b('Evlilik krizi', 'Marriage crisis'),
       body: b('${s.name} ile ilişkiniz çok kötü durumda. Ne yapacaksın?', 'Your relationship with ${s.name} is in bad shape. What will you do?'),
       options: [
@@ -491,6 +621,7 @@ class GameEngine extends ChangeNotifier {
             ch.social -= 4;
             ch.money -= g * 0.6;
             ch.flags.add('divorced');
+            ch.flags.remove('widowed');
             _say(ch, b('Boşandınız. Yeni bir sayfa açmak zorundasın.', 'You divorced. Time to start a new chapter.'), 'bad');
             _clampStats(ch);
           },
@@ -520,6 +651,7 @@ class GameEngine extends ChangeNotifier {
     final count = _ri(2, 4);
     final cands = [for (var i = 0; i < count; i++) _genPerson(ch)];
     return Decision(
+      cat: 'love',
       title: b('Evlilik zamanı mı?', 'Time to settle down?'),
       body: b('Hayatına girebilecek birkaç kişiyle tanıştın. Biriyle ilerlemek ister misin?', 'You met a few people who could enter your life. Want to pursue someone?'),
       options: [
@@ -552,7 +684,10 @@ class GameEngine extends ChangeNotifier {
       ch.marriages++;
       ch.happiness += 12;
       ch.social += 4;
-      ch.flags.remove('widowed');
+      ch.flags
+        ..remove('widowed')
+        ..remove('divorced')
+        ..add('wedding_pending');
       _say(ch, b('${p.name} teklifini kabul etti, evlendiniz!', '${p.name} said yes and you got married!'), 'good');
     } else {
       ch.happiness -= 8;
@@ -570,6 +705,7 @@ class GameEngine extends ChangeNotifier {
     if (!_p(ch.country.fertility / 9 * pow(0.6, ch.children.length))) return null;
 
     return Decision(
+      cat: 'kids',
       title: b('Aile büyür mü?', 'Growing the family?'),
       body: b('${s.name} ile çocuk sahibi olmayı konuşuyorsunuz.', 'You and ${s.name} are talking about having a child.'),
       options: [
@@ -616,6 +752,7 @@ class GameEngine extends ChangeNotifier {
     final offers = pool.take(employed ? 2 : 3).toList();
     final g = ch.country.gdp;
     return Decision(
+      cat: 'career',
       title: employed ? b('Yeni iş teklifi', 'New job offer') : b('İş teklifleri', 'Job offers'),
       body: employed
           ? b('Başka bir yerden teklif aldın. Geçmek ister misin?', 'You got an offer elsewhere. Will you switch?')
@@ -679,6 +816,19 @@ class GameEngine extends ChangeNotifier {
     if (cond['hasJob'] != null && cond['hasJob'] != (ch.job != null)) return false;
     if (cond['hasKids'] != null && cond['hasKids'] != ch.children.isNotEmpty) return false;
     if (cond['retired'] != null && cond['retired'] != ch.retired) return false;
+    if (cond['student'] != null && cond['student'] != (ch.uniUntil != null)) return false;
+    final st = cond['status'] as List?;
+    if (st != null && !st.contains(ch.marital)) return false;
+    if (cond['minKids'] != null && ch.children.length < (cond['minKids'] as num)) return false;
+    if (cond['maxKids'] != null && ch.children.length > (cond['maxKids'] as num)) return false;
+    final ka = cond['kidAge'] as List?;
+    if (ka != null && !ch.children.any((k) => k.age >= (ka[0] as num) && k.age <= (ka[1] as num))) return false;
+    if (cond['parentAlive'] != null && cond['parentAlive'] != ch.parentAlive) return false;
+    if (cond['motherAlive'] != null && cond['motherAlive'] != (ch.mother?.alive ?? false)) return false;
+    if (cond['fatherAlive'] != null && cond['fatherAlive'] != (ch.father?.alive ?? false)) return false;
+    if (cond['hasSiblings'] != null && cond['hasSiblings'] != ch.siblings.any((s) => s.alive)) return false;
+    if (cond['hasGrandkids'] != null && cond['hasGrandkids'] != (ch.grandchildren > 0)) return false;
+    if (cond['minJobLevel'] != null && (ch.job == null || ch.job!.level < (cond['minJobLevel'] as num))) return false;
     for (final f in (cond['flagsAll'] as List? ?? const [])) {
       if (!ch.flags.contains(f)) return false;
     }
@@ -705,6 +855,8 @@ class GameEngine extends ChangeNotifier {
       if (e.tone == 'good') w *= 0.6 + ch.luck / 125;
       if (e.tone == 'bad') w *= 1.4 - ch.luck / 125;
       if (e.riskScale) w *= 0.3 + ch.country.risk * 2;
+      // Aynı alandan art arda seçim gelmesin: çeşitlilik için son alanlar kısılır.
+      if (e.cat != null && ch.recentCats.contains(e.cat)) w *= 0.3;
       return w;
     });
   }
@@ -716,15 +868,22 @@ class GameEngine extends ChangeNotifier {
     return null;
   }
 
-  Decision? _eventDecision(Character ch) {
-    if (!_p(0.32)) return null;
+  /// Her yıl ~%62 olasılıkla bir seçim gelir (önceden ~%32'ydi).
+  Decision? _eventDecision(Character ch, {bool always = false}) {
+    if (!always && !_p(0.62)) return null;
     final ev = _pickEvent(ch, auto: false);
     return ev == null ? null : _decisionFromEvent(ch, ev);
   }
 
   Decision _decisionFromEvent(Character ch, GameEvent ev) {
     ch.seen[ev.id] = ch.age;
+    final cat = ev.cat;
+    if (cat != null) {
+      ch.recentCats.add(cat);
+      if (ch.recentCats.length > 3) ch.recentCats.removeAt(0);
+    }
     return Decision(
+      cat: cat,
       title: ev.title != null ? _fill(ch, loc(ev.title, lang)) : b('Karar zamanı · ${ch.age} yaş', 'Decision time · age ${ch.age}'),
       body: _fill(ch, loc(ev.text, lang)),
       options: [
@@ -821,6 +980,32 @@ class GameEngine extends ChangeNotifier {
           _retire(ch);
         case 'loseSpouse':
           ch.spouse = null;
+        case 'loseParent':
+          _loseParent(ch, v as String);
+        case 'divorce':
+          if (ch.spouse != null) {
+            ch.spouse = null;
+            ch.flags.add('divorced');
+            ch.flags.remove('widowed');
+          }
+        case 'marry':
+          if (ch.spouse == null) {
+            ch.spouse = _genPerson(ch);
+            ch.marriages++;
+            ch.flags
+              ..remove('widowed')
+              ..remove('divorced')
+              ..add('wedding_pending');
+          }
+        case 'promote':
+          final j = ch.job;
+          if (j != null) j.level = min(5, j.level + (v as num).toInt());
+        case 'setJob':
+          final def = jobs.where((x) => x.id == v).firstOrNull;
+          if (def != null) {
+            ch.job = Job(def);
+            ch.jobsHeld++;
+          }
         case 'kids':
           for (var i = 0; i < (v as num).toInt(); i++) {
             final girl = _p(0.49);

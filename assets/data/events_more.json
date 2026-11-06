@@ -1,0 +1,7244 @@
+[
+  {
+    "id": "toy_gift",
+    "cat": "life",
+    "minAge": 2,
+    "maxAge": 7,
+    "weight": 1.3,
+    "cooldown": 3,
+    "title": {
+      "tr": "🎁 Doğum günü hediyesi",
+      "en": "🎁 Birthday gift"
+    },
+    "text": {
+      "tr": "Doğum günün yaklaşıyor ve ne istediğini soruyorlar.",
+      "en": "Your birthday is coming and everyone asks what you want."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Oyuncak araba / bebek",
+          "en": "A toy car / doll"
+        },
+        "result": {
+          "tr": "Oyuncağınla saatlerce oynadın.",
+          "en": "You played with your toy for hours."
+        },
+        "effects": {
+          "happiness": 5,
+          "social": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Boya kalemleri",
+          "en": "Crayons"
+        },
+        "result": {
+          "tr": "Duvarlara bile resim yaptın!",
+          "en": "You even drew on the walls!"
+        },
+        "effects": {
+          "happiness": 3,
+          "smarts": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Top",
+          "en": "A ball"
+        },
+        "result": {
+          "tr": "Mahalledeki çocuklarla top oynadın.",
+          "en": "You played ball with the neighborhood kids."
+        },
+        "effects": {
+          "health": 3,
+          "social": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "imaginary_friend",
+    "cat": "life",
+    "minAge": 3,
+    "maxAge": 7,
+    "weight": 1.0,
+    "cooldown": 6,
+    "title": {
+      "tr": "🧸 Hayali arkadaş",
+      "en": "🧸 Imaginary friend"
+    },
+    "text": {
+      "tr": "Kimsenin göremediği bir arkadaşınla sürekli konuşuyorsun. Ailen endişeli.",
+      "en": "You keep talking to a friend nobody else can see. Your family is concerned."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Oyuna devam et",
+          "en": "Keep playing"
+        },
+        "result": {
+          "tr": "Hayal gücün gelişti.",
+          "en": "Your imagination bloomed."
+        },
+        "effects": {
+          "smarts": 2,
+          "happiness": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "Gerçek çocuklarla oyna",
+          "en": "Play with real kids"
+        },
+        "result": {
+          "tr": "Yeni arkadaşlar edindin.",
+          "en": "You made real friends."
+        },
+        "effects": {
+          "social": 4,
+          "happiness": 2
+        }
+      }
+    ],
+    "cond": {
+      "flagsNone": [
+        "imaginary_done"
+      ]
+    },
+    "once": true
+  },
+  {
+    "id": "bedtime",
+    "cat": "life",
+    "minAge": 2,
+    "maxAge": 6,
+    "weight": 0.8,
+    "cooldown": 4,
+    "title": {
+      "tr": "🌙 Uyku vakti",
+      "en": "🌙 Bedtime"
+    },
+    "text": {
+      "tr": "Yatma vakti geldi ama hiç uykun yok.",
+      "en": "It's bedtime but you aren't sleepy at all."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Masal dinlemek iste",
+          "en": "Ask for a story"
+        },
+        "result": {
+          "tr": "Masal seni hayallere daldırdı.",
+          "en": "The story carried you to dreamland."
+        },
+        "effects": {
+          "smarts": 2,
+          "happiness": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Itiraz et",
+          "en": "Protest"
+        },
+        "result": {
+          "tr": "Ertesi gün yorgun ve huysuz geçti.",
+          "en": "The next day you were tired and cranky."
+        },
+        "effects": {
+          "happiness": -2,
+          "health": -1
+        }
+      },
+      {
+        "text": {
+          "tr": "Uyu",
+          "en": "Go to sleep"
+        },
+        "result": {
+          "tr": "İyi uyudun, güne enerjik başladın.",
+          "en": "You slept well and woke up energetic."
+        },
+        "effects": {
+          "health": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "first_day_school",
+    "cat": "school",
+    "minAge": 6,
+    "maxAge": 8,
+    "weight": 3,
+    "cooldown": 6,
+    "title": {
+      "tr": "🎒 Okulun ilk günü",
+      "en": "🎒 First day of school"
+    },
+    "text": {
+      "tr": "Okulun ilk günü. Kalbin hızlı atıyor.",
+      "en": "First day of school. Your heart is racing."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Cesurca içeri gir",
+          "en": "Walk in boldly"
+        },
+        "result": {
+          "tr": "Hemen birkaç arkadaş edindin.",
+          "en": "You made a few friends right away."
+        },
+        "effects": {
+          "social": 4,
+          "happiness": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "Annene sarıl, ağla",
+          "en": "Cling to your mother and cry"
+        },
+        "result": {
+          "tr": "Zor oldu ama öğretmenin seni rahatlattı.",
+          "en": "It was hard, but your teacher calmed you."
+        },
+        "effects": {
+          "happiness": -2,
+          "social": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Yeni bir arkadaş bul",
+          "en": "Find a new friend"
+        },
+        "result": {
+          "tr": "Yan sıradaki çocukla hemen kaynaştınız.",
+          "en": "You clicked with the kid at the next desk."
+        },
+        "effects": {
+          "social": 5,
+          "happiness": 2
+        }
+      }
+    ],
+    "cond": {
+      "flagsAll": [
+        "in_school"
+      ]
+    },
+    "once": true
+  },
+  {
+    "id": "playground_fight",
+    "cat": "school",
+    "minAge": 6,
+    "maxAge": 13,
+    "weight": 1.0,
+    "cooldown": 5,
+    "title": {
+      "tr": "🤼 Bahçede kavga",
+      "en": "🤼 Playground fight"
+    },
+    "text": {
+      "tr": "Teneffüste iki çocuk kavga ediyor; biri senin arkadaşın.",
+      "en": "Two kids are fighting at recess; one is your friend."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Araya gir",
+          "en": "Step in"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Kavgayı ayırdın, herkes seni takdir etti.",
+              "en": "You broke it up and everyone respected you."
+            },
+            "check": "health",
+            "effects": {
+              "social": 4,
+              "happiness": 3
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Araya girerken yumruk yedin.",
+              "en": "You caught a punch while stepping in."
+            },
+            "effects": {
+              "health": -4,
+              "happiness": -2
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Öğretmene haber ver",
+          "en": "Tell the teacher"
+        },
+        "result": {
+          "tr": "Öğretmen kavgayı bitirdi; bazıları sana laf etti.",
+          "en": "The teacher stopped it; some kids grumbled at you."
+        },
+        "effects": {
+          "smarts": 1,
+          "social": -1
+        }
+      },
+      {
+        "text": {
+          "tr": "Uzaklaş",
+          "en": "Walk away"
+        },
+        "result": {
+          "tr": "Karışmadın.",
+          "en": "You stayed out of it."
+        },
+        "effects": {
+          "happiness": -1
+        }
+      }
+    ]
+  },
+  {
+    "id": "family_trip_kid",
+    "cat": "family",
+    "minAge": 4,
+    "maxAge": 16,
+    "weight": 0.9,
+    "cooldown": 5,
+    "title": {
+      "tr": "🚗 Aile tatili",
+      "en": "🚗 Family vacation"
+    },
+    "text": {
+      "tr": "Ailen bu yaz tatile gitmek istiyor. Nereye gidelim?",
+      "en": "Your family wants a summer trip. Where to?"
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Deniz kenarı",
+          "en": "The seaside"
+        },
+        "result": {
+          "tr": "Kumda kale yaptın, güneşe doydun.",
+          "en": "You built sandcastles and soaked up the sun."
+        },
+        "effects": {
+          "happiness": 6,
+          "health": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Dağ / doğa",
+          "en": "Mountains / nature"
+        },
+        "result": {
+          "tr": "Temiz hava ve yürüyüşler iyi geldi.",
+          "en": "Clean air and hikes did you good."
+        },
+        "effects": {
+          "health": 4,
+          "happiness": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "Köy / akraba ziyareti",
+          "en": "Visit relatives"
+        },
+        "result": {
+          "tr": "Kuzenlerle eğlendin, aile bağların güçlendi.",
+          "en": "You had fun with cousins and family ties grew."
+        },
+        "effects": {
+          "social": 4,
+          "happiness": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "Evde kal",
+          "en": "Stay home"
+        },
+        "result": {
+          "tr": "Sıkıcı bir yaz oldu ama para biriktirdiniz.",
+          "en": "A dull summer, but the family saved money."
+        },
+        "effects": {
+          "happiness": -2,
+          "money": 0.1
+        }
+      }
+    ]
+  },
+  {
+    "id": "adopt_pet",
+    "cat": "pet",
+    "minAge": 6,
+    "maxAge": 40,
+    "weight": 0.9,
+    "cooldown": 6,
+    "title": {
+      "tr": "🐾 Evcil hayvan",
+      "en": "🐾 A pet"
+    },
+    "text": {
+      "tr": "Sokakta küçük bir yavru buldun. Yanına almak istiyorsun.",
+      "en": "You found a small stray. You'd love to take it home."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Köpeği sahiplen",
+          "en": "Adopt a dog"
+        },
+        "result": {
+          "tr": "Sadık bir dostun oldu; yürüyüşler seni hareketlendirdi.",
+          "en": "You gained a loyal friend; the walks keep you moving."
+        },
+        "effects": {
+          "happiness": 6,
+          "health": 2,
+          "money": -0.03
+        },
+        "setFlags": [
+          "has_pet",
+          "has_dog"
+        ]
+      },
+      {
+        "text": {
+          "tr": "Kediyi sahiplen",
+          "en": "Adopt a cat"
+        },
+        "result": {
+          "tr": "Kedin evin neşesi oldu.",
+          "en": "Your cat became the joy of the house."
+        },
+        "effects": {
+          "happiness": 6,
+          "money": -0.02
+        },
+        "setFlags": [
+          "has_pet"
+        ]
+      },
+      {
+        "text": {
+          "tr": "Mama bırakıp yoluna devam et",
+          "en": "Leave some food and move on"
+        },
+        "result": {
+          "tr": "İçin burkuldu ama elinden geleni yaptın.",
+          "en": "It tugged at you, but you did what you could."
+        },
+        "effects": {
+          "happiness": 1
+        }
+      }
+    ],
+    "cond": {
+      "flagsNone": [
+        "has_pet"
+      ]
+    },
+    "once": true
+  },
+  {
+    "id": "study_exam",
+    "cat": "school",
+    "minAge": 8,
+    "maxAge": 17,
+    "weight": 1.4,
+    "cooldown": 3,
+    "title": {
+      "tr": "📚 Sınav haftası",
+      "en": "📚 Exam week"
+    },
+    "text": {
+      "tr": "Önemli bir sınav yaklaşıyor. Nasıl hazırlanacaksın?",
+      "en": "A big exam is coming. How will you prepare?"
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Gece geç saate kadar çalış",
+          "en": "Study late into the night"
+        },
+        "outcomes": [
+          {
+            "w": 4,
+            "result": {
+              "tr": "Çalışman karşılığını verdi.",
+              "en": "Your hard work paid off."
+            },
+            "check": "smarts",
+            "effects": {
+              "smarts": 3,
+              "happiness": 1,
+              "health": -1
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Çok yoruldun, sınavda bir şeyler karıştı.",
+              "en": "You were exhausted and mixed things up."
+            },
+            "effects": {
+              "smarts": 1,
+              "health": -3,
+              "happiness": -2
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Özel ders al",
+          "en": "Get a tutor"
+        },
+        "result": {
+          "tr": "Eksiklerini kapattın.",
+          "en": "You closed your gaps."
+        },
+        "effects": {
+          "smarts": 4,
+          "money": -0.12
+        }
+      },
+      {
+        "text": {
+          "tr": "Arkadaşlarla çalış",
+          "en": "Study with friends"
+        },
+        "result": {
+          "tr": "Hem öğrendin hem eğlendin.",
+          "en": "You learned and had fun."
+        },
+        "effects": {
+          "smarts": 2,
+          "social": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "Çalışma, oyun oyna",
+          "en": "Skip it and play"
+        },
+        "result": {
+          "tr": "Notun düştü ama keyifliydi.",
+          "en": "Your grade dropped but it was fun."
+        },
+        "effects": {
+          "smarts": -2,
+          "happiness": 3
+        }
+      }
+    ],
+    "cond": {
+      "flagsAll": [
+        "in_school"
+      ]
+    }
+  },
+  {
+    "id": "school_club",
+    "cat": "school",
+    "minAge": 8,
+    "maxAge": 18,
+    "weight": 1.1,
+    "cooldown": 5,
+    "title": {
+      "tr": "🎭 Okul kulübü",
+      "en": "🎭 School club"
+    },
+    "text": {
+      "tr": "Okulda kulüpler kayıt alıyor. Hangisine katılacaksın?",
+      "en": "School clubs are recruiting. Which will you join?"
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Satranç / zekâ kulübü",
+          "en": "Chess / brain club"
+        },
+        "result": {
+          "tr": "Zihnin keskinleşti.",
+          "en": "Your mind got sharper."
+        },
+        "effects": {
+          "smarts": 4,
+          "social": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Spor takımı",
+          "en": "Sports team"
+        },
+        "result": {
+          "tr": "Takım ruhu ve fit bir beden kazandın.",
+          "en": "You gained team spirit and fitness."
+        },
+        "effects": {
+          "health": 4,
+          "social": 4
+        },
+        "setFlags": [
+          "athlete"
+        ]
+      },
+      {
+        "text": {
+          "tr": "Tiyatro / müzik",
+          "en": "Theater / music"
+        },
+        "result": {
+          "tr": "Sahnede kendinden emin oldun.",
+          "en": "You grew confident on stage."
+        },
+        "effects": {
+          "social": 5,
+          "looks": 1,
+          "happiness": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "Hiçbirine katılma",
+          "en": "Join none"
+        },
+        "result": {
+          "tr": "Dersler dışında vaktin bol.",
+          "en": "You have plenty of free time."
+        },
+        "effects": {
+          "happiness": 1
+        }
+      }
+    ],
+    "cond": {
+      "flagsAll": [
+        "in_school"
+      ]
+    }
+  },
+  {
+    "id": "first_crush",
+    "cat": "love",
+    "minAge": 12,
+    "maxAge": 17,
+    "weight": 1.0,
+    "cooldown": 6,
+    "title": {
+      "tr": "💘 İlk platonik aşk",
+      "en": "💘 First crush"
+    },
+    "text": {
+      "tr": "Sınıfındaki biri kalbini hızlandırıyor.",
+      "en": "Someone in your class makes your heart race."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Duygularını söyle",
+          "en": "Confess your feelings"
+        },
+        "outcomes": [
+          {
+            "w": 2,
+            "result": {
+              "tr": "O da senden hoşlanıyormuş! Mutluluktan uçtun.",
+              "en": "They like you back! You were over the moon."
+            },
+            "lucky": true,
+            "effects": {
+              "happiness": 10,
+              "social": 3
+            }
+          },
+          {
+            "w": 3,
+            "result": {
+              "tr": "Reddedildin ve biraz utandın.",
+              "en": "You were turned down and felt embarrassed."
+            },
+            "effects": {
+              "happiness": -8,
+              "social": -1
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Sessizce izle",
+          "en": "Admire from afar"
+        },
+        "result": {
+          "tr": "Bu duygu zamanla geçti.",
+          "en": "The feeling faded with time."
+        },
+        "effects": {
+          "happiness": -1
+        }
+      },
+      {
+        "text": {
+          "tr": "Önce arkadaş ol",
+          "en": "Become friends first"
+        },
+        "result": {
+          "tr": "İyi bir arkadaşlık kurdunuz.",
+          "en": "You built a good friendship."
+        },
+        "effects": {
+          "social": 3,
+          "happiness": 3
+        }
+      }
+    ],
+    "once": true
+  },
+  {
+    "id": "phone_time",
+    "cat": "tech",
+    "minAge": 9,
+    "maxAge": 18,
+    "weight": 1.1,
+    "cooldown": 6,
+    "title": {
+      "tr": "📱 Ekran süresi",
+      "en": "📱 Screen time"
+    },
+    "text": {
+      "tr": "Telefonda ve oyunlarda saatler geçiriyorsun. Ailen konuşmak istiyor.",
+      "en": "You spend hours on your phone and games. Your family wants to talk."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Sınırsız devam et",
+          "en": "Carry on without limits"
+        },
+        "result": {
+          "tr": "Eğlendin ama dersler ve uyku aksadı.",
+          "en": "Fun, but school and sleep suffered."
+        },
+        "effects": {
+          "happiness": 3,
+          "smarts": -2,
+          "health": -2
+        }
+      },
+      {
+        "text": {
+          "tr": "Süreyi sınırla",
+          "en": "Set limits"
+        },
+        "result": {
+          "tr": "Dengeyi buldun.",
+          "en": "You found a balance."
+        },
+        "effects": {
+          "smarts": 1,
+          "happiness": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Kitaba yönel",
+          "en": "Turn to books"
+        },
+        "result": {
+          "tr": "Okuma alışkanlığı kazandın.",
+          "en": "You picked up a reading habit."
+        },
+        "effects": {
+          "smarts": 4,
+          "happiness": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "skip_school",
+    "cat": "social",
+    "minAge": 12,
+    "maxAge": 18,
+    "weight": 1.0,
+    "cooldown": 6,
+    "title": {
+      "tr": "🏃 Okul kaçağı",
+      "en": "🏃 Skipping class"
+    },
+    "text": {
+      "tr": "Arkadaşların derse girmeyip sahile gitmeyi teklif ediyor.",
+      "en": "Your friends suggest skipping class to hit the beach."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Katıl",
+          "en": "Join them"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Harika bir gündü, kimse fark etmedi.",
+              "en": "A great day and nobody noticed."
+            },
+            "effects": {
+              "social": 4,
+              "happiness": 4
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Yakalandın; ailene haber verildi.",
+              "en": "You got caught and your family was notified."
+            },
+            "effects": {
+              "happiness": -5,
+              "smarts": -1
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Reddet",
+          "en": "Say no"
+        },
+        "result": {
+          "tr": "Derse girdin; arkadaşların biraz bozuldu.",
+          "en": "You attended class; your friends were a bit annoyed."
+        },
+        "effects": {
+          "smarts": 1,
+          "social": -1
+        }
+      },
+      {
+        "text": {
+          "tr": "Ailene söyle",
+          "en": "Tell your parents"
+        },
+        "result": {
+          "tr": "Ailen açık sözlülüğüne güvendi.",
+          "en": "Your parents appreciated your honesty."
+        },
+        "effects": {
+          "happiness": 1,
+          "social": -2
+        }
+      }
+    ],
+    "cond": {
+      "flagsAll": [
+        "in_school"
+      ]
+    }
+  },
+  {
+    "id": "witness_bullying",
+    "cat": "social",
+    "minAge": 8,
+    "maxAge": 17,
+    "weight": 0.9,
+    "cooldown": 7,
+    "title": {
+      "tr": "🛡️ Zorbalığa tanık oldun",
+      "en": "🛡️ You witnessed bullying"
+    },
+    "text": {
+      "tr": "Bir sınıf arkadaşın zorbalığa uğruyor.",
+      "en": "A classmate is being bullied."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Savun",
+          "en": "Stand up for them"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Cesaretin herkesi etkiledi; yeni bir dostun oldu.",
+              "en": "Your courage impressed everyone; you gained a friend."
+            },
+            "check": "social",
+            "effects": {
+              "social": 5,
+              "happiness": 4
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Bu sefer sen hedef oldun.",
+              "en": "This time you became the target."
+            },
+            "effects": {
+              "social": -3,
+              "happiness": -5
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Öğretmene bildir",
+          "en": "Report to a teacher"
+        },
+        "result": {
+          "tr": "Durum çözüldü.",
+          "en": "The situation was resolved."
+        },
+        "effects": {
+          "social": 1,
+          "smarts": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Sessiz kal",
+          "en": "Stay silent"
+        },
+        "result": {
+          "tr": "Vicdanın uzun süre rahat etmedi.",
+          "en": "Your conscience stayed uneasy for a long time."
+        },
+        "effects": {
+          "happiness": -4
+        }
+      }
+    ],
+    "cond": {
+      "flagsAll": [
+        "in_school"
+      ]
+    }
+  },
+  {
+    "id": "science_fair",
+    "cat": "school",
+    "minAge": 10,
+    "maxAge": 18,
+    "weight": 1.0,
+    "cooldown": 6,
+    "title": {
+      "tr": "🔬 Bilim fuarı",
+      "en": "🔬 Science fair"
+    },
+    "text": {
+      "tr": "Okulda bilim fuarı var; bir proje hazırlaman gerekiyor.",
+      "en": "There's a science fair and you need a project."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Kendi projeni geliştir",
+          "en": "Build your own project"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Projen birincilik aldı!",
+              "en": "Your project took first prize!"
+            },
+            "check": "smarts",
+            "effects": {
+              "smarts": 4,
+              "happiness": 6,
+              "social": 2
+            }
+          },
+          {
+            "w": 3,
+            "result": {
+              "tr": "Derece alamadın ama çok şey öğrendin.",
+              "en": "No prize, but you learned a lot."
+            },
+            "effects": {
+              "smarts": 3
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Arkadaşınla ortak yap",
+          "en": "Team up with a friend"
+        },
+        "result": {
+          "tr": "Birlikte eğlenceli bir proje çıkardınız.",
+          "en": "You made a fun project together."
+        },
+        "effects": {
+          "smarts": 2,
+          "social": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "İnternetten hazır bul",
+          "en": "Copy one online"
+        },
+        "result": {
+          "tr": "Not aldın ama hiçbir şey öğrenmedin.",
+          "en": "You got a grade but learned nothing."
+        },
+        "effects": {
+          "smarts": -1,
+          "happiness": 1
+        }
+      }
+    ],
+    "cond": {
+      "flagsAll": [
+        "in_school"
+      ]
+    }
+  },
+  {
+    "id": "choose_track",
+    "cat": "school",
+    "minAge": 14,
+    "maxAge": 17,
+    "weight": 3,
+    "cooldown": 6,
+    "title": {
+      "tr": "🧭 Alan seçimi",
+      "en": "🧭 Choosing a track"
+    },
+    "text": {
+      "tr": "Liseye devam ederken bir alan seçmen gerekiyor.",
+      "en": "You need to choose a track for the rest of school."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Sayısal / fen",
+          "en": "Science & math"
+        },
+        "result": {
+          "tr": "Fen alanında ilerledin.",
+          "en": "You moved into the sciences."
+        },
+        "effects": {
+          "smarts": 3
+        },
+        "setFlags": [
+          "track_sci"
+        ]
+      },
+      {
+        "text": {
+          "tr": "Sözel / sosyal",
+          "en": "Humanities"
+        },
+        "result": {
+          "tr": "Edebiyat ve tarih seni cezbetti.",
+          "en": "Literature and history drew you in."
+        },
+        "effects": {
+          "smarts": 2,
+          "social": 2
+        },
+        "setFlags": [
+          "track_hum"
+        ]
+      },
+      {
+        "text": {
+          "tr": "Sanat / spor",
+          "en": "Arts / sports"
+        },
+        "result": {
+          "tr": "Yeteneğine odaklandın.",
+          "en": "You focused on your talent."
+        },
+        "effects": {
+          "happiness": 4,
+          "social": 2
+        },
+        "setFlags": [
+          "track_art"
+        ]
+      },
+      {
+        "text": {
+          "tr": "Meslek lisesi",
+          "en": "Vocational school"
+        },
+        "result": {
+          "tr": "Elini çabuk işe alıştıracak bir meslek öğrendin.",
+          "en": "You learned a trade that gets you working quickly."
+        },
+        "effects": {
+          "smarts": 1,
+          "money": 0.05
+        },
+        "setFlags": [
+          "track_voc"
+        ]
+      }
+    ],
+    "cond": {
+      "flagsAll": [
+        "in_school"
+      ]
+    },
+    "once": true
+  },
+  {
+    "id": "teen_job",
+    "cat": "career",
+    "minAge": 14,
+    "maxAge": 17,
+    "weight": 1.0,
+    "cooldown": 6,
+    "title": {
+      "tr": "🧾 Harçlık için çalış",
+      "en": "🧾 Earning pocket money"
+    },
+    "text": {
+      "tr": "Harçlık biriktirmek için bir iş bulma fırsatın var.",
+      "en": "You have a chance to earn some pocket money."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Kafede çalış",
+          "en": "Work at a café"
+        },
+        "result": {
+          "tr": "Para kazandın ve insanlarla tanıştın.",
+          "en": "You earned money and met people."
+        },
+        "effects": {
+          "money": 0.1,
+          "social": 3,
+          "happiness": -1
+        }
+      },
+      {
+        "text": {
+          "tr": "Aile işinde yardım et",
+          "en": "Help at the family business"
+        },
+        "result": {
+          "tr": "Ailene destek oldun.",
+          "en": "You supported your family."
+        },
+        "effects": {
+          "money": 0.08,
+          "smarts": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Derslere odaklan",
+          "en": "Focus on school"
+        },
+        "result": {
+          "tr": "Notların yükseldi.",
+          "en": "Your grades went up."
+        },
+        "effects": {
+          "smarts": 3
+        }
+      }
+    ],
+    "cond": {
+      "flagsAll": [
+        "in_school"
+      ]
+    },
+    "once": true
+  },
+  {
+    "id": "scholarship",
+    "cat": "school",
+    "minAge": 16,
+    "maxAge": 18,
+    "weight": 1.5,
+    "cooldown": 6,
+    "title": {
+      "tr": "🏅 Burs sınavı",
+      "en": "🏅 Scholarship exam"
+    },
+    "text": {
+      "tr": "Başarılı öğrencilere burs veren bir sınav açıldı.",
+      "en": "A scholarship exam for strong students has opened."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Yoğun hazırlan ve gir",
+          "en": "Prepare hard and sit it"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Burs kazandın! Ailenin yükü hafifledi.",
+              "en": "You won the scholarship! Your family's burden eased."
+            },
+            "lucky": true,
+            "check": "smarts",
+            "effects": {
+              "money": 0.4,
+              "happiness": 8,
+              "smarts": 2
+            },
+            "setFlags": [
+              "scholarship"
+            ]
+          },
+          {
+            "w": 3,
+            "result": {
+              "tr": "Kazanamadın ama sınav sana disiplin kazandırdı.",
+              "en": "You didn't win, but the exam gave you discipline."
+            },
+            "effects": {
+              "smarts": 3,
+              "happiness": -2
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Girme",
+          "en": "Skip it"
+        },
+        "result": {
+          "tr": "Fırsatı değerlendirmedin.",
+          "en": "You let the chance pass."
+        },
+        "effects": {
+          "happiness": 1
+        }
+      }
+    ],
+    "cond": {
+      "flagsAll": [
+        "in_school"
+      ],
+      "minEdu": 1
+    },
+    "once": true
+  },
+  {
+    "id": "gap_year",
+    "cat": "travel",
+    "minAge": 18,
+    "maxAge": 24,
+    "weight": 1.1,
+    "cooldown": 6,
+    "title": {
+      "tr": "🌍 Ara yıl",
+      "en": "🌍 A gap year"
+    },
+    "text": {
+      "tr": "Okul bitti; ne yapacağını bilmiyorsun. Bir yıl ara vermek cazip geliyor.",
+      "en": "School is over and you're not sure what's next. A gap year sounds tempting."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Sırt çantasıyla gez",
+          "en": "Backpack around"
+        },
+        "result": {
+          "tr": "Dünyayı farklı gözle görmeye başladın.",
+          "en": "You started seeing the world differently."
+        },
+        "effects": {
+          "money": -0.4,
+          "happiness": 8,
+          "social": 4,
+          "smarts": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Çalışıp para biriktir",
+          "en": "Work and save"
+        },
+        "result": {
+          "tr": "Cebin doldu, tecrüben arttı.",
+          "en": "Your pockets filled and you gained experience."
+        },
+        "effects": {
+          "money": 0.4,
+          "smarts": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Bir kurs / yabancı dil",
+          "en": "Take a course / language"
+        },
+        "result": {
+          "tr": "Kendine yeni bir beceri kattın.",
+          "en": "You added a new skill."
+        },
+        "effects": {
+          "smarts": 4,
+          "money": -0.15
+        }
+      }
+    ],
+    "cond": {
+      "hasJob": false,
+      "student": false,
+      "maxEdu": 3
+    },
+    "once": true
+  },
+  {
+    "id": "exam_pressure",
+    "cat": "school",
+    "minAge": 15,
+    "maxAge": 18,
+    "weight": 1.4,
+    "cooldown": 2,
+    "title": {
+      "tr": "📝 Sınav baskısı",
+      "en": "📝 Exam pressure"
+    },
+    "text": {
+      "tr": "Ülkende üniversite sınavı hayati önem taşıyor; herkes sürekli çalışıyor.",
+      "en": "Your country's university exam is life-defining and everyone studies nonstop."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Her şeyi sınava ver",
+          "en": "Pour everything into it"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Zorlu bir yıl geçirdin ama sonuçların harika.",
+              "en": "A grueling year, but your results are great."
+            },
+            "check": "smarts",
+            "effects": {
+              "smarts": 5,
+              "health": -4,
+              "happiness": -3
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Tükendin; sonuçlar beklentinin altında kaldı.",
+              "en": "You burned out; results fell below expectations."
+            },
+            "effects": {
+              "smarts": 2,
+              "health": -6,
+              "happiness": -8
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Dengeli çalış",
+          "en": "Study in balance"
+        },
+        "result": {
+          "tr": "Hem sağlığını hem notlarını korudun.",
+          "en": "You protected both your health and your grades."
+        },
+        "effects": {
+          "smarts": 3,
+          "health": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Sınavı umursama",
+          "en": "Don't care about it"
+        },
+        "result": {
+          "tr": "Kendi yolunu çizmek istedin.",
+          "en": "You wanted to forge your own path."
+        },
+        "effects": {
+          "smarts": -1,
+          "happiness": 2
+        }
+      }
+    ],
+    "cond": {
+      "flagsAll": [
+        "in_school"
+      ],
+      "country": [
+        "CN",
+        "KR",
+        "JP",
+        "TR",
+        "IN",
+        "VN"
+      ]
+    }
+  },
+  {
+    "id": "first_steps",
+    "cat": "life",
+    "minAge": 1,
+    "maxAge": 2,
+    "weight": 1.0,
+    "cooldown": 4,
+    "text": {
+      "tr": "İlk adımlarını attın; ailen sevinçten ağladı.",
+      "en": "You took your first steps; your family cried with joy."
+    },
+    "effects": {
+      "happiness": 4,
+      "health": 1
+    },
+    "tone": "good",
+    "once": true
+  },
+  {
+    "id": "first_words",
+    "cat": "life",
+    "minAge": 1,
+    "maxAge": 3,
+    "weight": 1.0,
+    "cooldown": 4,
+    "text": {
+      "tr": "İlk kelimeni söyledin ve herkes etrafında toplandı.",
+      "en": "You said your first word and everyone gathered around."
+    },
+    "effects": {
+      "happiness": 3,
+      "smarts": 1
+    },
+    "tone": "good",
+    "once": true
+  },
+  {
+    "id": "lost_tooth",
+    "cat": "life",
+    "minAge": 5,
+    "maxAge": 8,
+    "weight": 0.9,
+    "cooldown": 2,
+    "text": {
+      "tr": "İlk süt dişin düştü; yastığının altına koydun.",
+      "en": "Your first baby tooth fell out and you put it under your pillow."
+    },
+    "effects": {
+      "happiness": 3
+    },
+    "tone": "good"
+  },
+  {
+    "id": "learn_bike",
+    "cat": "life",
+    "minAge": 4,
+    "maxAge": 10,
+    "weight": 1.0,
+    "cooldown": 4,
+    "text": {
+      "tr": "Bisiklete binmeyi öğrendin; mahallede turlar attın.",
+      "en": "You learned to ride a bike and rode around the neighborhood."
+    },
+    "effects": {
+      "health": 3,
+      "happiness": 4
+    },
+    "tone": "good",
+    "once": true
+  },
+  {
+    "id": "summer_camp",
+    "cat": "social",
+    "minAge": 7,
+    "maxAge": 15,
+    "weight": 1.0,
+    "cooldown": 5,
+    "text": {
+      "tr": "Yaz kampında yeni arkadaşlar edindin.",
+      "en": "You made new friends at summer camp."
+    },
+    "effects": {
+      "social": 4,
+      "happiness": 4
+    },
+    "tone": "good"
+  },
+  {
+    "id": "school_play",
+    "cat": "school",
+    "minAge": 7,
+    "maxAge": 15,
+    "weight": 1.0,
+    "cooldown": 5,
+    "text": {
+      "tr": "Okul oyununda sahne aldın; alkışlar duydun.",
+      "en": "You performed in the school play and heard applause."
+    },
+    "effects": {
+      "social": 3,
+      "happiness": 4
+    },
+    "cond": {
+      "flagsAll": [
+        "in_school"
+      ]
+    },
+    "tone": "good"
+  },
+  {
+    "id": "growth_spurt",
+    "cat": "life",
+    "minAge": 10,
+    "maxAge": 15,
+    "weight": 1.0,
+    "cooldown": 4,
+    "text": {
+      "tr": "Boyun bir anda uzadı; kıyafetlerin dar geldi.",
+      "en": "You shot up in height and your clothes got tight."
+    },
+    "effects": {
+      "looks": 2,
+      "health": 1
+    },
+    "once": true
+  },
+  {
+    "id": "acne",
+    "cat": "life",
+    "minAge": 12,
+    "maxAge": 17,
+    "weight": 1.0,
+    "cooldown": 5,
+    "text": {
+      "tr": "Sivilcelerle uğraşmak ergenliğin sıkıntısı oldu.",
+      "en": "Acne made your teenage years uncomfortable."
+    },
+    "effects": {
+      "looks": -3,
+      "happiness": -3
+    },
+    "tone": "bad"
+  },
+  {
+    "id": "exam_fail",
+    "cat": "school",
+    "minAge": 8,
+    "maxAge": 18,
+    "weight": 1.0,
+    "cooldown": 4,
+    "text": {
+      "tr": "Önemli bir sınavdan düşük not aldın.",
+      "en": "You got a poor grade on an important exam."
+    },
+    "effects": {
+      "smarts": -1,
+      "happiness": -4
+    },
+    "cond": {
+      "flagsAll": [
+        "in_school"
+      ]
+    },
+    "tone": "bad"
+  },
+  {
+    "id": "friend_moved",
+    "cat": "social",
+    "minAge": 6,
+    "maxAge": 17,
+    "weight": 1.0,
+    "cooldown": 6,
+    "text": {
+      "tr": "Yakın arkadaşın başka şehre taşındı.",
+      "en": "Your close friend moved to another city."
+    },
+    "effects": {
+      "social": -3,
+      "happiness": -4
+    },
+    "tone": "bad"
+  },
+  {
+    "id": "grandparent_visit",
+    "cat": "family",
+    "minAge": 3,
+    "maxAge": 30,
+    "weight": 1.0,
+    "cooldown": 6,
+    "text": {
+      "tr": "Büyükannen ve büyükbabanla geçirdiğin günler hayatın en güzel anılarından biri oldu.",
+      "en": "Days with your grandparents became some of your best memories."
+    },
+    "effects": {
+      "happiness": 5,
+      "social": 1
+    },
+    "tone": "good"
+  },
+  {
+    "id": "parents_fight",
+    "cat": "family",
+    "minAge": 5,
+    "maxAge": 16,
+    "weight": 1.0,
+    "cooldown": 5,
+    "text": {
+      "tr": "Annen ve baban yüksek sesle tartıştı; evde gergin bir hava oldu.",
+      "en": "Your parents argued loudly and the house felt tense."
+    },
+    "effects": {
+      "happiness": -4
+    },
+    "cond": {
+      "motherAlive": true,
+      "fatherAlive": true
+    },
+    "tone": "bad"
+  },
+  {
+    "id": "sibling_help",
+    "cat": "family",
+    "minAge": 6,
+    "maxAge": 30,
+    "weight": 1.0,
+    "cooldown": 6,
+    "text": {
+      "tr": "{sibling} derslerinde sana yardım etti.",
+      "en": "{sibling} helped you with your schoolwork."
+    },
+    "effects": {
+      "smarts": 2,
+      "happiness": 2
+    },
+    "cond": {
+      "hasSiblings": true
+    },
+    "tone": "good"
+  },
+  {
+    "id": "sibling_trouble",
+    "cat": "family",
+    "minAge": 8,
+    "maxAge": 40,
+    "weight": 1.0,
+    "cooldown": 7,
+    "text": {
+      "tr": "{sibling} başı belaya girdi; ailede gerginlik çıktı.",
+      "en": "{sibling} got into trouble and the family was strained."
+    },
+    "effects": {
+      "happiness": -4,
+      "social": -1
+    },
+    "cond": {
+      "hasSiblings": true
+    },
+    "tone": "bad"
+  },
+  {
+    "id": "sibling_success",
+    "cat": "family",
+    "minAge": 18,
+    "maxAge": 60,
+    "weight": 1.0,
+    "cooldown": 6,
+    "text": {
+      "tr": "{sibling} hayatında önemli bir başarı elde etti; gurur duydun.",
+      "en": "{sibling} achieved something big; you felt proud."
+    },
+    "effects": {
+      "happiness": 4
+    },
+    "cond": {
+      "hasSiblings": true
+    },
+    "tone": "good"
+  },
+  {
+    "id": "parent_proud",
+    "cat": "family",
+    "minAge": 10,
+    "maxAge": 45,
+    "weight": 1.0,
+    "cooldown": 6,
+    "text": {
+      "tr": "{parent} seninle gurur duyduğunu söyledi.",
+      "en": "{parent} told you how proud they are of you."
+    },
+    "effects": {
+      "happiness": 5
+    },
+    "cond": {
+      "parentAlive": true
+    },
+    "tone": "good"
+  },
+  {
+    "id": "blind_date",
+    "cat": "love",
+    "minAge": 20,
+    "maxAge": 45,
+    "weight": 0.8,
+    "cooldown": 5,
+    "title": {
+      "tr": "💕 Görücü / kör randevu",
+      "en": "💕 Blind date"
+    },
+    "text": {
+      "tr": "Bir arkadaşın seni tanıdığı biriyle buluşturmak istiyor.",
+      "en": "A friend wants to set you up with someone they know."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Randevuya git",
+          "en": "Go on the date"
+        },
+        "outcomes": [
+          {
+            "w": 1.2,
+            "result": {
+              "tr": "Muhteşem bir akşam geçirdiniz; çok geçmeden evlendiniz!",
+              "en": "A wonderful evening; before long you were married!"
+            },
+            "lucky": true,
+            "effects": {
+              "marry": true,
+              "happiness": 12,
+              "social": 3
+            }
+          },
+          {
+            "w": 3,
+            "result": {
+              "tr": "Hoş ama kıvılcım yoktu.",
+              "en": "Pleasant, but no spark."
+            },
+            "effects": {
+              "social": 1,
+              "happiness": 1
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Tam bir felaket; kaçmak istedin.",
+              "en": "A total disaster; you wanted to flee."
+            },
+            "effects": {
+              "happiness": -3
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Nazikçe reddet",
+          "en": "Politely decline"
+        },
+        "result": {
+          "tr": "Şimdilik yalnız kalmayı tercih ettin.",
+          "en": "You preferred to stay solo for now."
+        },
+        "effects": {
+          "happiness": -1
+        }
+      }
+    ],
+    "cond": {
+      "status": [
+        "single",
+        "divorced",
+        "widowed"
+      ]
+    }
+  },
+  {
+    "id": "dating_app",
+    "cat": "love",
+    "minAge": 18,
+    "maxAge": 45,
+    "weight": 1.0,
+    "cooldown": 6,
+    "title": {
+      "tr": "📲 Flört uygulaması",
+      "en": "📲 Dating app"
+    },
+    "text": {
+      "tr": "Arkadaşların seni bir flört uygulamasına üye olmaya ikna ediyor.",
+      "en": "Friends talk you into joining a dating app."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Profil aç",
+          "en": "Create a profile"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Birkaç keyifli buluşma yaşadın.",
+              "en": "You had a few lovely dates."
+            },
+            "effects": {
+              "happiness": 6,
+              "social": 3
+            }
+          },
+          {
+            "w": 1,
+            "result": {
+              "tr": "Seni dolandırmaya çalışan biriyle karşılaştın.",
+              "en": "You met someone trying to scam you."
+            },
+            "effects": {
+              "money": -0.2,
+              "happiness": -5
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Çok zaman harcadın, sonuç alamadın.",
+              "en": "You spent lots of time and got nowhere."
+            },
+            "effects": {
+              "happiness": -2
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Eski usul tanış",
+          "en": "Meet people the old-fashioned way"
+        },
+        "result": {
+          "tr": "Sosyal çevreni genişlettin.",
+          "en": "You widened your social circle."
+        },
+        "effects": {
+          "social": 3
+        }
+      }
+    ],
+    "cond": {
+      "status": [
+        "single",
+        "divorced",
+        "widowed"
+      ]
+    }
+  },
+  {
+    "id": "arranged_intro",
+    "cat": "love",
+    "minAge": 20,
+    "maxAge": 38,
+    "weight": 1.1,
+    "cooldown": 6,
+    "title": {
+      "tr": "🤝 Aileler tanıştırıyor",
+      "en": "🤝 Families make an introduction"
+    },
+    "text": {
+      "tr": "Ailen, uygun gördüğü biriyle seni tanıştırmak istiyor.",
+      "en": "Your family wants to introduce you to someone they think suits you."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Tanış ve ilerle",
+          "en": "Meet and go forward"
+        },
+        "outcomes": [
+          {
+            "w": 2.5,
+            "result": {
+              "tr": "Anlaştınız ve evlendiniz.",
+              "en": "You hit it off and married."
+            },
+            "lucky": true,
+            "effects": {
+              "marry": true,
+              "happiness": 8,
+              "social": 3
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Pek uyuşmadınız; ayrı yollara gittiniz.",
+              "en": "You weren't compatible and parted ways."
+            },
+            "effects": {
+              "happiness": -2
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Kendi eşimi kendim bulayım",
+          "en": "I'll find my own partner"
+        },
+        "result": {
+          "tr": "Ailen biraz bozuldu ama saygı duydu.",
+          "en": "Your family was a bit disappointed but respected it."
+        },
+        "effects": {
+          "social": -1
+        }
+      }
+    ],
+    "cond": {
+      "status": [
+        "single",
+        "divorced",
+        "widowed"
+      ],
+      "region": [
+        "south_asia",
+        "mena",
+        "tr",
+        "africa"
+      ]
+    }
+  },
+  {
+    "id": "wedding",
+    "cat": "love",
+    "minAge": 18,
+    "maxAge": 90,
+    "weight": 1.0,
+    "cooldown": 1,
+    "title": {
+      "tr": "💒 Düğün planı",
+      "en": "💒 Wedding plans"
+    },
+    "text": {
+      "tr": "Evleniyorsunuz! Nasıl bir düğün yapacaksınız?",
+      "en": "You're getting married! What kind of wedding will you have?"
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Büyük, gösterişli düğün",
+          "en": "A big, lavish wedding"
+        },
+        "result": {
+          "tr": "Yüzlerce davetli eşliğinde unutulmaz bir gün yaşadınız.",
+          "en": "An unforgettable day with hundreds of guests."
+        },
+        "effects": {
+          "money": -1.0,
+          "happiness": 8,
+          "social": 6,
+          "bond": 6
+        },
+        "clearFlags": [
+          "wedding_pending"
+        ]
+      },
+      {
+        "text": {
+          "tr": "Sade nikâh",
+          "en": "A simple ceremony"
+        },
+        "result": {
+          "tr": "Yakınlarınızla huzurlu bir gün geçirdiniz.",
+          "en": "A peaceful day with your close ones."
+        },
+        "effects": {
+          "money": -0.2,
+          "happiness": 6,
+          "bond": 4
+        },
+        "clearFlags": [
+          "wedding_pending"
+        ]
+      },
+      {
+        "text": {
+          "tr": "Balayı gezisi",
+          "en": "Skip it for a honeymoon trip"
+        },
+        "result": {
+          "tr": "Düğün yerine yola çıktınız; çok romantikti.",
+          "en": "You hit the road instead; so romantic."
+        },
+        "effects": {
+          "money": -0.5,
+          "happiness": 8,
+          "bond": 8
+        },
+        "clearFlags": [
+          "wedding_pending"
+        ]
+      }
+    ],
+    "cond": {
+      "flagsAll": [
+        "wedding_pending"
+      ],
+      "married": true
+    },
+    "force": true
+  },
+  {
+    "id": "anniversary",
+    "cat": "love",
+    "minAge": 25,
+    "maxAge": 90,
+    "weight": 1.1,
+    "cooldown": 4,
+    "title": {
+      "tr": "🎂 Evlilik yıldönümü",
+      "en": "🎂 Anniversary"
+    },
+    "text": {
+      "tr": "Evlilik yıldönümünüz geldi.",
+      "en": "Your wedding anniversary has arrived."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Romantik akşam yemeği",
+          "en": "Romantic dinner"
+        },
+        "result": {
+          "tr": "Eşin çok mutlu oldu.",
+          "en": "Your partner was delighted."
+        },
+        "effects": {
+          "money": -0.08,
+          "bond": 6,
+          "happiness": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "Sürpriz hediye",
+          "en": "Surprise gift"
+        },
+        "result": {
+          "tr": "Hediyen eşini duygulandırdı.",
+          "en": "Your gift moved your partner."
+        },
+        "effects": {
+          "money": -0.15,
+          "bond": 8
+        }
+      },
+      {
+        "text": {
+          "tr": "Unut gitsin",
+          "en": "Let it slide"
+        },
+        "result": {
+          "tr": "Eşin bunu unutmadı.",
+          "en": "Your partner didn't forget it."
+        },
+        "effects": {
+          "bond": -7,
+          "happiness": -2
+        }
+      }
+    ],
+    "cond": {
+      "married": true
+    }
+  },
+  {
+    "id": "suspect_cheat",
+    "cat": "love",
+    "minAge": 25,
+    "maxAge": 65,
+    "weight": 0.7,
+    "cooldown": 8,
+    "title": {
+      "tr": "🕵️ Şüphe",
+      "en": "🕵️ Suspicion"
+    },
+    "text": {
+      "tr": "Eşinin davranışları son zamanlarda tuhaf; içine şüphe düştü.",
+      "en": "Your partner has acted oddly lately and doubt crept in."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Doğrudan sor",
+          "en": "Ask directly"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Açık konuşmak aranızdaki buzları eritti.",
+              "en": "An honest talk melted the ice between you."
+            },
+            "effects": {
+              "bond": 6,
+              "happiness": 2
+            }
+          },
+          {
+            "w": 1.5,
+            "result": {
+              "tr": "Gerçek acı çıktı; güveniniz sarsıldı.",
+              "en": "The truth hurt and trust was shaken."
+            },
+            "effects": {
+              "bond": -15,
+              "happiness": -10
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Gizlice takip et",
+          "en": "Secretly check up"
+        },
+        "outcomes": [
+          {
+            "w": 2,
+            "result": {
+              "tr": "Boş yere şüphelenmişsin; kendini kötü hissettin.",
+              "en": "You suspected for nothing and felt awful."
+            },
+            "effects": {
+              "bond": -3,
+              "happiness": -3
+            }
+          },
+          {
+            "w": 1,
+            "result": {
+              "tr": "Bir şeyler buldun ama ne yapacağını bilmiyorsun.",
+              "en": "You found something and don't know what to do."
+            },
+            "effects": {
+              "bond": -10,
+              "happiness": -8
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Yok say",
+          "en": "Ignore it"
+        },
+        "result": {
+          "tr": "Zamanla şüphen geçti.",
+          "en": "The doubt faded over time."
+        },
+        "effects": {
+          "happiness": -1
+        }
+      }
+    ],
+    "cond": {
+      "married": true
+    }
+  },
+  {
+    "id": "partner_abroad",
+    "cat": "love",
+    "minAge": 26,
+    "maxAge": 50,
+    "weight": 0.6,
+    "cooldown": 6,
+    "title": {
+      "tr": "🛫 Eşine yurt dışı teklifi",
+      "en": "🛫 Partner's overseas offer"
+    },
+    "text": {
+      "tr": "{spouse}'ye yurt dışında çok iyi bir iş teklifi geldi.",
+      "en": "{spouse} received an excellent job offer abroad."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Birlikte taşın",
+          "en": "Move together"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Yeni ülkede ilk zamanlar zordu ama kısa sürede alıştınız.",
+              "en": "The first months were hard but you adapted quickly."
+            },
+            "effects": {
+              "emigrate": "rich",
+              "bond": 5,
+              "money": 0.4,
+              "social": -6
+            }
+          },
+          {
+            "w": 1.5,
+            "result": {
+              "tr": "Taşınma beklediğinizden zor geçti.",
+              "en": "The move was harder than expected."
+            },
+            "effects": {
+              "emigrate": "rich",
+              "happiness": -5,
+              "money": -0.2
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Kal, teklifi reddedin",
+          "en": "Stay and decline"
+        },
+        "result": {
+          "tr": "Eşin fedakârlık etti; biraz da içine attı.",
+          "en": "Your partner sacrificed it, and quietly felt it."
+        },
+        "effects": {
+          "bond": -4,
+          "money": -0.1
+        }
+      }
+    ],
+    "cond": {
+      "married": true,
+      "flagsNone": [
+        "emigrated"
+      ]
+    },
+    "once": true
+  },
+  {
+    "id": "spouse_ill",
+    "cat": "health",
+    "minAge": 35,
+    "maxAge": 90,
+    "weight": 0.6,
+    "cooldown": 8,
+    "title": {
+      "tr": "🏥 Eşin hastalandı",
+      "en": "🏥 Your partner is ill"
+    },
+    "text": {
+      "tr": "{spouse} ciddi biçimde hastalandı.",
+      "en": "{spouse} has fallen seriously ill."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Başında bekle, bakım ver",
+          "en": "Stay at their side"
+        },
+        "result": {
+          "tr": "Zor günler birbirinize olan bağlılığınızı pekiştirdi.",
+          "en": "The hard days deepened your bond."
+        },
+        "effects": {
+          "bond": 7,
+          "happiness": -4,
+          "health": -2
+        }
+      },
+      {
+        "text": {
+          "tr": "Profesyonel bakıcı tut",
+          "en": "Hire professional care"
+        },
+        "result": {
+          "tr": "İyi bir bakım sağladın ama yük ağırdı.",
+          "en": "Good care, but a heavy cost."
+        },
+        "effects": {
+          "money": -0.4,
+          "bond": 1
+        }
+      }
+    ],
+    "cond": {
+      "married": true
+    }
+  },
+  {
+    "id": "ex_returns",
+    "cat": "love",
+    "minAge": 25,
+    "maxAge": 70,
+    "weight": 0.8,
+    "cooldown": 10,
+    "title": {
+      "tr": "📩 Eski eşten mesaj",
+      "en": "📩 A message from your ex"
+    },
+    "text": {
+      "tr": "Eski eşin yıllar sonra sana yazdı.",
+      "en": "Your ex wrote to you after years."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Cevap ver, görüş",
+          "en": "Reply and meet"
+        },
+        "outcomes": [
+          {
+            "w": 2,
+            "result": {
+              "tr": "Eski kırgınlıklar tatlıya bağlandı.",
+              "en": "Old hurts were smoothed over."
+            },
+            "effects": {
+              "happiness": 4,
+              "social": 2
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Eski yaralar yeniden açıldı.",
+              "en": "Old wounds reopened."
+            },
+            "effects": {
+              "happiness": -6
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Engelle",
+          "en": "Block"
+        },
+        "result": {
+          "tr": "Sayfayı kapattın.",
+          "en": "You closed that chapter."
+        },
+        "effects": {
+          "happiness": 1
+        }
+      }
+    ],
+    "cond": {
+      "status": [
+        "divorced"
+      ]
+    },
+    "once": true
+  },
+  {
+    "id": "grief",
+    "cat": "love",
+    "minAge": 25,
+    "maxAge": 95,
+    "weight": 1.6,
+    "cooldown": 8,
+    "title": {
+      "tr": "🕊️ Yas dönemi",
+      "en": "🕊️ Mourning"
+    },
+    "text": {
+      "tr": "Eşini kaybettiğin için kendini çok yalnız hissediyorsun.",
+      "en": "Losing your partner has left you very lonely."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Yas grubuna katıl",
+          "en": "Join a grief group"
+        },
+        "result": {
+          "tr": "Benzer acıyı yaşayanlarla konuşmak iyi geldi.",
+          "en": "Talking with others who share the pain helped."
+        },
+        "effects": {
+          "happiness": 5,
+          "social": 4
+        }
+      },
+      {
+        "text": {
+          "tr": "Kendini işe ver",
+          "en": "Throw yourself into work"
+        },
+        "result": {
+          "tr": "Meşguliyet acını bir süre unutturdu.",
+          "en": "Keeping busy dulled the pain for a while."
+        },
+        "effects": {
+          "happiness": 1,
+          "money": 0.1
+        }
+      },
+      {
+        "text": {
+          "tr": "Kimseyle görüşme",
+          "en": "Withdraw from everyone"
+        },
+        "result": {
+          "tr": "Yalnızlık seni derinden yordu.",
+          "en": "The isolation wore you down."
+        },
+        "effects": {
+          "happiness": -6,
+          "health": -2,
+          "social": -4
+        }
+      }
+    ],
+    "cond": {
+      "status": [
+        "widowed"
+      ]
+    }
+  },
+  {
+    "id": "lonely_single",
+    "cat": "love",
+    "minAge": 28,
+    "maxAge": 70,
+    "weight": 0.8,
+    "cooldown": 8,
+    "title": {
+      "tr": "🫂 Yalnızlık",
+      "en": "🫂 Loneliness"
+    },
+    "text": {
+      "tr": "Son zamanlarda kendini yalnız hissediyorsun.",
+      "en": "You've been feeling lonely lately."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Bir hobi grubuna katıl",
+          "en": "Join a hobby group"
+        },
+        "result": {
+          "tr": "Yeni dostluklar kurdun.",
+          "en": "You made new friendships."
+        },
+        "effects": {
+          "social": 5,
+          "happiness": 4
+        }
+      },
+      {
+        "text": {
+          "tr": "Aile ve eski dostlarla görüş",
+          "en": "Reconnect with family and old friends"
+        },
+        "result": {
+          "tr": "Bağlarını tazeledin.",
+          "en": "You refreshed old bonds."
+        },
+        "effects": {
+          "social": 3,
+          "happiness": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "Kendi halinde kal",
+          "en": "Keep to yourself"
+        },
+        "result": {
+          "tr": "Kimseye yük olmadın ama içten içe yoruldun.",
+          "en": "You burdened no one but felt worn inside."
+        },
+        "effects": {
+          "happiness": -3,
+          "social": -2
+        }
+      }
+    ],
+    "cond": {
+      "status": [
+        "single",
+        "divorced",
+        "widowed"
+      ]
+    }
+  },
+  {
+    "id": "boss_conflict",
+    "cat": "career",
+    "minAge": 22,
+    "maxAge": 62,
+    "weight": 1.0,
+    "cooldown": 6,
+    "title": {
+      "tr": "🗣️ Patronla anlaşmazlık",
+      "en": "🗣️ Clash with the boss"
+    },
+    "text": {
+      "tr": "{job} işinde patronunla ciddi bir fikir ayrılığın var.",
+      "en": "You and your boss strongly disagree at work."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Fikrini açıkça söyle",
+          "en": "Speak your mind"
+        },
+        "outcomes": [
+          {
+            "w": 2,
+            "result": {
+              "tr": "Fikrin dinlendi; saygı kazandın.",
+              "en": "You were heard and earned respect."
+            },
+            "check": "smarts",
+            "effects": {
+              "social": 2,
+              "happiness": 4
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Patron bozuldu; ilişkiniz gerildi.",
+              "en": "The boss took offense and things got tense."
+            },
+            "effects": {
+              "happiness": -5
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Sessiz kal",
+          "en": "Stay quiet"
+        },
+        "result": {
+          "tr": "Sorun büyümedi ama içine attın.",
+          "en": "It didn't escalate, but you bottled it up."
+        },
+        "effects": {
+          "happiness": -3
+        }
+      },
+      {
+        "text": {
+          "tr": "İstifa et",
+          "en": "Resign"
+        },
+        "result": {
+          "tr": "Cesur bir adım attın; belirsizlik başladı.",
+          "en": "A bold step; uncertainty begins."
+        },
+        "effects": {
+          "quitJob": true,
+          "happiness": 2,
+          "money": -0.2
+        }
+      }
+    ],
+    "cond": {
+      "hasJob": true
+    }
+  },
+  {
+    "id": "big_project",
+    "cat": "career",
+    "minAge": 24,
+    "maxAge": 58,
+    "weight": 1.0,
+    "cooldown": 6,
+    "title": {
+      "tr": "🚀 Büyük proje",
+      "en": "🚀 Big project"
+    },
+    "text": {
+      "tr": "İşyerinde herkesin dikkatini çekecek büyük bir proje sana verildi.",
+      "en": "A high-profile project at work has landed on your desk."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Her şeyini ver",
+          "en": "Give it everything"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Proje başarıyla bitti; terfi aldın!",
+              "en": "The project succeeded and you got promoted!"
+            },
+            "lucky": true,
+            "check": "smarts",
+            "effects": {
+              "promote": 1,
+              "happiness": 4,
+              "health": -2,
+              "money": 0.2
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Çok yıprandın ama proje takdir gördü.",
+              "en": "It wore you out but the project was praised."
+            },
+            "effects": {
+              "health": -4,
+              "happiness": -2,
+              "money": 0.1
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Dengeni koru",
+          "en": "Keep a balance"
+        },
+        "result": {
+          "tr": "Sakin kaldın; kimse seni ayrıca fark etmedi.",
+          "en": "You stayed calm; nobody especially noticed."
+        },
+        "effects": {
+          "happiness": 2
+        }
+      }
+    ],
+    "cond": {
+      "hasJob": true
+    }
+  },
+  {
+    "id": "promotion_move",
+    "cat": "career",
+    "minAge": 28,
+    "maxAge": 58,
+    "weight": 0.8,
+    "cooldown": 8,
+    "title": {
+      "tr": "📈 Terfi ama taşınma",
+      "en": "📈 Promotion with a move"
+    },
+    "text": {
+      "tr": "Şirket seni terfi ettirip başka şehre göndermek istiyor.",
+      "en": "The company wants to promote you and send you to another city."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Kabul et",
+          "en": "Accept"
+        },
+        "result": {
+          "tr": "Yeni şehirde yeni bir sayfa açtın.",
+          "en": "You opened a fresh chapter in a new city."
+        },
+        "effects": {
+          "promote": 1,
+          "money": 0.3,
+          "social": -3,
+          "happiness": -1
+        }
+      },
+      {
+        "text": {
+          "tr": "Reddet",
+          "en": "Decline"
+        },
+        "result": {
+          "tr": "Düzenini korudun.",
+          "en": "You kept your routine."
+        },
+        "effects": {
+          "happiness": 2,
+          "social": 1
+        }
+      }
+    ],
+    "cond": {
+      "hasJob": true
+    }
+  },
+  {
+    "id": "career_change",
+    "cat": "career",
+    "minAge": 28,
+    "maxAge": 52,
+    "weight": 0.6,
+    "cooldown": 10,
+    "title": {
+      "tr": "🔄 Kariyer değişikliği",
+      "en": "🔄 Career change"
+    },
+    "text": {
+      "tr": "Hayatını farklı bir alanda sürdürmeyi düşünüyorsun.",
+      "en": "You're considering building a life in a different field."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "İşi bırak, yeni alana atıl",
+          "en": "Quit and switch fields"
+        },
+        "outcomes": [
+          {
+            "w": 2.5,
+            "result": {
+              "tr": "Yeni alan sana iyi geldi.",
+              "en": "The new field suited you."
+            },
+            "lucky": true,
+            "effects": {
+              "quitJob": true,
+              "happiness": 8,
+              "smarts": 2,
+              "money": -0.2
+            }
+          },
+          {
+            "w": 2.5,
+            "result": {
+              "tr": "Başlangıç zordu; geçim derdi yaşadın.",
+              "en": "The start was hard and money got tight."
+            },
+            "effects": {
+              "quitJob": true,
+              "happiness": -4,
+              "money": -0.6
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Mevcut işte kal",
+          "en": "Stay put"
+        },
+        "result": {
+          "tr": "Güvenli olanı seçtin.",
+          "en": "You chose the safe path."
+        },
+        "effects": {
+          "happiness": -1
+        }
+      }
+    ],
+    "cond": {
+      "hasJob": true
+    }
+  },
+  {
+    "id": "job_hunt",
+    "cat": "career",
+    "minAge": 22,
+    "maxAge": 60,
+    "weight": 1.8,
+    "cooldown": 3,
+    "title": {
+      "tr": "🔎 İş arayışı",
+      "en": "🔎 Job hunt"
+    },
+    "text": {
+      "tr": "Bir süredir işsizsin ve masrafların birikiyor.",
+      "en": "You've been out of work and bills are piling up."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Kurs ve sertifika al",
+          "en": "Take a course and certification"
+        },
+        "result": {
+          "tr": "Yeni bir beceri kazandın.",
+          "en": "You gained a new skill."
+        },
+        "effects": {
+          "smarts": 3,
+          "money": -0.15
+        }
+      },
+      {
+        "text": {
+          "tr": "Serbest çalış",
+          "en": "Freelance"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Birkaç müşteri buldun; geçimini sağladın.",
+              "en": "You found a few clients and got by."
+            },
+            "check": "smarts",
+            "effects": {
+              "money": 0.3,
+              "happiness": 2
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "İşler yavaş gitti.",
+              "en": "Work was slow."
+            },
+            "effects": {
+              "money": 0.05,
+              "happiness": -3
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Aileden destek iste",
+          "en": "Ask family for support"
+        },
+        "result": {
+          "tr": "Destek oldular; ama biraz moralin bozuldu.",
+          "en": "They helped, but it dented your pride."
+        },
+        "effects": {
+          "money": 0.15,
+          "happiness": -2,
+          "social": 1
+        }
+      }
+    ],
+    "cond": {
+      "hasJob": false,
+      "retired": false,
+      "student": false
+    }
+  },
+  {
+    "id": "side_hustle",
+    "cat": "money",
+    "minAge": 20,
+    "maxAge": 55,
+    "weight": 1.0,
+    "cooldown": 7,
+    "title": {
+      "tr": "💡 Yan gelir",
+      "en": "💡 Side hustle"
+    },
+    "text": {
+      "tr": "Ek gelir elde etmek için bir fikrin var.",
+      "en": "You have an idea for extra income."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Online satış yap",
+          "en": "Sell online"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Sipariş yağıyor!",
+              "en": "Orders keep coming in!"
+            },
+            "lucky": true,
+            "check": "smarts",
+            "effects": {
+              "money": 0.4,
+              "happiness": 4
+            }
+          },
+          {
+            "w": 3,
+            "result": {
+              "tr": "Pek ilgi görmedi.",
+              "en": "It drew little interest."
+            },
+            "effects": {
+              "money": -0.05,
+              "happiness": -2
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Ek mesai yap",
+          "en": "Pick up overtime"
+        },
+        "result": {
+          "tr": "Cebin doldu ama yoruldun.",
+          "en": "Your wallet grew but you got tired."
+        },
+        "effects": {
+          "money": 0.2,
+          "health": -2
+        }
+      },
+      {
+        "text": {
+          "tr": "Mevcut düzenden memnunsun",
+          "en": "Content as you are"
+        },
+        "result": {
+          "tr": "Huzurlu bir yıl geçirdin.",
+          "en": "A peaceful year."
+        },
+        "effects": {
+          "happiness": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "strike",
+    "cat": "career",
+    "minAge": 25,
+    "maxAge": 62,
+    "weight": 0.5,
+    "cooldown": 12,
+    "title": {
+      "tr": "✊ Grev / sendika",
+      "en": "✊ Strike / union"
+    },
+    "text": {
+      "tr": "İş yerinde sendika grev kararı aldı.",
+      "en": "The workplace union has called a strike."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Greve katıl",
+          "en": "Join the strike"
+        },
+        "outcomes": [
+          {
+            "w": 2.5,
+            "result": {
+              "tr": "Talepler kabul edildi; maaşlar arttı.",
+              "en": "Demands were met and wages went up."
+            },
+            "lucky": true,
+            "effects": {
+              "money": 0.3,
+              "social": 3,
+              "happiness": 4
+            }
+          },
+          {
+            "w": 2.5,
+            "result": {
+              "tr": "Grev sonuçsuz kaldı; bir süre maaşsız kaldın.",
+              "en": "The strike failed and you lost pay for a while."
+            },
+            "effects": {
+              "money": -0.3,
+              "happiness": -3
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Çalışmaya devam et",
+          "en": "Keep working"
+        },
+        "result": {
+          "tr": "Gelirini korudun ama arkadaşların kırıldı.",
+          "en": "You kept your pay but friends were upset."
+        },
+        "effects": {
+          "social": -4
+        }
+      }
+    ],
+    "cond": {
+      "hasJob": true
+    }
+  },
+  {
+    "id": "mentor",
+    "cat": "career",
+    "minAge": 22,
+    "maxAge": 46,
+    "weight": 0.8,
+    "cooldown": 6,
+    "title": {
+      "tr": "🧑‍🏫 Bir mentor",
+      "en": "🧑‍🏫 A mentor"
+    },
+    "text": {
+      "tr": "Deneyimli bir isim seni kanatları altına almak istiyor.",
+      "en": "A seasoned colleague offers to take you under their wing."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Kabul et, öğren",
+          "en": "Accept and learn"
+        },
+        "result": {
+          "tr": "Çok şey öğrendin; kapılar açıldı.",
+          "en": "You learned a lot and doors opened."
+        },
+        "effects": {
+          "smarts": 3,
+          "social": 2,
+          "promote": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Kendi yolunu kendin çiz",
+          "en": "Chart your own course"
+        },
+        "result": {
+          "tr": "Bağımsızlığını korudun.",
+          "en": "You kept your independence."
+        },
+        "effects": {
+          "happiness": 1
+        }
+      }
+    ],
+    "cond": {
+      "hasJob": true
+    },
+    "once": true
+  },
+  {
+    "id": "online_course",
+    "cat": "school",
+    "minAge": 18,
+    "maxAge": 62,
+    "weight": 1.2,
+    "cooldown": 6,
+    "title": {
+      "tr": "💻 Kendini geliştir",
+      "en": "💻 Level up"
+    },
+    "text": {
+      "tr": "Boş zamanında kendini geliştirmek istiyorsun.",
+      "en": "You want to improve yourself in your spare time."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Yazılım / teknik kurs",
+          "en": "A programming / tech course"
+        },
+        "result": {
+          "tr": "Teknik becerilerin arttı.",
+          "en": "Your technical skills improved."
+        },
+        "effects": {
+          "smarts": 4,
+          "money": -0.05
+        }
+      },
+      {
+        "text": {
+          "tr": "Yabancı dil",
+          "en": "A foreign language"
+        },
+        "result": {
+          "tr": "Yeni bir dil öğrenmek ufkunu açtı.",
+          "en": "Learning a new language broadened your horizons."
+        },
+        "effects": {
+          "smarts": 3,
+          "social": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Resim / müzik / el sanatı",
+          "en": "Art / music / crafts"
+        },
+        "result": {
+          "tr": "Yaratıcılığını keşfettin.",
+          "en": "You discovered your creativity."
+        },
+        "effects": {
+          "happiness": 5,
+          "smarts": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Şimdilik gerek yok",
+          "en": "Not for now"
+        },
+        "result": {
+          "tr": "Zamanı dinlenerek geçirdin.",
+          "en": "You spent the time resting."
+        },
+        "effects": {
+          "happiness": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "kpss",
+    "cat": "career",
+    "minAge": 21,
+    "maxAge": 32,
+    "weight": 2,
+    "cooldown": 6,
+    "title": {
+      "tr": "🏛️ Devlet memurluğu sınavı",
+      "en": "🏛️ Civil-service exam"
+    },
+    "text": {
+      "tr": "Kamuda memur olabilmek için büyük bir sınav açıldı.",
+      "en": "A major exam for civil-service jobs has been announced."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Aylarca çalış ve gir",
+          "en": "Study for months and sit it"
+        },
+        "outcomes": [
+          {
+            "w": 2.5,
+            "result": {
+              "tr": "Sınavı kazandın ve devlet memuru oldun!",
+              "en": "You passed and became a civil servant!"
+            },
+            "lucky": true,
+            "check": "smarts",
+            "effects": {
+              "setJob": "clerk",
+              "happiness": 9,
+              "smarts": 2
+            }
+          },
+          {
+            "w": 3,
+            "result": {
+              "tr": "Puan yetmedi ama çok şey öğrendin.",
+              "en": "Your score fell short but you learned a lot."
+            },
+            "effects": {
+              "smarts": 3,
+              "happiness": -4
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Özel sektörde devam et",
+          "en": "Stay in the private sector"
+        },
+        "result": {
+          "tr": "Kendi yolunda ilerledin.",
+          "en": "You kept going your own way."
+        },
+        "effects": {
+          "happiness": 1
+        }
+      }
+    ],
+    "cond": {
+      "country": [
+        "TR"
+      ],
+      "minEdu": 3
+    },
+    "once": true
+  },
+  {
+    "id": "jp_overtime",
+    "cat": "career",
+    "minAge": 24,
+    "maxAge": 55,
+    "weight": 1.2,
+    "cooldown": 6,
+    "title": {
+      "tr": "🕘 Sonsuz mesai",
+      "en": "🕘 Endless overtime"
+    },
+    "text": {
+      "tr": "Şirketin kültürü, herkesin saatlerce fazla mesai yapmasını bekliyor.",
+      "en": "Your company culture expects everyone to work endless overtime."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Herkes gibi kal",
+          "en": "Stay late like everyone"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Sevildin ama yıprandın.",
+              "en": "You were liked but worn out."
+            },
+            "effects": {
+              "money": 0.15,
+              "health": -4,
+              "happiness": -3
+            }
+          },
+          {
+            "w": 0.4,
+            "result": {
+              "tr": "Aşırı yorgunluk seni bir gece yarısı yere serdi.",
+              "en": "Extreme fatigue struck you down one night."
+            },
+            "effects": {
+              "health": -25,
+              "happiness": -10
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Vaktinde çık",
+          "en": "Leave on time"
+        },
+        "result": {
+          "tr": "İş kültürüne ters düştün ama dengeni korudun.",
+          "en": "You swam against the culture but kept your balance."
+        },
+        "effects": {
+          "social": -2,
+          "happiness": 3,
+          "health": 1
+        }
+      }
+    ],
+    "cond": {
+      "hasJob": true,
+      "country": [
+        "JP",
+        "KR",
+        "CN"
+      ]
+    }
+  },
+  {
+    "id": "first_car",
+    "cat": "money",
+    "minAge": 18,
+    "maxAge": 40,
+    "weight": 1.0,
+    "cooldown": 6,
+    "title": {
+      "tr": "🚗 İlk araba",
+      "en": "🚗 First car"
+    },
+    "text": {
+      "tr": "Kendi arabanı almayı düşünüyorsun.",
+      "en": "You're thinking about buying your first car."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Sıfır araba al",
+          "en": "Buy a new car"
+        },
+        "result": {
+          "tr": "Gurur duyuyorsun ama kredi yük oldu.",
+          "en": "You're proud, but the loan weighs on you."
+        },
+        "effects": {
+          "money": -1.0,
+          "happiness": 6,
+          "social": 2
+        },
+        "setFlags": [
+          "has_car"
+        ]
+      },
+      {
+        "text": {
+          "tr": "İkinci el al",
+          "en": "Buy a used one"
+        },
+        "result": {
+          "tr": "Akıllı bir seçim yaptın.",
+          "en": "A sensible choice."
+        },
+        "effects": {
+          "money": -0.4,
+          "happiness": 4
+        },
+        "setFlags": [
+          "has_car"
+        ]
+      },
+      {
+        "text": {
+          "tr": "Toplu taşıma / bisiklet",
+          "en": "Public transport / bike"
+        },
+        "result": {
+          "tr": "Para ve sağlık kazandın.",
+          "en": "You saved money and kept fit."
+        },
+        "effects": {
+          "health": 1,
+          "money": 0.05
+        }
+      }
+    ],
+    "cond": {
+      "minMoney": 0.2,
+      "flagsNone": [
+        "has_car"
+      ]
+    },
+    "once": true
+  },
+  {
+    "id": "roommate",
+    "cat": "home",
+    "minAge": 18,
+    "maxAge": 30,
+    "weight": 1.2,
+    "cooldown": 6,
+    "title": {
+      "tr": "🏘️ Nerede yaşayacaksın?",
+      "en": "🏘️ Where to live?"
+    },
+    "text": {
+      "tr": "Ailenin evinden ayrılıp ayrılmamayı düşünüyorsun.",
+      "en": "You're deciding whether to leave your family home."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Ev arkadaşıyla paylaş",
+          "en": "Share with a roommate"
+        },
+        "result": {
+          "tr": "Masraf azaldı; hayat renklendi.",
+          "en": "Costs dropped and life got livelier."
+        },
+        "effects": {
+          "money": -0.1,
+          "social": 4,
+          "happiness": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "Tek başına yaşa",
+          "en": "Live alone"
+        },
+        "result": {
+          "tr": "Özgürlük güzel ama pahalı.",
+          "en": "Freedom is great but costly."
+        },
+        "effects": {
+          "money": -0.4,
+          "happiness": 4
+        }
+      },
+      {
+        "text": {
+          "tr": "Ailenle kal",
+          "en": "Stay with family"
+        },
+        "result": {
+          "tr": "Para biriktirdin; bağımsızlık biraz ertelendi.",
+          "en": "You saved money; independence can wait."
+        },
+        "effects": {
+          "money": 0.15,
+          "happiness": -1
+        }
+      }
+    ],
+    "once": true
+  },
+  {
+    "id": "rent_hike",
+    "cat": "home",
+    "minAge": 20,
+    "maxAge": 70,
+    "weight": 0.8,
+    "cooldown": 8,
+    "title": {
+      "tr": "🏢 Kira artışı",
+      "en": "🏢 Rent hike"
+    },
+    "text": {
+      "tr": "Ev sahibi kirayı ciddi biçimde artırdı.",
+      "en": "Your landlord raised the rent sharply."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Kabul et",
+          "en": "Accept it"
+        },
+        "result": {
+          "tr": "Bütçen daraldı.",
+          "en": "Your budget got tighter."
+        },
+        "effects": {
+          "money": -0.25,
+          "happiness": -2
+        }
+      },
+      {
+        "text": {
+          "tr": "Başka eve taşın",
+          "en": "Move out"
+        },
+        "result": {
+          "tr": "Taşınma yorucuydu ama daha uygun bir ev buldun.",
+          "en": "Moving was tiring but you found a better deal."
+        },
+        "effects": {
+          "money": -0.1,
+          "social": -1,
+          "health": -1
+        }
+      },
+      {
+        "text": {
+          "tr": "Pazarlık yap",
+          "en": "Negotiate"
+        },
+        "outcomes": [
+          {
+            "w": 2,
+            "result": {
+              "tr": "Pazarlık tuttu, zam yarıya indi.",
+              "en": "It worked; the hike was halved."
+            },
+            "check": "social",
+            "effects": {
+              "money": -0.1,
+              "happiness": 2
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Ev sahibi tavrından dönmedi.",
+              "en": "The landlord wouldn't budge."
+            },
+            "effects": {
+              "money": -0.3,
+              "happiness": -2
+            }
+          }
+        ]
+      }
+    ],
+    "cond": {
+      "flagsNone": [
+        "owns_home"
+      ]
+    }
+  },
+  {
+    "id": "crypto",
+    "cat": "money",
+    "minAge": 22,
+    "maxAge": 60,
+    "weight": 0.9,
+    "cooldown": 6,
+    "title": {
+      "tr": "📊 Yatırım fırsatı",
+      "en": "📊 Investment tip"
+    },
+    "text": {
+      "tr": "Arkadaşın yüksek getirili riskli bir yatırımdan söz ediyor.",
+      "en": "A friend raves about a risky high-return investment."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Büyük yatırım yap",
+          "en": "Invest big"
+        },
+        "outcomes": [
+          {
+            "w": 1.5,
+            "result": {
+              "tr": "Büyük kazanç elde ettin!",
+              "en": "You made a huge profit!"
+            },
+            "lucky": true,
+            "effects": {
+              "money": 1.5,
+              "happiness": 8
+            }
+          },
+          {
+            "w": 3,
+            "result": {
+              "tr": "Yatırım çöktü; büyük zarar ettin.",
+              "en": "The investment collapsed and you lost heavily."
+            },
+            "effects": {
+              "money": -1.0,
+              "happiness": -8
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Küçük bir miktar ayır",
+          "en": "Put in a small amount"
+        },
+        "outcomes": [
+          {
+            "w": 2,
+            "result": {
+              "tr": "Makul bir kâr elde ettin.",
+              "en": "You made a modest gain."
+            },
+            "lucky": true,
+            "effects": {
+              "money": 0.2,
+              "happiness": 2
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Küçük bir kayıp yaşadın.",
+              "en": "A small loss."
+            },
+            "effects": {
+              "money": -0.15,
+              "happiness": -1
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Mevduatta tut",
+          "en": "Keep it in savings"
+        },
+        "result": {
+          "tr": "Güvenli yoldan ilerledin.",
+          "en": "You stayed on the safe side."
+        },
+        "effects": {
+          "money": 0.05
+        }
+      }
+    ],
+    "cond": {
+      "minMoney": 0.5
+    }
+  },
+  {
+    "id": "friend_loan",
+    "cat": "money",
+    "minAge": 20,
+    "maxAge": 65,
+    "weight": 0.8,
+    "cooldown": 8,
+    "title": {
+      "tr": "🤲 Arkadaşa borç",
+      "en": "🤲 Lending to a friend"
+    },
+    "text": {
+      "tr": "Yakın bir arkadaşın büyük miktarda borç istiyor.",
+      "en": "A close friend asks you for a sizable loan."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Borç ver",
+          "en": "Lend the money"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Parayı zamanında geri ödedi; dostluğunuz güçlendi.",
+              "en": "They repaid on time and your friendship grew stronger."
+            },
+            "lucky": true,
+            "effects": {
+              "social": 3,
+              "happiness": 3
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Para geri gelmedi; arkadaşlığınız zedelendi.",
+              "en": "The money never came back and the friendship suffered."
+            },
+            "effects": {
+              "money": -0.5,
+              "social": -3,
+              "happiness": -4
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Nazikçe reddet",
+          "en": "Politely refuse"
+        },
+        "result": {
+          "tr": "Arkadaşın bir süre küstü.",
+          "en": "Your friend sulked for a while."
+        },
+        "effects": {
+          "social": -3
+        }
+      }
+    ],
+    "cond": {
+      "minMoney": 0.6
+    }
+  },
+  {
+    "id": "tax_trouble",
+    "cat": "money",
+    "minAge": 25,
+    "maxAge": 70,
+    "weight": 0.6,
+    "cooldown": 10,
+    "title": {
+      "tr": "🧮 Vergi sorunu",
+      "en": "🧮 Tax trouble"
+    },
+    "text": {
+      "tr": "Beyan etmeyi unuttuğun bir gelir ortaya çıktı.",
+      "en": "An income you forgot to declare has surfaced."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Dürüstçe öde",
+          "en": "Pay it honestly"
+        },
+        "result": {
+          "tr": "Borcu kapattın, içini rahatlattın.",
+          "en": "You settled it and felt at ease."
+        },
+        "effects": {
+          "money": -0.3,
+          "happiness": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Gizlemeye çalış",
+          "en": "Try to hide it"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Kimse fark etmedi.",
+              "en": "Nobody noticed."
+            },
+            "lucky": true,
+            "effects": {
+              "money": 0.1
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Yakalandın; ağır ceza ödedin.",
+              "en": "You got caught and paid a heavy fine."
+            },
+            "effects": {
+              "money": -0.9,
+              "happiness": -6
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Mali müşavir tut",
+          "en": "Hire an accountant"
+        },
+        "result": {
+          "tr": "Sorun profesyonelce çözüldü.",
+          "en": "A professional sorted it out."
+        },
+        "effects": {
+          "money": -0.15
+        }
+      }
+    ]
+  },
+  {
+    "id": "donate",
+    "cat": "values",
+    "minAge": 25,
+    "maxAge": 88,
+    "weight": 0.7,
+    "cooldown": 8,
+    "title": {
+      "tr": "💝 Bağış",
+      "en": "💝 Giving"
+    },
+    "text": {
+      "tr": "Bir hayır kurumu bağış topluyor.",
+      "en": "A charity is collecting donations."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Cömertçe bağışla",
+          "en": "Give generously"
+        },
+        "result": {
+          "tr": "Birine umut olduğunu bilmek içini ısıttı.",
+          "en": "Knowing you gave someone hope warmed you."
+        },
+        "effects": {
+          "money": -0.5,
+          "happiness": 6,
+          "social": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Küçük bir miktar ver",
+          "en": "Give a little"
+        },
+        "result": {
+          "tr": "Elinden geleni yaptın.",
+          "en": "You did what you could."
+        },
+        "effects": {
+          "money": -0.05,
+          "happiness": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Bu sefer geçmek zorundasın",
+          "en": "Pass this time"
+        },
+        "result": {
+          "tr": "Kendi bütçene odaklandın.",
+          "en": "You focused on your own budget."
+        }
+      }
+    ],
+    "cond": {
+      "minMoney": 1.0
+    }
+  },
+  {
+    "id": "tr_bayram",
+    "cat": "family",
+    "minAge": 8,
+    "maxAge": 90,
+    "weight": 1.2,
+    "cooldown": 3,
+    "title": {
+      "tr": "🌙 Bayram",
+      "en": "🌙 Holiday time"
+    },
+    "text": {
+      "tr": "Bayram geldi. Nasıl geçireceksin?",
+      "en": "The holiday season is here. How will you spend it?"
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Aile ve akrabaları ziyaret et",
+          "en": "Visit family and relatives"
+        },
+        "result": {
+          "tr": "Bayram sofraları ve sohbetler ruhuna iyi geldi.",
+          "en": "Festive tables and chats were good for the soul."
+        },
+        "effects": {
+          "social": 4,
+          "happiness": 5,
+          "money": -0.05
+        }
+      },
+      {
+        "text": {
+          "tr": "Tatile çık",
+          "en": "Take a trip"
+        },
+        "result": {
+          "tr": "Bayramı yolda geçirdin; dinlendin.",
+          "en": "You spent the holiday traveling and rested."
+        },
+        "effects": {
+          "money": -0.25,
+          "happiness": 5,
+          "health": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Evde dinlen",
+          "en": "Rest at home"
+        },
+        "result": {
+          "tr": "Sakin bir bayram geçirdin.",
+          "en": "A calm holiday."
+        },
+        "effects": {
+          "happiness": 2,
+          "health": 1
+        }
+      }
+    ],
+    "cond": {
+      "country": [
+        "TR"
+      ]
+    }
+  },
+  {
+    "id": "earthquake_prep",
+    "cat": "home",
+    "minAge": 14,
+    "maxAge": 80,
+    "weight": 0.7,
+    "cooldown": 10,
+    "title": {
+      "tr": "🌐 Deprem hazırlığı",
+      "en": "🌐 Earthquake readiness"
+    },
+    "text": {
+      "tr": "Bölgende deprem riski yüksek. Hazırlık yapmak ister misin?",
+      "en": "Your region has high earthquake risk. Will you prepare?"
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Acil çanta ve evde güçlendirme",
+          "en": "Emergency kit and home reinforcement"
+        },
+        "result": {
+          "tr": "Hazırlıklı olmak içini rahatlattı.",
+          "en": "Being prepared put your mind at ease."
+        },
+        "effects": {
+          "money": -0.2,
+          "happiness": 2,
+          "luck": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Umursama",
+          "en": "Ignore it"
+        },
+        "result": {
+          "tr": "Başka dertlerin daha öncelikliydi.",
+          "en": "You had more urgent worries."
+        }
+      }
+    ],
+    "cond": {
+      "country": [
+        "TR",
+        "JP",
+        "ID",
+        "IR",
+        "MX",
+        "PH"
+      ]
+    }
+  },
+  {
+    "id": "checkup",
+    "cat": "health",
+    "minAge": 30,
+    "maxAge": 85,
+    "weight": 1.1,
+    "cooldown": 5,
+    "title": {
+      "tr": "🩺 Sağlık kontrolü",
+      "en": "🩺 Health check-up"
+    },
+    "text": {
+      "tr": "Uzun zamandır kontrole gitmedin.",
+      "en": "You haven't had a check-up in a long time."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Detaylı check-up yaptır",
+          "en": "Get a full check-up"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Küçük bir sorun erken yakalandı ve tedavi edildi.",
+              "en": "A small issue was caught early and treated."
+            },
+            "effects": {
+              "health": 5,
+              "money": -0.1
+            }
+          },
+          {
+            "w": 3,
+            "result": {
+              "tr": "Her şey yolunda çıktı.",
+              "en": "Everything was fine."
+            },
+            "effects": {
+              "happiness": 3,
+              "money": -0.08
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Ertele",
+          "en": "Put it off"
+        },
+        "result": {
+          "tr": "Bir süre daha ertelendi.",
+          "en": "It got postponed once more."
+        },
+        "effects": {
+          "happiness": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Gerek yok",
+          "en": "No need"
+        },
+        "result": {
+          "tr": "Kendini sağlıklı hissediyorsun.",
+          "en": "You feel healthy."
+        },
+        "effects": {
+          "health": -1
+        }
+      }
+    ]
+  },
+  {
+    "id": "diet",
+    "cat": "health",
+    "minAge": 20,
+    "maxAge": 70,
+    "weight": 0.9,
+    "cooldown": 7,
+    "title": {
+      "tr": "🥗 Beslenme",
+      "en": "🥗 Diet"
+    },
+    "text": {
+      "tr": "Kilo almaya ve yorgun hissetmeye başladın.",
+      "en": "You've been gaining weight and feeling tired."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Düzenli diyet ve yürüyüş",
+          "en": "A steady diet and walking"
+        },
+        "result": {
+          "tr": "Bir süre sonra çok daha iyi hissettin.",
+          "en": "After a while you felt much better."
+        },
+        "effects": {
+          "health": 5,
+          "looks": 2,
+          "happiness": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Hızlı bir şok diyet",
+          "en": "A quick crash diet"
+        },
+        "outcomes": [
+          {
+            "w": 2,
+            "result": {
+              "tr": "Birkaç kilo verdin ama geri aldın.",
+              "en": "You lost some but regained it."
+            },
+            "effects": {
+              "health": -1
+            }
+          },
+          {
+            "w": 1,
+            "result": {
+              "tr": "Diyet seni hasta etti.",
+              "en": "The diet made you ill."
+            },
+            "effects": {
+              "health": -6,
+              "happiness": -2
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Bildiğin gibi devam et",
+          "en": "Carry on as usual"
+        },
+        "result": {
+          "tr": "Hiçbir şey değişmedi.",
+          "en": "Nothing changed."
+        },
+        "effects": {
+          "health": -2
+        }
+      }
+    ]
+  },
+  {
+    "id": "burnout",
+    "cat": "health",
+    "minAge": 22,
+    "maxAge": 62,
+    "weight": 0.9,
+    "cooldown": 6,
+    "title": {
+      "tr": "🪫 Tükenmişlik",
+      "en": "🪫 Burnout"
+    },
+    "text": {
+      "tr": "Her şey üstüne geliyor; sürekli yorgunsun.",
+      "en": "Everything is piling up and you feel constantly drained."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Destek al / terapi",
+          "en": "Seek support / therapy"
+        },
+        "result": {
+          "tr": "Konuşmak ve plan yapmak iyi geldi.",
+          "en": "Talking and planning helped."
+        },
+        "effects": {
+          "happiness": 6,
+          "money": -0.1,
+          "health": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Tatile çık",
+          "en": "Take a vacation"
+        },
+        "result": {
+          "tr": "Biraz soluklandın.",
+          "en": "You caught your breath."
+        },
+        "effects": {
+          "money": -0.3,
+          "happiness": 5,
+          "health": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Yok say ve devam et",
+          "en": "Ignore it and push on"
+        },
+        "result": {
+          "tr": "Sağlığın ve ruh halin bozuldu.",
+          "en": "Your health and mood suffered."
+        },
+        "effects": {
+          "happiness": -6,
+          "health": -3
+        }
+      }
+    ]
+  },
+  {
+    "id": "sports_injury",
+    "cat": "health",
+    "minAge": 18,
+    "maxAge": 55,
+    "weight": 1.0,
+    "cooldown": 6,
+    "title": {
+      "tr": "🤕 Spor sakatlığı",
+      "en": "🤕 Sports injury"
+    },
+    "text": {
+      "tr": "Spor yaparken sakatlandın.",
+      "en": "You got injured while exercising."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Dinlen ve tedavi ol",
+          "en": "Rest and recover"
+        },
+        "result": {
+          "tr": "Toparlanman biraz sürdü ama tam iyileştin.",
+          "en": "It took a while but you recovered fully."
+        },
+        "effects": {
+          "health": 2,
+          "happiness": -1,
+          "money": -0.05
+        }
+      },
+      {
+        "text": {
+          "tr": "İlaçla antrenmanlara devam et",
+          "en": "Push through on painkillers"
+        },
+        "outcomes": [
+          {
+            "w": 2,
+            "result": {
+              "tr": "Fark edilmedi; geçti.",
+              "en": "It passed unnoticed."
+            },
+            "effects": {
+              "health": -1
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Sakatlık kalıcılaştı.",
+              "en": "The injury became lasting."
+            },
+            "effects": {
+              "health": -8,
+              "happiness": -4
+            }
+          }
+        ]
+      }
+    ],
+    "cond": {
+      "flagsAll": [
+        "athlete"
+      ]
+    }
+  },
+  {
+    "id": "drinking",
+    "cat": "health",
+    "minAge": 18,
+    "maxAge": 60,
+    "weight": 0.8,
+    "cooldown": 6,
+    "title": {
+      "tr": "🍻 Sosyal içki",
+      "en": "🍻 Social drinking"
+    },
+    "text": {
+      "tr": "Çevrende içki içmek yaygın ve seni de davet ediyorlar.",
+      "en": "Drinking is common around you and you're invited."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Düzenli katıl",
+          "en": "Join regularly"
+        },
+        "result": {
+          "tr": "Sosyal çevren genişledi ama alışkanlık edindin.",
+          "en": "Your circle grew but so did the habit."
+        },
+        "effects": {
+          "social": 3,
+          "happiness": 2,
+          "health": -2
+        },
+        "setFlags": [
+          "drinker"
+        ]
+      },
+      {
+        "text": {
+          "tr": "Ara sıra katıl",
+          "en": "Join occasionally"
+        },
+        "result": {
+          "tr": "Ölçülü kaldın.",
+          "en": "You kept it moderate."
+        },
+        "effects": {
+          "social": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Hayır de",
+          "en": "Say no"
+        },
+        "result": {
+          "tr": "Sağlığını korudun.",
+          "en": "You protected your health."
+        },
+        "effects": {
+          "health": 1,
+          "social": -1
+        }
+      }
+    ],
+    "cond": {
+      "flagsNone": [
+        "drinker"
+      ]
+    },
+    "once": true
+  },
+  {
+    "id": "quit_drinking",
+    "cat": "health",
+    "minAge": 25,
+    "maxAge": 80,
+    "weight": 1.0,
+    "cooldown": 6,
+    "title": {
+      "tr": "🚱 Bırakma kararı",
+      "en": "🚱 Cutting back"
+    },
+    "text": {
+      "tr": "İçki alışkanlığının sağlığına zarar verdiğini fark ediyorsun.",
+      "en": "You realize your drinking is hurting your health."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Bırakmaya çalış",
+          "en": "Try to quit"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Bıraktın; kendini çok daha iyi hissediyorsun.",
+              "en": "You quit and feel far better."
+            },
+            "check": "smarts",
+            "effects": {
+              "health": 6,
+              "happiness": 4
+            },
+            "clearFlags": [
+              "drinker"
+            ]
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Bırakmak zor oldu; yine de azaltabildin.",
+              "en": "Quitting was hard but you cut back."
+            },
+            "effects": {
+              "health": 2
+            },
+            "clearFlags": [
+              "drinker"
+            ]
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Devam et",
+          "en": "Carry on"
+        },
+        "result": {
+          "tr": "Alışkanlık sürdü.",
+          "en": "The habit continued."
+        },
+        "effects": {
+          "health": -3
+        }
+      }
+    ],
+    "cond": {
+      "flagsAll": [
+        "drinker"
+      ]
+    }
+  },
+  {
+    "id": "drunk_driving",
+    "cat": "crime",
+    "minAge": 18,
+    "maxAge": 55,
+    "weight": 0.5,
+    "cooldown": 8,
+    "title": {
+      "tr": "🚦 Gece yarısı direksiyonda",
+      "en": "🚦 Behind the wheel"
+    },
+    "text": {
+      "tr": "Parti sonrası eve dönmen gerek; biraz içtin.",
+      "en": "After a party you need to get home, and you've had a few."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Kendin kullan",
+          "en": "Drive yourself"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Eve sorunsuz ulaştın; şanslıydın.",
+              "en": "You got home fine; you were lucky."
+            },
+            "lucky": true,
+            "effects": {
+              "happiness": 1
+            }
+          },
+          {
+            "w": 1.5,
+            "result": {
+              "tr": "Kaza yaptın; ağır ceza ve masraf çıktı.",
+              "en": "You crashed; a heavy fine and costs followed."
+            },
+            "effects": {
+              "health": -12,
+              "money": -0.6,
+              "happiness": -8
+            }
+          },
+          {
+            "w": 0.15,
+            "result": {
+              "tr": "Kontrolü kaybettin.",
+              "en": "You lost control."
+            },
+            "death": {
+              "tr": "Trafik kazası",
+              "en": "Car crash"
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Taksi çağır",
+          "en": "Call a cab"
+        },
+        "result": {
+          "tr": "Sağ salim eve vardın.",
+          "en": "You got home safely."
+        },
+        "effects": {
+          "money": -0.03
+        }
+      },
+      {
+        "text": {
+          "tr": "Arkadaşta kal",
+          "en": "Crash at a friend's"
+        },
+        "result": {
+          "tr": "Ertesi sabah rahat uyandın.",
+          "en": "You woke up refreshed."
+        },
+        "effects": {
+          "social": 1
+        }
+      }
+    ],
+    "tone": "bad"
+  },
+  {
+    "id": "bribe",
+    "cat": "crime",
+    "minAge": 20,
+    "maxAge": 65,
+    "weight": 0.8,
+    "cooldown": 8,
+    "title": {
+      "tr": "💼 Rüşvet teklifi",
+      "en": "💼 A bribe"
+    },
+    "text": {
+      "tr": "Bir yetkili, işini hızlandırmak için 'küçük bir hediye' istiyor.",
+      "en": "An official hints that a 'small gift' would speed things up."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Ver",
+          "en": "Pay up"
+        },
+        "result": {
+          "tr": "İşin hemen halloldu ama vicdanın sızladı.",
+          "en": "It got done fast but your conscience stung."
+        },
+        "effects": {
+          "money": -0.1,
+          "happiness": -2
+        }
+      },
+      {
+        "text": {
+          "tr": "Reddet",
+          "en": "Refuse"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "İşin uzadı ama temiz kaldın.",
+              "en": "It dragged on but you stayed clean."
+            },
+            "effects": {
+              "happiness": 1,
+              "social": 1
+            }
+          },
+          {
+            "w": 1,
+            "result": {
+              "tr": "İşin tamamen aksadı.",
+              "en": "The whole thing stalled."
+            },
+            "effects": {
+              "happiness": -4,
+              "money": -0.1
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Şikâyet et",
+          "en": "Report it"
+        },
+        "result": {
+          "tr": "Cesur davrandın; bu seni biraz yordu.",
+          "en": "A brave move, though it wore you out."
+        },
+        "effects": {
+          "social": 1,
+          "happiness": -1
+        }
+      }
+    ],
+    "cond": {
+      "minRisk": 0.2
+    }
+  },
+  {
+    "id": "neighbor_dispute",
+    "cat": "social",
+    "minAge": 22,
+    "maxAge": 80,
+    "weight": 0.7,
+    "cooldown": 8,
+    "title": {
+      "tr": "🚪 Komşu sorunu",
+      "en": "🚪 Neighbor trouble"
+    },
+    "text": {
+      "tr": "Üst komşun geceleri gürültü yapıyor.",
+      "en": "Your upstairs neighbor makes noise at night."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Kapılarını çal, konuş",
+          "en": "Knock and talk"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Konuştunuz; sorun çözüldü, hatta dost oldunuz.",
+              "en": "You talked it out and even became friends."
+            },
+            "effects": {
+              "social": 3,
+              "happiness": 2
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Tartışma çıktı, ilişkiniz bozuldu.",
+              "en": "It turned into a fight."
+            },
+            "effects": {
+              "social": -3,
+              "happiness": -3
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Apartman yönetimine bildir",
+          "en": "Report to management"
+        },
+        "result": {
+          "tr": "Resmi yoldan çözüldü.",
+          "en": "Handled through official channels."
+        },
+        "effects": {
+          "happiness": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Katlan",
+          "en": "Put up with it"
+        },
+        "result": {
+          "tr": "Uykusuz geceler geçirdin.",
+          "en": "Sleepless nights."
+        },
+        "effects": {
+          "health": -2,
+          "happiness": -2
+        }
+      }
+    ]
+  },
+  {
+    "id": "vote",
+    "cat": "politics",
+    "minAge": 18,
+    "maxAge": 92,
+    "weight": 0.9,
+    "cooldown": 4,
+    "title": {
+      "tr": "🗳️ Seçim günü",
+      "en": "🗳️ Election day"
+    },
+    "text": {
+      "tr": "Ülkende seçim var.",
+      "en": "There's an election in your country."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Oy kullan",
+          "en": "Vote"
+        },
+        "result": {
+          "tr": "Sorumluluğunu yerine getirdin.",
+          "en": "You did your civic duty."
+        },
+        "effects": {
+          "social": 1,
+          "happiness": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Sandık görevlisi ol",
+          "en": "Volunteer at the polls"
+        },
+        "result": {
+          "tr": "Demokrasiye katkın seni gururlandırdı.",
+          "en": "Contributing to democracy made you proud."
+        },
+        "effects": {
+          "social": 3,
+          "happiness": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Oy kullanma",
+          "en": "Skip it"
+        },
+        "result": {
+          "tr": "Bu işlere ilgi duymadın.",
+          "en": "You didn't care for it."
+        }
+      }
+    ]
+  },
+  {
+    "id": "protest",
+    "cat": "politics",
+    "minAge": 18,
+    "maxAge": 60,
+    "weight": 0.6,
+    "cooldown": 8,
+    "title": {
+      "tr": "📢 Gösteri",
+      "en": "📢 A demonstration"
+    },
+    "text": {
+      "tr": "Şehirde önemli bir toplumsal sorun için gösteri düzenleniyor.",
+      "en": "A demonstration for an important social issue is planned in your city."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Katıl",
+          "en": "Join in"
+        },
+        "outcomes": [
+          {
+            "w": 4,
+            "result": {
+              "tr": "Kalabalığın içinde güçlü bir birliktelik hissettin.",
+              "en": "You felt a strong sense of unity in the crowd."
+            },
+            "effects": {
+              "social": 4,
+              "happiness": 4
+            }
+          },
+          {
+            "w": 1.2,
+            "result": {
+              "tr": "Olaylar çıktı; yaralandın ve gözaltına alındın.",
+              "en": "Things turned rough; you were injured and detained."
+            },
+            "effects": {
+              "health": -6,
+              "happiness": -6,
+              "social": -2
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "İmza kampanyasına destek ver",
+          "en": "Sign the petition"
+        },
+        "result": {
+          "tr": "Sessiz ama anlamlı bir destek verdin.",
+          "en": "A quiet but meaningful show of support."
+        },
+        "effects": {
+          "social": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "İlgilenme",
+          "en": "Stay out of it"
+        },
+        "result": {
+          "tr": "Hayatına devam ettin.",
+          "en": "You carried on."
+        }
+      }
+    ]
+  },
+  {
+    "id": "volunteer",
+    "cat": "values",
+    "minAge": 16,
+    "maxAge": 75,
+    "weight": 0.8,
+    "cooldown": 8,
+    "title": {
+      "tr": "🤝 Gönüllülük",
+      "en": "🤝 Volunteering"
+    },
+    "text": {
+      "tr": "Çevrende gönüllü olabileceğin bir etkinlik var.",
+      "en": "There's a volunteering opportunity nearby."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Hayvan barınağı",
+          "en": "Animal shelter"
+        },
+        "result": {
+          "tr": "Sevimli dostlarla vakit geçirdin.",
+          "en": "You spent time with adorable friends."
+        },
+        "effects": {
+          "happiness": 5,
+          "social": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Yaşlılara destek",
+          "en": "Helping the elderly"
+        },
+        "result": {
+          "tr": "Anlamlı sohbetler yaptın.",
+          "en": "You had meaningful conversations."
+        },
+        "effects": {
+          "happiness": 4,
+          "social": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "Afet / yardım kampanyası",
+          "en": "Disaster-relief drive"
+        },
+        "result": {
+          "tr": "Zor ama gurur verici bir deneyimdi.",
+          "en": "Hard but rewarding."
+        },
+        "effects": {
+          "happiness": 4,
+          "social": 4,
+          "health": -1
+        }
+      },
+      {
+        "text": {
+          "tr": "Bu sefer olmaz",
+          "en": "Not this time"
+        },
+        "result": {
+          "tr": "Başka işlerle meşguldün.",
+          "en": "You were busy elsewhere."
+        }
+      }
+    ]
+  },
+  {
+    "id": "values_path",
+    "cat": "values",
+    "minAge": 15,
+    "maxAge": 80,
+    "weight": 0.7,
+    "cooldown": 10,
+    "title": {
+      "tr": "🕊️ Manevi arayış",
+      "en": "🕊️ Spiritual search"
+    },
+    "text": {
+      "tr": "Hayatın anlamını sorguladığın bir dönemdesin.",
+      "en": "You're in a phase of questioning life's meaning."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "İnanç topluluğuna katıl",
+          "en": "Join a faith community"
+        },
+        "result": {
+          "tr": "Cemaat sıcaklığı sana iyi geldi.",
+          "en": "The warmth of community did you good."
+        },
+        "effects": {
+          "social": 4,
+          "happiness": 4
+        }
+      },
+      {
+        "text": {
+          "tr": "Meditasyon / doğa yürüyüşü",
+          "en": "Meditation / nature walks"
+        },
+        "result": {
+          "tr": "İç huzurunu buldun.",
+          "en": "You found inner peace."
+        },
+        "effects": {
+          "health": 2,
+          "happiness": 4
+        }
+      },
+      {
+        "text": {
+          "tr": "Felsefe ve kitaplar",
+          "en": "Philosophy and books"
+        },
+        "result": {
+          "tr": "Düşünce dünyan genişledi.",
+          "en": "Your world of thought expanded."
+        },
+        "effects": {
+          "smarts": 3,
+          "happiness": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Bu konuyu bırak",
+          "en": "Let it go"
+        },
+        "result": {
+          "tr": "Günlük hayatına döndün.",
+          "en": "You returned to daily life."
+        }
+      }
+    ]
+  },
+  {
+    "id": "hobby_pick",
+    "cat": "hobby",
+    "minAge": 12,
+    "maxAge": 72,
+    "weight": 1.1,
+    "cooldown": 7,
+    "title": {
+      "tr": "🎨 Yeni bir hobi",
+      "en": "🎨 A new hobby"
+    },
+    "text": {
+      "tr": "Boş zamanlarında yeni bir şeyler denemek istiyorsun.",
+      "en": "You want to try something new in your free time."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Fotoğraf / video",
+          "en": "Photography / video"
+        },
+        "result": {
+          "tr": "Dünyaya farklı bir gözle bakmaya başladın.",
+          "en": "You started seeing the world through a new lens."
+        },
+        "effects": {
+          "happiness": 4,
+          "smarts": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Bahçecilik / yemek",
+          "en": "Gardening / cooking"
+        },
+        "result": {
+          "tr": "Ellerinle ürettiklerin sana huzur verdi.",
+          "en": "Making things by hand brought you calm."
+        },
+        "effects": {
+          "happiness": 4,
+          "health": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Müzik aleti",
+          "en": "A musical instrument"
+        },
+        "result": {
+          "tr": "Yavaş yavaş ilerledin.",
+          "en": "You progressed step by step."
+        },
+        "effects": {
+          "happiness": 4,
+          "smarts": 2,
+          "social": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Spor / yürüyüş grubu",
+          "en": "A sports / hiking group"
+        },
+        "result": {
+          "tr": "Hem kondisyon hem arkadaş kazandın.",
+          "en": "You gained fitness and friends."
+        },
+        "effects": {
+          "health": 3,
+          "social": 3
+        }
+      }
+    ]
+  },
+  {
+    "id": "adventure",
+    "cat": "hobby",
+    "minAge": 18,
+    "maxAge": 48,
+    "weight": 0.6,
+    "cooldown": 8,
+    "title": {
+      "tr": "🪂 Macera",
+      "en": "🪂 Adventure"
+    },
+    "text": {
+      "tr": "Arkadaşların bu hafta sonu yamaç paraşütü / tırmanış yapmayı planlıyor.",
+      "en": "Friends plan a paragliding / climbing weekend."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Katıl",
+          "en": "Join in"
+        },
+        "outcomes": [
+          {
+            "w": 4,
+            "result": {
+              "tr": "Unutulmaz bir deneyimdi!",
+              "en": "An unforgettable experience!"
+            },
+            "lucky": true,
+            "effects": {
+              "happiness": 8,
+              "social": 3
+            }
+          },
+          {
+            "w": 1,
+            "result": {
+              "tr": "Kötü iniş yaptın; sakatlandın.",
+              "en": "A rough landing left you injured."
+            },
+            "effects": {
+              "health": -8,
+              "happiness": -2
+            }
+          },
+          {
+            "w": 0.08,
+            "result": {
+              "tr": "Bir şeyler ters gitti.",
+              "en": "Something went wrong."
+            },
+            "death": {
+              "tr": "Macera sporu kazası",
+              "en": "Adventure sports accident"
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Sadece izle",
+          "en": "Just watch"
+        },
+        "result": {
+          "tr": "Manzarayı uzaktan seyrettin.",
+          "en": "You enjoyed the view from afar."
+        },
+        "effects": {
+          "happiness": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "marathon",
+    "cat": "hobby",
+    "minAge": 18,
+    "maxAge": 55,
+    "weight": 0.7,
+    "cooldown": 8,
+    "title": {
+      "tr": "🏃 Koşu hedefi",
+      "en": "🏃 A running goal"
+    },
+    "text": {
+      "tr": "Arkadaşların bir yarışa kayıt olmanı istiyor.",
+      "en": "Friends want you to sign up for a race."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Antrenman yap ve yarış",
+          "en": "Train and race"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Yarışı bitirdin; kendinle gurur duydun!",
+              "en": "You finished the race and felt proud!"
+            },
+            "check": "health",
+            "effects": {
+              "health": 5,
+              "happiness": 6,
+              "social": 2
+            },
+            "setFlags": [
+              "athlete"
+            ]
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Antrenmanda sakatlandın.",
+              "en": "You got hurt in training."
+            },
+            "effects": {
+              "health": -4,
+              "happiness": -2
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Sadece takip et",
+          "en": "Cheer from the sidelines"
+        },
+        "result": {
+          "tr": "Eğlenceli bir gün oldu.",
+          "en": "A fun day."
+        },
+        "effects": {
+          "social": 2
+        }
+      }
+    ]
+  },
+  {
+    "id": "new_tech",
+    "cat": "tech",
+    "minAge": 16,
+    "maxAge": 80,
+    "weight": 0.8,
+    "cooldown": 8,
+    "title": {
+      "tr": "🤖 Yeni teknoloji",
+      "en": "🤖 New technology"
+    },
+    "text": {
+      "tr": "Hayatını etkileyen yeni bir teknoloji (yapay zekâ araçları) yaygınlaşıyor.",
+      "en": "A new technology (AI tools) is spreading and changing daily life."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Hemen öğren, kullan",
+          "en": "Learn it right away"
+        },
+        "result": {
+          "tr": "Verimliliğin arttı.",
+          "en": "Your productivity jumped."
+        },
+        "effects": {
+          "smarts": 3,
+          "money": 0.1
+        }
+      },
+      {
+        "text": {
+          "tr": "Temkinli yaklaş",
+          "en": "Take a cautious approach"
+        },
+        "result": {
+          "tr": "Gelişmeleri uzaktan izledin.",
+          "en": "You watched developments from a distance."
+        },
+        "effects": {
+          "smarts": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Kullanmak istemiyorsun",
+          "en": "Refuse to use it"
+        },
+        "result": {
+          "tr": "Eski usul devam ettin; biraz geride kaldın.",
+          "en": "You kept your old ways and fell a bit behind."
+        },
+        "effects": {
+          "smarts": -1,
+          "happiness": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "social_media",
+    "cat": "tech",
+    "minAge": 13,
+    "maxAge": 45,
+    "weight": 0.8,
+    "cooldown": 8,
+    "title": {
+      "tr": "📸 Sosyal medya",
+      "en": "📸 Social media"
+    },
+    "text": {
+      "tr": "Paylaşımların ilgi görmeye başladı.",
+      "en": "Your posts are starting to get attention."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Düzenli içerik üret",
+          "en": "Post regularly"
+        },
+        "outcomes": [
+          {
+            "w": 1.5,
+            "result": {
+              "tr": "Takipçin arttı; reklam teklifleri geldi!",
+              "en": "Followers surged and sponsorship offers rolled in!"
+            },
+            "lucky": true,
+            "effects": {
+              "money": 0.3,
+              "social": 5,
+              "happiness": 4
+            }
+          },
+          {
+            "w": 3,
+            "result": {
+              "tr": "Biraz ilgi gördün ama zaman kaybı oldu.",
+              "en": "A little attention but mostly wasted time."
+            },
+            "effects": {
+              "social": 1,
+              "smarts": -1
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Gizliliğini koru",
+          "en": "Protect your privacy"
+        },
+        "result": {
+          "tr": "Rahat kaldın.",
+          "en": "You stayed at ease."
+        },
+        "effects": {
+          "happiness": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Hesabı kapat",
+          "en": "Delete the account"
+        },
+        "result": {
+          "tr": "Ekranlardan uzaklaşmak iyi geldi.",
+          "en": "Stepping away from screens did you good."
+        },
+        "effects": {
+          "happiness": 2,
+          "social": -1
+        }
+      }
+    ]
+  },
+  {
+    "id": "big_trip",
+    "cat": "travel",
+    "minAge": 20,
+    "maxAge": 75,
+    "weight": 1.0,
+    "cooldown": 6,
+    "title": {
+      "tr": "✈️ Hayalindeki seyahat",
+      "en": "✈️ Dream trip"
+    },
+    "text": {
+      "tr": "Bu yıl uzun süredir hayalini kurduğun bir seyahati yapabilirsin.",
+      "en": "This year you could finally take the trip you've dreamed of."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Uzak bir ülkeye git",
+          "en": "Fly to a faraway country"
+        },
+        "result": {
+          "tr": "Kültürler ve manzaralar seni büyüledi.",
+          "en": "Cultures and landscapes enchanted you."
+        },
+        "effects": {
+          "money": -0.6,
+          "happiness": 9,
+          "social": 3,
+          "smarts": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Yurt içinde gez",
+          "en": "Travel at home"
+        },
+        "result": {
+          "tr": "Ülkeni yeniden keşfettin.",
+          "en": "You rediscovered your own country."
+        },
+        "effects": {
+          "money": -0.2,
+          "happiness": 5
+        }
+      },
+      {
+        "text": {
+          "tr": "Parayı biriktir",
+          "en": "Save the money"
+        },
+        "result": {
+          "tr": "Sorumlu davrandın.",
+          "en": "You played it responsible."
+        },
+        "effects": {
+          "money": 0.1
+        }
+      }
+    ],
+    "cond": {
+      "minMoney": 0.8
+    }
+  },
+  {
+    "id": "toddler_nights",
+    "cat": "kids",
+    "minAge": 18,
+    "maxAge": 95,
+    "weight": 1.8,
+    "cooldown": 3,
+    "title": {
+      "tr": "🍼 Uykusuz geceler",
+      "en": "🍼 Sleepless nights"
+    },
+    "text": {
+      "tr": "{child} bebekken geceleri sık sık uyanıyor.",
+      "en": "{child} keeps waking in the night as a baby."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Kendin ilgilen",
+          "en": "Handle it yourself"
+        },
+        "result": {
+          "tr": "Yorgunsun ama bağınız güçlendi.",
+          "en": "You're exhausted, but your bond deepened."
+        },
+        "effects": {
+          "health": -3,
+          "happiness": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Eşinle nöbetleşe bakın",
+          "en": "Take turns with your partner"
+        },
+        "result": {
+          "tr": "İş bölümü yaptınız; aranız yakınlaştı.",
+          "en": "You shared the load and grew closer."
+        },
+        "effects": {
+          "bond": 4,
+          "health": -1
+        }
+      },
+      {
+        "text": {
+          "tr": "Bakıcı tut",
+          "en": "Hire a nanny"
+        },
+        "result": {
+          "tr": "Biraz dinlendin ama masraf çıktı.",
+          "en": "You rested a bit, at a cost."
+        },
+        "effects": {
+          "money": -0.25,
+          "health": 1
+        }
+      }
+    ],
+    "cond": {
+      "kidAge": [
+        0,
+        2
+      ]
+    }
+  },
+  {
+    "id": "kid_sick",
+    "cat": "kids",
+    "minAge": 18,
+    "maxAge": 95,
+    "weight": 1.3,
+    "cooldown": 4,
+    "title": {
+      "tr": "🌡️ Çocuk hasta",
+      "en": "🌡️ A sick child"
+    },
+    "text": {
+      "tr": "{child} ateşlendi ve çok halsiz.",
+      "en": "{child} has a fever and is very weak."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Hemen hastaneye götür",
+          "en": "Go to the hospital right away"
+        },
+        "result": {
+          "tr": "Zamanında müdahale edildi; çocuğun iyileşti.",
+          "en": "Treated in time; your child recovered."
+        },
+        "effects": {
+          "money": -0.15,
+          "happiness": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Evde bakmayı dene",
+          "en": "Try home remedies"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Birkaç günde geçti.",
+              "en": "It passed in a few days."
+            },
+            "effects": {
+              "happiness": 1
+            }
+          },
+          {
+            "w": 1.5,
+            "result": {
+              "tr": "Durum kötüleşti; panikle hastaneye koştun.",
+              "en": "It got worse and you rushed to the hospital in a panic."
+            },
+            "effects": {
+              "money": -0.25,
+              "happiness": -5,
+              "health": -2
+            }
+          }
+        ]
+      }
+    ],
+    "cond": {
+      "kidAge": [
+        0,
+        12
+      ]
+    }
+  },
+  {
+    "id": "kid_school_choice",
+    "cat": "kids",
+    "minAge": 18,
+    "maxAge": 95,
+    "weight": 2,
+    "cooldown": 5,
+    "title": {
+      "tr": "🏫 Okul tercihi",
+      "en": "🏫 Choosing a school"
+    },
+    "text": {
+      "tr": "{child} okula başlıyor. Hangi okulu seçeceksin?",
+      "en": "{child} is starting school. Which will you choose?"
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Özel okul",
+          "en": "Private school"
+        },
+        "result": {
+          "tr": "Eğitim kalitesi yüksek ama masraf ağır.",
+          "en": "Higher quality, heavy cost."
+        },
+        "effects": {
+          "money": -0.5,
+          "happiness": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Devlet okulu",
+          "en": "Public school"
+        },
+        "result": {
+          "tr": "Mahalleden arkadaşlar edindi.",
+          "en": "Your child made friends in the neighborhood."
+        },
+        "effects": {
+          "happiness": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Evde / alternatif eğitim",
+          "en": "Home / alternative schooling"
+        },
+        "result": {
+          "tr": "Çok emek istedi ama yakın oldunuz.",
+          "en": "It demanded effort but brought you close."
+        },
+        "effects": {
+          "happiness": 2,
+          "health": -1,
+          "bond": 2
+        }
+      }
+    ],
+    "cond": {
+      "kidAge": [
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "id": "kid_hobby",
+    "cat": "kids",
+    "minAge": 18,
+    "maxAge": 95,
+    "weight": 1.1,
+    "cooldown": 6,
+    "title": {
+      "tr": "🎻 Çocuğun yeteneği",
+      "en": "🎻 Your child's talent"
+    },
+    "text": {
+      "tr": "{child} bir şeylere ilgi duymaya başladı. Neyi destekleyeceksin?",
+      "en": "{child} is showing interest in something. What will you support?"
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Müzik dersi",
+          "en": "Music lessons"
+        },
+        "result": {
+          "tr": "{child} müzikle parladı.",
+          "en": "{child} lit up with music."
+        },
+        "effects": {
+          "money": -0.15,
+          "happiness": 4
+        }
+      },
+      {
+        "text": {
+          "tr": "Spor kulübü",
+          "en": "A sports club"
+        },
+        "result": {
+          "tr": "{child} spora ısındı.",
+          "en": "{child} took to sports."
+        },
+        "effects": {
+          "money": -0.1,
+          "happiness": 4
+        }
+      },
+      {
+        "text": {
+          "tr": "Kodlama / bilim kursu",
+          "en": "Coding / science classes"
+        },
+        "result": {
+          "tr": "{child} merak ettikçe öğrendi.",
+          "en": "{child} learned as curiosity grew."
+        },
+        "effects": {
+          "money": -0.15,
+          "happiness": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "Kendi keşfetsin",
+          "en": "Let them explore on their own"
+        },
+        "result": {
+          "tr": "{child} özgürce denedi.",
+          "en": "{child} explored freely."
+        },
+        "effects": {
+          "happiness": 2
+        }
+      }
+    ],
+    "cond": {
+      "kidAge": [
+        6,
+        14
+      ]
+    }
+  },
+  {
+    "id": "teen_rebel",
+    "cat": "kids",
+    "minAge": 18,
+    "maxAge": 95,
+    "weight": 1.3,
+    "cooldown": 5,
+    "title": {
+      "tr": "😤 Asi ergen",
+      "en": "😤 A rebellious teen"
+    },
+    "text": {
+      "tr": "{child} ergenliğe girdi; sürekli tartışıyorsunuz.",
+      "en": "{child} hit adolescence and you argue constantly."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Sıkı kurallar koy",
+          "en": "Set strict rules"
+        },
+        "outcomes": [
+          {
+            "w": 2,
+            "result": {
+              "tr": "Disiplin işe yaradı ama ev gerildi.",
+              "en": "It worked but the house got tense."
+            },
+            "effects": {
+              "happiness": -2
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Çocuğun daha da uzaklaştı.",
+              "en": "Your child drifted further away."
+            },
+            "effects": {
+              "happiness": -5,
+              "social": -1
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Dinle ve anlamaya çalış",
+          "en": "Listen and try to understand"
+        },
+        "result": {
+          "tr": "Zaman aldı ama güven kazandınız.",
+          "en": "It took time but you built trust."
+        },
+        "effects": {
+          "happiness": 3,
+          "social": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Karışma",
+          "en": "Back off"
+        },
+        "result": {
+          "tr": "Kendi hatalarından öğrenecek.",
+          "en": "They'll learn from their own mistakes."
+        },
+        "effects": {
+          "happiness": -1
+        }
+      }
+    ],
+    "cond": {
+      "kidAge": [
+        13,
+        17
+      ]
+    }
+  },
+  {
+    "id": "kid_college_fund",
+    "cat": "kids",
+    "minAge": 18,
+    "maxAge": 95,
+    "weight": 0.9,
+    "cooldown": 8,
+    "title": {
+      "tr": "🎓 Çocuğun geleceği",
+      "en": "🎓 Your child's future"
+    },
+    "text": {
+      "tr": "{child} için uzun vadeli bir birikim yapmak ister misin?",
+      "en": "Do you want to start a long-term fund for {child}?"
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Üniversite fonu kur",
+          "en": "Start a college fund"
+        },
+        "result": {
+          "tr": "Geleceğe yatırım yaptın.",
+          "en": "You invested in the future."
+        },
+        "effects": {
+          "money": -0.5,
+          "happiness": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "Küçük bir birikim yap",
+          "en": "Save a little"
+        },
+        "result": {
+          "tr": "Elinden geleni yaptın.",
+          "en": "You did what you could."
+        },
+        "effects": {
+          "money": -0.15,
+          "happiness": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Şimdilik harca",
+          "en": "Spend on now"
+        },
+        "result": {
+          "tr": "Bugünün ihtiyaçları öncelikli.",
+          "en": "Today's needs came first."
+        },
+        "effects": {
+          "money": 0.1,
+          "happiness": -1
+        }
+      }
+    ],
+    "cond": {
+      "kidAge": [
+        8,
+        17
+      ],
+      "minMoney": 0.4
+    }
+  },
+  {
+    "id": "kid_leaves",
+    "cat": "kids",
+    "minAge": 18,
+    "maxAge": 95,
+    "weight": 1.5,
+    "cooldown": 5,
+    "title": {
+      "tr": "📦 Evden ayrılma",
+      "en": "📦 Leaving the nest"
+    },
+    "text": {
+      "tr": "{child} evden ayrılıp kendi hayatını kurmak istiyor.",
+      "en": "{child} wants to move out and start their own life."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Destekle",
+          "en": "Support them"
+        },
+        "result": {
+          "tr": "Gurur ve hüzün bir aradaydı.",
+          "en": "Pride and sadness mixed together."
+        },
+        "effects": {
+          "money": -0.2,
+          "happiness": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "Biraz daha kalmasını iste",
+          "en": "Ask them to stay a bit longer"
+        },
+        "result": {
+          "tr": "{child} biraz bozuldu ama kaldı.",
+          "en": "{child} was a bit upset but stayed."
+        },
+        "effects": {
+          "happiness": -2
+        }
+      },
+      {
+        "text": {
+          "tr": "Taşınmalarına yardım et",
+          "en": "Help them move"
+        },
+        "result": {
+          "tr": "Birlikte güzel bir gün geçirdiniz.",
+          "en": "You shared a nice day."
+        },
+        "effects": {
+          "social": 2,
+          "happiness": 4,
+          "health": -1
+        }
+      }
+    ],
+    "cond": {
+      "kidAge": [
+        18,
+        24
+      ]
+    }
+  },
+  {
+    "id": "kid_wedding",
+    "cat": "family",
+    "minAge": 18,
+    "maxAge": 95,
+    "weight": 1.2,
+    "cooldown": 6,
+    "title": {
+      "tr": "💒 Çocuğun evleniyor",
+      "en": "💒 Your child is getting married"
+    },
+    "text": {
+      "tr": "{child} evlenmeye karar verdi.",
+      "en": "{child} has decided to get married."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Büyük düğüne destek ver",
+          "en": "Fund a big wedding"
+        },
+        "result": {
+          "tr": "Düğün muhteşemdi.",
+          "en": "The wedding was magnificent."
+        },
+        "effects": {
+          "money": -0.6,
+          "happiness": 8,
+          "social": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "Mütevazı katkı",
+          "en": "A modest contribution"
+        },
+        "result": {
+          "tr": "Yeni çifte güvendin.",
+          "en": "You trusted the young couple."
+        },
+        "effects": {
+          "money": -0.15,
+          "happiness": 5
+        }
+      },
+      {
+        "text": {
+          "tr": "Sadece katıl",
+          "en": "Simply attend"
+        },
+        "result": {
+          "tr": "Mutlu günlerinde yanlarındaydın.",
+          "en": "You were by their side on their happy day."
+        },
+        "effects": {
+          "happiness": 4
+        }
+      }
+    ],
+    "cond": {
+      "kidAge": [
+        24,
+        40
+      ]
+    }
+  },
+  {
+    "id": "kid_trouble_choice",
+    "cat": "kids",
+    "minAge": 18,
+    "maxAge": 95,
+    "weight": 0.9,
+    "cooldown": 6,
+    "title": {
+      "tr": "🚨 Okuldan çağırdılar",
+      "en": "🚨 Called in by the school"
+    },
+    "text": {
+      "tr": "{child} okulda bir sorun çıkarmış; müdür seni çağırdı.",
+      "en": "{child} caused trouble at school and the principal called you in."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Çocuğunla sakin konuş",
+          "en": "Talk calmly with your child"
+        },
+        "result": {
+          "tr": "Sebebi anladın; sorun büyümeden çözüldü.",
+          "en": "You found the cause and it was resolved."
+        },
+        "effects": {
+          "happiness": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Sert ceza ver",
+          "en": "Punish them harshly"
+        },
+        "result": {
+          "tr": "Çocuğun bir süre küstü.",
+          "en": "Your child sulked for a while."
+        },
+        "effects": {
+          "happiness": -3
+        }
+      },
+      {
+        "text": {
+          "tr": "Okulu suçla",
+          "en": "Blame the school"
+        },
+        "result": {
+          "tr": "Gerginlik arttı.",
+          "en": "Tension rose."
+        },
+        "effects": {
+          "happiness": -2,
+          "social": -1
+        }
+      }
+    ],
+    "cond": {
+      "kidAge": [
+        7,
+        17
+      ]
+    }
+  },
+  {
+    "id": "babysit_grandkids",
+    "cat": "family",
+    "minAge": 50,
+    "maxAge": 92,
+    "weight": 1.5,
+    "cooldown": 6,
+    "title": {
+      "tr": "🧸 Torun bakımı",
+      "en": "🧸 Grandchildren"
+    },
+    "text": {
+      "tr": "Çocuklarının sana torun bakımı için ihtiyacı var.",
+      "en": "Your children could use your help watching the grandkids."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Sık sık bak",
+          "en": "Help often"
+        },
+        "result": {
+          "tr": "Torunlarınla çok vakit geçirdin; yorgun ama mutlusun.",
+          "en": "You spent lots of time with the grandkids; tired but happy."
+        },
+        "effects": {
+          "happiness": 6,
+          "health": -2,
+          "social": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Ara sıra bak",
+          "en": "Help occasionally"
+        },
+        "result": {
+          "tr": "Dengeyi kurdun.",
+          "en": "You struck a balance."
+        },
+        "effects": {
+          "happiness": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "Kendi hayatına odaklan",
+          "en": "Focus on your own life"
+        },
+        "result": {
+          "tr": "Kendi zamanını korudun.",
+          "en": "You protected your own time."
+        },
+        "effects": {
+          "social": -2
+        }
+      }
+    ],
+    "cond": {
+      "hasGrandkids": true
+    }
+  },
+  {
+    "id": "sibling_fight_toy",
+    "cat": "family",
+    "minAge": 4,
+    "maxAge": 15,
+    "weight": 1.2,
+    "cooldown": 4,
+    "title": {
+      "tr": "🧩 Kardeş kavgası",
+      "en": "🧩 Sibling squabble"
+    },
+    "text": {
+      "tr": "{sibling} ile oyuncak yüzünden tartıştınız.",
+      "en": "You and {sibling} are fighting over a toy."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Paylaş",
+          "en": "Share"
+        },
+        "result": {
+          "tr": "Barıştınız, birlikte oynadınız.",
+          "en": "You made up and played together."
+        },
+        "effects": {
+          "happiness": 3,
+          "social": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Israr et",
+          "en": "Insist on yours"
+        },
+        "result": {
+          "tr": "Büyükler araya girdi; ikiniz de azar işittiniz.",
+          "en": "The adults stepped in and scolded you both."
+        },
+        "effects": {
+          "happiness": -2
+        }
+      },
+      {
+        "text": {
+          "tr": "Anneye / babaya söyle",
+          "en": "Tell a parent"
+        },
+        "result": {
+          "tr": "Ebeveynin işi hallettin.",
+          "en": "Your parent sorted it out."
+        },
+        "effects": {
+          "happiness": 1
+        }
+      }
+    ],
+    "cond": {
+      "hasSiblings": true
+    }
+  },
+  {
+    "id": "sick_parent_care",
+    "cat": "family",
+    "minAge": 25,
+    "maxAge": 70,
+    "weight": 0.9,
+    "cooldown": 8,
+    "title": {
+      "tr": "🏥 Ebeveynin hasta",
+      "en": "🏥 Your parent is ill"
+    },
+    "text": {
+      "tr": "{parent} hastalandı ve bakıma ihtiyacı var.",
+      "en": "{parent} has fallen ill and needs care."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Bizzat bakım ver",
+          "en": "Care for them yourself"
+        },
+        "result": {
+          "tr": "Zor ama anlamlı bir dönemdi.",
+          "en": "A hard but meaningful time."
+        },
+        "effects": {
+          "happiness": -3,
+          "social": 3,
+          "health": -2
+        }
+      },
+      {
+        "text": {
+          "tr": "Bakıcı / hastane masrafını karşıla",
+          "en": "Pay for care"
+        },
+        "result": {
+          "tr": "Masrafı üstlendin; içinde yine de bir burukluk kaldı.",
+          "en": "You covered the cost, but it left a bittersweet feeling."
+        },
+        "effects": {
+          "money": -0.5,
+          "happiness": -1
+        }
+      },
+      {
+        "text": {
+          "tr": "Kardeşlerle paylaşın",
+          "en": "Share it with siblings"
+        },
+        "result": {
+          "tr": "Yük paylaşılınca hafifledi.",
+          "en": "The load lightened when shared."
+        },
+        "effects": {
+          "happiness": -1,
+          "social": 2
+        }
+      }
+    ],
+    "cond": {
+      "parentAlive": true
+    }
+  },
+  {
+    "id": "parent_move_in",
+    "cat": "family",
+    "minAge": 35,
+    "maxAge": 72,
+    "weight": 0.7,
+    "cooldown": 10,
+    "title": {
+      "tr": "🏠 Yaşlı ebeveyn",
+      "en": "🏠 An aging parent"
+    },
+    "text": {
+      "tr": "{parent} yaşlandı ve tek başına yaşamakta zorlanıyor.",
+      "en": "{parent} is getting old and struggling to live alone."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Yanımıza alalım",
+          "en": "Move them in with us"
+        },
+        "result": {
+          "tr": "Evde kalabalıklaştınız ama bağlarınız güçlendi.",
+          "en": "The house got crowded but bonds deepened."
+        },
+        "effects": {
+          "happiness": 2,
+          "social": 2,
+          "money": -0.1
+        }
+      },
+      {
+        "text": {
+          "tr": "Huzurevi / bakım merkezi",
+          "en": "A care home"
+        },
+        "result": {
+          "tr": "Güvende ama uzakta.",
+          "en": "Safe, but far away."
+        },
+        "effects": {
+          "money": -0.4,
+          "happiness": -2
+        }
+      },
+      {
+        "text": {
+          "tr": "Sık ziyaret et",
+          "en": "Visit often"
+        },
+        "result": {
+          "tr": "Mesafeli ama sevgi dolu bir düzen kurdun.",
+          "en": "A distant but loving routine."
+        },
+        "effects": {
+          "social": 1,
+          "health": -1
+        }
+      }
+    ],
+    "cond": {
+      "parentAlive": true
+    }
+  },
+  {
+    "id": "inheritance_dispute",
+    "cat": "family",
+    "minAge": 30,
+    "maxAge": 75,
+    "weight": 0.5,
+    "cooldown": 12,
+    "title": {
+      "tr": "⚖️ Miras tartışması",
+      "en": "⚖️ Inheritance dispute"
+    },
+    "text": {
+      "tr": "Aile mirası konusunda kardeşinle anlaşamıyorsunuz.",
+      "en": "You and your sibling disagree about the family inheritance."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Eşit paylaş",
+          "en": "Split it evenly"
+        },
+        "result": {
+          "tr": "Barışçıl bir çözüm buldunuz.",
+          "en": "You found a peaceful solution."
+        },
+        "effects": {
+          "money": 0.2,
+          "social": 2,
+          "happiness": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Daha fazlasını iste",
+          "en": "Demand more"
+        },
+        "outcomes": [
+          {
+            "w": 2,
+            "result": {
+              "tr": "İstediğini aldın ama aile küstü.",
+              "en": "You got your way but the family was upset."
+            },
+            "effects": {
+              "money": 0.6,
+              "social": -5,
+              "happiness": -3
+            }
+          },
+          {
+            "w": 2,
+            "result": {
+              "tr": "Dava uzadı; avukat masrafı çıktı.",
+              "en": "It dragged to court with legal costs."
+            },
+            "effects": {
+              "money": -0.3,
+              "happiness": -6,
+              "social": -4
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Hakkından vazgeç",
+          "en": "Give up your share"
+        },
+        "result": {
+          "tr": "Aile bağları sağlam kaldı.",
+          "en": "Family ties stayed intact."
+        },
+        "effects": {
+          "social": 3,
+          "happiness": 2,
+          "money": -0.1
+        }
+      }
+    ],
+    "cond": {
+      "hasSiblings": true
+    },
+    "once": true
+  },
+  {
+    "id": "sibling_asks_money",
+    "cat": "family",
+    "minAge": 22,
+    "maxAge": 65,
+    "weight": 0.7,
+    "cooldown": 8,
+    "title": {
+      "tr": "💶 Kardeşin yardım istiyor",
+      "en": "💶 A sibling asks for help"
+    },
+    "text": {
+      "tr": "{sibling} zor durumda ve senden maddi destek istiyor.",
+      "en": "{sibling} is in trouble and asks for financial help."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Yardım et",
+          "en": "Help out"
+        },
+        "outcomes": [
+          {
+            "w": 3,
+            "result": {
+              "tr": "Zor günlerini atlattı; çok minnettar.",
+              "en": "They got through the hard times and are grateful."
+            },
+            "effects": {
+              "money": -0.35,
+              "social": 4,
+              "happiness": 4
+            }
+          },
+          {
+            "w": 1.5,
+            "result": {
+              "tr": "Parayı boşa harcadı; ilişki biraz bozuldu.",
+              "en": "They wasted it and the relationship soured."
+            },
+            "effects": {
+              "money": -0.35,
+              "social": -2,
+              "happiness": -3
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Reddet",
+          "en": "Refuse"
+        },
+        "result": {
+          "tr": "Kardeşin bir süre küstü.",
+          "en": "Your sibling sulked for a while."
+        },
+        "effects": {
+          "social": -4,
+          "happiness": -2
+        }
+      }
+    ],
+    "cond": {
+      "hasSiblings": true,
+      "minMoney": 0.4
+    }
+  },
+  {
+    "id": "family_reunion",
+    "cat": "family",
+    "minAge": 16,
+    "maxAge": 88,
+    "weight": 1.0,
+    "cooldown": 5,
+    "title": {
+      "tr": "👨‍👩‍👧‍👦 Aile buluşması",
+      "en": "👨‍👩‍👧‍👦 Family reunion"
+    },
+    "text": {
+      "tr": "Geniş aile bir araya geliyor.",
+      "en": "The extended family is gathering."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Git, sofraya otur",
+          "en": "Go and join the table"
+        },
+        "result": {
+          "tr": "Eski hikâyeler anlatıldı; çok güldünüz.",
+          "en": "Old stories were told and you laughed a lot."
+        },
+        "effects": {
+          "social": 4,
+          "happiness": 5,
+          "money": -0.03
+        }
+      },
+      {
+        "text": {
+          "tr": "Kısa uğra",
+          "en": "Drop in briefly"
+        },
+        "result": {
+          "tr": "Kısa ama sıcak bir buluşma oldu.",
+          "en": "Brief but warm."
+        },
+        "effects": {
+          "social": 1,
+          "happiness": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Bahane bul, gitme",
+          "en": "Make an excuse"
+        },
+        "result": {
+          "tr": "Akrabalar biraz kırıldı.",
+          "en": "Relatives were a bit hurt."
+        },
+        "effects": {
+          "social": -2
+        }
+      }
+    ]
+  },
+  {
+    "id": "parent_advice",
+    "cat": "family",
+    "minAge": 18,
+    "maxAge": 40,
+    "weight": 0.8,
+    "cooldown": 8,
+    "title": {
+      "tr": "💬 Ebeveyn nasihati",
+      "en": "💬 Parental advice"
+    },
+    "text": {
+      "tr": "{parent} hayat planların hakkında fikrini söylüyor ve sana yol göstermek istiyor.",
+      "en": "{parent} shares opinions about your life plans and wants to guide you."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Dinle ve düşün",
+          "en": "Listen and reflect"
+        },
+        "result": {
+          "tr": "Bazı sözler işine yaradı.",
+          "en": "Some of it proved useful."
+        },
+        "effects": {
+          "smarts": 1,
+          "happiness": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Kendi kararlarını ver",
+          "en": "Make your own decisions"
+        },
+        "result": {
+          "tr": "Bağımsız oldun; aran biraz gerildi.",
+          "en": "You asserted independence; things got a bit tense."
+        },
+        "effects": {
+          "social": -1,
+          "happiness": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Her dediğini yap",
+          "en": "Do as they say"
+        },
+        "result": {
+          "tr": "Huzur sağlandı ama içinden başka şeyler geçti.",
+          "en": "Peace was kept, though your heart wanted otherwise."
+        },
+        "effects": {
+          "happiness": -2
+        }
+      }
+    ],
+    "cond": {
+      "parentAlive": true
+    }
+  },
+  {
+    "id": "retire_plan",
+    "cat": "life",
+    "minAge": 60,
+    "maxAge": 85,
+    "weight": 1.5,
+    "cooldown": 6,
+    "title": {
+      "tr": "🌅 Emeklilik günleri",
+      "en": "🌅 Retirement days"
+    },
+    "text": {
+      "tr": "Artık vakit senin. Günlerini nasıl geçireceksin?",
+      "en": "The time is yours now. How will you spend your days?"
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Bahçe ve doğa",
+          "en": "Garden and nature"
+        },
+        "result": {
+          "tr": "Toprakla uğraşmak sana iyi geldi.",
+          "en": "Working with the soil did you good."
+        },
+        "effects": {
+          "health": 3,
+          "happiness": 5
+        }
+      },
+      {
+        "text": {
+          "tr": "Seyahat et",
+          "en": "Travel"
+        },
+        "result": {
+          "tr": "Görmediğin yerleri gezdin.",
+          "en": "You visited places you'd never seen."
+        },
+        "effects": {
+          "money": -0.4,
+          "happiness": 8,
+          "health": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Gönüllü ol / mentorluk yap",
+          "en": "Volunteer / mentor"
+        },
+        "result": {
+          "tr": "Tecrübelerini paylaşmak seni mutlu etti.",
+          "en": "Sharing experience made you happy."
+        },
+        "effects": {
+          "social": 4,
+          "happiness": 5
+        }
+      },
+      {
+        "text": {
+          "tr": "Dinlen",
+          "en": "Just rest"
+        },
+        "result": {
+          "tr": "Rahat ama biraz durgun geçti.",
+          "en": "Comfortable but a little static."
+        },
+        "effects": {
+          "happiness": 1,
+          "health": -1
+        }
+      }
+    ],
+    "cond": {
+      "retired": true
+    }
+  },
+  {
+    "id": "memoir",
+    "cat": "hobby",
+    "minAge": 60,
+    "maxAge": 95,
+    "weight": 0.8,
+    "cooldown": 12,
+    "title": {
+      "tr": "📖 Anılar",
+      "en": "📖 Memories"
+    },
+    "text": {
+      "tr": "Hayat hikâyeni kaleme almak istiyorsun.",
+      "en": "You'd like to write down your life story."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Yaz",
+          "en": "Write it"
+        },
+        "result": {
+          "tr": "Yıllar gözünün önünden geçti; içini hafifletti.",
+          "en": "The years passed before your eyes and it lightened your heart."
+        },
+        "effects": {
+          "smarts": 2,
+          "happiness": 5
+        }
+      },
+      {
+        "text": {
+          "tr": "Torunlara anlat",
+          "en": "Tell your grandchildren"
+        },
+        "result": {
+          "tr": "Hikâyelerin kuşaklar arası bağ kurdu.",
+          "en": "Your stories built a bridge between generations."
+        },
+        "effects": {
+          "social": 4,
+          "happiness": 5
+        }
+      },
+      {
+        "text": {
+          "tr": "Boş ver",
+          "en": "Skip it"
+        },
+        "result": {
+          "tr": "Hatıralar içinde kaldı.",
+          "en": "The memories stayed inside."
+        }
+      }
+    ],
+    "once": true
+  },
+  {
+    "id": "old_friend",
+    "cat": "social",
+    "minAge": 50,
+    "maxAge": 95,
+    "weight": 1.1,
+    "cooldown": 6,
+    "title": {
+      "tr": "👴 Eski bir dost",
+      "en": "👴 An old friend"
+    },
+    "text": {
+      "tr": "Yıllardır görmediğin bir dostun seni aradı.",
+      "en": "A friend you haven't seen in years called you."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Buluş, uzun uzun konuş",
+          "en": "Meet and talk for hours"
+        },
+        "result": {
+          "tr": "Eski günleri yâd ettiniz.",
+          "en": "You reminisced about old times."
+        },
+        "effects": {
+          "social": 5,
+          "happiness": 6
+        }
+      },
+      {
+        "text": {
+          "tr": "Telefonda konuş",
+          "en": "Chat on the phone"
+        },
+        "result": {
+          "tr": "Kısa ama güzel bir sohbetti.",
+          "en": "A short but lovely chat."
+        },
+        "effects": {
+          "social": 2,
+          "happiness": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Meşgulsün",
+          "en": "You're busy"
+        },
+        "result": {
+          "tr": "Fırsat kaçtı.",
+          "en": "The chance slipped away."
+        },
+        "effects": {
+          "social": -1
+        }
+      }
+    ]
+  },
+  {
+    "id": "will",
+    "cat": "money",
+    "minAge": 60,
+    "maxAge": 95,
+    "weight": 1.2,
+    "cooldown": 6,
+    "title": {
+      "tr": "📜 Vasiyet",
+      "en": "📜 Your will"
+    },
+    "text": {
+      "tr": "Mal varlığın için bir vasiyet hazırlamayı düşünüyorsun.",
+      "en": "You're thinking of preparing a will for your assets."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Aile arasında adil paylaştır",
+          "en": "Split it fairly among family"
+        },
+        "result": {
+          "tr": "Gönlün rahatladı.",
+          "en": "Your mind is at ease."
+        },
+        "effects": {
+          "happiness": 3,
+          "social": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Bir kısmını hayır kurumuna bırak",
+          "en": "Leave some to charity"
+        },
+        "result": {
+          "tr": "Geriye güzel bir miras bıraktın.",
+          "en": "You'll leave a fine legacy."
+        },
+        "effects": {
+          "money": -0.4,
+          "happiness": 5
+        }
+      },
+      {
+        "text": {
+          "tr": "Hayattayken harcayıp keyfini çıkar",
+          "en": "Enjoy it while you're alive"
+        },
+        "result": {
+          "tr": "Hayatın tadını çıkardın.",
+          "en": "You enjoyed life."
+        },
+        "effects": {
+          "money": -0.6,
+          "happiness": 7
+        }
+      }
+    ],
+    "cond": {
+      "minMoney": 1.0
+    },
+    "once": true
+  },
+  {
+    "id": "elder_housing",
+    "cat": "home",
+    "minAge": 72,
+    "maxAge": 100,
+    "weight": 2,
+    "cooldown": 6,
+    "title": {
+      "tr": "🏡 Yaşlılıkta barınma",
+      "en": "🏡 Housing in old age"
+    },
+    "text": {
+      "tr": "Günlük işler zorlaşmaya başladı. Nerede yaşamak istersin?",
+      "en": "Daily tasks are getting harder. Where would you like to live?"
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Kendi evimde kal, yardım al",
+          "en": "Stay home with help"
+        },
+        "result": {
+          "tr": "Alışkın olduğun düzende kaldın.",
+          "en": "You stayed in your familiar routine."
+        },
+        "effects": {
+          "money": -0.2,
+          "happiness": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "Çocuklarımın yanına git",
+          "en": "Move in with my children"
+        },
+        "result": {
+          "tr": "Kalabalık ama sıcaktı.",
+          "en": "Crowded but warm."
+        },
+        "effects": {
+          "happiness": 3,
+          "social": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "Huzurevine geç",
+          "en": "Move to a care home"
+        },
+        "result": {
+          "tr": "Bakımın düzenli ama ev özlemi var.",
+          "en": "Regular care, but you miss home."
+        },
+        "effects": {
+          "money": -0.5,
+          "health": 3,
+          "happiness": -2
+        }
+      }
+    ],
+    "cond": {
+      "retired": true
+    },
+    "once": true
+  },
+  {
+    "id": "late_love",
+    "cat": "love",
+    "minAge": 60,
+    "maxAge": 90,
+    "weight": 0.8,
+    "cooldown": 10,
+    "title": {
+      "tr": "💞 Geç gelen aşk",
+      "en": "💞 Late-life romance"
+    },
+    "text": {
+      "tr": "Tanıştığın biri hayatına yeniden renk getirebilir.",
+      "en": "Someone you've met could bring color back into your life."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Birlikte vakit geçir",
+          "en": "Spend time together"
+        },
+        "result": {
+          "tr": "Yeniden gülümsemeye başladın.",
+          "en": "You started smiling again."
+        },
+        "effects": {
+          "happiness": 8,
+          "social": 3
+        }
+      },
+      {
+        "text": {
+          "tr": "Sadece arkadaş kal",
+          "en": "Remain friends"
+        },
+        "result": {
+          "tr": "Dostluk da güzel.",
+          "en": "Friendship is lovely too."
+        },
+        "effects": {
+          "social": 2,
+          "happiness": 2
+        }
+      },
+      {
+        "text": {
+          "tr": "Geçmişe sadık kal",
+          "en": "Stay loyal to the past"
+        },
+        "result": {
+          "tr": "Anıların seni sardı.",
+          "en": "Your memories wrapped around you."
+        },
+        "effects": {
+          "happiness": -1
+        }
+      }
+    ],
+    "cond": {
+      "status": [
+        "widowed",
+        "divorced"
+      ]
+    }
+  },
+  {
+    "id": "pension_scam",
+    "cat": "crime",
+    "minAge": 60,
+    "maxAge": 95,
+    "weight": 0.6,
+    "cooldown": 10,
+    "title": {
+      "tr": "📞 Şüpheli telefon",
+      "en": "📞 A suspicious call"
+    },
+    "text": {
+      "tr": "Biri seni arayıp 'hesabın tehlikede' diyerek bilgilerini istiyor.",
+      "en": "A caller says your account is in danger and asks for your details."
+    },
+    "choices": [
+      {
+        "text": {
+          "tr": "Telefonu kapat",
+          "en": "Hang up"
+        },
+        "result": {
+          "tr": "Dolandırıcılığa yakalanmadın.",
+          "en": "You avoided the scam."
+        },
+        "effects": {
+          "happiness": 1
+        }
+      },
+      {
+        "text": {
+          "tr": "Bilgileri ver",
+          "en": "Give them the details"
+        },
+        "outcomes": [
+          {
+            "w": 1,
+            "result": {
+              "tr": "Her şey yolundaymış.",
+              "en": "It turned out fine."
+            },
+            "lucky": true
+          },
+          {
+            "w": 4,
+            "result": {
+              "tr": "Hesabın boşaltıldı.",
+              "en": "Your account was emptied."
+            },
+            "effects": {
+              "money": -0.8,
+              "happiness": -8
+            }
+          }
+        ]
+      },
+      {
+        "text": {
+          "tr": "Çocuğuna / bankaya danış",
+          "en": "Check with family / the bank"
+        },
+        "result": {
+          "tr": "Doğru kararı verdin.",
+          "en": "A wise move."
+        },
+        "effects": {
+          "happiness": 1,
+          "social": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "family_dinner",
+    "cat": "family",
+    "minAge": 22,
+    "maxAge": 85,
+    "weight": 1.0,
+    "cooldown": 4,
+    "text": {
+      "tr": "Ailecek güzel bir akşam yemeği yediniz.",
+      "en": "You had a lovely family dinner."
+    },
+    "effects": {
+      "happiness": 3,
+      "social": 1
+    },
+    "cond": {
+      "married": true
+    },
+    "tone": "good"
+  },
+  {
+    "id": "kid_first_steps",
+    "cat": "kids",
+    "minAge": 18,
+    "maxAge": 95,
+    "weight": 1.5,
+    "cooldown": 2,
+    "text": {
+      "tr": "{child} ilk adımlarını attı; fotoğraf çektin.",
+      "en": "{child} took first steps; you took photos."
+    },
+    "effects": {
+      "happiness": 5
+    },
+    "cond": {
+      "kidAge": [
+        1,
+        2
+      ]
+    },
+    "tone": "good"
+  },
+  {
+    "id": "kid_award",
+    "cat": "kids",
+    "minAge": 18,
+    "maxAge": 95,
+    "weight": 1.0,
+    "cooldown": 5,
+    "text": {
+      "tr": "{child} okulda ödül aldı; seninle gurur duydu.",
+      "en": "{child} won an award at school and was proud to share it with you."
+    },
+    "effects": {
+      "happiness": 5,
+      "social": 1
+    },
+    "cond": {
+      "kidAge": [
+        7,
+        17
+      ]
+    },
+    "tone": "good"
+  },
+  {
+    "id": "kid_graduates",
+    "cat": "kids",
+    "minAge": 18,
+    "maxAge": 95,
+    "weight": 1.0,
+    "cooldown": 4,
+    "text": {
+      "tr": "{child} mezun oldu; törende gözlerin doldu.",
+      "en": "{child} graduated and your eyes welled up at the ceremony."
+    },
+    "effects": {
+      "happiness": 8,
+      "social": 2
+    },
+    "cond": {
+      "kidAge": [
+        18,
+        24
+      ]
+    },
+    "tone": "good"
+  },
+  {
+    "id": "work_award",
+    "cat": "career",
+    "minAge": 24,
+    "maxAge": 62,
+    "weight": 1.0,
+    "cooldown": 5,
+    "text": {
+      "tr": "İşyerinde 'ayın çalışanı' seçildin.",
+      "en": "You were named employee of the month."
+    },
+    "effects": {
+      "happiness": 5,
+      "money": 0.08,
+      "social": 2
+    },
+    "cond": {
+      "hasJob": true
+    },
+    "tone": "good"
+  },
+  {
+    "id": "work_gossip",
+    "cat": "career",
+    "minAge": 22,
+    "maxAge": 62,
+    "weight": 1.0,
+    "cooldown": 5,
+    "text": {
+      "tr": "İş yerinde hakkında dedikodu çıktı.",
+      "en": "Gossip about you spread at work."
+    },
+    "effects": {
+      "happiness": -4,
+      "social": -2
+    },
+    "cond": {
+      "hasJob": true
+    },
+    "tone": "bad"
+  },
+  {
+    "id": "raise",
+    "cat": "career",
+    "minAge": 22,
+    "maxAge": 62,
+    "weight": 1.0,
+    "cooldown": 4,
+    "text": {
+      "tr": "Yönetim maaşına zam yaptı.",
+      "en": "Management gave you a raise."
+    },
+    "effects": {
+      "money": 0.15,
+      "happiness": 3
+    },
+    "cond": {
+      "hasJob": true
+    },
+    "tone": "good"
+  },
+  {
+    "id": "car_breakdown",
+    "cat": "money",
+    "minAge": 20,
+    "maxAge": 70,
+    "weight": 1.0,
+    "cooldown": 5,
+    "text": {
+      "tr": "Arabanın motoru bozuldu; tamir pahalıya patladı.",
+      "en": "Your car's engine failed and the repair was costly."
+    },
+    "effects": {
+      "money": -0.25,
+      "happiness": -3
+    },
+    "cond": {
+      "flagsAll": [
+        "has_car"
+      ]
+    },
+    "tone": "bad"
+  },
+  {
+    "id": "burglary",
+    "cat": "crime",
+    "minAge": 20,
+    "maxAge": 80,
+    "weight": 0.4,
+    "cooldown": 8,
+    "text": {
+      "tr": "Evine hırsız girdi; bazı eşyalarını kaybettin.",
+      "en": "Your home was burgled and you lost some belongings."
+    },
+    "effects": {
+      "money": -0.3,
+      "happiness": -5,
+      "social": -1
+    },
+    "tone": "bad"
+  },
+  {
+    "id": "good_neighbor",
+    "cat": "social",
+    "minAge": 20,
+    "maxAge": 85,
+    "weight": 1.0,
+    "cooldown": 6,
+    "text": {
+      "tr": "Komşunun yardımı seni çok rahatlattı.",
+      "en": "A neighbor's help gave you great relief."
+    },
+    "effects": {
+      "social": 3,
+      "happiness": 3
+    },
+    "tone": "good"
+  },
+  {
+    "id": "school_reunion",
+    "cat": "social",
+    "minAge": 28,
+    "maxAge": 75,
+    "weight": 1.0,
+    "cooldown": 8,
+    "text": {
+      "tr": "Okul arkadaşlarınla yıllar sonra buluştun.",
+      "en": "You met old schoolmates after many years."
+    },
+    "effects": {
+      "social": 4,
+      "happiness": 4
+    },
+    "tone": "good"
+  },
+  {
+    "id": "insomnia",
+    "cat": "health",
+    "minAge": 30,
+    "maxAge": 85,
+    "weight": 1.0,
+    "cooldown": 5,
+    "text": {
+      "tr": "Uykusuzluk seni yordu; günlerin bulanık geçti.",
+      "en": "Insomnia wore you down and your days blurred."
+    },
+    "effects": {
+      "health": -2,
+      "happiness": -3
+    },
+    "tone": "bad"
+  },
+  {
+    "id": "heatwave",
+    "cat": "health",
+    "minAge": 5,
+    "maxAge": 90,
+    "weight": 0.6,
+    "cooldown": 5,
+    "text": {
+      "tr": "Aşırı sıcak hava dalgası herkesi bunalttı.",
+      "en": "A brutal heatwave exhausted everyone."
+    },
+    "effects": {
+      "health": -2,
+      "happiness": -2
+    },
+    "tone": "bad"
+  },
+  {
+    "id": "tax_refund",
+    "cat": "money",
+    "minAge": 22,
+    "maxAge": 80,
+    "weight": 0.6,
+    "cooldown": 6,
+    "text": {
+      "tr": "Vergi iadesi hesabına yattı.",
+      "en": "A tax refund landed in your account."
+    },
+    "effects": {
+      "money": 0.1,
+      "happiness": 2
+    },
+    "tone": "good"
+  },
+  {
+    "id": "appliance_break",
+    "cat": "home",
+    "minAge": 22,
+    "maxAge": 85,
+    "weight": 1.0,
+    "cooldown": 6,
+    "text": {
+      "tr": "Buzdolabı bozuldu; yenisini almak zorunda kaldın.",
+      "en": "The fridge died and you had to buy a new one."
+    },
+    "effects": {
+      "money": -0.12,
+      "happiness": -2
+    },
+    "tone": "bad"
+  },
+  {
+    "id": "old_photo",
+    "cat": "life",
+    "minAge": 50,
+    "maxAge": 100,
+    "weight": 1.0,
+    "cooldown": 6,
+    "text": {
+      "tr": "Eski bir fotoğraf albümü buldun; tatlı anılar canlandı.",
+      "en": "You found an old photo album and sweet memories came back."
+    },
+    "effects": {
+      "happiness": 4
+    },
+    "tone": "good"
+  },
+  {
+    "id": "cousin_wedding",
+    "cat": "family",
+    "minAge": 16,
+    "maxAge": 70,
+    "weight": 1.0,
+    "cooldown": 6,
+    "text": {
+      "tr": "Kuzeninin düğününe katıldın; çok eğlendin.",
+      "en": "You attended a cousin's wedding and had a great time."
+    },
+    "effects": {
+      "social": 3,
+      "happiness": 4
+    },
+    "tone": "good"
+  },
+  {
+    "id": "parent_gift",
+    "cat": "family",
+    "minAge": 18,
+    "maxAge": 55,
+    "weight": 1.0,
+    "cooldown": 6,
+    "text": {
+      "tr": "{parent} sana küçük bir destek gönderdi.",
+      "en": "{parent} sent you a little help."
+    },
+    "effects": {
+      "money": 0.08,
+      "happiness": 3
+    },
+    "cond": {
+      "parentAlive": true
+    },
+    "tone": "good"
+  },
+  {
+    "id": "neighborhood_fest",
+    "cat": "social",
+    "minAge": 14,
+    "maxAge": 80,
+    "weight": 1.0,
+    "cooldown": 6,
+    "text": {
+      "tr": "Mahalle şenliğinde herkes bir araya geldi.",
+      "en": "The whole neighborhood came together at a street festival."
+    },
+    "effects": {
+      "social": 3,
+      "happiness": 4
+    },
+    "tone": "good"
+  },
+  {
+    "id": "food_poisoning",
+    "cat": "health",
+    "minAge": 5,
+    "maxAge": 85,
+    "weight": 1.0,
+    "cooldown": 5,
+    "text": {
+      "tr": "Yediğin bir şey seni hasta etti.",
+      "en": "Something you ate made you ill."
+    },
+    "effects": {
+      "health": -4,
+      "happiness": -2
+    },
+    "tone": "bad"
+  },
+  {
+    "id": "lucky_find",
+    "cat": "life",
+    "minAge": 8,
+    "maxAge": 90,
+    "weight": 0.5,
+    "cooldown": 6,
+    "text": {
+      "tr": "Eski bir montun cebinden beklemediğin bir para çıktı.",
+      "en": "You found unexpected cash in an old coat pocket."
+    },
+    "effects": {
+      "money": 0.03,
+      "happiness": 2
+    },
+    "tone": "good"
+  }
+]
