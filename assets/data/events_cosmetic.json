@@ -1,0 +1,785 @@
+[
+ {
+  "id": "surg_nose",
+  "cat": "looks",
+  "minAge": 18,
+  "maxAge": 50,
+  "weight": 0.22,
+  "cooldown": 10,
+  "title": {
+   "tr": "👃 Burun estetiği",
+   "en": "👃 Rhinoplasty"
+  },
+  "text": {
+   "tr": "Burnunun şeklinden hoşlanmıyorsun. Bir doktor ameliyatı öneriyor.",
+   "en": "You dislike the shape of your nose. A surgeon recommends an operation."
+  },
+  "cond": {
+   "minMoney": 0.15,
+   "flagsNone": [
+    "had_nose"
+   ]
+  },
+  "choices": [
+   {
+    "text": {
+     "tr": "Ameliyat ol",
+     "en": "Get the surgery"
+    },
+    "outcomes": [
+     {
+      "w": 70,
+      "lucky": true,
+      "result": {
+       "tr": "Ameliyat çok iyi geçti; yeni burnunla aynaya bakmaktan zevk alıyorsun.",
+       "en": "The surgery went great; you love what you see in the mirror."
+      },
+      "effects": {
+       "money": -0.5,
+       "looks": 6,
+       "happiness": 6,
+       "health": -1
+      },
+      "setFlags": [
+       "had_nose"
+      ]
+     },
+     {
+      "w": 20,
+      "result": {
+       "tr": "Ameliyat sorunsuz geçti ama fark pek belli olmuyor.",
+       "en": "The surgery was fine, but the difference is barely noticeable."
+      },
+      "effects": {
+       "money": -0.5,
+       "looks": 1,
+       "happiness": 1
+      },
+      "setFlags": [
+       "had_nose"
+      ]
+     },
+     {
+      "w": 5,
+      "result": {
+       "tr": "Ameliyat kötü geçti; sonuç beklediğin gibi olmadı ve iyileşmesi sancılı oldu.",
+       "en": "The surgery went badly; the result is not what you hoped and recovery was painful."
+      },
+      "effects": {
+       "money": -0.8,
+       "looks": -7,
+       "happiness": -9,
+       "health": -6
+      },
+      "setFlags": [
+       "had_nose",
+       "surg_bad"
+      ]
+     },
+     {
+      "w": 0.25,
+      "result": {
+       "tr": "Ameliyat sırasında ciddi bir komplikasyon yaşandı.",
+       "en": "A serious complication occurred during the operation."
+      },
+      "effects": {
+       "money": -0.5
+      },
+      "death": {
+       "tr": "Estetik ameliyat komplikasyonu",
+       "en": "Cosmetic surgery complication"
+      },
+      "setFlags": [
+       "had_nose"
+      ]
+     }
+    ]
+   },
+   {
+    "text": {
+     "tr": "Vazgeç, olduğum gibi kalayım",
+     "en": "Skip it, I'll stay as I am"
+    },
+    "result": {
+     "tr": "Kendinle barışmaya karar verdin.",
+     "en": "You decided to make peace with yourself."
+    },
+    "effects": {
+     "happiness": 1
+    }
+   }
+  ]
+ },
+ {
+  "id": "surg_hair",
+  "cat": "looks",
+  "minAge": 22,
+  "maxAge": 60,
+  "weight": 0.22,
+  "cooldown": 10,
+  "title": {
+   "tr": "💇 Saç ekimi",
+   "en": "💇 Hair transplant"
+  },
+  "text": {
+   "tr": "Saçların seyrelmeye başladı. Saç ekimi yaptırmayı düşünüyorsun.",
+   "en": "Your hair is thinning. You are considering a hair transplant."
+  },
+  "cond": {
+   "minMoney": 0.15,
+   "flagsNone": [
+    "had_hair"
+   ]
+  },
+  "choices": [
+   {
+    "text": {
+     "tr": "Ameliyat ol",
+     "en": "Get the surgery"
+    },
+    "outcomes": [
+     {
+      "w": 70,
+      "lucky": true,
+      "result": {
+       "tr": "Birkaç ay sonra saçların gür çıktı; özgüvenin arttı.",
+       "en": "A few months later your hair grew in thick; your confidence rose."
+      },
+      "effects": {
+       "money": -0.3,
+       "looks": 5,
+       "happiness": 6,
+       "health": -1
+      },
+      "setFlags": [
+       "had_hair"
+      ]
+     },
+     {
+      "w": 20,
+      "result": {
+       "tr": "Saçların kısmen tuttu; fark küçük.",
+       "en": "The grafts only partly took; the difference is small."
+      },
+      "effects": {
+       "money": -0.3,
+       "looks": 1,
+       "happiness": 1
+      },
+      "setFlags": [
+       "had_hair"
+      ]
+     },
+     {
+      "w": 5,
+      "result": {
+       "tr": "Ekilen saçların çoğu tutmadı ve kafa derin enfekte oldu.",
+       "en": "Most grafts failed and your scalp got infected."
+      },
+      "effects": {
+       "money": -0.48,
+       "looks": -5,
+       "happiness": -9,
+       "health": -6
+      },
+      "setFlags": [
+       "had_hair",
+       "surg_bad"
+      ]
+     },
+     {
+      "w": 0.25,
+      "result": {
+       "tr": "Ameliyat sonrası beklenmedik bir enfeksiyon hayati tehlike yarattı.",
+       "en": "An unexpected post-operative infection became life-threatening."
+      },
+      "effects": {
+       "money": -0.3
+      },
+      "death": {
+       "tr": "Estetik ameliyat komplikasyonu",
+       "en": "Cosmetic surgery complication"
+      },
+      "setFlags": [
+       "had_hair"
+      ]
+     }
+    ]
+   },
+   {
+    "text": {
+     "tr": "Vazgeç, olduğum gibi kalayım",
+     "en": "Skip it, I'll stay as I am"
+    },
+    "result": {
+     "tr": "Kendinle barışmaya karar verdin.",
+     "en": "You decided to make peace with yourself."
+    },
+    "effects": {
+     "happiness": 1
+    }
+   }
+  ]
+ },
+ {
+  "id": "surg_face",
+  "cat": "looks",
+  "minAge": 38,
+  "maxAge": 75,
+  "weight": 0.2,
+  "cooldown": 10,
+  "title": {
+   "tr": "✨ Yüz germe / botoks",
+   "en": "✨ Facelift / botox"
+  },
+  "text": {
+   "tr": "Yaşın yüzüne yansımaya başladı. Yüz germe ya da botoks öneriliyor.",
+   "en": "Age is showing on your face. A facelift or botox is suggested."
+  },
+  "cond": {
+   "minMoney": 0.15,
+   "flagsNone": [
+    "had_face"
+   ]
+  },
+  "choices": [
+   {
+    "text": {
+     "tr": "Ameliyat ol",
+     "en": "Get the surgery"
+    },
+    "outcomes": [
+     {
+      "w": 70,
+      "lucky": true,
+      "result": {
+       "tr": "Yüzün gençleşti; herkes nasıl bu kadar dinç göründüğünü soruyor.",
+       "en": "Your face looks younger; everyone asks how you look so fresh."
+      },
+      "effects": {
+       "money": -0.7,
+       "looks": 7,
+       "happiness": 6,
+       "health": -1
+      },
+      "setFlags": [
+       "had_face"
+      ]
+     },
+     {
+      "w": 20,
+      "result": {
+       "tr": "Sonuç doğal ama çok az fark var.",
+       "en": "The result is natural but the change is slight."
+      },
+      "effects": {
+       "money": -0.7,
+       "looks": 1,
+       "happiness": 1
+      },
+      "setFlags": [
+       "had_face"
+      ]
+     },
+     {
+      "w": 5,
+      "result": {
+       "tr": "Sonuç yapay ve asimetrik göründü; çekiciliğin düştü.",
+       "en": "The result looks artificial and lopsided; your looks suffered."
+      },
+      "effects": {
+       "money": -1.1199999999999999,
+       "looks": -9,
+       "happiness": -9,
+       "health": -6
+      },
+      "setFlags": [
+       "had_face",
+       "surg_bad"
+      ]
+     },
+     {
+      "w": 0.25,
+      "result": {
+       "tr": "Anestezi sırasında beklenmedik bir kalp sorunu yaşandı.",
+       "en": "An unexpected heart problem occurred under anesthesia."
+      },
+      "effects": {
+       "money": -0.7
+      },
+      "death": {
+       "tr": "Estetik ameliyat komplikasyonu",
+       "en": "Cosmetic surgery complication"
+      },
+      "setFlags": [
+       "had_face"
+      ]
+     }
+    ]
+   },
+   {
+    "text": {
+     "tr": "Vazgeç, olduğum gibi kalayım",
+     "en": "Skip it, I'll stay as I am"
+    },
+    "result": {
+     "tr": "Kendinle barışmaya karar verdin.",
+     "en": "You decided to make peace with yourself."
+    },
+    "effects": {
+     "happiness": 1
+    }
+   }
+  ]
+ },
+ {
+  "id": "surg_lipo",
+  "cat": "looks",
+  "minAge": 22,
+  "maxAge": 60,
+  "weight": 0.22,
+  "cooldown": 10,
+  "title": {
+   "tr": "🏋️ Yağ aldırma (liposuction)",
+   "en": "🏋️ Liposuction"
+  },
+  "text": {
+   "tr": "Diyet ve sporla gitmeyen bölgeler için yağ aldırma seçeneği var.",
+   "en": "Liposuction is an option for areas that diet and exercise do not shift."
+  },
+  "cond": {
+   "minMoney": 0.15,
+   "flagsNone": [
+    "had_lipo"
+   ]
+  },
+  "choices": [
+   {
+    "text": {
+     "tr": "Ameliyat ol",
+     "en": "Get the surgery"
+    },
+    "outcomes": [
+     {
+      "w": 70,
+      "lucky": true,
+      "result": {
+       "tr": "Vücut hatların belirginleşti; kendini çok daha iyi hissediyorsun.",
+       "en": "Your figure became more defined; you feel much better."
+      },
+      "effects": {
+       "money": -0.6,
+       "looks": 6,
+       "happiness": 6,
+       "health": -1
+      },
+      "setFlags": [
+       "had_lipo"
+      ]
+     },
+     {
+      "w": 20,
+      "result": {
+       "tr": "Küçük bir fark oldu, ama memnunsun.",
+       "en": "A small difference, but you are content."
+      },
+      "effects": {
+       "money": -0.6,
+       "looks": 1,
+       "happiness": 1
+      },
+      "setFlags": [
+       "had_lipo"
+      ]
+     },
+     {
+      "w": 5,
+      "result": {
+       "tr": "Vücudunda çukurlar ve morluklar kaldı; iyileşme uzun sürdü.",
+       "en": "Dents and bruising were left behind; recovery took long."
+      },
+      "effects": {
+       "money": -0.96,
+       "looks": -6,
+       "happiness": -9,
+       "health": -6
+      },
+      "setFlags": [
+       "had_lipo",
+       "surg_bad"
+      ]
+     },
+     {
+      "w": 0.25,
+      "result": {
+       "tr": "Ameliyat sonrası emboli gelişti.",
+       "en": "A post-operative embolism developed."
+      },
+      "effects": {
+       "money": -0.6
+      },
+      "death": {
+       "tr": "Estetik ameliyat komplikasyonu",
+       "en": "Cosmetic surgery complication"
+      },
+      "setFlags": [
+       "had_lipo"
+      ]
+     }
+    ]
+   },
+   {
+    "text": {
+     "tr": "Vazgeç, olduğum gibi kalayım",
+     "en": "Skip it, I'll stay as I am"
+    },
+    "result": {
+     "tr": "Kendinle barışmaya karar verdin.",
+     "en": "You decided to make peace with yourself."
+    },
+    "effects": {
+     "happiness": 1
+    }
+   }
+  ]
+ },
+ {
+  "id": "surg_teeth",
+  "cat": "looks",
+  "minAge": 18,
+  "maxAge": 70,
+  "weight": 0.3,
+  "cooldown": 10,
+  "title": {
+   "tr": "🦷 Diş estetiği",
+   "en": "🦷 Cosmetic dentistry"
+  },
+  "text": {
+   "tr": "Gülüşün seni rahatsız ediyor. Diş estetiği yaptırabilirsin.",
+   "en": "Your smile bothers you. You could get cosmetic dental work."
+  },
+  "cond": {
+   "minMoney": 0.15,
+   "flagsNone": [
+    "had_teeth"
+   ]
+  },
+  "choices": [
+   {
+    "text": {
+     "tr": "Ameliyat ol",
+     "en": "Get the surgery"
+    },
+    "outcomes": [
+     {
+      "w": 70,
+      "lucky": true,
+      "result": {
+       "tr": "Yeni gülüşünle bol bol gülüyorsun; sosyal çevren genişledi.",
+       "en": "You smile freely with your new teeth; your social circle widened."
+      },
+      "effects": {
+       "money": -0.35,
+       "looks": 5,
+       "happiness": 6,
+       "health": -1
+      },
+      "setFlags": [
+       "had_teeth"
+      ]
+     },
+     {
+      "w": 20,
+      "result": {
+       "tr": "Sonuç iyi ama beklediğin kadar çarpıcı değil.",
+       "en": "The result is good, but less striking than you expected."
+      },
+      "effects": {
+       "money": -0.35,
+       "looks": 1,
+       "happiness": 1
+      },
+      "setFlags": [
+       "had_teeth"
+      ]
+     },
+     {
+      "w": 5,
+      "result": {
+       "tr": "Kaplamalar uymadı, dişlerin hassaslaştı ve tekrar iş gerekti.",
+       "en": "The veneers did not fit, your teeth became sensitive and redo work was needed."
+      },
+      "effects": {
+       "money": -0.5599999999999999,
+       "looks": -4,
+       "happiness": -9,
+       "health": -6
+      },
+      "setFlags": [
+       "had_teeth",
+       "surg_bad"
+      ]
+     },
+     {
+      "w": 0.25,
+      "result": {
+       "tr": "Bir enfeksiyon kana karıştı.",
+       "en": "An infection spread into your bloodstream."
+      },
+      "effects": {
+       "money": -0.35
+      },
+      "death": {
+       "tr": "Estetik ameliyat komplikasyonu",
+       "en": "Cosmetic surgery complication"
+      },
+      "setFlags": [
+       "had_teeth"
+      ]
+     }
+    ]
+   },
+   {
+    "text": {
+     "tr": "Vazgeç, olduğum gibi kalayım",
+     "en": "Skip it, I'll stay as I am"
+    },
+    "result": {
+     "tr": "Kendinle barışmaya karar verdin.",
+     "en": "You decided to make peace with yourself."
+    },
+    "effects": {
+     "happiness": 1
+    }
+   }
+  ]
+ },
+ {
+  "id": "surg_body",
+  "cat": "looks",
+  "minAge": 20,
+  "maxAge": 55,
+  "weight": 0.18,
+  "cooldown": 10,
+  "title": {
+   "tr": "💪 Vücut şekillendirme",
+   "en": "💪 Body contouring"
+  },
+  "text": {
+   "tr": "Vücudunu şekillendirecek bir ameliyat için danışmanlık aldın.",
+   "en": "You consulted about a body-contouring operation."
+  },
+  "cond": {
+   "minMoney": 0.15,
+   "flagsNone": [
+    "had_body"
+   ]
+  },
+  "choices": [
+   {
+    "text": {
+     "tr": "Ameliyat ol",
+     "en": "Get the surgery"
+    },
+    "outcomes": [
+     {
+      "w": 70,
+      "lucky": true,
+      "result": {
+       "tr": "Sonuçtan çok memnunsun; aynada kendini beğeniyorsun.",
+       "en": "You are very happy with the result; you like what you see."
+      },
+      "effects": {
+       "money": -0.8,
+       "looks": 6,
+       "happiness": 6,
+       "health": -1
+      },
+      "setFlags": [
+       "had_body"
+      ]
+     },
+     {
+      "w": 20,
+      "result": {
+       "tr": "Sonuç hafif ve fark küçük.",
+       "en": "The result is mild and the change small."
+      },
+      "effects": {
+       "money": -0.8,
+       "looks": 1,
+       "happiness": 1
+      },
+      "setFlags": [
+       "had_body"
+      ]
+     },
+     {
+      "w": 5,
+      "result": {
+       "tr": "Ameliyat kötü geçti, iz kaldı ve şekil bozukluğu oluştu.",
+       "en": "The surgery went badly, leaving scars and deformity."
+      },
+      "effects": {
+       "money": -1.2800000000000002,
+       "looks": -8,
+       "happiness": -9,
+       "health": -6
+      },
+      "setFlags": [
+       "had_body",
+       "surg_bad"
+      ]
+     },
+     {
+      "w": 0.25,
+      "result": {
+       "tr": "Ameliyat sırasında yoğun kanama oldu.",
+       "en": "Severe bleeding occurred during the operation."
+      },
+      "effects": {
+       "money": -0.8
+      },
+      "death": {
+       "tr": "Estetik ameliyat komplikasyonu",
+       "en": "Cosmetic surgery complication"
+      },
+      "setFlags": [
+       "had_body"
+      ]
+     }
+    ]
+   },
+   {
+    "text": {
+     "tr": "Vazgeç, olduğum gibi kalayım",
+     "en": "Skip it, I'll stay as I am"
+    },
+    "result": {
+     "tr": "Kendinle barışmaya karar verdin.",
+     "en": "You decided to make peace with yourself."
+    },
+    "effects": {
+     "happiness": 1
+    }
+   }
+  ]
+ },
+ {
+  "id": "surg_revision",
+  "cat": "looks",
+  "minAge": 18,
+  "maxAge": 80,
+  "weight": 0.4,
+  "cooldown": 8,
+  "title": {
+   "tr": "🩹 Düzeltme ameliyatı",
+   "en": "🩹 Revision surgery"
+  },
+  "text": {
+   "tr": "Estetik ameliyatın sonucundan memnun değilsin. Düzeltme ameliyatı yaptırabilirsin.",
+   "en": "You are unhappy with your cosmetic surgery result. You could have a revision."
+  },
+  "cond": {
+   "minMoney": 0.15,
+   "flagsAll": [
+    "surg_bad"
+   ],
+   "flagsNone": [
+    "revised"
+   ]
+  },
+  "choices": [
+   {
+    "text": {
+     "tr": "Düzeltme ameliyatı ol",
+     "en": "Get a revision"
+    },
+    "outcomes": [
+     {
+      "w": 65,
+      "lucky": true,
+      "result": {
+       "tr": "Düzeltme başarılı oldu; sonunda istediğin görünüme kavuştun.",
+       "en": "The revision worked; you finally got the look you wanted."
+      },
+      "effects": {
+       "money": -0.4,
+       "looks": 5,
+       "happiness": 6
+      },
+      "setFlags": [
+       "revised"
+      ],
+      "clearFlags": [
+       "surg_bad"
+      ]
+     },
+     {
+      "w": 28,
+      "result": {
+       "tr": "Düzeltme işe yaramadı ama zarar da vermedi.",
+       "en": "The revision did not help, but did no harm."
+      },
+      "effects": {
+       "money": -0.4,
+       "happiness": -2
+      },
+      "setFlags": [
+       "revised"
+      ]
+     },
+     {
+      "w": 7,
+      "result": {
+       "tr": "Düzeltme de kötü geçti; görünümün daha da bozuldu.",
+       "en": "The revision went badly too; your appearance got worse."
+      },
+      "effects": {
+       "money": -0.5,
+       "looks": -6,
+       "happiness": -8,
+       "health": -4
+      },
+      "setFlags": [
+       "revised"
+      ]
+     },
+     {
+      "w": 0.2,
+      "result": {
+       "tr": "Ameliyat sırasında komplikasyon yaşandı.",
+       "en": "A complication occurred during surgery."
+      },
+      "effects": {
+       "money": -0.4
+      },
+      "death": {
+       "tr": "Estetik ameliyat komplikasyonu",
+       "en": "Cosmetic surgery complication"
+      }
+     }
+    ]
+   },
+   {
+    "text": {
+     "tr": "Kabullen ve devam et",
+     "en": "Accept it and move on"
+    },
+    "result": {
+     "tr": "Olanı kabullenip yoluna devam ettin.",
+     "en": "You accepted it and moved on."
+    },
+    "effects": {
+     "happiness": -1
+    },
+    "setFlags": [
+     "revised"
+    ],
+    "clearFlags": [
+     "surg_bad"
+    ]
+   }
+  ]
+ }
+]

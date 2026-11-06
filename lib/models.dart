@@ -96,12 +96,29 @@ class JobDef {
         minEdu = j['minEdu'] as int,
         pay = (j['pay'] as num).toDouble(),
         stress = j['stress'] as int,
-        drain = (j['drain'] as num).toDouble();
+        drain = (j['drain'] as num).toDouble(),
+        special = j['special'] == true,
+        weight = (j['weight'] as num?)?.toDouble() ?? 1.0,
+        stat = j['stat'] as String?,
+        favor = List<String>.from((j['favor'] as List?) ?? const []);
 
   final String id;
   final Json name;
   final int minEdu, stress;
   final double pay, drain;
+
+  /// true ise sıradan iş tekliflerinde çıkmaz (manken, oyuncu gibi);
+  /// yalnızca özel teklifle gelir.
+  final bool special;
+
+  /// Teklif listesinde çıkma ağırlığı (1 = normal, küçük = nadir).
+  final double weight;
+
+  /// Doluysa ağırlık bu istatistikle artar (smarts, looks, social, health).
+  final String? stat;
+
+  /// Oyuncuda bu bayraklardan biri varsa (seçimleri, ilgi alanı) teklif ihtimali artar.
+  final List<String> favor;
 }
 
 class Job {

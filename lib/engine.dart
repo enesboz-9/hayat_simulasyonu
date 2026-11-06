@@ -61,15 +61,17 @@ class GameEngine extends ChangeNotifier {
     // bir varyant olarak eklenir; dosya yoksa oyun yine çalışır.
     try {
       final have = events.map((e) => e.id).toSet();
-      for (final raw in await list('events_more.json')) {
-        final j = Map<String, dynamic>.from(raw as Map);
-        var id = j['id'] as String;
-        while (have.contains(id)) {
-          id = '${id}_2';
+      for (final file in const ['events_more.json', 'events_cosmetic.json', 'events_life.json']) {
+        for (final raw in await list(file)) {
+          final j = Map<String, dynamic>.from(raw as Map);
+          var id = j['id'] as String;
+          while (have.contains(id)) {
+            id = '${id}_2';
+          }
+          j['id'] = id;
+          have.add(id);
+          events.add(GameEvent.fromJson(j));
         }
-        j['id'] = id;
-        have.add(id);
-        events.add(GameEvent.fromJson(j));
       }
     } catch (_) {}
     jobs
@@ -326,6 +328,12 @@ class GameEngine extends ChangeNotifier {
     final j = ch.job;
     if (j == null) return;
     j.years++;
+    if (j.def.id == 'model' && ch.age > 38 && _p(0.3)) {
+      ch.job = null;
+      ch.happiness -= 3;
+      _say(ch, b('Mankenlik kariyerin sona erdi.', 'Your modelling career came to an end.'), 'info');
+      return;
+    }
     ch.happiness -= (j.def.stress - 50) / 80;
     ch.health -= j.def.drain;
     if (j.level < 5 && _p(0.07 + ch.smarts / 1500 + (ch.luck - 50) / 2500)) {
@@ -715,7 +723,7 @@ class GameEngine extends ChangeNotifier {
 
   Person _genPerson(Character ch) {
     final female = !ch.female;
-    final okJobs = jobs.where((j) => j.minEdu <= min(4, ch.edu + 1)).toList();
+    final okJobs = jobs.where((j) => !j.special && j.minEdu <= min(4, ch.edu + 1)).toList();
     final jd = okJobs[rng.nextInt(okJobs.length)];
     final kind = _cl(55 + _gauss() * 20).round();
     final g = ch.country.gdp;
@@ -805,6 +813,7 @@ class GameEngine extends ChangeNotifier {
       _temptationDecision(ch) ??
       _marriageDecision(ch) ??
       _childDecision(ch) ??
+      _starOfferDecision(ch) ??
       _jobDecision(ch);
 
   /// Evlilik krizi: çıkma ihtimali [divorceChance] ile ülke istatistiğinden gelir.
@@ -1153,17 +1162,106 @@ class GameEngine extends ChangeNotifier {
     );
   }
 
+  /// Oyuncuya uygun iş tekliflerini ağırlıklı seçer: eğitim düzeyi, istatistikler
+  /// (zekâ, çekicilik, sosyallik, sağlık) ve geçmiş seçimleri (bayraklar:
+  /// spor, sanat/sayısal/sözel alan, evcil hayvan, işletme...) ağırlığı etkiler.
+  /// Manken/oyuncu gibi özel işler burada çıkmaz.
+  List<JobDef> _pickJobOffers(Character ch, int count) {
+    final pool = jobs.where((j) => !j.special && j.minEdu <= ch.edu && j.id != ch.job?.def.id).toList();
+    final out = <JobDef>[];
+    while (out.length < count && pool.isNotEmpty) {
+      final j = _weighted<JobDef>(pool, (x) {
+        var w = x.weight;
+        if (x.stat != null) w *= 0.5 + _stat(ch, x.stat!) / 60;
+        if (x.favor.any(ch.flags.contains)) w *= 4;
+        return w;
+      });
+      out.add(j);
+      pool.remove(j);
+    }
+    return out;
+  }
+
+  /// Yıllık "keşfedilme" ihtimali (manken/oyuncu teklifi). Çekicilik 80 altında
+  /// 0. Taban: düşük refahlı ülkede %0,001, yüksek refahlı ülkede %0,01 (gelir
+  /// arasında doğrusal geçiş). Çekicilik 90 üstünde 10 kat, 95 üstünde 120 kat.
+  double starChance(Character ch) {
+    if (ch.looks < 80 || ch.age < 18 || ch.age > 42 || ch.retired) return 0;
+    if (ch.job?.def.special == true) return 0;
+    final w = ((ch.country.gdp - 2) / 13).clamp(0.0, 1.0).toDouble();
+    var p = 0.00001 + (0.0001 - 0.00001) * w;
+    if (ch.looks > 95) {
+      p *= 120;
+    } else if (ch.looks > 90) {
+      p *= 10;
+    }
+    return p;
+  }
+
+  /// Çok nadir: güzelliğin / yakışıklılığın fark edilir ve manken ya da oyuncu
+  /// olarak teklif gelir.
+  Decision? _starOfferDecision(Character ch) {
+    if (!_p(starChance(ch))) return null;
+    final model = _p(ch.female ? 0.55 : 0.4);
+    JobDef? def;
+    for (final j in jobs) {
+      if (j.id == (model ? 'model' : 'actor')) def = j;
+    }
+    if (def == null) return null;
+    final d = def;
+    final name = loc(d.name, lang);
+    final g = ch.country.gdp;
+    return Decision(
+      title: b('✨ Keşfedildin', '✨ You were scouted'),
+      body: model
+          ? b('Sokakta seni gören bir ajans mankenlik teklif ediyor. Bu çok nadir bir fırsat.',
+              'An agency spotted you and offers you a modelling career. A very rare chance.')
+          : b('Bir yapımcı seni fark etti ve oyunculuk teklif ediyor. Bu çok nadir bir fırsat.',
+              'A producer noticed you and offers you an acting career. A very rare chance.'),
+      options: [
+        DecisionOption(
+          label: b('$name olarak başla', 'Start as $name'),
+          hint: b('~${fmtMoney(g * d.pay)}/yıl · stres ${d.stress} · hepsi şansa bağlı',
+              '~${fmtMoney(g * d.pay)}/yr · stress ${d.stress} · depends on luck'),
+          pick: () {
+            ch.seen['job'] = ch.age;
+            if (_p(_cl(0.8 + (ch.luck - 50) / 400, 0.6, 0.95))) {
+              ch.job = Job(d);
+              ch.jobsHeld++;
+              ch.joblessYears = 0;
+              ch.uniUntil = null;
+              ch.happiness += 10;
+              ch.social += 5;
+              ch.flags.add('star_career');
+              _say(ch, b('$name olarak çalışmaya başladın; hayatın bir anda değişti.', 'You started working as a $name; your life changed overnight.'), 'milestone');
+            } else {
+              ch.happiness -= 4;
+              _say(ch, b('Deneme çekimi umduğun gibi geçmedi; teklif geri çekildi.', 'The audition did not go as hoped; the offer was withdrawn.'), 'bad');
+            }
+            _clampStats(ch);
+          },
+        ),
+        DecisionOption(
+          label: b('Reddet', 'Turn it down'),
+          pick: () {
+            ch.happiness -= 1;
+            _say(ch, b('Teklifi reddettin; hayatına olduğu gibi devam ettin.', 'You declined and carried on with your life.'), 'info');
+          },
+        ),
+      ],
+    );
+  }
+
   Decision? _jobDecision(Character ch) {
     if (ch.retired || ch.age < 18 || ch.age > 60 || ch.uniUntil != null) return null;
     final employed = ch.job != null;
     if (employed) {
-      if (ch.age < 22 || ch.age - (ch.seen['job'] ?? -9) < 4 || !_p(0.07)) return null;
+      if (ch.age < 22 || ch.age - (ch.seen['job'] ?? -9) < 4 || !_p(0.1)) return null;
     } else if (!_p(0.6)) {
       return null;
     }
-    final pool = jobs.where((j) => j.minEdu <= ch.edu && j.id != ch.job?.def.id).toList()..shuffle(rng);
-    if (pool.isEmpty) return null;
-    final offers = pool.take(employed ? 2 : 3).toList();
+    final offers = _pickJobOffers(ch, employed ? 3 : 4);
+    if (offers.isEmpty) return null;
     final g = ch.country.gdp;
     return Decision(
       title: employed ? b('Yeni iş teklifi', 'New job offer') : b('İş teklifleri', 'Job offers'),
@@ -1310,7 +1408,7 @@ class GameEngine extends ChangeNotifier {
   }
 
   Decision? _eventDecision(Character ch) {
-    if (!_p(0.5)) return null;
+    if (!_p(0.9)) return null;
     final ev = _pickEvent(ch, auto: false);
     return ev == null ? null : _decisionFromEvent(ch, ev);
   }

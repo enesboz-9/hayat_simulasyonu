@@ -196,5 +196,353 @@
   "pay": 1.9,
   "stress": 45,
   "drain": 0.02
+ },
+ {
+  "id": "waiter",
+  "name": {
+   "tr": "Garson",
+   "en": "Waiter"
+  },
+  "minEdu": 1,
+  "pay": 0.75,
+  "stress": 50,
+  "drain": 0.05,
+  "stat": "social"
+ },
+ {
+  "id": "barista",
+  "name": {
+   "tr": "Barista",
+   "en": "Barista"
+  },
+  "minEdu": 1,
+  "pay": 0.8,
+  "stress": 45,
+  "drain": 0.03,
+  "stat": "social"
+ },
+ {
+  "id": "hairdresser",
+  "name": {
+   "tr": "Kuaför",
+   "en": "Hairdresser"
+  },
+  "minEdu": 1,
+  "pay": 0.9,
+  "stress": 40,
+  "drain": 0.04,
+  "stat": "looks"
+ },
+ {
+  "id": "security",
+  "name": {
+   "tr": "Güvenlik görevlisi",
+   "en": "Security guard"
+  },
+  "minEdu": 1,
+  "pay": 0.8,
+  "stress": 50,
+  "drain": 0.08,
+  "stat": "health"
+ },
+ {
+  "id": "mechanic",
+  "name": {
+   "tr": "Tamirci",
+   "en": "Mechanic"
+  },
+  "minEdu": 1,
+  "pay": 1.0,
+  "stress": 45,
+  "drain": 0.1,
+  "favor": [
+   "has_car"
+  ]
+ },
+ {
+  "id": "electrician",
+  "name": {
+   "tr": "Elektrik teknisyeni",
+   "en": "Electrician"
+  },
+  "minEdu": 2,
+  "pay": 1.2,
+  "stress": 50,
+  "drain": 0.1,
+  "favor": [
+   "track_voc",
+   "track_sci"
+  ]
+ },
+ {
+  "id": "sales",
+  "name": {
+   "tr": "Satış temsilcisi",
+   "en": "Sales representative"
+  },
+  "minEdu": 2,
+  "pay": 1.1,
+  "stress": 60,
+  "drain": 0.04,
+  "stat": "social"
+ },
+ {
+  "id": "soldier",
+  "name": {
+   "tr": "Asker",
+   "en": "Soldier"
+  },
+  "minEdu": 2,
+  "pay": 1.1,
+  "stress": 65,
+  "drain": 0.25,
+  "stat": "health",
+  "favor": [
+   "athlete"
+  ]
+ },
+ {
+  "id": "firefighter",
+  "name": {
+   "tr": "İtfaiyeci",
+   "en": "Firefighter"
+  },
+  "minEdu": 2,
+  "pay": 1.2,
+  "stress": 70,
+  "drain": 0.25,
+  "stat": "health",
+  "favor": [
+   "athlete"
+  ]
+ },
+ {
+  "id": "trainer",
+  "name": {
+   "tr": "Fitness antrenörü",
+   "en": "Fitness trainer"
+  },
+  "minEdu": 2,
+  "pay": 1.0,
+  "stress": 35,
+  "drain": 0.02,
+  "stat": "health",
+  "favor": [
+   "athlete"
+  ]
+ },
+ {
+  "id": "pro_athlete",
+  "name": {
+   "tr": "Profesyonel sporcu",
+   "en": "Professional athlete"
+  },
+  "minEdu": 2,
+  "pay": 2.2,
+  "stress": 70,
+  "drain": 0.3,
+  "stat": "health",
+  "favor": [
+   "athlete"
+  ],
+  "weight": 0.25
+ },
+ {
+  "id": "musician",
+  "name": {
+   "tr": "Müzisyen",
+   "en": "Musician"
+  },
+  "minEdu": 1,
+  "pay": 0.9,
+  "stress": 55,
+  "drain": 0.03,
+  "favor": [
+   "track_art"
+  ],
+  "weight": 0.5
+ },
+ {
+  "id": "content_creator",
+  "name": {
+   "tr": "İçerik üreticisi",
+   "en": "Content creator"
+  },
+  "minEdu": 1,
+  "pay": 1.0,
+  "stress": 60,
+  "drain": 0.03,
+  "stat": "looks",
+  "weight": 0.4
+ },
+ {
+  "id": "writer",
+  "name": {
+   "tr": "Yazar",
+   "en": "Writer"
+  },
+  "minEdu": 2,
+  "pay": 1.0,
+  "stress": 50,
+  "drain": 0.03,
+  "stat": "smarts",
+  "favor": [
+   "track_hum"
+  ],
+  "weight": 0.6
+ },
+ {
+  "id": "journalist",
+  "name": {
+   "tr": "Gazeteci",
+   "en": "Journalist"
+  },
+  "minEdu": 3,
+  "pay": 1.2,
+  "stress": 65,
+  "drain": 0.05,
+  "favor": [
+   "track_hum"
+  ]
+ },
+ {
+  "id": "designer",
+  "name": {
+   "tr": "Grafik tasarımcı",
+   "en": "Graphic designer"
+  },
+  "minEdu": 3,
+  "pay": 1.3,
+  "stress": 50,
+  "drain": 0.03,
+  "favor": [
+   "track_art"
+  ]
+ },
+ {
+  "id": "architect",
+  "name": {
+   "tr": "Mimar",
+   "en": "Architect"
+  },
+  "minEdu": 3,
+  "pay": 1.8,
+  "stress": 55,
+  "drain": 0.04,
+  "favor": [
+   "track_sci",
+   "track_art"
+  ]
+ },
+ {
+  "id": "psychologist",
+  "name": {
+   "tr": "Psikolog",
+   "en": "Psychologist"
+  },
+  "minEdu": 3,
+  "pay": 1.5,
+  "stress": 55,
+  "drain": 0.04,
+  "favor": [
+   "track_hum"
+  ]
+ },
+ {
+  "id": "pharmacist",
+  "name": {
+   "tr": "Eczacı",
+   "en": "Pharmacist"
+  },
+  "minEdu": 3,
+  "pay": 1.8,
+  "stress": 45,
+  "drain": 0.03,
+  "favor": [
+   "track_sci"
+  ]
+ },
+ {
+  "id": "pilot",
+  "name": {
+   "tr": "Pilot",
+   "en": "Pilot"
+  },
+  "minEdu": 3,
+  "pay": 2.5,
+  "stress": 70,
+  "drain": 0.1,
+  "stat": "health",
+  "weight": 0.5
+ },
+ {
+  "id": "entrepreneur",
+  "name": {
+   "tr": "Girişimci",
+   "en": "Entrepreneur"
+  },
+  "minEdu": 2,
+  "pay": 1.6,
+  "stress": 80,
+  "drain": 0.08,
+  "favor": [
+   "business_owner"
+  ],
+  "weight": 0.6
+ },
+ {
+  "id": "vet",
+  "name": {
+   "tr": "Veteriner",
+   "en": "Veterinarian"
+  },
+  "minEdu": 4,
+  "pay": 2.0,
+  "stress": 55,
+  "drain": 0.06,
+  "favor": [
+   "has_pet",
+   "has_dog"
+  ],
+  "weight": 0.7
+ },
+ {
+  "id": "dentist",
+  "name": {
+   "tr": "Diş hekimi",
+   "en": "Dentist"
+  },
+  "minEdu": 4,
+  "pay": 3.0,
+  "stress": 55,
+  "drain": 0.05,
+  "favor": [
+   "track_sci"
+  ],
+  "weight": 0.6
+ },
+ {
+  "id": "model",
+  "name": {
+   "tr": "Manken",
+   "en": "Model"
+  },
+  "minEdu": 0,
+  "pay": 3.0,
+  "stress": 55,
+  "drain": 0.08,
+  "special": true
+ },
+ {
+  "id": "actor",
+  "name": {
+   "tr": "Oyuncu",
+   "en": "Actor"
+  },
+  "minEdu": 0,
+  "pay": 4.0,
+  "stress": 60,
+  "drain": 0.06,
+  "special": true
  }
 ]

@@ -28,6 +28,10 @@ flutter test              # 800 hayatı simüle eder, ülke bazında ortalama ö
 - **Mülakat:** Kabul ihtimali `_hireChance` ile hesaplanır ve seçenekte yüzde olarak görünür. Zekâ, şans, sosyallik, eğitim fazlalığı, deneyim ve uzun işsizlik ihtimali artırır.
 - **Sonuç görseli:** Hayat bitince özet ekranındaki kart PNG olarak galeriye kaydedilir ya da paylaşılır (`result_image.dart`).
 - **Olaylar:** `assets/data/events.json` ve `assets/data/events_more.json` (ek 130 olay, çoğu seçimli). Kod değiştirmeden yeni olay eklenir. Aynı kimlikli olay varsa ek dosyadaki `_2` eklenerek ayrı varyant olur.
+- **Estetik ameliyatlar:** `events_cosmetic.json`: burun, saç ekimi, yüz germe/botoks, liposuction, diş estetiği, vücut şekillendirme. Nadir çıkar; çoğunlukla çekiciliği artırır (~%70), bazen etkisiz kalır (~%20), nadiren kötü geçer (~%5, çekicilik ve sağlık düşer, ardından düzeltme ameliyatı seçeneği çıkar), çok çok nadiren ölümle biter (~%0,25).
+- **İş teklifleri:** `jobs.json` 43 mesleğe çıktı. Teklifler ağırlıklı seçilir: eğitim, istatistikler (`stat`: zekâ/çekicilik/sosyal/sağlık) ve geçmiş seçimler (`favor`: `athlete`, `track_art/sci/hum/voc`, `has_pet`, `business_owner`...) ilgili işleri öne çıkarır. İşsizken 4, çalışırken 3 teklif görürsün. `special: true` işler (manken, oyuncu) sıradan tekliflerde çıkmaz.
+- **Manken / oyuncu teklifi (`starChance`):** Çekicilik 80+ gerekir. Yıllık ihtimal: düşük refahlı ülkede %0,001, yüksek refahlı ülkede %0,01 (kişi başı gelir 2→15 arasında doğrusal geçiş). Çekicilik 90 üstünde ×10, 95 üstünde ×120. Manken kariyeri 38 yaşından sonra sona erebilir.
+- **Seçim sıklığı:** Her yıl seçim çıkma ihtimali ~%90 (`_eventDecision`). Havuz: `events.json` + `events_more.json` + `events_cosmetic.json` + `events_life.json` (37 yeni olay: okul, spor, yatırım, taşınma, sağlık, aile...). Sıklığı azaltmak için `_eventDecision` içindeki `0.9` değerini düşür.
 - **Cinsiyet rozeti:** Oyuncunun cinsiyeti ♂/♀ simgesiyle üst çubukta, karakter kartında ve sonuç görselinde görünür (`gender_badge.dart`).
 
 ## Görsel kaydetme için platform ayarı
