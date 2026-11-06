@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'engine.dart';
+import 'gender_badge.dart';
 import 'models.dart';
 import 'result_image.dart';
 
@@ -85,7 +86,19 @@ class GameScreen extends StatelessWidget {
         final ch = engine.c!;
         return Scaffold(
           appBar: AppBar(
-            title: Text('${ch.country.flag} ${loc(ch.country.name, engine.lang)}'),
+            title: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GenderBadge(female: ch.female, size: 26),
+                const SizedBox(width: 8),
+                Flexible(
+                  child: Text(
+                    '${ch.country.flag} ${loc(ch.country.name, engine.lang)}',
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
             actions: [
               IconButton(
                 icon: const Icon(Icons.translate),
@@ -149,9 +162,17 @@ class _Header extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              '${ch.name} · ${ch.age} ${b('yaş', 'y/o')} · ${ch.alive ? _status(ch) : b('Hayatını kaybetti', 'Deceased')}',
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            Row(
+              children: [
+                GenderBadge(female: ch.female, size: 30),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    '${ch.name} · ${ch.age} ${b('yaş', 'y/o')} · ${ch.alive ? _status(ch) : b('Hayatını kaybetti', 'Deceased')}',
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 4),
             Wrap(
@@ -473,6 +494,9 @@ class _SummaryScreenState extends State<SummaryScreen> {
           row(b('Boşanma', 'Divorces'), '${ch.divorces}'),
           row(b('Aldatılma', 'Times cheated on'), '${ch.cheatedOn}'),
           row(b('Gizli ilişki', 'Affairs'), '${ch.affairs}'),
+          row(b('Alınan tazminat/nafaka', 'Damages/alimony received'), fmtMoney(ch.compReceived)),
+          row(b('Ödenen tazminat/nafaka', 'Damages/alimony paid'), fmtMoney(ch.compPaid)),
+          row(b('Cinsiyet', 'Gender'), ch.female ? b('Kadın', 'Female') : b('Erkek', 'Male')),
           row(b('Çocuk', 'Children'), '${ch.children.length}'),
           row(b('Tuttuğu iş sayısı', 'Jobs held'), '${ch.jobsHeld}'),
           row(b('Mülakat (geçti/elendi)', 'Interviews (passed/failed)'), '${ch.interviewsPassed}/${ch.interviewsFailed}'),

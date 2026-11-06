@@ -10,6 +10,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 import 'engine.dart';
+import 'gender_badge.dart';
 import 'models.dart';
 
 /// [key] ile işaretlenmiş RepaintBoundary'yi PNG baytlarına çevirir.
@@ -132,7 +133,15 @@ class ResultCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(ch.name, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                      Row(
+                        children: [
+                          GenderBadge(female: ch.female, size: 24),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(ch.name, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                          ),
+                        ],
+                      ),
                       Text(
                         b('${ch.age} yaşında öldü · ${ch.cause ?? '-'}', 'Died at ${ch.age} · ${ch.cause ?? '-'}'),
                         style: const TextStyle(color: _muted, fontSize: 12),

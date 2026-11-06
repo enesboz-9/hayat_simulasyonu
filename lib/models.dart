@@ -270,4 +270,10 @@ class Character {
 
   /// Son mülakat denemesi sayısı (özet için).
   int interviewsFailed = 0, interviewsPassed = 0;
+
+  /// Boşanmalarda alınan ve ödenen toplam tazminat + nafaka (bin dolar).
+  double compReceived = 0, compPaid = 0;
+
+  /// Anne / baba hayatta mı, kardeş var mı (olay koşulları için).
+  bool motherAlive = true, fatherAlive = true, hasSiblings = true;
 }

@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
+import 'divorce_law.dart';
 import 'models.dart';
 
 /// Oyunun tüm mantığı burada. Arayüzden bağımsızdır; ChangeNotifier olduğu
@@ -56,6 +57,21 @@ class GameEngine extends ChangeNotifier {
     events
       ..clear()
       ..addAll((await list('events.json')).map((e) => GameEvent.fromJson(Map<String, dynamic>.from(e as Map))));
+    // Ek olaylar (events_more.json): aynı kimlikli olay varsa "_2" ekiyle ayrı
+    // bir varyant olarak eklenir; dosya yoksa oyun yine çalışır.
+    try {
+      final have = events.map((e) => e.id).toSet();
+      for (final raw in await list('events_more.json')) {
+        final j = Map<String, dynamic>.from(raw as Map);
+        var id = j['id'] as String;
+        while (have.contains(id)) {
+          id = '${id}_2';
+        }
+        j['id'] = id;
+        have.add(id);
+        events.add(GameEvent.fromJson(j));
+      }
+    } catch (_) {}
     jobs
       ..clear()
       ..addAll((await list('jobs.json')).map((e) => JobDef.fromJson(Map<String, dynamic>.from(e as Map))));
@@ -129,6 +145,7 @@ class GameEngine extends ChangeNotifier {
       famWealth: _cl(50 + _gauss() * 22),
       retireAge: (country.gdp >= 15 ? 65 : 60) + _ri(0, 3),
     );
+    ch.hasSiblings = _p(_cl(0.35 + country.fertility * 0.15, 0.3, 0.95));
     c = ch;
     pending = null;
     final cn = loc(country.name, lang);
@@ -187,6 +204,7 @@ class GameEngine extends ChangeNotifier {
     if (_deathRoll(ch)) return;
     _spouseYear(ch);
     _affairYear(ch);
+    _parentsYear(ch);
     _milestones(ch);
 
     var n = _p(0.55) ? 1 : 0;
@@ -200,6 +218,32 @@ class GameEngine extends ChangeNotifier {
     }
     if (!ch.alive) return;
     pending = _forcedDecision(ch) ?? _engineDecision(ch) ?? _eventDecision(ch);
+  }
+
+  /// Anne-baba yaşlanır ve ölebilir; torun müjdesi gelebilir.
+  void _parentsYear(Character ch) {
+    if (ch.motherAlive) {
+      final h = _hazard(ch.age + 27, ch.country.lifeExp, ch.country.risk, 60, 50, const {});
+      if (_p(h)) {
+        ch.motherAlive = false;
+        ch.happiness -= 12;
+        _say(ch, b('Annen hayatını kaybetti.', 'Your mother passed away.'), 'bad');
+      }
+    }
+    if (ch.fatherAlive) {
+      final h = _hazard(ch.age + 30, ch.country.lifeExp, ch.country.risk, 60, 50, const {});
+      if (_p(h)) {
+        ch.fatherAlive = false;
+        ch.happiness -= 12;
+        _say(ch, b('Baban hayatını kaybetti.', 'Your father passed away.'), 'bad');
+      }
+    }
+    if (!ch.flags.contains('grandkids') && ch.children.any((k) => k.age >= 26) && _p(0.1)) {
+      ch.flags.add('grandkids');
+      ch.happiness += 6;
+      _say(ch, b('Torunun dünyaya geldi!', 'Your first grandchild was born!'), 'good');
+    }
+    _clampStats(ch);
   }
 
   // ───────────────────────── Yıllık istatistikler ─────────────────────────
@@ -404,16 +448,115 @@ class GameEngine extends ChangeNotifier {
     }
   }
 
-  /// Boşanma: mal paylaşımı, sosyal ve duygusal etki. Sayaçlar güncellenir.
-  void _divorce(Character ch, {bool byPartner = false}) {
+  /// Kusur kimde? Oyuncu şu an gizli bir ilişki yürütüyorsa ya da eşini
+  /// affettiyse kusur "yok" sayılır; eş aldattıysa kusur eştedir.
+  Fault _faultOf(Character ch, Person s) {
+    if (ch.flags.contains('affair') || ch.flags.contains('forgave')) return Fault.none;
+    return s.cheated ? Fault.partner : Fault.none;
+  }
+
+  double _playerIncome(Character ch) => ch.retired ? ch.pension : (ch.job != null ? ch.jobIncome : 0.0);
+
+  double _spouseIncome(Character ch, Person s) =>
+      ch.country.gdp * s.pay * 0.7 * (s.trait == 'hardworking' ? 1.2 : 1.0);
+
+  DivorceTerms _terms(Character ch, Person s, Fault f, DivorceMode m, bool byPartner, bool? win) =>
+      computeDivorceTerms(
+        ch: ch,
+        spouse: s,
+        fault: f,
+        mode: m,
+        playerIncome: _playerIncome(ch),
+        spouseIncome: _spouseIncome(ch, s),
+        byPartner: byPartner,
+        win: win,
+      );
+
+  String _signed(double v) => '${v >= 0 ? '+' : '-'}${fmtMoney(v.abs())}';
+
+  /// Parasal sonucun kısa, okunur dökümü.
+  List<String> _termsParts(DivorceTerms t) {
+    final parts = <String>[];
+    if (t.splitPaid > 0.05) {
+      parts.add(b('${t.regime.separate ? 'eşin malı' : 'mal paylaşımı'} -${fmtMoney(t.splitPaid)}',
+          '${t.regime.separate ? 'spouse\'s own assets' : 'asset split'} -${fmtMoney(t.splitPaid)}'));
+    }
+    if (t.compensation.abs() > 0.05) {
+      parts.add(b('tazminat ${_signed(t.compensation)}', 'damages ${_signed(t.compensation)}'));
+    }
+    final mahr = t.mahrPart;
+    final nafaka = t.support - mahr;
+    if (mahr.abs() > 0.05) parts.add(b('mehir ${_signed(mahr)}', 'mahr ${_signed(mahr)}'));
+    if (nafaka.abs() > 0.05) {
+      parts.add(b('nafaka ${_signed(nafaka)}', 'alimony ${_signed(nafaka)}'));
+    }
+    if (t.cost > 0.05) parts.add(b('masraf -${fmtMoney(t.cost)}', 'costs -${fmtMoney(t.cost)}'));
+    return parts;
+  }
+
+  String _termsHint(DivorceTerms t) {
+    final parts = _termsParts(t);
+    if (parts.isEmpty) return '';
+    return b('Tahmini: ${parts.join(' · ')} (net ${_signed(t.net)})',
+        'Estimate: ${parts.join(' · ')} (net ${_signed(t.net)})');
+  }
+
+  String _faultText(Fault f) => switch (f) {
+        Fault.partner => b('Kusur eşinde: sen suçsuzsun, tazminat ödemezsin, tazminat alırsın.',
+            'Your partner is at fault: you owe no damages and you are entitled to damages.'),
+        Fault.player => b('Kusur sende.', 'You are at fault.'),
+        Fault.none => b('Kimsenin ağır kusuru yok.', 'Neither side is clearly at fault.'),
+      };
+
+  /// Boşanma türünü sorar: anlaşmalı (ucuz, tazminat pazarlıkla düşer) ya da
+  /// çekişmeli (pahalı, dava kazanılırsa kazanç büyür).
+  void _askDivorceMode(Character ch, {bool byPartner = false, Fault? fault}) {
     final s = ch.spouse;
     if (s == null) return;
-    final g = ch.country.gdp;
-    final cost = (ch.money > 0 ? ch.money * 0.45 : 0.0) + g * 0.15;
-    ch.money -= cost;
+    final f = fault ?? _faultOf(ch, s);
+    final regime = regimeFor(ch.country);
+    pending = Decision(
+      title: b('Boşanma türü', 'Type of divorce'),
+      body: '${_faultText(f)} ${b(regime.tr, regime.en)}',
+      options: [
+        DecisionOption(
+          label: b('Anlaşmalı boşan', 'Uncontested divorce'),
+          hint: _termsHint(_terms(ch, s, f, DivorceMode.amicable, byPartner, null)),
+          pick: () => _divorce(ch, byPartner: byPartner, fault: f, mode: DivorceMode.amicable),
+        ),
+        DecisionOption(
+          label: b('Davayı sonuna kadar götür', 'Fight it out in court'),
+          hint: _termsHint(_terms(ch, s, f, DivorceMode.contested, byPartner, null)),
+          pick: () => _divorce(ch, byPartner: byPartner, fault: f, mode: DivorceMode.contested),
+        ),
+      ],
+    );
+  }
+
+  /// Boşanma: ülkenin hukukuna ve kusura göre mal paylaşımı, tazminat, nafaka
+  /// ve masraf uygulanır. Sayaçlar güncellenir.
+  void _divorce(
+    Character ch, {
+    bool byPartner = false,
+    Fault? fault,
+    DivorceMode mode = DivorceMode.contested,
+  }) {
+    final s = ch.spouse;
+    if (s == null) return;
+    final f = fault ?? _faultOf(ch, s);
+    bool? win;
+    if (mode == DivorceMode.contested) {
+      final tilt = f == Fault.partner ? 0.15 : (f == Fault.player ? -0.2 : 0.0);
+      win = _p(_cl(0.5 + (ch.luck - 50) / 400 + tilt, 0.15, 0.85));
+    }
+    final t = _terms(ch, s, f, mode, byPartner, win);
+    ch.money += t.net;
+    ch.compReceived += t.received;
+    ch.compPaid += t.paidOut;
     ch.spouse = null;
     ch.divorces++;
-    ch.happiness -= byPartner ? 12 : 8;
+    ch.happiness -= (byPartner ? 12 : 8) - (mode == DivorceMode.amicable ? 2 : 0);
+    if (f == Fault.partner && t.received > 0) ch.happiness += 3;
     ch.social -= 4;
     if (ch.children.any((k) => k.age < 18)) ch.happiness -= 3;
     ch.flags
@@ -425,12 +568,34 @@ class GameEngine extends ChangeNotifier {
       ..remove('forgave');
     ch.affairYears = 0;
     ch.seen['marry'] = ch.age;
+
+    final parts = _termsParts(t);
+    final summary = parts.isEmpty ? '' : ' ${parts.join(' · ')}.';
     _say(
       ch,
-      b('${s.name} ile boşandınız. Mal paylaşımı ve masraflar ${fmtMoney(cost)} tuttu.',
-          'You divorced ${s.name}. Settlement and legal costs came to ${fmtMoney(cost)}.'),
-      'bad',
+      b('${s.name} ile boşandınız.$summary Net: ${_signed(t.net)}.',
+          'You divorced ${s.name}.$summary Net: ${_signed(t.net)}.'),
+      t.net >= 0 ? 'info' : 'bad',
     );
+    // Hukuki gerekçe.
+    if (f == Fault.partner) {
+      _say(
+        ch,
+        t.compensation > 0.05
+            ? b('Kusur ${s.name}\'de olduğundan tazminat ödemedin; tersine ${fmtMoney(t.compensation)} tazminat aldın.${win == true ? ' Davayı kazandın.' : (win == false ? ' Dava beklediğinin altında sonuçlandı.' : '')}',
+                'Because ${s.name} was at fault you paid no damages; you received ${fmtMoney(t.compensation)} in damages.${win == true ? ' You won the case.' : (win == false ? ' The case ended below your hopes.' : '')}')
+            : b('Kusur ${s.name}\'de olduğundan sen tazminat ödemedin.', 'Because ${s.name} was at fault you paid no damages.'),
+        'good',
+      );
+    } else if (f == Fault.player) {
+      _say(
+        ch,
+        t.compensation < -0.05
+            ? b('Kusur sende olduğundan ${s.name}\'e ${fmtMoney(-t.compensation)} tazminat ödedin.', 'Because you were at fault you paid ${s.name} ${fmtMoney(-t.compensation)} in damages.')
+            : b('Ülkende kusur tazminatı yok; olağan paylaşım kuralları uygulandı.', 'Your country has no fault-based damages; the ordinary division rules applied.'),
+        'info',
+      );
+    }
     _clampStats(ch);
   }
 
@@ -655,8 +820,8 @@ class GameEngine extends ChangeNotifier {
       options: [
         DecisionOption(
           label: b('Boşan', 'Get divorced'),
-          hint: b('Varlığının yaklaşık yarısını paylaşırsın', 'You would split roughly half of your assets'),
-          pick: () => _divorce(ch),
+          hint: _termsHint(_terms(ch, s, _faultOf(ch, s), DivorceMode.amicable, false, null)),
+          pick: () => _askDivorceMode(ch),
         ),
         DecisionOption(
           label: b('Çift terapisine git', 'Try couples counseling'),
@@ -769,7 +934,7 @@ class GameEngine extends ChangeNotifier {
               _clampStats(ch);
             } else {
               _say(ch, b('${s.name} özrünü kabul etmedi.', '${s.name} did not accept your apology.'), 'bad');
-              _divorce(ch, byPartner: true);
+              _divorce(ch, byPartner: true, fault: Fault.player);
             }
           },
         ),
@@ -785,13 +950,14 @@ class GameEngine extends ChangeNotifier {
             } else {
               ch.social -= 4;
               _say(ch, b('Yalanın da ortaya çıktı.', 'Your lie was exposed too.'), 'bad');
-              _divorce(ch, byPartner: true);
+              _divorce(ch, byPartner: true, fault: Fault.player);
             }
           },
         ),
         DecisionOption(
           label: b('Boşanmayı kabul et', 'Accept the divorce'),
-          pick: () => _divorce(ch),
+          hint: _termsHint(_terms(ch, s, Fault.player, DivorceMode.amicable, true, null)),
+          pick: () => _askDivorceMode(ch, byPartner: true, fault: Fault.player),
         ),
       ],
     );
@@ -805,6 +971,8 @@ class GameEngine extends ChangeNotifier {
     if (s == null) return null;
     final g = ch.country.gdp;
     ch.cheatedOn++;
+    // Oyuncu da gizli ilişki yürütüyorsa kusur karşılıklıdır; değilse eşte.
+    final cheatFault = ch.flags.contains('affair') ? Fault.none : Fault.partner;
     s.bond = _cl(s.bond - 22);
     ch.happiness -= 10;
     ch.social -= 2;
@@ -815,7 +983,11 @@ class GameEngine extends ChangeNotifier {
       body: b('${s.name} seni aldattığını itiraf etti. İstatistiklere göre bu durumdaki çiftlerin kabaca yarısı ayrılıyor. Ne yapacaksın?',
           '${s.name} admitted to cheating on you. Roughly half of couples in this situation split up. What will you do?'),
       options: [
-        DecisionOption(label: b('Boşan', 'Get divorced'), pick: () => _divorce(ch)),
+        DecisionOption(
+          label: b('Boşan', 'Get divorced'),
+          hint: _termsHint(_terms(ch, s, cheatFault, DivorceMode.amicable, false, null)),
+          pick: () => _askDivorceMode(ch, fault: cheatFault),
+        ),
         DecisionOption(
           label: b('Affet ve devam et', 'Forgive and move on'),
           hint: s.trait == 'cheater' ? b('Tekrar edebilir', 'It may happen again') : null,
@@ -1078,6 +1250,18 @@ class GameEngine extends ChangeNotifier {
     if (cond['hasJob'] != null && cond['hasJob'] != (ch.job != null)) return false;
     if (cond['hasKids'] != null && cond['hasKids'] != ch.children.isNotEmpty) return false;
     if (cond['retired'] != null && cond['retired'] != ch.retired) return false;
+    if (cond['student'] != null && cond['student'] != _isStudent(ch)) return false;
+    if (cond['fatherAlive'] != null && cond['fatherAlive'] != ch.fatherAlive) return false;
+    if (cond['motherAlive'] != null && cond['motherAlive'] != ch.motherAlive) return false;
+    if (cond['parentAlive'] != null && cond['parentAlive'] != (ch.fatherAlive || ch.motherAlive)) return false;
+    if (cond['hasSiblings'] != null && cond['hasSiblings'] != ch.hasSiblings) return false;
+    if (cond['hasGrandkids'] != null && cond['hasGrandkids'] != ch.flags.contains('grandkids')) return false;
+    if (cond['status'] != null && !(cond['status'] as List).contains(_civilStatus(ch))) return false;
+    if (cond['kidAge'] != null) {
+      final r = cond['kidAge'] as List;
+      final lo = (r[0] as num).toInt(), hi = (r[1] as num).toInt();
+      if (!ch.children.any((k) => k.age >= lo && k.age <= hi)) return false;
+    }
     for (final f in (cond['flagsAll'] as List? ?? const [])) {
       if (!ch.flags.contains(f)) return false;
     }
@@ -1085,6 +1269,16 @@ class GameEngine extends ChangeNotifier {
       if (ch.flags.contains(f)) return false;
     }
     return true;
+  }
+
+  bool _isStudent(Character ch) => ch.uniUntil != null || (ch.age < 18 && ch.flags.contains('in_school'));
+
+  /// single / married / divorced / widowed
+  String _civilStatus(Character ch) {
+    if (ch.spouse != null) return 'married';
+    if (ch.flags.contains('widowed')) return 'widowed';
+    if (ch.flags.contains('divorced')) return 'divorced';
+    return 'single';
   }
 
   bool _eligible(Character ch, GameEvent ev) {
@@ -1116,7 +1310,7 @@ class GameEngine extends ChangeNotifier {
   }
 
   Decision? _eventDecision(Character ch) {
-    if (!_p(0.32)) return null;
+    if (!_p(0.5)) return null;
     final ev = _pickEvent(ch, auto: false);
     return ev == null ? null : _decisionFromEvent(ch, ev);
   }
@@ -1227,6 +1421,29 @@ class GameEngine extends ChangeNotifier {
           }
         case 'emigrate':
           _emigrate(ch, v as String);
+        case 'marry':
+          if (v == true && ch.spouse == null && ch.age >= 18) {
+            final p = _genPerson(ch);
+            ch.spouse = p;
+            p.ageAtMarriage = ch.age;
+            ch.marriages++;
+            ch.money += p.wealth;
+            ch.flags
+              ..remove('widowed')
+              ..remove('divorced');
+          }
+        case 'promote':
+          final pj = ch.job;
+          if (pj != null) pj.level = min(5, pj.level + (v as num).toInt());
+        case 'setJob':
+          for (final jd in jobs) {
+            if (jd.id == v) {
+              ch.job = Job(jd);
+              ch.jobsHeld++;
+              ch.joblessYears = 0;
+              break;
+            }
+          }
         case 'startUni':
           final m = v as Map;
           ch.uniUntil = ch.age + (m['years'] as num).toInt();

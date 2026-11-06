@@ -18,11 +18,17 @@ flutter test              # 800 hayatı simüle eder, ülke bazında ortalama ö
 - **Ölüm:** Ülkenin yaşam beklentisine dayalı bir eğri; sağlık, gizli şans ve yaşam tarzıyla (sigara, spor) çarpılır. Ölüm sırasında şansa bağlı "kıl payı kurtulma" ihtimali vardır. Yani ortalama istatistiktir, sonuç değil.
 - **Seçimler:** Evlilik adayları, çocuk, iş teklifleri, boşanma (`engine.dart`) ve JSON'daki karar olayları.
 - **Evlilik adayları:** Rastgele üretilir (çekicilik, zekâ, karakter, meslek, **gelir ve varlık**). Eşin varlığı (borçluysa borcu) evlilikle senin varlığına karışır; teklifin kabul edilme ihtimalini de etkiler. Gizli bir özellik (sadık, aldatan, savurgan...) birkaç yıl sonra ortaya çıkar.
-- **Boşanma:** Yıllık kriz ihtimali `countries.json` → `divorce` (yaklaşık % / evli çift / yıl) değerinden başlar; evlilik süresi, evlenme yaşı, çocuk, para durumu, eğitim, gizli ilişki ve ilişki gücüyle çarpılır (`divorceChance`). Krizde boşan / terapi / görmezden gel seçenekleri çıkar. Değerler oyun için yaklaşık rakamlardır, resmi istatistik değildir.
+- **Boşanma:** Yıllık kriz ihtimali `countries.json` → `divorce` (yaklaşık % / evli çift / yıl) değerinden başlar; evlilik süresi, evlenme yaşı, çocuk, para durumu, eğitim, gizli ilişki ve ilişki gücüyle çarpılır (`divorceChance`). Krizde boşan / terapi / görmezden gel seçenekleri çıkar. "Boşan" dersen **anlaşmalı** (ucuz, tazminat pazarlıkla %40 düşer) ya da **çekişmeli** (pahalı, dava şansa göre kazanılır/kaybedilir) seçeneği sorulur. Değerler oyun için yaklaşık rakamlardır, resmi istatistik değildir.
+- **Tazminat / nafaka (`lib/divorce_law.dart`):** Kusur kimdeyse ona göre işler.
+  - **Suçsuz oyuncu** (eş aldattı vb.): hiçbir ülkede tazminat/nafaka **ödemez**, her ülkede tazminat **alır**; dava masrafını da çoğunlukla kusurlu eş yüklenir.
+  - **Kusurlu oyuncu** (gizli ilişkisi ortaya çıktı): kusurun hukuken önemli olduğu ülkelerde (Türkiye, Fransa, Çin, Japonya/Kore, Hindistan, İslam hukuku ülkeleri, Afrika vb.) tazminat öder; ABD, Anglosakson, İskandinav gibi kusursuz boşanma ülkelerinde ek tazminat yoktur.
+  - **Kusur yoksa:** ülkenin olağan senaryosu: mal paylaşımı (ortak mal rejimi ya da ayrı mal rejimi), gelir farkına göre nafaka, İslam hukukunda mehir + iddet nafakası. Ödemeler oyuncunun gücünü aşmaz.
+  - Her ülkenin rejimi `regimeFor` içindedir; rakamlar oyunlaştırılmış yaklaşık değerlerdir, hukuki tavsiye değildir.
 - **Aldatma:** Evliyken gizli ilişki fırsatı çıkabilir; ilişki yıllar içinde ortaya çıkma riski taşır. Eşin de seni aldatabilir (`cheater` karakterinde çok daha sık). Her iki durumda affet / boşan / terapi / inkâr gibi seçimler çıkar.
 - **Mülakat:** Kabul ihtimali `_hireChance` ile hesaplanır ve seçenekte yüzde olarak görünür. Zekâ, şans, sosyallik, eğitim fazlalığı, deneyim ve uzun işsizlik ihtimali artırır.
 - **Sonuç görseli:** Hayat bitince özet ekranındaki kart PNG olarak galeriye kaydedilir ya da paylaşılır (`result_image.dart`).
-- **Olaylar:** `assets/data/events.json`. Kod değiştirmeden yeni olay eklenir.
+- **Olaylar:** `assets/data/events.json` ve `assets/data/events_more.json` (ek 130 olay, çoğu seçimli). Kod değiştirmeden yeni olay eklenir. Aynı kimlikli olay varsa ek dosyadaki `_2` eklenerek ayrı varyant olur.
+- **Cinsiyet rozeti:** Oyuncunun cinsiyeti ♂/♀ simgesiyle üst çubukta, karakter kartında ve sonuç görselinde görünür (`gender_badge.dart`).
 
 ## Görsel kaydetme için platform ayarı
 
@@ -59,9 +65,9 @@ flutter test              # 800 hayatı simüle eder, ülke bazında ortalama ö
 - `tone: "good" | "bad"`: şans yüksekse iyi olaylar, düşükse kötü olaylar daha sık çıkar.
 - `riskScale: true`: ülke riski yüksekse daha sık çıkar. `force: true`: koşul sağlanınca önce bu çıkar.
 - Koşullar (`cond`): `minAge`-`maxAge` (olay seviyesinde), `female`, `country`, `region`, `minHealth`/`maxHealth`,
-  `minMoney`/`maxMoney`, `minEdu`/`maxEdu`, `married`, `hasJob`, `hasKids`, `retired`, `flagsAll`, `flagsNone`, `minRisk`.
+  `minMoney`/`maxMoney`, `minEdu`/`maxEdu`, `married`, `hasJob`, `hasKids`, `retired`, `flagsAll`, `flagsNone`, `minRisk`, `student`, `status` (single/married/divorced/widowed), `kidAge` ([min, max]), `motherAlive`, `fatherAlive`, `parentAlive`, `hasSiblings`, `hasGrandkids`.
 - Metinlerde `{spouse}`, `{child}`, `{job}`, `{country}`, `{name}` kullanılabilir.
-- Özel etkiler: `emigrate` ("rich"/"any"), `quitJob`, `retire`, `startUni`, `kids`, `bond`, `loseSpouse`.
+- Özel etkiler: `emigrate` ("rich"/"any"), `quitJob`, `retire`, `startUni`, `kids`, `bond`, `loseSpouse`, `marry`, `promote`, `setJob`.
 
 ## Veriyi büyütmek
 
