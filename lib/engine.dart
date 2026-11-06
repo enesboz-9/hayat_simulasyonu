@@ -22,6 +22,9 @@ class GameEngine extends ChangeNotifier {
   Character? c;
   Decision? pending;
 
+  /// Son kararın değerlere etkisi; arayüz bunu kısa bildirim olarak gösterir.
+  List<StatDelta> lastDeltas = const [];
+
 
   static const _traitW = {
     'loyal': 24.0,
@@ -72,6 +75,14 @@ class GameEngine extends ChangeNotifier {
           have.add(id);
           events.add(GameEvent.fromJson(j));
         }
+      }
+    } catch (_) {}
+    // Uzun vadeli sonuç olayları: ayrı yüklenir ki biri bozulursa diğerleri etkilenmesin.
+    try {
+      final have = events.map((e) => e.id).toSet();
+      for (final raw in await list('events_legacy.json')) {
+        final j = Map<String, dynamic>.from(raw as Map);
+        if (have.add(j['id'] as String)) events.add(GameEvent.fromJson(j));
       }
     } catch (_) {}
     jobs
@@ -190,8 +201,30 @@ class GameEngine extends ChangeNotifier {
     if (ch == null || d == null) return;
     pending = null;
     _say(ch, '${d.title}: ${o.label}', 'choice');
+    final before = _snapshot(ch);
     o.pick();
+    lastDeltas = _diff(before, _snapshot(ch));
     notifyListeners();
+  }
+
+  Map<String, double> _snapshot(Character ch) => {
+        'health': ch.health,
+        'happiness': ch.happiness,
+        'smarts': ch.smarts,
+        'looks': ch.looks,
+        'social': ch.social,
+        'money': ch.age < 18 ? 0 : ch.money,
+      };
+
+  /// İki görüntü arasındaki farkı döndürür; yuvarlanınca 0 olanlar atlanır.
+  List<StatDelta> _diff(Map<String, double> a, Map<String, double> z) {
+    final out = <StatDelta>[];
+    z.forEach((k, v) {
+      final d = v - (a[k] ?? v);
+      final shown = k == 'money' ? d.abs() >= 0.05 : d.round() != 0;
+      if (shown) out.add(StatDelta(k, d));
+    });
+    return out;
   }
 
   void _tick(Character ch) {
@@ -208,6 +241,8 @@ class GameEngine extends ChangeNotifier {
     _affairYear(ch);
     _parentsYear(ch);
     _milestones(ch);
+    _dueConsequences(ch);
+    if (!ch.alive) return;
 
     var n = _p(0.55) ? 1 : 0;
     if (_p(0.15)) n++;
@@ -220,6 +255,18 @@ class GameEngine extends ChangeNotifier {
     }
     if (!ch.alive) return;
     pending = _nextDecision(ch);
+  }
+
+  /// Eski seçimlerin gecikmeli sonuçlarından zamanı gelenleri uygular.
+  void _dueConsequences(Character ch) {
+    if (ch.scheduled.isEmpty) return;
+    final due = ch.scheduled.where((x) => x.dueAge <= ch.age).toList();
+    if (due.isEmpty) return;
+    ch.scheduled.removeWhere((x) => x.dueAge <= ch.age);
+    for (final x in due) {
+      if (!ch.alive) break;
+      _applyOutcome(ch, x.outcome);
+    }
   }
 
   /// Seçim ekranı temposu: 6 yaşından önce hiç seçim çıkmaz; sonra çoğunlukla
@@ -270,13 +317,56 @@ class GameEngine extends ChangeNotifier {
     _clampStats(ch);
   }
 
+  // ───────────────────────── Hayatın izleri ─────────────────────────
+
+  static const _marks = <String, (String, String, String)>{
+    'athlete': ('🏃', 'Spor yapan biri', 'An active athlete'),
+    'smoker': ('🚬', 'Sigara içti', 'Smoked'),
+    'ex_smoker': ('🫁', 'Sigarayı bıraktı', 'Quit smoking'),
+    'drinker': ('🍷', 'Alkol alışkanlığı', 'Drinking habit'),
+    'scammed': ('🪤', 'Dolandırıldı', 'Was scammed'),
+    'scam_savvy': ('🛡️', 'Dolandırıcılara karşı uyanık', 'Scam-savvy'),
+    'scholarship': ('🎓', 'Burslu okudu', 'Won a scholarship'),
+    'mentor': ('🧭', 'Genç bir öğrenciye mentor oldu', 'Mentored a young student'),
+    'volunteer': ('🤝', 'Gönüllü', 'Volunteer'),
+    'business_owner': ('💼', 'Kendi işini kurdu', 'Started a business'),
+    'owns_home': ('🏠', 'Ev sahibi oldu', 'Bought a home'),
+    'has_pet': ('🐾', 'Evcil dostu vardı', 'Had a pet'),
+    'lost_pet': ('🕊️', 'Sadık bir dostunu uğurladı', 'Said goodbye to a loyal companion'),
+    'college_fund': ('📚', 'Çocuğuna üniversite fonu kurdu', 'Built a college fund for their child'),
+    'family_active': ('👨‍👧', 'Çocuğuyla spor yaptı', 'Stayed active with their child'),
+    'emigrated': ('✈️', 'Başka ülkeye göç etti', 'Emigrated'),
+    'grandkids': ('👶', 'Torun sahibi oldu', 'Became a grandparent'),
+  };
+
+  /// Özet ekranı için: bu hayatı şekillendiren izler ("🏃 Spor yapan biri · 21 yaşından beri").
+  List<String> lifeMarks(Character ch) {
+    final out = <String>[];
+    _marks.forEach((k, v) {
+      if (!ch.flags.contains(k)) return;
+      final at = ch.flagAge[k];
+      final label = b(v.$2, v.$3);
+      out.add(at == null ? '${v.$1} $label' : '${v.$1} $label · ${b('$at yaşında', 'age $at')}');
+    });
+    return out;
+  }
+
   // ───────────────────────── Yıllık istatistikler ─────────────────────────
 
   void _ageStats(Character ch) {
     final a = ch.age;
     ch.health += _gauss() * 1.2;
     if (a < 20) ch.health += 0.6;
-    if (a > 35) ch.health -= (a - 35) * 0.035 + 0.1;
+    if (a > 35) {
+      var decay = (a - 35) * 0.035 + 0.1;
+      // Uzun yıllar spor: yaşlılıkta sağlık kaybı yavaşlar (en fazla %40).
+      // Avantaj spora başladığından beri geçen yıllarla büyür.
+      final since = ch.flagAge['athlete'];
+      if (ch.flags.contains('athlete') && since != null && a >= 45) {
+        decay *= 1 - min(0.4, (a - since) * 0.015);
+      }
+      ch.health -= decay;
+    }
     if (ch.flags.contains('smoker')) ch.health -= 0.8;
     if (ch.country.gdp < 3) ch.health -= 0.15;
     if (a > 30) ch.looks -= 0.2 + (a - 30) * 0.01;
@@ -388,6 +478,7 @@ class GameEngine extends ChangeNotifier {
     }
     h *= exp((50 - health) / 50) * exp((50 - luck) / 150);
     if (flags.contains('smoker')) h *= 1.6;
+    if (flags.contains('ex_smoker')) h *= 1.15;
     if (flags.contains('athlete')) h *= 0.85;
     return _cl(h, 0, 0.95);
   }
@@ -1388,6 +1479,11 @@ class GameEngine extends ChangeNotifier {
     for (final f in (cond['flagsNone'] as List? ?? const [])) {
       if (ch.flags.contains(f)) return false;
     }
+    // {"athlete": 20}: bayrak en az 20 yıl önce konmuş olmalı.
+    for (final e in ((cond['flagsAgo'] as Map?) ?? const {}).entries) {
+      if (!ch.flags.contains(e.key)) return false;
+      if (ch.age - (ch.flagAge[e.key] ?? ch.age) < (e.value as num)) return false;
+    }
     return true;
   }
 
@@ -1474,14 +1570,26 @@ class GameEngine extends ChangeNotifier {
       var w = o.w;
       if (o.lucky) w *= 0.5 + ch.luck / 100;
       if (o.check != null) w *= 0.5 + _stat(ch, o.check!) / 100;
+      o.flagW.forEach((f, m) {
+        if (ch.flags.contains(f)) w *= m;
+      });
       return w;
     });
   }
 
   void _applyOutcome(Character ch, Outcome o, {dynamic fallback}) {
     _apply(ch, o.effects);
-    ch.flags.addAll(o.setFlags);
-    ch.flags.removeAll(o.clearFlags);
+    for (final f in o.setFlags) {
+      // İlk konduğu yaş korunur: "20 yıl önce spora başladın" gibi koşullar için.
+      if (ch.flags.add(f)) ch.flagAge[f] = ch.age;
+    }
+    for (final f in o.clearFlags) {
+      ch.flags.remove(f);
+      ch.flagAge.remove(f);
+    }
+    for (final l in o.later) {
+      if (_p(l.chance)) ch.scheduled.add(Scheduled(ch.age + _ri(l.minYears, max(l.minYears, l.maxYears)), l.outcome));
+    }
     final text = _fill(ch, loc(o.result ?? fallback, lang));
     if (text.isNotEmpty) _say(ch, text, _kind(o.effects));
     if (o.death != null && ch.alive) _die(ch, _fill(ch, loc(o.death, lang)));

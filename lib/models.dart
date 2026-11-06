@@ -137,6 +137,17 @@ class LogEntry {
   final String kind;
 }
 
+/// Bir kararın ardından değişen bir değer (sağlık -3, para +$2k gibi).
+class StatDelta {
+  const StatDelta(this.key, this.amount);
+
+  /// health, happiness, smarts, looks, social, money
+  final String key;
+
+  /// Stat için puan, para için bin dolar cinsinden fark.
+  final double amount;
+}
+
 class DecisionOption {
   DecisionOption({required this.label, this.hint, required this.pick});
   final String label;
@@ -160,7 +171,14 @@ class Outcome {
         death = j['death'],
         w = (j['w'] as num?)?.toDouble() ?? 1.0,
         lucky = j['lucky'] == true,
-        check = j['check'] as String?;
+        check = j['check'] as String?,
+        flagW = {
+          for (final e in ((j['flagW'] as Map?) ?? const {}).entries) e.key as String: (e.value as num).toDouble(),
+        },
+        later = [
+          for (final l in (j['later'] as List? ?? const []))
+            Later.fromJson(Map<String, dynamic>.from(l as Map)),
+        ];
 
   final Json effects;
   final dynamic result, death;
@@ -174,6 +192,35 @@ class Outcome {
 
   /// Doluysa ağırlık bu istatistikle (smarts, health...) çarpılır.
   final String? check;
+
+  /// Oyuncuda bayrak varsa ağırlık çarpanı: {"scammed": 0.3} → dolandırılmış
+  /// biri için bu sonucun ihtimali %70 azalır.
+  final Map<String, double> flagW;
+
+  /// Bu sonuç çıkınca yıllar sonra geri dönecek sonuçlar (uzun vadeli etki).
+  final List<Later> later;
+}
+
+/// Seçimin bıraktığı gecikmeli sonuç. `after`: kaç yıl sonra ([en az, en çok]),
+/// `chance`: hiç gelmeme ihtimali dahil geri dönme olasılığı. Geri kalan alanlar
+/// bir [Outcome] ile aynıdır (effects, result, setFlags, death...).
+class Later {
+  Later.fromJson(Json j)
+      : minYears = ((j['after'] as List?)?[0] as num?)?.toInt() ?? 5,
+        maxYears = ((j['after'] as List?)?[1] as num?)?.toInt() ?? 10,
+        chance = (j['chance'] as num?)?.toDouble() ?? 1.0,
+        outcome = Outcome.fromJson(j);
+
+  final int minYears, maxYears;
+  final double chance;
+  final Outcome outcome;
+}
+
+/// Zamanı gelince uygulanmak üzere bekleyen gecikmeli sonuç.
+class Scheduled {
+  Scheduled(this.dueAge, this.outcome);
+  final int dueAge;
+  final Outcome outcome;
 }
 
 class Choice {
@@ -275,6 +322,12 @@ class Character {
   int uniEdu = 3;
   String? cause;
   final Set<String> flags = {};
+
+  /// Her bayrağın ilk konduğu yaş; "X yıl önce" koşulları ve özet için.
+  final Map<String, int> flagAge = {};
+
+  /// Yıllar sonra geri dönmek üzere bekleyen sonuçlar.
+  final List<Scheduled> scheduled = [];
   final Map<String, int> seen = {};
   final List<LogEntry> log = [];
   int marriages = 0, jobsHeld = 0, countriesLived = 1;

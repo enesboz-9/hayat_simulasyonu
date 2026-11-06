@@ -109,7 +109,14 @@ class GameScreen extends StatelessWidget {
           body: Column(
             children: [
               _Header(engine: engine),
-              Expanded(child: _LogList(entries: ch.log)),
+              Expanded(
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  // Karar yoksa ekrana dokunmak 1 yıl ilerletir.
+                  onTap: ch.alive && engine.pending == null ? engine.advanceYear : null,
+                  child: _LogList(entries: ch.log),
+                ),
+              ),
               _Bottom(engine: engine),
             ],
           ),
@@ -236,6 +243,9 @@ class _LogList extends StatelessWidget {
           default:
             color = Colors.grey;
         }
+        // "↩" ile başlayan satırlar eski bir seçimin yıllar sonra geri dönüşüdür.
+        final echo = e.text.startsWith('↩');
+        if (echo) color = Colors.purpleAccent;
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 4),
           child: Row(
@@ -255,7 +265,7 @@ class _LogList extends StatelessWidget {
               Expanded(
                 child: Text(
                   e.text,
-                  style: e.kind == 'choice' ? const TextStyle(fontStyle: FontStyle.italic) : null,
+                  style: e.kind == 'choice' || echo ? const TextStyle(fontStyle: FontStyle.italic) : null,
                 ),
               ),
             ],
@@ -342,7 +352,11 @@ class _DecisionCard extends StatelessWidget {
                     child: SizedBox(
                       width: double.infinity,
                       child: FilledButton.tonal(
-                        onPressed: () => engine.choose(o),
+                        onPressed: () {
+                          final messenger = ScaffoldMessenger.of(context);
+                          engine.choose(o);
+                          showDeltaToast(messenger, engine);
+                        },
                         child: Column(
                           children: [
                             Text(o.label, textAlign: TextAlign.center),
@@ -486,6 +500,18 @@ class _SummaryScreenState extends State<SummaryScreen> {
             label: Text(b('Görseli paylaş', 'Share image')),
           ),
           const Divider(height: 28),
+          if (engine.lifeMarks(ch).isNotEmpty) ...[
+            Text(b('Hayatının izleri', 'Marks of your life'), style: const TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 6),
+            Wrap(
+              spacing: 8,
+              runSpacing: 4,
+              children: [
+                for (final m in engine.lifeMarks(ch)) Chip(label: Text(m), visualDensity: VisualDensity.compact),
+              ],
+            ),
+            const Divider(height: 28),
+          ],
           row(b('Ölüm nedeni', 'Cause'), ch.cause ?? '-'),
           row(b('Doğduğu ülke', 'Born in'), cn),
           row(b('Son ülke', 'Last country'), loc(ch.country.name, engine.lang)),
@@ -528,4 +554,52 @@ class _SummaryScreenState extends State<SummaryScreen> {
       ),
     );
   }
+}
+
+
+// ───────────────────────── Karar sonrası bildirim ─────────────────────────
+
+/// Kararın etkilerini ("Sağlık -3", "Para +$2k") kısa bir bildirimle gösterir.
+void showDeltaToast(ScaffoldMessengerState messenger, GameEngine engine) {
+  final deltas = engine.lastDeltas;
+  if (deltas.isEmpty) return;
+  final b = engine.b;
+
+  String label(String k) => switch (k) {
+        'health' => b('Sağlık', 'Health'),
+        'happiness' => b('Mutluluk', 'Happiness'),
+        'smarts' => b('Zekâ', 'Smarts'),
+        'looks' => b('Çekicilik', 'Looks'),
+        'social' => b('Sosyal', 'Social'),
+        _ => b('Para', 'Money'),
+      };
+
+  String value(StatDelta d) {
+    final sign = d.amount > 0 ? '+' : '-';
+    if (d.key == 'money') return '$sign${fmtMoney(d.amount.abs())}';
+    return '$sign${d.amount.abs().round()}';
+  }
+
+  messenger
+    ..hideCurrentSnackBar()
+    ..showSnackBar(
+      SnackBar(
+        duration: const Duration(milliseconds: 2200),
+        behavior: SnackBarBehavior.floating,
+        content: Wrap(
+          spacing: 12,
+          runSpacing: 4,
+          children: [
+            for (final d in deltas)
+              Text(
+                '${label(d.key)} ${value(d)}',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: d.amount > 0 ? Colors.greenAccent : Colors.redAccent,
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
 }

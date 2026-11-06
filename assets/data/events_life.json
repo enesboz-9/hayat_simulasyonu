@@ -1606,7 +1606,27 @@
       "effects": {
        "money": -0.5,
        "happiness": -6
-      }
+      },
+      "setFlags": [
+       "scammed"
+      ],
+      "later": [
+       {
+        "after": [
+         4,
+         9
+        ],
+        "chance": 0.35,
+        "result": {
+         "tr": "↩ Yıllar sonra dolandırıcı çete yakalandı; kaptırdığın paranın bir kısmı iade edildi.",
+         "en": "↩ Years later the scam ring was caught and part of your money was returned."
+        },
+        "effects": {
+         "money": 0.2,
+         "happiness": 4
+        }
+       }
+      ]
      },
      {
       "w": 1,
@@ -1635,7 +1655,12 @@
      "en": "Smart move."
     }
    }
-  ]
+  ],
+  "cond": {
+   "flagsNone": [
+    "scammed"
+   ]
+  }
  },
  {
   "id": "l_lottery",
@@ -2036,6 +2061,9 @@
     },
     "setFlags": [
      "smoker"
+    ],
+    "clearFlags": [
+     "ex_smoker"
     ]
    }
   ],

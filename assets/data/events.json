@@ -831,7 +831,10 @@
     "text": {
      "tr": "Dene",
      "en": "Try it"
-    }
+    },
+    "clearFlags": [
+     "ex_smoker"
+    ]
    }
   ],
   "cond": {
@@ -871,6 +874,9 @@
       "lucky": true,
       "clearFlags": [
        "smoker"
+      ],
+      "setFlags": [
+       "ex_smoker"
       ]
      },
      {
@@ -1837,10 +1843,35 @@
     "text": {
      "tr": "İnan",
      "en": "Believe it"
-    }
+    },
+    "setFlags": [
+     "scammed"
+    ],
+    "later": [
+     {
+      "after": [
+       4,
+       9
+      ],
+      "chance": 0.35,
+      "result": {
+       "tr": "↩ Yıllar sonra dolandırıcı çete yakalandı; kaptırdığın paranın bir kısmı iade edildi.",
+       "en": "↩ Years later the scam ring was caught and part of your money was returned."
+      },
+      "effects": {
+       "money": 0.2,
+       "happiness": 4
+      }
+     }
+    ]
    }
   ],
-  "tone": "bad"
+  "tone": "bad",
+  "cond": {
+   "flagsNone": [
+    "scammed"
+   ]
+  }
  },
  {
   "id": "wallet",

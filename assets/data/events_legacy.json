@@ -1,0 +1,741 @@
+[
+ {
+  "id": "lg_athlete_vital",
+  "cat": "legacy",
+  "minAge": 50,
+  "maxAge": 88,
+  "weight": 3,
+  "cooldown": 99,
+  "once": true,
+  "text": {
+   "tr": "↩ Yıllarca spor yapmanın karşılığını alıyorsun: doktorun yaşıtlarına göre çok daha dinç olduğunu söyledi.",
+   "en": "↩ Decades of staying active are paying off: your doctor says you're far fitter than your peers."
+  },
+  "effects": {
+   "health": 4,
+   "happiness": 3
+  },
+  "cond": {
+   "flagsAll": [
+    "athlete"
+   ],
+   "flagsAgo": {
+    "athlete": 20
+   }
+  },
+  "tone": "good"
+ },
+ {
+  "id": "lg_athlete_kid",
+  "cat": "legacy",
+  "minAge": 28,
+  "maxAge": 60,
+  "weight": 3,
+  "cooldown": 99,
+  "once": true,
+  "title": {
+   "tr": "↩ Eski alışkanlığın çocuğa geçiyor",
+   "en": "↩ Your old habit rubs off"
+  },
+  "text": {
+   "tr": "{child}, senin düzenli spor yaptığını görüp seninle antrenmana katılmak istiyor.",
+   "en": "{child} has watched you stay active and wants to train with you."
+  },
+  "choices": [
+   {
+    "text": {
+     "tr": "Birlikte antrenman yap",
+     "en": "Train together"
+    },
+    "effects": {
+     "happiness": 5,
+     "health": 2,
+     "social": 2
+    },
+    "result": {
+     "tr": "↩ Birlikte geçirdiğiniz sabah antrenmanları ikinizi de yakınlaştırdı.",
+     "en": "↩ Your morning workouts brought you two closer."
+    },
+    "setFlags": [
+     "family_active"
+    ]
+   },
+   {
+    "text": {
+     "tr": "Vaktim yok",
+     "en": "No time"
+    },
+    "effects": {
+     "happiness": -1
+    },
+    "result": {
+     "tr": "Bu sefer olmadı.",
+     "en": "Not this time."
+    }
+   }
+  ],
+  "cond": {
+   "flagsAll": [
+    "athlete"
+   ],
+   "flagsAgo": {
+    "athlete": 8
+   },
+   "hasKids": true
+  }
+ },
+ {
+  "id": "lg_smoker_cough",
+  "cat": "legacy",
+  "minAge": 38,
+  "maxAge": 80,
+  "weight": 3,
+  "cooldown": 99,
+  "once": true,
+  "title": {
+   "tr": "↩ Yılların sigarası",
+   "en": "↩ Years of smoking"
+  },
+  "text": {
+   "tr": "Uzun süredir içtiğin sigaranın izi kalıcı bir öksürüğe dönüştü. Doktora gitmeli misin?",
+   "en": "Years of smoking have turned into a stubborn cough. Should you see a doctor?"
+  },
+  "choices": [
+   {
+    "text": {
+     "tr": "Doktora git",
+     "en": "See a doctor"
+    },
+    "outcomes": [
+     {
+      "w": 3,
+      "result": {
+       "tr": "↩ Erken yakalandı. Tedavi oldun ve sigarayı bıraktın; yıllar kazandın.",
+       "en": "↩ It was caught early. You got treated and quit; you bought yourself years."
+      },
+      "effects": {
+       "health": -2,
+       "money": -0.05
+      },
+      "clearFlags": [
+       "smoker"
+      ],
+      "setFlags": [
+       "ex_smoker"
+      ]
+     },
+     {
+      "w": 1,
+      "result": {
+       "tr": "↩ Teşhis ağırdı: yılların bedeli ödenmeye başladı.",
+       "en": "↩ The diagnosis was serious: the years caught up with you."
+      },
+      "effects": {
+       "health": -10,
+       "happiness": -8,
+       "money": -0.15
+      },
+      "clearFlags": [
+       "smoker"
+      ],
+      "setFlags": [
+       "ex_smoker"
+      ]
+     }
+    ]
+   },
+   {
+    "text": {
+     "tr": "Aldırma",
+     "en": "Ignore it"
+    },
+    "outcomes": [
+     {
+      "w": 2,
+      "result": {
+       "tr": "Öksürük bir süre sonra hafifledi.",
+       "en": "The cough eased after a while."
+      },
+      "effects": {
+       "health": -3
+      }
+     },
+     {
+      "w": 2,
+      "result": {
+       "tr": "↩ Aldırmadığın öksürük ağırlaştı; sağlığın ciddi biçimde sarsıldı.",
+       "en": "↩ The cough you ignored got worse and badly damaged your health."
+      },
+      "effects": {
+       "health": -10,
+       "happiness": -5
+      }
+     }
+    ]
+   }
+  ],
+  "cond": {
+   "flagsAll": [
+    "smoker"
+   ],
+   "flagsAgo": {
+    "smoker": 15
+   }
+  }
+ },
+ {
+  "id": "lg_exsmoker_relief",
+  "cat": "legacy",
+  "minAge": 35,
+  "maxAge": 88,
+  "weight": 3,
+  "cooldown": 99,
+  "once": true,
+  "text": {
+   "tr": "↩ Sigarayı bıraktığın günden beri nefesin açıldı; merdivenleri artık yorulmadan çıkıyorsun.",
+   "en": "↩ Since the day you quit, your breathing has opened up; stairs no longer wear you out."
+  },
+  "effects": {
+   "health": 3,
+   "happiness": 2
+  },
+  "cond": {
+   "flagsAll": [
+    "ex_smoker"
+   ],
+   "flagsAgo": {
+    "ex_smoker": 8
+   }
+  },
+  "tone": "good"
+ },
+ {
+  "id": "lg_drinker_warning",
+  "cat": "legacy",
+  "minAge": 36,
+  "maxAge": 80,
+  "weight": 3,
+  "cooldown": 99,
+  "once": true,
+  "title": {
+   "tr": "↩ Yılların alışkanlığı",
+   "en": "↩ A years-old habit"
+  },
+  "text": {
+   "tr": "Yıllardır süren alkol alışkanlığın sağlığını zorluyor; doktorun ciddi bir uyarıda bulundu.",
+   "en": "Your long drinking habit is straining your health and your doctor gave a serious warning."
+  },
+  "choices": [
+   {
+    "text": {
+     "tr": "Bırak",
+     "en": "Quit"
+    },
+    "effects": {
+     "health": 3,
+     "happiness": -2
+    },
+    "result": {
+     "tr": "↩ Zor oldu ama bıraktın; enerjin geri geliyor.",
+     "en": "↩ It was hard, but you quit and your energy is returning."
+    },
+    "clearFlags": [
+     "drinker"
+    ]
+   },
+   {
+    "text": {
+     "tr": "Aldırma",
+     "en": "Brush it off"
+    },
+    "outcomes": [
+     {
+      "w": 2,
+      "result": {
+       "tr": "Bu sefer paçayı sıyırdın.",
+       "en": "You got away with it this time."
+      },
+      "effects": {
+       "health": -1
+      }
+     },
+     {
+      "w": 2,
+      "result": {
+       "tr": "↩ Yılların bedeli ağır geldi; karaciğerin yoruldu.",
+       "en": "↩ The years took their toll; your liver is struggling."
+      },
+      "effects": {
+       "health": -8,
+       "happiness": -4
+      }
+     }
+    ]
+   }
+  ],
+  "cond": {
+   "flagsAll": [
+    "drinker"
+   ],
+   "flagsAgo": {
+    "drinker": 10
+   }
+  }
+ },
+ {
+  "id": "lg_scam_wary",
+  "cat": "legacy",
+  "minAge": 20,
+  "maxAge": 85,
+  "weight": 4,
+  "cooldown": 99,
+  "once": true,
+  "title": {
+   "tr": "↩ Bir kere yanmıştın",
+   "en": "↩ Once bitten"
+  },
+  "text": {
+   "tr": "Telefonla yüksek getirili bir yatırım teklifi aldın. Eskiden olsa heyecanlanırdın ama dolandırıldığın günü hatırlıyorsun.",
+   "en": "A caller pitches a high-return investment. You'd once have been thrilled, but you remember the day you were scammed."
+  },
+  "choices": [
+   {
+    "text": {
+     "tr": "Kapat",
+     "en": "Hang up"
+    },
+    "effects": {
+     "smarts": 1
+    },
+    "result": {
+     "tr": "↩ Eski dersin işe yaradı; telefonu kapattın.",
+     "en": "↩ The old lesson worked; you hung up."
+    }
+   },
+   {
+    "text": {
+     "tr": "Önce araştır",
+     "en": "Check it out first"
+    },
+    "outcomes": [
+     {
+      "w": 3,
+      "result": {
+       "tr": "↩ Araştırınca dolandırıcılık çıktı; şikâyet ettin. Bu konuda artık çok uyanıksın.",
+       "en": "↩ Digging in revealed a scam; you reported it. You're sharp about this now."
+      },
+      "effects": {
+       "smarts": 2,
+       "happiness": 3
+      },
+      "setFlags": [
+       "scam_savvy"
+      ]
+     },
+     {
+      "w": 1,
+      "result": {
+       "tr": "↩ Teklif yasal çıktı; temkinli davranman küçük ama sağlam bir kazanç getirdi.",
+       "en": "↩ The offer turned out legit; your caution earned a small, solid gain."
+      },
+      "effects": {
+       "money": 0.15,
+       "happiness": 2
+      },
+      "lucky": true
+     }
+    ]
+   }
+  ],
+  "cond": {
+   "flagsAll": [
+    "scammed"
+   ]
+  }
+ },
+ {
+  "id": "lg_invest_wary",
+  "cat": "legacy",
+  "minAge": 22,
+  "maxAge": 65,
+  "weight": 4,
+  "cooldown": 99,
+  "once": true,
+  "title": {
+   "tr": "↩ Yatırım, ama bu sefer temkinli",
+   "en": "↩ An investment — carefully this time"
+  },
+  "text": {
+   "tr": "Bir arkadaşın yatırım fırsatından bahsediyor. Geçmişte dolandırıldığın için bu kez çok daha temkinlisin.",
+   "en": "A friend raves about an investment. Having been scammed before, you're far more careful this time."
+  },
+  "choices": [
+   {
+    "text": {
+     "tr": "Lisansı ve sözleşmeyi sorgula",
+     "en": "Verify licence and contract"
+    },
+    "outcomes": [
+     {
+      "w": 3,
+      "result": {
+       "tr": "↩ Her şey yasal çıktı; ölçülü ama sağlam bir kazanç elde ettin.",
+       "en": "↩ It was all legit; a modest but solid gain."
+      },
+      "effects": {
+       "money": 0.25,
+       "happiness": 3
+      },
+      "check": "smarts"
+     },
+     {
+      "w": 1,
+      "result": {
+       "tr": "↩ Belgeler tutarsızdı; cayarak paranı kurtardın.",
+       "en": "↩ The papers didn't add up; you walked away with your money."
+      },
+      "effects": {
+       "smarts": 2,
+       "happiness": 2
+      },
+      "setFlags": [
+       "scam_savvy"
+      ]
+     }
+    ]
+   },
+   {
+    "text": {
+     "tr": "Mevduatta tut",
+     "en": "Keep it in savings"
+    },
+    "effects": {
+     "money": 0.05
+    },
+    "result": {
+     "tr": "↩ Bir kere yanmıştın; güvenli yolu seçtin.",
+     "en": "↩ You'd been burned once, so you stayed on the safe side."
+    }
+   },
+   {
+    "text": {
+     "tr": "Yine de büyük yatırım yap",
+     "en": "Go big anyway"
+    },
+    "outcomes": [
+     {
+      "w": 2,
+      "result": {
+       "tr": "Bu sefer şans yüzüne güldü.",
+       "en": "Luck smiled on you this time."
+      },
+      "effects": {
+       "money": 1.0,
+       "happiness": 6
+      },
+      "lucky": true
+     },
+     {
+      "w": 4,
+      "result": {
+       "tr": "↩ Tarih tekerrür etti; yine büyük kayıp yaşadın.",
+       "en": "↩ History repeated itself; another heavy loss."
+      },
+      "effects": {
+       "money": -0.8,
+       "happiness": -8
+      }
+     }
+    ]
+   }
+  ],
+  "cond": {
+   "flagsAll": [
+    "scammed"
+   ],
+   "minMoney": 0.5
+  }
+ },
+ {
+  "id": "lg_scam_savvy_help",
+  "cat": "legacy",
+  "minAge": 30,
+  "maxAge": 90,
+  "weight": 3,
+  "cooldown": 99,
+  "once": true,
+  "text": {
+   "tr": "↩ Yaşlı bir komşun şüpheli bir arama aldığını anlattı; geçmiş deneyimin sayesinde onu dolandırıcılıktan kurtardın.",
+   "en": "↩ An elderly neighbour told you about a suspicious call; your past experience saved them from a scam."
+  },
+  "effects": {
+   "social": 3,
+   "happiness": 3
+  },
+  "cond": {
+   "flagsAll": [
+    "scam_savvy"
+   ],
+   "flagsAgo": {
+    "scam_savvy": 3
+   }
+  },
+  "tone": "good"
+ },
+ {
+  "id": "lg_scholarship_mentor",
+  "cat": "legacy",
+  "minAge": 28,
+  "maxAge": 60,
+  "weight": 3,
+  "cooldown": 99,
+  "once": true,
+  "title": {
+   "tr": "↩ Borcunu ödeme zamanı",
+   "en": "↩ Paying it forward"
+  },
+  "text": {
+   "tr": "Seni okutan burs vakfı, mezunlarından genç bir öğrenciye destek olmalarını istiyor.",
+   "en": "The foundation that funded your studies asks alumni to support a young student."
+  },
+  "choices": [
+   {
+    "text": {
+     "tr": "Mentor ol",
+     "en": "Become a mentor"
+    },
+    "effects": {
+     "happiness": 6,
+     "social": 4
+    },
+    "result": {
+     "tr": "↩ Birine yol göstermek, sana yol gösterenleri hatırlattı.",
+     "en": "↩ Guiding someone reminded you of those who once guided you."
+    },
+    "setFlags": [
+     "mentor"
+    ]
+   },
+   {
+    "text": {
+     "tr": "Bağış yap",
+     "en": "Donate"
+    },
+    "effects": {
+     "money": -0.2,
+     "happiness": 3
+    },
+    "result": {
+     "tr": "↩ Aldığın desteği başkasına ulaştırdın.",
+     "en": "↩ You passed on the support you once received."
+    }
+   },
+   {
+    "text": {
+     "tr": "Şimdi olmaz",
+     "en": "Not now"
+    },
+    "effects": {
+     "happiness": -1
+    },
+    "result": {
+     "tr": "Meşguldün.",
+     "en": "You were busy."
+    }
+   }
+  ],
+  "cond": {
+   "flagsAll": [
+    "scholarship"
+   ],
+   "flagsAgo": {
+    "scholarship": 12
+   }
+  }
+ },
+ {
+  "id": "lg_volunteer_network",
+  "cat": "legacy",
+  "minAge": 25,
+  "maxAge": 80,
+  "weight": 3,
+  "cooldown": 99,
+  "once": true,
+  "text": {
+   "tr": "↩ Yıllar önce gönüllü olduğun dernekten edindiğin dostlar zor bir dönemde yanında durdu.",
+   "en": "↩ Friends from the charity you volunteered with years ago stood by you in a hard time."
+  },
+  "effects": {
+   "happiness": 6,
+   "social": 4
+  },
+  "cond": {
+   "flagsAll": [
+    "volunteer"
+   ],
+   "flagsAgo": {
+    "volunteer": 6
+   }
+  },
+  "tone": "good"
+ },
+ {
+  "id": "lg_business_legacy",
+  "cat": "legacy",
+  "minAge": 35,
+  "maxAge": 75,
+  "weight": 3,
+  "cooldown": 99,
+  "once": true,
+  "title": {
+   "tr": "↩ Kurduğun işin geleceği",
+   "en": "↩ The business you built"
+  },
+  "text": {
+   "tr": "Yıllar önce kurduğun işletme büyüdü; büyük bir firma onu satın almak istiyor.",
+   "en": "The business you founded years ago has grown, and a larger firm wants to buy it."
+  },
+  "choices": [
+   {
+    "text": {
+     "tr": "Sat",
+     "en": "Sell"
+    },
+    "effects": {
+     "money": 1.2,
+     "happiness": 4
+    },
+    "result": {
+     "tr": "↩ Emeğinin karşılığını aldın.",
+     "en": "↩ You cashed in on years of work."
+    },
+    "clearFlags": [
+     "business_owner"
+    ]
+   },
+   {
+    "text": {
+     "tr": "Devam et",
+     "en": "Keep running it"
+    },
+    "outcomes": [
+     {
+      "w": 2,
+      "result": {
+       "tr": "↩ İşi büyütmeye devam ettin; kazancın katlandı.",
+       "en": "↩ You kept growing it and your earnings multiplied."
+      },
+      "effects": {
+       "money": 0.6,
+       "happiness": 4
+      },
+      "lucky": true
+     },
+     {
+      "w": 2,
+      "result": {
+       "tr": "↩ Piyasa daraldı; işi ayakta tutmak yıprattı.",
+       "en": "↩ The market shrank and keeping the business afloat wore you down."
+      },
+      "effects": {
+       "money": -0.3,
+       "happiness": -3
+      }
+     }
+    ]
+   }
+  ],
+  "cond": {
+   "flagsAll": [
+    "business_owner"
+   ],
+   "flagsAgo": {
+    "business_owner": 8
+   }
+  }
+ },
+ {
+  "id": "lg_home_paid",
+  "cat": "legacy",
+  "minAge": 35,
+  "maxAge": 80,
+  "weight": 3,
+  "cooldown": 99,
+  "once": true,
+  "text": {
+   "tr": "↩ Yıllar önce aldığın evin borcu bitti; artık kira da kredi de derdin değil.",
+   "en": "↩ The home you bought years ago is finally paid off; no rent, no loan."
+  },
+  "effects": {
+   "money": 0.3,
+   "happiness": 5
+  },
+  "cond": {
+   "flagsAll": [
+    "owns_home"
+   ],
+   "flagsAgo": {
+    "owns_home": 15
+   }
+  },
+  "tone": "good"
+ },
+ {
+  "id": "lg_pet_farewell",
+  "cat": "legacy",
+  "minAge": 15,
+  "maxAge": 90,
+  "weight": 3,
+  "cooldown": 99,
+  "once": true,
+  "text": {
+   "tr": "↩ Yıllarca yanında olan sadık dostunu uğurladın; ev bir süre çok sessiz kaldı.",
+   "en": "↩ You said goodbye to the loyal companion who was with you for years; the house felt quiet for a while."
+  },
+  "effects": {
+   "happiness": -6
+  },
+  "cond": {
+   "flagsAll": [
+    "has_pet"
+   ],
+   "flagsAgo": {
+    "has_pet": 11
+   }
+  },
+  "tone": "bad",
+  "clearFlags": [
+   "has_pet",
+   "has_dog"
+  ],
+  "setFlags": [
+   "lost_pet"
+  ]
+ },
+ {
+  "id": "lg_cosmetic_regret",
+  "cat": "legacy",
+  "minAge": 24,
+  "maxAge": 80,
+  "weight": 2,
+  "cooldown": 99,
+  "once": true,
+  "text": {
+   "tr": "↩ Yıllar önceki başarısız estetik operasyonun izleri hâlâ yüzünde; aynaya bakarken kendini toparlaman zor.",
+   "en": "↩ The marks of that failed cosmetic procedure are still with you; it's hard to feel at ease in the mirror."
+  },
+  "effects": {
+   "happiness": -4,
+   "social": -1
+  },
+  "cond": {
+   "flagsAll": [
+    "surg_bad"
+   ],
+   "flagsAgo": {
+    "surg_bad": 5
+   }
+  },
+  "tone": "bad"
+ }
+]

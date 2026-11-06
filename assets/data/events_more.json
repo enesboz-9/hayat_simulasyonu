@@ -5009,6 +5009,23 @@
             },
             "setFlags": [
               "athlete"
+            ],
+            "later": [
+              {
+                "after": [
+                  15,
+                  28
+                ],
+                "chance": 0.6,
+                "result": {
+                  "tr": "↩ Çekmecede eski maraton madalyanı buldun; gençliğinin gururu bir an geri geldi.",
+                  "en": "↩ You found your old race medal in a drawer; a flash of youthful pride came back."
+                },
+                "effects": {
+                  "happiness": 4,
+                  "social": 2
+                }
+              }
             ]
           },
           {
@@ -5626,7 +5643,27 @@
         "effects": {
           "money": -0.5,
           "happiness": 3
-        }
+        },
+        "setFlags": [
+          "college_fund"
+        ],
+        "later": [
+          {
+            "after": [
+              8,
+              16
+            ],
+            "chance": 0.8,
+            "result": {
+              "tr": "↩ Yıllar önce kurduğun fon sayesinde çocuğunun üniversite masrafları rahat karşılandı.",
+              "en": "↩ The fund you started years ago comfortably covered your child's university costs."
+            },
+            "effects": {
+              "money": 0.3,
+              "happiness": 4
+            }
+          }
+        ]
       },
       {
         "text": {
@@ -6826,6 +6863,12 @@
             "effects": {
               "money": -0.8,
               "happiness": -8
+            },
+            "setFlags": [
+              "scammed"
+            ],
+            "flagW": {
+              "scam_savvy": 0.3
             }
           }
         ]
