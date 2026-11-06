@@ -4,11 +4,14 @@ publish_to: 'none'
 version: 0.1.0+1
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
+  sdk: '>=3.4.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
+  gal: ^2.3.0            # sonuç görselini galeriye kaydeder
+  share_plus: ^10.1.4    # sonuç görselini paylaşır
+  path_provider: ^2.1.5  # paylaşım için geçici dosya
 
 dev_dependencies:
   flutter_test:

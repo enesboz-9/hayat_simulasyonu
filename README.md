@@ -14,13 +14,26 @@ flutter test              # 800 hayatı simüle eder, ülke bazında ortalama ö
 
 ## Nasıl çalışır
 
-- **Doğum:** Ülke, yıllık doğum sayısına göre ağırlıklı seçilir (`countries.json` → `births`).
+- **Doğum:** Ülke, nüfusun yumuşatılmış ağırlığıyla (`births^0.45`) seçilir; son 12 hayatta doğulan ülkeler geçici olarak daha az çıkar. Böylece birkaç büyük ülke oyunu domine etmez (`_pickBirthCountry`).
 - **Ölüm:** Ülkenin yaşam beklentisine dayalı bir eğri; sağlık, gizli şans ve yaşam tarzıyla (sigara, spor) çarpılır. Ölüm sırasında şansa bağlı "kıl payı kurtulma" ihtimali vardır. Yani ortalama istatistiktir, sonuç değil.
 - **Seçimler:** Evlilik adayları, çocuk, iş teklifleri, boşanma (`engine.dart`) ve JSON'daki karar olayları.
-- **Evlilik adayları:** Rastgele üretilir (çekicilik, zekâ, karakter, meslek). Gizli bir özellik (sadık, aldatan, savurgan...) birkaç yıl sonra ortaya çıkar.
-- **Olaylar:** `assets/data/events.json` ve `events_more.json` (dosya listesi `GameEngine.eventFiles`). Kod değiştirmeden yeni olay eklenir.
-- **Seçim sıklığı:** Her yıl ~%62 olasılıkla bir seçim gelir; ~%22 ihtimalle aynı yıl ikinci bir seçim sıraya girer. Aynı `cat` (alan) art arda gelmesin diye son 3 alan ağırlıkça kısılır.
-- **Aile:** Doğumda anne, baba ve ülkenin doğurganlığına göre kardeşler üretilir; yaşlanır, ölürler. Çocuklar büyüyünce torun sahibi olursun. Üst paneldeki medeni durum, çocuk ve **Aile** çipi (dokununca aile ekranı) bu verileri gösterir.
+- **Evlilik adayları:** Rastgele üretilir (çekicilik, zekâ, karakter, meslek, **gelir ve varlık**). Eşin varlığı (borçluysa borcu) evlilikle senin varlığına karışır; teklifin kabul edilme ihtimalini de etkiler. Gizli bir özellik (sadık, aldatan, savurgan...) birkaç yıl sonra ortaya çıkar.
+- **Boşanma:** Yıllık kriz ihtimali `countries.json` → `divorce` (yaklaşık % / evli çift / yıl) değerinden başlar; evlilik süresi, evlenme yaşı, çocuk, para durumu, eğitim, gizli ilişki ve ilişki gücüyle çarpılır (`divorceChance`). Krizde boşan / terapi / görmezden gel seçenekleri çıkar. Değerler oyun için yaklaşık rakamlardır, resmi istatistik değildir.
+- **Aldatma:** Evliyken gizli ilişki fırsatı çıkabilir; ilişki yıllar içinde ortaya çıkma riski taşır. Eşin de seni aldatabilir (`cheater` karakterinde çok daha sık). Her iki durumda affet / boşan / terapi / inkâr gibi seçimler çıkar.
+- **Mülakat:** Kabul ihtimali `_hireChance` ile hesaplanır ve seçenekte yüzde olarak görünür. Zekâ, şans, sosyallik, eğitim fazlalığı, deneyim ve uzun işsizlik ihtimali artırır.
+- **Sonuç görseli:** Hayat bitince özet ekranındaki kart PNG olarak galeriye kaydedilir ya da paylaşılır (`result_image.dart`).
+- **Olaylar:** `assets/data/events.json`. Kod değiştirmeden yeni olay eklenir.
+
+## Görsel kaydetme için platform ayarı
+
+`flutter create .` sonrası bir kez yapılır:
+
+- **iOS** → `ios/Runner/Info.plist` içine ekle:
+  `<key>NSPhotoLibraryAddUsageDescription</key><string>Hayat özetini galeriye kaydetmek için</string>`
+- **Android** → `android/app/build.gradle` içinde `minSdkVersion 21` (veya üstü) olmalı;
+  `AndroidManifest.xml` içine
+  `<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="29"/>`
+- Web'de galeriye kaydetme desteklenmez.
 
 ## Yeni olay eklemek
 
@@ -45,23 +58,18 @@ flutter test              # 800 hayatı simüle eder, ülke bazında ortalama ö
 - `money` etkisi, ülkenin kişi başı gelirinin katıdır (0.5 = yarım yıllık ortalama gelir).
 - `tone: "good" | "bad"`: şans yüksekse iyi olaylar, düşükse kötü olaylar daha sık çıkar.
 - `riskScale: true`: ülke riski yüksekse daha sık çıkar. `force: true`: koşul sağlanınca önce bu çıkar.
-- `cat`: seçim alanı (`school`, `career`, `family`, `kids`, `love`, `health`, `money`, `social`, `crime`, `travel`, `hobby`, `home`, `tech`, `politics`, `values`, `pet`, `life`). Karar kartında ikon olarak görünür; `title` ({tr,en}) kartın başlığıdır.
 - Koşullar (`cond`): `minAge`-`maxAge` (olay seviyesinde), `female`, `country`, `region`, `minHealth`/`maxHealth`,
-  `minMoney`/`maxMoney`, `minEdu`/`maxEdu`, `married`, `hasJob`, `hasKids`, `retired`, `flagsAll`, `flagsNone`, `minRisk`,
-  `student`, `status` (`["single","married","divorced","widowed"]`), `minKids`/`maxKids`, `kidAge` (`[min,max]`: bu yaşta çocuğun var),
-  `parentAlive`/`motherAlive`/`fatherAlive`, `hasSiblings`, `hasGrandkids`, `minJobLevel`.
-- Metinlerde `{spouse}`, `{child}`, `{job}`, `{country}`, `{name}`, `{mother}`, `{father}`, `{parent}`, `{sibling}` kullanılabilir.
-- Özel etkiler: `emigrate` ("rich"/"any"), `quitJob`, `retire`, `startUni`, `kids`, `bond`, `loseSpouse`,
-  `marry` (yeni bir eş üretip evlendirir), `divorce`, `loseParent` ("any"/"mother"/"father"), `promote` (terfi seviyesi), `setJob` (iş id'si).
+  `minMoney`/`maxMoney`, `minEdu`/`maxEdu`, `married`, `hasJob`, `hasKids`, `retired`, `flagsAll`, `flagsNone`, `minRisk`.
+- Metinlerde `{spouse}`, `{child}`, `{job}`, `{country}`, `{name}` kullanılabilir.
+- Özel etkiler: `emigrate` ("rich"/"any"), `quitJob`, `retire`, `startUni`, `kids`, `bond`, `loseSpouse`.
 
 ## Veriyi büyütmek
 
-`countries.json` şu an 28 ülke içeriyor, bu yüzden gerçek dünya yüzdelerinden biraz sapar (Hindistan yüzdesi
-yüksek çıkar). BM WPP / World Bank verisiyle ülke sayısını artırdıkça oranlar gerçeğe yaklaşır.
+`countries.json` şu an 48 ülke içeriyor; doğum olasılığı bilerek yumuşatılmış olduğu için gerçek nüfus oranlarından sapar. BM WPP / World Bank verisiyle ülke sayısını artırdıkça oranlar gerçeğe yaklaşır.
 
 ## Bilinen eksikler / sonraki adımlar
 
-- Kod henüz bir Flutter derleyicisinde çalıştırılmadı; ilk `flutter run`/`flutter test` çıktısına göre küçük düzeltmeler gerekebilir.
+- Kod henüz bir Flutter derleyicisinde çalıştırılmadı; ilk `flutter pub get` / `flutter run` / `flutter test` çıktısına göre küçük düzeltmeler gerekebilir (özellikle `gal` ve `share_plus` sürümleri).
 - Kayıt sistemi yok (Hive / shared_preferences eklenebilir).
 - Üniversite sınavı başarısız olursa yeniden deneme olayı yok.
 - Eş seçimi şimdilik karşı cinse göre; yönelim ayarı eklenebilir.

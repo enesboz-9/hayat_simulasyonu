@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'engine.dart';
 import 'models.dart';
+import 'result_image.dart';
 
 // ───────────────────────── Ana ekran ─────────────────────────
 
@@ -155,40 +156,11 @@ class _Header extends StatelessWidget {
             const SizedBox(height: 4),
             Wrap(
               spacing: 8,
-              runSpacing: 0,
               children: [
                 Chip(label: Text(engine.eduName(ch.edu)), visualDensity: VisualDensity.compact),
                 if (ch.age >= 18) Chip(label: Text('💰 ${fmtMoney(ch.money)}'), visualDensity: VisualDensity.compact),
-                if (ch.age >= 16)
-                  Chip(
-                    label: Text(
-                      ch.spouse != null
-                          ? '${_maritalIcon(ch.marital)} ${engine.maritalName(ch.marital)} · ${ch.spouse!.name}'
-                          : '${_maritalIcon(ch.marital)} ${engine.maritalName(ch.marital)}',
-                    ),
-                    visualDensity: VisualDensity.compact,
-                  ),
-                if (ch.age >= 16 || ch.children.isNotEmpty)
-                  Chip(
-                    label: Text('👶 ${b('Çocuk', 'Kids')}: ${ch.children.length}'),
-                    visualDensity: VisualDensity.compact,
-                  ),
-                if (ch.grandchildren > 0)
-                  Chip(
-                    label: Text('🧸 ${b('Torun', 'Grandkids')}: ${ch.grandchildren}'),
-                    visualDensity: VisualDensity.compact,
-                  ),
-                ActionChip(
-                  avatar: const Text('👨‍👩‍👧'),
-                  label: Text('${b('Aile', 'Family')} (${_familyCount(ch)})'),
-                  visualDensity: VisualDensity.compact,
-                  onPressed: () => showModalBottomSheet<void>(
-                    context: context,
-                    isScrollControlled: true,
-                    showDragHandle: true,
-                    builder: (_) => FamilySheet(engine: engine),
-                  ),
-                ),
+                if (ch.spouse != null) Chip(label: Text('💍 ${ch.spouse!.name}'), visualDensity: VisualDensity.compact),
+                if (ch.children.isNotEmpty) Chip(label: Text('👶 ${ch.children.length}'), visualDensity: VisualDensity.compact),
               ],
             ),
             const SizedBox(height: 4),
@@ -214,137 +186,6 @@ class _Header extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-String _maritalIcon(String m) => switch (m) {
-      'married' => '💍',
-      'divorced' => '💔',
-      'widowed' => '🕊️',
-      _ => '🧍',
-    };
-
-/// Hayatta olan yakınların sayısı (eş + çocuklar + anne/baba/kardeşler).
-int _familyCount(Character ch) =>
-    (ch.spouse != null ? 1 : 0) + ch.children.length + ch.family.where((r) => r.alive).length;
-
-// ───────────────────────── Aile ekranı ─────────────────────────
-
-class FamilySheet extends StatelessWidget {
-  const FamilySheet({super.key, required this.engine});
-  final GameEngine engine;
-
-  String _trait(String t) {
-    final b = engine.b;
-    return switch (t) {
-      'loyal' => b('Sadık', 'Loyal'),
-      'caring' => b('Şefkatli', 'Caring'),
-      'hardworking' => b('Çalışkan', 'Hardworking'),
-      'spender' => b('Savurgan', 'Spender'),
-      'cheater' => b('Aldatan', 'Unfaithful'),
-      _ => b('Sıradan', 'Ordinary'),
-    };
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: engine,
-      builder: (context, _) {
-        final ch = engine.c!;
-        final b = engine.b;
-        final s = ch.spouse;
-
-        Widget title(String t) => Padding(
-              padding: const EdgeInsets.fromLTRB(0, 14, 0, 4),
-              child: Text(t, style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).colorScheme.primary)),
-            );
-        Widget line(String icon, String name, String detail, {bool dead = false}) => Padding(
-              padding: const EdgeInsets.symmetric(vertical: 3),
-              child: Row(
-                children: [
-                  Text(icon, style: const TextStyle(fontSize: 18)),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Text(
-                      name,
-                      style: TextStyle(decoration: dead ? TextDecoration.lineThrough : null, color: dead ? Colors.grey : null),
-                    ),
-                  ),
-                  Text(detail, style: const TextStyle(color: Colors.grey, fontSize: 13)),
-                ],
-              ),
-            );
-        String ageText(Relative r) =>
-            r.alive ? '${r.age} ${b('yaş', 'y/o')}' : '✝ ${r.age}';
-
-        final mother = ch.mother, father = ch.father;
-        final sibs = ch.siblings.toList();
-
-        return SafeArea(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.75),
-            child: ListView(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-              shrinkWrap: true,
-              children: [
-                Text(b('Aile', 'Family'), style: Theme.of(context).textTheme.titleLarge),
-                const SizedBox(height: 4),
-                Text('${_maritalIcon(ch.marital)} ${b('Medeni durum', 'Marital status')}: ${engine.maritalName(ch.marital)}'),
-                if (ch.marriages > 0) Text('${b('Toplam evlilik', 'Marriages')}: ${ch.marriages}', style: const TextStyle(color: Colors.grey)),
-                title(b('Eş', 'Partner')),
-                if (s == null)
-                  Text(b('Şu an evli değilsin.', 'You are not currently married.'), style: const TextStyle(color: Colors.grey))
-                else ...[
-                  line(s.female ? '👩' : '👨', s.name, '${s.age} ${b('yaş', 'y/o')} · ${loc(s.jobName, engine.lang)}'),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 4),
-                    child: Row(
-                      children: [
-                        SizedBox(width: 74, child: Text(b('İlişki', 'Bond'), style: const TextStyle(fontSize: 12))),
-                        Expanded(
-                          child: LinearProgressIndicator(
-                            value: s.bond / 100,
-                            minHeight: 8,
-                            color: Colors.pinkAccent,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                        ),
-                        SizedBox(width: 32, child: Text('${s.bond.round()}', textAlign: TextAlign.right, style: const TextStyle(fontSize: 12))),
-                      ],
-                    ),
-                  ),
-                  if (s.traitKnown)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4),
-                      child: Text('${b('Karakter', 'Trait')}: ${_trait(s.trait)} · ${s.yearsMarried} ${b('yıldır evli', 'years married')}',
-                          style: const TextStyle(color: Colors.grey, fontSize: 13)),
-                    ),
-                ],
-                title('${b('Çocuklar', 'Children')} (${ch.children.length})'),
-                if (ch.children.isEmpty)
-                  Text(b('Henüz çocuğun yok.', 'You have no children yet.'), style: const TextStyle(color: Colors.grey))
-                else
-                  for (final k in ch.children)
-                    line(k.female ? '👧' : '👦', k.name, '${k.age} ${b('yaş', 'y/o')}${k.kids > 0 ? ' · ${k.kids} ${b('çocuk', 'kids')}' : ''}'),
-                if (ch.grandchildren > 0) ...[
-                  title(b('Torunlar', 'Grandchildren')),
-                  line('🧸', '${ch.grandchildren} ${b('torun', 'grandchildren')}', ''),
-                ],
-                title(b('Anne & Baba', 'Parents')),
-                if (mother != null) line('👩', '${b('Anne', 'Mother')}: ${mother.name}', ageText(mother), dead: !mother.alive),
-                if (father != null) line('👨', '${b('Baba', 'Father')}: ${father.name}', ageText(father), dead: !father.alive),
-                title('${b('Kardeşler', 'Siblings')} (${sibs.length})'),
-                if (sibs.isEmpty)
-                  Text(b('Tek çocuksun.', 'You are an only child.'), style: const TextStyle(color: Colors.grey))
-                else
-                  for (final r in sibs) line(r.female ? '👧' : '👦', r.name, ageText(r), dead: !r.alive),
-              ],
-            ),
-          ),
-        );
-      },
     );
   }
 }
@@ -453,31 +294,6 @@ class _Bottom extends StatelessWidget {
   }
 }
 
-/// Seçim alanı → (ikon, ad).
-(String, String) _catInfo(String cat, String lang) {
-  const m = {
-    'school': ('🎓', 'Eğitim', 'Education'),
-    'career': ('💼', 'Kariyer', 'Career'),
-    'family': ('🏡', 'Aile', 'Family'),
-    'kids': ('🍼', 'Çocuklar', 'Children'),
-    'love': ('💘', 'Aşk & evlilik', 'Love & marriage'),
-    'health': ('🩺', 'Sağlık', 'Health'),
-    'money': ('💰', 'Para', 'Money'),
-    'social': ('🎉', 'Sosyal hayat', 'Social life'),
-    'crime': ('⚖️', 'Hukuk & suç', 'Law & crime'),
-    'travel': ('✈️', 'Seyahat', 'Travel'),
-    'hobby': ('🎨', 'Hobi', 'Hobbies'),
-    'home': ('🏠', 'Ev', 'Home'),
-    'tech': ('📱', 'Teknoloji', 'Technology'),
-    'politics': ('🗳️', 'Toplum & siyaset', 'Society & politics'),
-    'values': ('🕊️', 'Değerler', 'Values'),
-    'pet': ('🐾', 'Evcil hayvan', 'Pets'),
-    'life': ('🌱', 'Hayat', 'Life'),
-  };
-  final r = m[cat] ?? m['life']!;
-  return (r.$1, lang == 'tr' ? r.$2 : r.$3);
-}
-
 class _DecisionCard extends StatelessWidget {
   const _DecisionCard({required this.engine, required this.decision});
   final GameEngine engine;
@@ -495,14 +311,6 @@ class _DecisionCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (decision.cat != null)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 4),
-                    child: Text(
-                      '${_catInfo(decision.cat!, engine.lang).$1} ${_catInfo(decision.cat!, engine.lang).$2}',
-                      style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.primary),
-                    ),
-                  ),
                 Text(decision.title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                 const SizedBox(height: 6),
                 Text(decision.body),
@@ -535,9 +343,19 @@ class _DecisionCard extends StatelessWidget {
 
 // ───────────────────────── Hayat özeti ─────────────────────────
 
-class SummaryScreen extends StatelessWidget {
+class SummaryScreen extends StatefulWidget {
   const SummaryScreen({super.key, required this.engine});
   final GameEngine engine;
+
+  @override
+  State<SummaryScreen> createState() => _SummaryScreenState();
+}
+
+class _SummaryScreenState extends State<SummaryScreen> {
+  final _cardKey = GlobalKey();
+  bool _busy = false;
+
+  GameEngine get engine => widget.engine;
 
   String _shareText(Character ch) {
     final b = engine.b;
@@ -546,21 +364,69 @@ class SummaryScreen extends StatelessWidget {
     final cmp = diff >= 0
         ? b('ortalamadan $diff yıl fazla', '$diff years above the average')
         : b('ortalamadan ${-diff} yıl az', '${-diff} years below the average');
+    final love = ch.marriages == 0
+        ? ''
+        : b(' Evlilik: ${ch.marriages}, boşanma: ${ch.divorces}.', ' Marriages: ${ch.marriages}, divorces: ${ch.divorces}.');
     return b(
       '${ch.birthCountry.flag} $cn ülkesinde doğdum, ${ch.age} yaşında öldüm ($cmp). '
-          'Eğitim: ${engine.eduName(ch.edu)}, çocuk: ${ch.children.length}, ülke sayısı: ${ch.countriesLived}. '
+          'Eğitim: ${engine.eduName(ch.edu)}, çocuk: ${ch.children.length}, ülke sayısı: ${ch.countriesLived}.$love '
           'Sen nasıl bir hayat yaşardın? #HayatSimülasyonu',
       'Born in $cn ${ch.birthCountry.flag}, died at ${ch.age} ($cmp). '
-          'Education: ${engine.eduName(ch.edu)}, children: ${ch.children.length}, countries lived in: ${ch.countriesLived}. '
+          'Education: ${engine.eduName(ch.edu)}, children: ${ch.children.length}, countries lived in: ${ch.countriesLived}.$love '
           'What life would you live? #LifeSimulator',
     );
+  }
+
+  void _toast(String msg) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+  }
+
+  Future<void> _saveImage() async {
+    if (_busy) return;
+    final b = engine.b;
+    setState(() => _busy = true);
+    try {
+      final png = await captureCard(_cardKey);
+      if (png == null) {
+        _toast(b('Görsel oluşturulamadı', 'Could not create the image'));
+      } else {
+        await saveToGallery(png);
+        _toast(b('Görsel galeriye kaydedildi', 'Image saved to your gallery'));
+      }
+    } on UnsupportedError {
+      _toast(b('Bu platformda galeriye kaydetme desteklenmiyor; Paylaş\'ı dene', 'Saving to gallery is not supported here; try Share'));
+    } catch (_) {
+      _toast(b('Kaydedilemedi. Galeri iznini kontrol et.', 'Could not save. Check the photo permission.'));
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  Future<void> _shareImage() async {
+    if (_busy) return;
+    final b = engine.b;
+    setState(() => _busy = true);
+    try {
+      final png = await captureCard(_cardKey);
+      if (png == null) {
+        _toast(b('Görsel oluşturulamadı', 'Could not create the image'));
+      } else {
+        await shareImage(png, _shareText(engine.c!));
+      }
+    } on UnsupportedError {
+      _toast(b('Bu platformda paylaşım desteklenmiyor', 'Sharing is not supported here'));
+    } catch (_) {
+      _toast(b('Paylaşılamadı', 'Could not share'));
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final ch = engine.c!;
     final b = engine.b;
-    final diff = (ch.age - ch.birthCountry.lifeExp).round();
     final cn = loc(ch.birthCountry.name, engine.lang);
 
     Widget row(String k, String v) => Padding(
@@ -579,19 +445,24 @@ class SummaryScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          Center(child: Text(ch.birthCountry.flag, style: const TextStyle(fontSize: 56))),
-          const SizedBox(height: 8),
-          Text(
-            b('${ch.name}, ${ch.age} yaşında öldü', '${ch.name} died at ${ch.age}'),
-            style: Theme.of(context).textTheme.headlineSmall,
-            textAlign: TextAlign.center,
+          // Bu kart PNG olarak kaydedilir / paylaşılır.
+          Center(
+            child: RepaintBoundary(
+              key: _cardKey,
+              child: ResultCard(engine: engine),
+            ),
           ),
-          const SizedBox(height: 6),
-          Text(
-            diff >= 0
-                ? b('$cn yaşam beklentisinden $diff yıl fazla yaşadı.', 'Lived $diff years longer than the life expectancy in $cn.')
-                : b('$cn yaşam beklentisinden ${-diff} yıl az yaşadı.', 'Lived ${-diff} years less than the life expectancy in $cn.'),
-            textAlign: TextAlign.center,
+          const SizedBox(height: 16),
+          FilledButton.icon(
+            onPressed: _busy ? null : _saveImage,
+            icon: const Icon(Icons.download),
+            label: Text(b('Görsel olarak kaydet', 'Save as image')),
+          ),
+          const SizedBox(height: 8),
+          OutlinedButton.icon(
+            onPressed: _busy ? null : _shareImage,
+            icon: const Icon(Icons.ios_share),
+            label: Text(b('Görseli paylaş', 'Share image')),
           ),
           const Divider(height: 28),
           row(b('Ölüm nedeni', 'Cause'), ch.cause ?? '-'),
@@ -599,23 +470,20 @@ class SummaryScreen extends StatelessWidget {
           row(b('Son ülke', 'Last country'), loc(ch.country.name, engine.lang)),
           row(b('Eğitim', 'Education'), engine.eduName(ch.edu)),
           row(b('Evlilik', 'Marriages'), '${ch.marriages}'),
-          row(b('Medeni durum', 'Marital status'), engine.maritalName(ch.marital)),
+          row(b('Boşanma', 'Divorces'), '${ch.divorces}'),
+          row(b('Aldatılma', 'Times cheated on'), '${ch.cheatedOn}'),
+          row(b('Gizli ilişki', 'Affairs'), '${ch.affairs}'),
           row(b('Çocuk', 'Children'), '${ch.children.length}'),
-          row(b('Torun', 'Grandchildren'), '${ch.grandchildren}'),
-          row(b('Kardeş', 'Siblings'), '${ch.siblings.length}'),
           row(b('Tuttuğu iş sayısı', 'Jobs held'), '${ch.jobsHeld}'),
+          row(b('Mülakat (geçti/elendi)', 'Interviews (passed/failed)'), '${ch.interviewsPassed}/${ch.interviewsFailed}'),
           row(b('Son varlık', 'Final wealth'), fmtMoney(ch.money)),
           row(b('En yüksek varlık', 'Peak wealth'), fmtMoney(ch.peakMoney)),
           row(b('Gizli şans değeri', 'Hidden luck'), '${ch.luck.round()}/100'),
           const SizedBox(height: 20),
-          FilledButton.icon(
+          OutlinedButton.icon(
             onPressed: () async {
               await Clipboard.setData(ClipboardData(text: _shareText(ch)));
-              if (context.mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(b('Paylaşım metni kopyalandı', 'Share text copied'))),
-                );
-              }
+              _toast(b('Paylaşım metni kopyalandı', 'Share text copied'));
             },
             icon: const Icon(Icons.copy),
             label: Text(b('Sonucu kopyala', 'Copy result')),

@@ -21,11 +21,12 @@ class GameEngine extends ChangeNotifier {
   Character? c;
   Decision? pending;
 
-  /// Aynı yıl içinde, mevcut karardan sonra gösterilecek ek karar sayısı.
-  int _extra = 0;
-
-  /// Olay dosyaları. Yeni dosya eklemek için buraya yazmak yeterli.
-  static const eventFiles = ['events.json', 'events_more.json'];
+  /// Doğum ülkesi seçiminde nüfusun etkisi yumuşatılır (births^0.45); yoksa
+  /// Hindistan/Çin/Nijerya/Pakistan oyunların çoğunu kapardı. Ayrıca son
+  /// doğulan ülkeler geçici olarak daha az çıkar, böylece çeşitlilik artar.
+  static const birthPower = 0.45;
+  static const _recentMax = 12;
+  final List<String> _recentBirths = [];
 
   static const _traitW = {
     'loyal': 24.0,
@@ -43,18 +44,6 @@ class GameEngine extends ChangeNotifier {
     notifyListeners();
   }
 
-  String maritalName(String m) {
-    final tr = {'single': 'Bekar', 'married': 'Evli', 'divorced': 'Boşanmış', 'widowed': 'Dul'};
-    final en = {'single': 'Single', 'married': 'Married', 'divorced': 'Divorced', 'widowed': 'Widowed'};
-    return (lang == 'tr' ? tr : en)[m] ?? m;
-  }
-
-  String relationName(Relative r) => switch (r.relation) {
-        'mother' => b('Annen', 'Your mother'),
-        'father' => b('Baban', 'Your father'),
-        _ => r.female ? b('Kız kardeşin', 'Your sister') : b('Erkek kardeşin', 'Your brother'),
-      };
-
   String eduName(int e) {
     final tr = ['Eğitimsiz', 'İlköğretim', 'Lise', 'Üniversite', 'Yüksek lisans'];
     final en = ['No schooling', 'Primary', 'High school', 'University', 'Postgraduate'];
@@ -70,10 +59,9 @@ class GameEngine extends ChangeNotifier {
     countries
       ..clear()
       ..addAll((await list('countries.json')).map((e) => Country.fromJson(Map<String, dynamic>.from(e as Map))));
-    events.clear();
-    for (final f in eventFiles) {
-      events.addAll((await list(f)).map((e) => GameEvent.fromJson(Map<String, dynamic>.from(e as Map))));
-    }
+    events
+      ..clear()
+      ..addAll((await list('events.json')).map((e) => GameEvent.fromJson(Map<String, dynamic>.from(e as Map))));
     jobs
       ..clear()
       ..addAll((await list('jobs.json')).map((e) => JobDef.fromJson(Map<String, dynamic>.from(e as Map))));
@@ -116,18 +104,7 @@ class GameEngine extends ChangeNotifier {
     final kid = ch.children.isEmpty
         ? b('çocuğun', 'your child')
         : ch.children[rng.nextInt(ch.children.length)].name;
-    final sibs = ch.siblings.where((x) => x.alive).toList();
-    final sib = sibs.isEmpty ? b('kardeşin', 'your sibling') : sibs[rng.nextInt(sibs.length)].name;
-    final liveParents = [
-      if (ch.mother?.alive ?? false) ch.mother!,
-      if (ch.father?.alive ?? false) ch.father!,
-    ];
-    final par = liveParents.isEmpty ? b('ebeveynin', 'your parent') : liveParents[rng.nextInt(liveParents.length)].name;
     return s
-        .replaceAll('{mother}', ch.mother?.name ?? b('annen', 'your mother'))
-        .replaceAll('{father}', ch.father?.name ?? b('baban', 'your father'))
-        .replaceAll('{sibling}', sib)
-        .replaceAll('{parent}', par)
         .replaceAll('{country}', loc(ch.country.name, lang))
         .replaceAll('{spouse}', ch.spouse?.name ?? b('eşin', 'your partner'))
         .replaceAll('{job}', ch.job == null ? b('işin', 'your job') : loc(ch.job!.def.name, lang))
@@ -137,9 +114,19 @@ class GameEngine extends ChangeNotifier {
 
   // ───────────────────────── Yeni hayat ─────────────────────────
 
-  /// Doğum ülkesi, yıllık doğum sayısına göre ağırlıklı seçilir.
+  Country _pickBirthCountry() {
+    final picked = _weighted<Country>(countries, (x) {
+      final seen = _recentBirths.where((k) => k == x.code).length;
+      return pow(x.births, birthPower).toDouble() * pow(0.4, seen).toDouble();
+    });
+    _recentBirths.add(picked.code);
+    if (_recentBirths.length > _recentMax) _recentBirths.removeAt(0);
+    return picked;
+  }
+
+  /// Doğum ülkesi, (yumuşatılmış) yıllık doğum sayısına göre seçilir.
   void newLife() {
-    final country = _weighted<Country>(countries, (x) => x.births);
+    final country = _pickBirthCountry();
     final female = _p(0.488);
     final ch = Character(
       name: _name(country.region, female),
@@ -156,7 +143,6 @@ class GameEngine extends ChangeNotifier {
     );
     c = ch;
     pending = null;
-    _extra = 0;
     final cn = loc(country.name, lang);
     _say(
       ch,
@@ -170,34 +156,7 @@ class GameEngine extends ChangeNotifier {
             ? b('geçim sıkıntısı çekiyor', 'struggling to get by')
             : b('orta halli', 'middle-income');
     _say(ch, b('Ailen $fam.', 'Your family is $fam.'), 'info');
-    _genFamily(ch);
     notifyListeners();
-  }
-
-  /// Anne, baba ve (ülkenin doğurganlığına göre) ağabey/ablalar.
-  void _genFamily(Character ch) {
-    final region = ch.country.region;
-    final mAge = _ri(19, 36);
-    final fAge = max(19, mAge + _ri(-3, 8));
-    ch.family
-      ..add(Relative(relation: 'mother', name: _name(region, true), age: mAge, female: true))
-      ..add(Relative(relation: 'father', name: _name(region, false), age: fAge, female: false));
-    final n = _cl(ch.country.fertility - 1 + _gauss() * 1.1, 0, 6).round();
-    for (var i = 0; i < n; i++) {
-      final girl = _p(0.49);
-      final age = _ri(1, max(1, min(14, mAge - 19)));
-      ch.family.add(Relative(relation: 'sibling', name: _name(region, girl), age: age, female: girl));
-    }
-    final sibs = ch.siblings.length;
-    _say(
-      ch,
-      sibs == 0
-          ? b('Annen ${ch.mother!.name}, baban ${ch.father!.name}. Tek çocuksun.',
-              'Your mother is ${ch.mother!.name}, your father is ${ch.father!.name}. You are an only child.')
-          : b('Annen ${ch.mother!.name}, baban ${ch.father!.name}. $sibs kardeşin var.',
-              'Your mother is ${ch.mother!.name}, your father is ${ch.father!.name}. You have $sibs sibling${sibs > 1 ? 's' : ''}.'),
-      'info',
-    );
   }
 
   // ───────────────────────── Oyun akışı ─────────────────────────
@@ -225,11 +184,6 @@ class GameEngine extends ChangeNotifier {
     pending = null;
     _say(ch, '${d.title}: ${o.label}', 'choice');
     o.pick();
-    // Aynı yıl içinde ikinci bir seçim sırada bekliyorsa onu göster.
-    if (_extra > 0 && ch.alive && pending == null) {
-      _extra--;
-      pending = _eventDecision(ch, always: true);
-    }
     notifyListeners();
   }
 
@@ -244,12 +198,11 @@ class GameEngine extends ChangeNotifier {
     _jobYear(ch);
     if (_deathRoll(ch)) return;
     _spouseYear(ch);
-    _familyYear(ch);
-    _childrenYear(ch);
+    _affairYear(ch);
     _milestones(ch);
 
-    var n = _p(0.6) ? 1 : 0;
-    if (_p(0.2)) n++;
+    var n = _p(0.55) ? 1 : 0;
+    if (_p(0.15)) n++;
     for (var i = 0; i < n && ch.alive; i++) {
       final ev = _pickEvent(ch, auto: true);
       if (ev != null) {
@@ -259,8 +212,6 @@ class GameEngine extends ChangeNotifier {
     }
     if (!ch.alive) return;
     pending = _forcedDecision(ch) ?? _engineDecision(ch) ?? _eventDecision(ch);
-    // Bazı yıllar arka arkaya iki farklı konuda karar gerekir.
-    _extra = (pending != null && _p(0.22)) ? 1 : 0;
   }
 
   // ───────────────────────── Yıllık istatistikler ─────────────────────────
@@ -271,7 +222,6 @@ class GameEngine extends ChangeNotifier {
     if (a < 20) ch.health += 0.6;
     if (a > 35) ch.health -= (a - 35) * 0.035 + 0.1;
     if (ch.flags.contains('smoker')) ch.health -= 0.8;
-    if (ch.flags.contains('drinker')) ch.health -= 0.25;
     if (ch.country.gdp < 3) ch.health -= 0.15;
     if (a > 30) ch.looks -= 0.2 + (a - 30) * 0.01;
     if (a < 25 && ch.edu >= 2) ch.smarts += 0.4;
@@ -310,15 +260,19 @@ class GameEngine extends ChangeNotifier {
     if (ch.uniUntil != null) {
       exp = g * 0.30 * (1 - ch.famWealth / 150);
       ch.jobIncome = 0;
+      ch.joblessYears = 0;
     } else if (ch.job != null) {
+      ch.joblessYears = 0;
       ch.jobIncome = g * ch.job!.def.pay * pow(1.12, ch.job!.level - 1) * (ch.edu >= 4 ? 1.15 : 1.0);
       inc = ch.jobIncome;
     } else if (ch.retired) {
       inc = ch.pension;
       ch.jobIncome = 0;
+      ch.joblessYears = 0;
     } else {
       inc = g * 0.2;
       ch.jobIncome = 0;
+      ch.joblessYears++;
     }
     final s = ch.spouse;
     if (s != null) {
@@ -326,6 +280,10 @@ class GameEngine extends ChangeNotifier {
       if (s.trait == 'spender') exp += g * 0.12;
     }
     exp += ch.children.where((k) => k.age < 22).length * g * 0.14;
+    // Boşanmış ebeveyn, küçük çocuklar için ek nafaka/destek öder.
+    if (s == null && ch.flags.contains('divorced')) {
+      exp += ch.children.where((k) => k.age < 18).length * g * 0.05;
+    }
     if (ch.flags.contains('owns_home')) exp -= g * 0.08;
     ch.income = inc;
     ch.money += inc - exp;
@@ -425,16 +383,151 @@ class GameEngine extends ChangeNotifier {
     if (s.trait == 'caring') d += 1.2;
     s.bond = _cl(s.bond + d);
     if (!s.traitKnown && s.yearsMarried >= 3 && _p(0.3)) _revealTrait(ch, s);
+
+    // Eşin seni aldattı mı? (yıllık "öğrenilme" ihtimali)
+    if (!ch.flags.contains('spouse_cheat_found') && s.yearsMarried >= 1) {
+      final cp = s.trait == 'cheater' ? 0.05 : 0.007 + (s.bond < 35 ? 0.012 : 0) + (s.looks > 75 ? 0.004 : 0);
+      if (_p(cp)) {
+        s.cheated = true;
+        ch.flags.add('spouse_cheat_found');
+      }
+    }
+
     final h = _hazard(s.age, ch.country.lifeExp, ch.country.risk, 60, 50, const {});
     if (s.age > 25 && _p(h)) {
       ch.spouse = null;
       ch.happiness -= 25;
       ch.social -= 4;
-      ch.flags.add('widowed');
-      ch.flags.remove('divorced');
+      ch.flags
+        ..add('widowed')
+        ..remove('affair')
+        ..remove('affair_found')
+        ..remove('spouse_cheat_found');
+      ch.affairYears = 0;
       _say(ch, b('Eşini kaybettin. Büyük bir boşluk kaldı geride.', 'You lost your partner. A great emptiness remains.'), 'bad');
       _clampStats(ch);
+      return;
     }
+
+    // Bağ iyice kopmuşsa eş boşanma davası açabilir.
+    if (s.bond < 12 && _p(0.25)) {
+      _say(ch, b('${s.name} boşanma davası açtı.', '${s.name} filed for divorce.'), 'bad');
+      _divorce(ch, byPartner: true);
+    }
+  }
+
+  /// Boşanma: mal paylaşımı, sosyal ve duygusal etki. Sayaçlar güncellenir.
+  void _divorce(Character ch, {bool byPartner = false}) {
+    final s = ch.spouse;
+    if (s == null) return;
+    final g = ch.country.gdp;
+    final cost = (ch.money > 0 ? ch.money * 0.45 : 0.0) + g * 0.15;
+    ch.money -= cost;
+    ch.spouse = null;
+    ch.divorces++;
+    ch.happiness -= byPartner ? 12 : 8;
+    ch.social -= 4;
+    if (ch.children.any((k) => k.age < 18)) ch.happiness -= 3;
+    ch.flags
+      ..add('divorced')
+      ..remove('widowed')
+      ..remove('affair')
+      ..remove('affair_found')
+      ..remove('spouse_cheat_found')
+      ..remove('forgave');
+    ch.affairYears = 0;
+    ch.seen['marry'] = ch.age;
+    _say(
+      ch,
+      b('${s.name} ile boşandınız. Mal paylaşımı ve masraflar ${fmtMoney(cost)} tuttu.',
+          'You divorced ${s.name}. Settlement and legal costs came to ${fmtMoney(cost)}.'),
+      'bad',
+    );
+    _clampStats(ch);
+  }
+
+  /// Bu yıl evlilik krizi çıkma ihtimali (0-1). Ülkenin yaklaşık boşanma
+  /// istatistiği; evlilik süresi, evlendiği yaş, çocuk, para durumu, eğitim,
+  /// gizli ilişki ve ilişki gücüyle çarpılır.
+  double divorceChance(Character ch) {
+    final s = ch.spouse;
+    if (s == null) return 0;
+    final y = s.yearsMarried;
+    var f = y <= 1
+        ? 0.7
+        : y <= 7
+            ? 1.5
+            : y <= 14
+                ? 1.0
+                : y <= 24
+                    ? 0.65
+                    : 0.35;
+    if (s.ageAtMarriage < 22) {
+      f *= 1.5;
+    } else if (s.ageAtMarriage > 30) {
+      f *= 0.85;
+    }
+    if (ch.children.any((k) => k.age < 18)) f *= 0.7;
+    if (ch.money < 0) f *= 1.35;
+    if (ch.edu >= 3) f *= 0.9;
+    if (ch.flags.contains('affair')) f *= 1.8;
+    if (s.bond < 25) {
+      f *= 3.0;
+    } else if (s.bond < 40) {
+      f *= 1.8;
+    } else if (s.bond > 70) {
+      f *= 0.4;
+    }
+    return _cl(ch.country.divorce / 100 * f * 1.35, 0, 0.6);
+  }
+
+  /// Oyuncuya gösterilen yaklaşık "ömür boyu boşanma" yüzdesi.
+  int _lifetimeDivorcePct(Country c) => (100 * (1 - pow(1 - c.divorce / 100, 30))).round();
+
+  String _crisisReason(Character ch, Person s) {
+    final opts = <(double, String, String)>[
+      (ch.money < 0 ? 3.0 : 0.5, 'Para sıkıntısı yüzünden sürekli tartışıyorsunuz.', 'Money trouble keeps causing fights.'),
+      (s.bond < 40 ? 3.5 : 2.0, 'Zamanla birbirinizden koptunuz.', 'You have slowly drifted apart.'),
+      (1.5, '${s.name} ile sürekli tartışıyorsunuz.', 'You keep arguing with ${s.name}.'),
+      (s.trait == 'spender' && s.traitKnown ? 2.5 : 0.0001, 'Eşinin harcamaları evliliği zorluyor.', 'Your partner\'s spending is straining the marriage.'),
+      ((ch.job?.def.stress ?? 40) > 60 ? 1.5 : 0.3, 'İş stresin eve taşındı ve ilişkiniz yıprandı.', 'Work stress followed you home and wore the relationship down.'),
+      (ch.children.isNotEmpty ? 1.0 : 0.2, 'Çocuk bakımı yüzünden sürekli geriliyorsunuz.', 'Childcare keeps putting you both on edge.'),
+      (ch.flags.contains('forgave') ? 2.5 : 0.0001, 'Geçmişteki güven sorunu ilişkiyi hâlâ zehirliyor.', 'The old breach of trust still poisons the relationship.'),
+    ];
+    final o = _weighted<(double, String, String)>(opts, (x) => x.$1);
+    return b(o.$2, o.$3);
+  }
+
+  /// Gizli ilişki sürerken yıllık akış: ortaya çıkma ya da kendiliğinden bitme.
+  void _affairYear(Character ch) {
+    if (!ch.flags.contains('affair')) return;
+    final s = ch.spouse;
+    if (s == null) {
+      ch.flags.remove('affair');
+      ch.affairYears = 0;
+      return;
+    }
+    ch.affairYears++;
+    s.bond = _cl(s.bond - 2.5);
+    ch.happiness += 1.5;
+    if (_p(0.14 + 0.04 * ch.affairYears)) {
+      ch.flags
+        ..remove('affair')
+        ..add('affair_found');
+      ch.affairYears = 0;
+      ch.social -= 3;
+    } else if (ch.affairYears >= 3 && _p(0.3)) {
+      ch.flags.remove('affair');
+      ch.affairYears = 0;
+      ch.happiness -= 3;
+      _say(
+        ch,
+        b('Gizli ilişkin sessizce bitti. Kimse öğrenmedi ama vicdan azabı kaldı.',
+            'Your secret affair quietly ended. Nobody found out, but the guilt stayed.'),
+        'info',
+      );
+    }
+    _clampStats(ch);
   }
 
   /// Evlendikten birkaç yıl sonra eşin gizli özelliği ortaya çıkar.
@@ -443,9 +536,9 @@ class GameEngine extends ChangeNotifier {
     final g = ch.country.gdp;
     switch (s.trait) {
       case 'cheater':
-        s.bond = _cl(s.bond - 25);
-        ch.happiness -= 12;
-        _say(ch, b('Eşinin seni aldattığını öğrendin; evliliğin sarsıldı.', 'You found out your partner cheated; your marriage is shaken.'), 'bad');
+        // Sonucu bir karar olarak sunulur (_spouseCheatDecision).
+        s.cheated = true;
+        ch.flags.add('spouse_cheat_found');
       case 'spender':
         s.bond = _cl(s.bond - 8);
         ch.money -= g * 0.5;
@@ -472,78 +565,29 @@ class GameEngine extends ChangeNotifier {
     final okJobs = jobs.where((j) => j.minEdu <= min(4, ch.edu + 1)).toList();
     final jd = okJobs[rng.nextInt(okJobs.length)];
     final kind = _cl(55 + _gauss() * 20).round();
+    final g = ch.country.gdp;
+    final age = max(18, ch.age + _ri(-4, 5));
+    final pay = jd.pay * (0.8 + rng.nextDouble() * 0.5);
+    // Varlık: çalıştığı yıllar × maaş × rastgele birikim oranı ± borç/miras.
+    final working = max(0, age - 21);
+    final wealth = _cl(
+      g * (pay * working * 0.12 * (0.4 + 1.2 * rng.nextDouble()) + _gauss() * 0.6 - 0.3),
+      -1.5 * g,
+      20 * g,
+    );
     return Person(
       name: _name(ch.country.region, female),
-      age: max(18, ch.age + _ri(-4, 5)),
+      age: age,
+      wealth: wealth,
       female: female,
       looks: _cl(55 + _gauss() * 20).round(),
       smarts: _cl(55 + _gauss() * 20).round(),
       kind: kind,
       jobName: jd.name,
-      pay: jd.pay * (0.8 + rng.nextDouble() * 0.5),
+      pay: pay,
       trait: _weighted<String>(_traitW.keys.toList(), (t) => _traitW[t]!),
       bond: _cl(45 + kind * 0.25 + _gauss() * 6),
     );
-  }
-
-  // ───────────────────────── Aile (anne, baba, kardeş, torun) ─────────────────────────
-
-  void _familyYear(Character ch) {
-    for (final r in ch.family) {
-      if (!r.alive) continue;
-      r.age++;
-      final h = _hazard(r.age, ch.country.lifeExp, ch.country.risk, 60, 50, const {}) * (r.relation == 'sibling' ? 0.8 : 1.0);
-      if (_p(h)) {
-        _relativeDied(ch, r);
-        if (!ch.alive) return;
-      }
-    }
-    // Annen yeterince gençse küçük bir kardeşin dünyaya gelebilir.
-    final m = ch.mother;
-    if (ch.age <= 12 && m != null && m.alive && m.age <= 40 && ch.siblings.length < 6 && _p(ch.country.fertility / 60)) {
-      final girl = _p(0.49);
-      final baby = Relative(relation: 'sibling', name: _name(ch.country.region, girl), age: 0, female: girl);
-      ch.family.add(baby);
-      ch.happiness += 2;
-      _say(ch, b('Kardeşin ${baby.name} dünyaya geldi!', 'Your sibling ${baby.name} was born!'), 'good');
-    }
-  }
-
-  void _relativeDied(Character ch, Relative r) {
-    r.alive = false;
-    final young = ch.age < 18;
-    ch.happiness -= (r.relation == 'sibling' ? 10 : 14) + (young ? 6 : 0);
-    ch.social -= 2;
-    if (young && r.relation == 'father') ch.famWealth -= 8;
-    if (young && r.relation == 'mother') ch.famWealth -= 5;
-    _say(
-      ch,
-      b('${relationName(r)} ${r.name} hayatını kaybetti (${r.age} yaşında).', '${relationName(r)} ${r.name} passed away (aged ${r.age}).'),
-      'bad',
-    );
-    _clampStats(ch);
-  }
-
-  void _loseParent(Character ch, String which) {
-    final cands = [
-      for (final r in ch.family)
-        if (r.alive && r.relation != 'sibling' && (which == 'any' || r.relation == which)) r
-    ];
-    if (cands.isEmpty) return;
-    _relativeDied(ch, cands[rng.nextInt(cands.length)]);
-  }
-
-  /// Büyüyen çocuklar zamanla çocuk sahibi olur; torun sayısı artar.
-  void _childrenYear(Character ch) {
-    for (final k in ch.children) {
-      if (k.age >= 22 && k.age <= 40 && k.kids < 4 && _p(ch.country.fertility / 50)) {
-        k.kids++;
-        ch.grandchildren++;
-        ch.happiness += 6;
-        ch.social += 1;
-        _say(ch, b('${k.name} bir çocuk sahibi oldu; torunun dünyaya geldi!', '${k.name} had a child; your grandchild was born!'), 'good');
-      }
-    }
   }
 
   // ───────────────────────── Dönüm noktaları ─────────────────────────
@@ -602,38 +646,226 @@ class GameEngine extends ChangeNotifier {
   // ───────────────────────── Motorun kendi kararları ─────────────────────────
 
   Decision? _engineDecision(Character ch) =>
-      _divorceDecision(ch) ?? _marriageDecision(ch) ?? _childDecision(ch) ?? _jobDecision(ch);
+      _affairExposedDecision(ch) ??
+      _spouseCheatDecision(ch) ??
+      _divorceDecision(ch) ??
+      _temptationDecision(ch) ??
+      _marriageDecision(ch) ??
+      _childDecision(ch) ??
+      _jobDecision(ch);
 
+  /// Evlilik krizi: çıkma ihtimali [divorceChance] ile ülke istatistiğinden gelir.
   Decision? _divorceDecision(Character ch) {
     final s = ch.spouse;
-    if (s == null || s.bond >= 25 || !_p(0.5)) return null;
+    if (s == null || s.yearsMarried < 1) return null;
+    if (!_p(divorceChance(ch))) return null;
     final g = ch.country.gdp;
+    final pct = _lifetimeDivorcePct(ch.country);
     return Decision(
-      cat: 'love',
       title: b('Evlilik krizi', 'Marriage crisis'),
-      body: b('${s.name} ile ilişkiniz çok kötü durumda. Ne yapacaksın?', 'Your relationship with ${s.name} is in bad shape. What will you do?'),
+      body: '${_crisisReason(ch, s)} ${b('Ülkende evliliklerin yaklaşık %$pct kadarı boşanmayla bitiyor.', 'Roughly $pct% of marriages in your country end in divorce.')}',
       options: [
         DecisionOption(
           label: b('Boşan', 'Get divorced'),
+          hint: b('Varlığının yaklaşık yarısını paylaşırsın', 'You would split roughly half of your assets'),
+          pick: () => _divorce(ch),
+        ),
+        DecisionOption(
+          label: b('Çift terapisine git', 'Try couples counseling'),
+          hint: b('Zaman ve para gerektirir; garantisi yok', 'Costs time and money; no guarantee'),
           pick: () {
-            ch.spouse = null;
-            ch.happiness -= 10;
-            ch.social -= 4;
-            ch.money -= g * 0.6;
-            ch.flags.add('divorced');
-            ch.flags.remove('widowed');
-            _say(ch, b('Boşandınız. Yeni bir sayfa açmak zorundasın.', 'You divorced. Time to start a new chapter.'), 'bad');
+            ch.money -= g * 0.1;
+            final ok = _p(_cl(0.3 + s.bond / 200 + (s.trait == 'caring' ? 0.1 : 0), 0.15, 0.8));
+            if (ok) {
+              s.bond = _cl(s.bond + 20);
+              ch.happiness += 2;
+              _say(ch, b('Terapi işe yaradı; yeniden birbirinizi duymaya başladınız.', 'Counseling worked; you started hearing each other again.'), 'good');
+            } else {
+              s.bond = _cl(s.bond - 6);
+              ch.happiness -= 3;
+              _say(ch, b('Terapi pek bir şeyi değiştirmedi.', 'Counseling changed very little.'), 'bad');
+            }
             _clampStats(ch);
           },
         ),
         DecisionOption(
-          label: b('Evliliği kurtarmaya çalış', 'Try to save the marriage'),
-          hint: b('Zaman ve para gerektirir', 'Takes time and money'),
+          label: b('Görmezden gel', 'Ignore it'),
+          hint: b('Sorun büyüyebilir', 'The problem may grow'),
           pick: () {
-            ch.spouse?.bond = _cl(ch.spouse!.bond + 18);
-            ch.money -= g * 0.1;
+            s.bond = _cl(s.bond - 6);
             ch.happiness -= 2;
-            _say(ch, b('Danışmanlığa gidip ilişkinizi onarmaya çalıştınız.', 'You went to counseling to repair your relationship.'), 'info');
+            _say(ch, b('Sorunu halının altına süpürdün; mesafe arttı.', 'You swept it under the rug; the distance grew.'), 'info');
+            _clampStats(ch);
+          },
+        ),
+      ],
+    );
+  }
+
+  /// Evliyken karşına çıkan gizli ilişki fırsatı.
+  Decision? _temptationDecision(Character ch) {
+    final s = ch.spouse;
+    if (s == null || s.yearsMarried < 1 || ch.age < 21 || ch.age > 65) return null;
+    if (ch.flags.contains('affair') || ch.flags.contains('affair_found')) return null;
+    if (ch.age - (ch.seen['temptation'] ?? -9) < 3) return null;
+    var p = ch.female ? 0.017 : 0.025;
+    p *= 0.7 + ch.looks / 150;
+    p *= 0.7 + ch.social / 150;
+    if (s.bond < 35) {
+      p *= 2.5;
+    } else if (s.bond > 75) {
+      p *= 0.5;
+    }
+    if (ch.happiness < 40) p *= 1.4;
+    if (!_p(_cl(p, 0, 0.2))) return null;
+    ch.seen['temptation'] = ch.age;
+    return Decision(
+      title: b('Bir fırsat', 'A temptation'),
+      body: b('Biri sana beklenmedik bir ilgi gösteriyor. ${s.name} hiçbir şey bilmiyor.',
+          'Someone is showing you unexpected interest. ${s.name} knows nothing.'),
+      options: [
+        DecisionOption(
+          label: b('İlişkiye başla', 'Start an affair'),
+          hint: b('Yakalanma riski yıllar içinde artar', 'The risk of being caught grows over the years'),
+          pick: () {
+            ch.flags.add('affair');
+            ch.affairs++;
+            ch.affairYears = 0;
+            ch.happiness += 6;
+            _say(ch, b('Gizli bir ilişkiye başladın.', 'You started a secret affair.'), 'info');
+            _clampStats(ch);
+          },
+        ),
+        DecisionOption(
+          label: b('Reddet', 'Turn it down'),
+          pick: () {
+            s.bond = _cl(s.bond + 2);
+            ch.happiness -= 1;
+            _say(ch, b('Teklifi reddettin ve evliliğine odaklandın.', 'You turned it down and focused on your marriage.'), 'info');
+            _clampStats(ch);
+          },
+        ),
+        DecisionOption(
+          label: b('Eşinle konuş', 'Talk to your partner'),
+          hint: b('Aranızda ne eksik, açıkça konuşursun', 'You talk openly about what is missing'),
+          pick: () {
+            s.bond = _cl(s.bond + 5);
+            _say(ch, b('${s.name} ile açık bir konuşma yaptınız; yakınlaştınız.', 'You had an honest talk with ${s.name} and grew closer.'), 'good');
+          },
+        ),
+      ],
+    );
+  }
+
+  /// Gizli ilişkin eşine duyuruldu.
+  Decision? _affairExposedDecision(Character ch) {
+    if (!ch.flags.contains('affair_found')) return null;
+    ch.flags.remove('affair_found');
+    final s = ch.spouse;
+    if (s == null) return null;
+    _say(ch, b('${s.name} gizli ilişkini öğrendi.', '${s.name} found out about your affair.'), 'bad');
+    return Decision(
+      title: b('Sır ortaya çıktı', 'Found out'),
+      body: b('${s.name} gizli ilişkini öğrendi. İstatistiklere göre bu durumdaki evliliklerin kabaca yarısı biter.',
+          '${s.name} found out about your affair. Roughly half of marriages in this situation end.'),
+      options: [
+        DecisionOption(
+          label: b('Özür dile, ilişkiyi bitir', 'Apologize and end it'),
+          hint: b('Affedilme şansı eşinin bağlılığına bağlı', 'Forgiveness depends on how attached your partner is'),
+          pick: () {
+            if (_p(_cl(0.25 + s.bond / 220 + (s.trait == 'loyal' ? 0.1 : 0), 0.1, 0.7))) {
+              s.bond = _cl(s.bond - 12);
+              ch.happiness -= 5;
+              ch.flags.add('forgave');
+              _say(ch, b('${s.name} seni affetti, ama güven eskisi gibi değil.', '${s.name} forgave you, but trust is not what it was.'), 'info');
+              _clampStats(ch);
+            } else {
+              _say(ch, b('${s.name} özrünü kabul etmedi.', '${s.name} did not accept your apology.'), 'bad');
+              _divorce(ch, byPartner: true);
+            }
+          },
+        ),
+        DecisionOption(
+          label: b('İnkâr et', 'Deny everything'),
+          hint: b('Riskli: yalan ortaya çıkarsa işler kötüleşir', 'Risky: if the lie falls apart it gets worse'),
+          pick: () {
+            if (_p(0.25)) {
+              s.bond = _cl(s.bond - 10);
+              ch.happiness -= 3;
+              _say(ch, b('İnkâr ettin; ${s.name} yarı yarıya ikna oldu.', 'You denied it; ${s.name} was half convinced.'), 'info');
+              _clampStats(ch);
+            } else {
+              ch.social -= 4;
+              _say(ch, b('Yalanın da ortaya çıktı.', 'Your lie was exposed too.'), 'bad');
+              _divorce(ch, byPartner: true);
+            }
+          },
+        ),
+        DecisionOption(
+          label: b('Boşanmayı kabul et', 'Accept the divorce'),
+          pick: () => _divorce(ch),
+        ),
+      ],
+    );
+  }
+
+  /// Eşin seni aldattı.
+  Decision? _spouseCheatDecision(Character ch) {
+    if (!ch.flags.contains('spouse_cheat_found')) return null;
+    ch.flags.remove('spouse_cheat_found');
+    final s = ch.spouse;
+    if (s == null) return null;
+    final g = ch.country.gdp;
+    ch.cheatedOn++;
+    s.bond = _cl(s.bond - 22);
+    ch.happiness -= 10;
+    ch.social -= 2;
+    _say(ch, b('${s.name} seni aldattı. Evliliğin sarsıldı.', '${s.name} cheated on you. Your marriage is shaken.'), 'bad');
+    _clampStats(ch);
+    return Decision(
+      title: b('Aldatıldın', 'You were cheated on'),
+      body: b('${s.name} seni aldattığını itiraf etti. İstatistiklere göre bu durumdaki çiftlerin kabaca yarısı ayrılıyor. Ne yapacaksın?',
+          '${s.name} admitted to cheating on you. Roughly half of couples in this situation split up. What will you do?'),
+      options: [
+        DecisionOption(label: b('Boşan', 'Get divorced'), pick: () => _divorce(ch)),
+        DecisionOption(
+          label: b('Affet ve devam et', 'Forgive and move on'),
+          hint: s.trait == 'cheater' ? b('Tekrar edebilir', 'It may happen again') : null,
+          pick: () {
+            s.bond = _cl(s.bond + 6);
+            ch.happiness -= 4;
+            ch.flags.add('forgave');
+            _say(ch, b('${s.name}\'i affettin; yaranın kapanması zaman alacak.', 'You forgave ${s.name}; healing will take time.'), 'info');
+            _clampStats(ch);
+          },
+        ),
+        DecisionOption(
+          label: b('Yüzleş ve terapiye git', 'Confront and try therapy'),
+          hint: b('Zaman ve para gerektirir', 'Costs time and money'),
+          pick: () {
+            ch.money -= g * 0.15;
+            if (_p(_cl(0.3 + s.bond / 200 + (s.trait == 'cheater' ? -0.15 : 0.1), 0.1, 0.75))) {
+              s.bond = _cl(s.bond + 15);
+              ch.flags.add('forgave');
+              _say(ch, b('Terapi sürecinde güveni yeniden inşa etmeye başladınız.', 'In therapy you began to rebuild trust.'), 'good');
+            } else {
+              s.bond = _cl(s.bond - 8);
+              ch.happiness -= 3;
+              _say(ch, b('Terapi güveni geri getirmedi.', 'Therapy did not bring the trust back.'), 'bad');
+            }
+            _clampStats(ch);
+          },
+        ),
+        DecisionOption(
+          label: b('Sen de aldat', 'Cheat back'),
+          hint: b('İntikam: evliliği iyice zedeler', 'Revenge: damages the marriage badly'),
+          pick: () {
+            s.bond = _cl(s.bond - 12);
+            ch.happiness += 3;
+            ch.flags.add('affair');
+            ch.affairs++;
+            ch.affairYears = 0;
+            _say(ch, b('İntikam için gizli bir ilişkiye başladın.', 'You started a secret affair out of revenge.'), 'info');
             _clampStats(ch);
           },
         ),
@@ -651,14 +883,15 @@ class GameEngine extends ChangeNotifier {
     final count = _ri(2, 4);
     final cands = [for (var i = 0; i < count; i++) _genPerson(ch)];
     return Decision(
-      cat: 'love',
       title: b('Evlilik zamanı mı?', 'Time to settle down?'),
       body: b('Hayatına girebilecek birkaç kişiyle tanıştın. Biriyle ilerlemek ister misin?', 'You met a few people who could enter your life. Want to pursue someone?'),
       options: [
         for (final p in cands)
           DecisionOption(
             label: '${p.name} (${p.age}) · ${loc(p.jobName, lang)}',
-            hint: b('Çekicilik ${p.looks} · Zekâ ${p.smarts} · Karakter ${p.kind}', 'Looks ${p.looks} · Smarts ${p.smarts} · Character ${p.kind}'),
+            hint: b(
+                'Çekicilik ${p.looks} · Zekâ ${p.smarts} · Karakter ${p.kind}\nGelir ~${fmtMoney(ch.country.gdp * p.pay)}/yıl · Varlık ${fmtMoney(p.wealth)} (${_wealthLabel(p.wealth / ch.country.gdp)})',
+                'Looks ${p.looks} · Smarts ${p.smarts} · Character ${p.kind}\nIncome ~${fmtMoney(ch.country.gdp * p.pay)}/yr · Assets ${fmtMoney(p.wealth)} (${_wealthLabel(p.wealth / ch.country.gdp)})'),
             pick: () => _propose(ch, p),
           ),
         DecisionOption(
@@ -672,23 +905,45 @@ class GameEngine extends ChangeNotifier {
     );
   }
 
+  String _wealthLabel(double rel) {
+    if (rel < -0.2) return b('borçlu', 'in debt');
+    if (rel < 0.6) return b('mütevazı', 'modest');
+    if (rel < 2.5) return b('rahat', 'comfortable');
+    return b('varlıklı', 'wealthy');
+  }
+
   void _propose(Character ch, Person p) {
     ch.seen['marry'] = ch.age;
+    final g = ch.country.gdp;
+    final myRel = _cl(ch.money / g, -2, 6);
+    final hisRel = _cl(p.wealth / g, 0, 8);
     final acc = _cl(
-      0.45 + (ch.looks + ch.smarts + ch.social) / 600 + (ch.money / ch.country.gdp) * 0.03 + (ch.luck - 50) / 500,
-      0.25,
+      0.45 +
+          (ch.looks + ch.smarts + ch.social) / 600 +
+          myRel * 0.02 +
+          (ch.luck - 50) / 500 +
+          (ch.looks - p.looks) / 400 +
+          (myRel - hisRel) * 0.02,
+      0.2,
       0.92,
     );
     if (_p(acc)) {
       ch.spouse = p;
+      p.ageAtMarriage = ch.age;
       ch.marriages++;
       ch.happiness += 12;
       ch.social += 4;
       ch.flags
         ..remove('widowed')
-        ..remove('divorced')
-        ..add('wedding_pending');
+        ..remove('divorced');
       _say(ch, b('${p.name} teklifini kabul etti, evlendiniz!', '${p.name} said yes and you got married!'), 'good');
+      // Düğün masrafı + eşin varlığı (ya da borcu) ortak kasaya karışır.
+      ch.money += p.wealth - g * 0.2;
+      if (p.wealth >= g * 0.3) {
+        _say(ch, b('${p.name}\'in birikimi ortak kasaya katıldı (+${fmtMoney(p.wealth)}).', '${p.name}\'s savings joined the household (+${fmtMoney(p.wealth)}).'), 'good');
+      } else if (p.wealth <= -g * 0.2) {
+        _say(ch, b('${p.name}\'in borçlarını da üstlendiniz (${fmtMoney(p.wealth)}).', 'You took on ${p.name}\'s debts too (${fmtMoney(p.wealth)}).'), 'bad');
+      }
     } else {
       ch.happiness -= 8;
       _say(ch, b('${p.name} teklifini reddetti. Canın çok sıkıldı.', '${p.name} turned you down. It hurt.'), 'bad');
@@ -705,7 +960,6 @@ class GameEngine extends ChangeNotifier {
     if (!_p(ch.country.fertility / 9 * pow(0.6, ch.children.length))) return null;
 
     return Decision(
-      cat: 'kids',
       title: b('Aile büyür mü?', 'Growing the family?'),
       body: b('${s.name} ile çocuk sahibi olmayı konuşuyorsunuz.', 'You and ${s.name} are talking about having a child.'),
       options: [
@@ -752,7 +1006,6 @@ class GameEngine extends ChangeNotifier {
     final offers = pool.take(employed ? 2 : 3).toList();
     final g = ch.country.gdp;
     return Decision(
-      cat: 'career',
       title: employed ? b('Yeni iş teklifi', 'New job offer') : b('İş teklifleri', 'Job offers'),
       body: employed
           ? b('Başka bir yerden teklif aldın. Geçmek ister misin?', 'You got an offer elsewhere. Will you switch?')
@@ -761,7 +1014,9 @@ class GameEngine extends ChangeNotifier {
         for (final j in offers)
           DecisionOption(
             label: loc(j.name, lang),
-            hint: b('~${fmtMoney(g * j.pay)}/yıl · stres ${j.stress}', '~${fmtMoney(g * j.pay)}/yr · stress ${j.stress}'),
+            hint: b(
+                '~${fmtMoney(g * j.pay)}/yıl · stres ${j.stress} · kabul şansı ~%${(100 * _hireChance(ch, j)).round()}',
+                '~${fmtMoney(g * j.pay)}/yr · stress ${j.stress} · hire chance ~${(100 * _hireChance(ch, j)).round()}%'),
             pick: () => _applyFor(ch, j),
           ),
         DecisionOption(
@@ -775,18 +1030,37 @@ class GameEngine extends ChangeNotifier {
     );
   }
 
+  /// Mülakattan geçme ihtimali. Eskiden ortalama oyuncu için ~%60'tı ve
+  /// elenme çok sık oluyordu; artık taban yüksek, deneyim, eğitim fazlalığı ve
+  /// uzun süren işsizlik (aranan çaresizlik) ihtimali artırır.
+  double _hireChance(Character ch, JobDef j) {
+    var p = 0.78 +
+        (ch.smarts - 50) / 200 +
+        (ch.luck - 50) / 400 +
+        (ch.social - 50) / 500 +
+        (ch.looks - 50) / 800;
+    p += min(2, max(0, ch.edu - j.minEdu)) * 0.05;
+    p += min(4, ch.jobsHeld) * 0.02;
+    p += min(3, ch.joblessYears) * 0.04;
+    p -= max(0, j.minEdu - 2) * 0.03;
+    if (ch.famWealth > 70) p += 0.04;
+    return _cl(p, 0.45, 0.97);
+  }
+
   void _applyFor(Character ch, JobDef j) {
     ch.seen['job'] = ch.age;
-    final p = _cl(0.6 + (ch.smarts - 50) / 150 + (ch.luck - 50) / 300 + (ch.edu > j.minEdu ? 0.1 : 0), 0.3, 0.95);
     final name = loc(j.name, lang);
-    if (_p(p)) {
+    if (_p(_hireChance(ch, j))) {
       ch.job = Job(j);
       ch.jobsHeld++;
+      ch.interviewsPassed++;
+      ch.joblessYears = 0;
       ch.happiness += 4;
       _say(ch, b('$name olarak işe girdin.', 'You got a job as: $name.'), 'good');
     } else {
-      ch.happiness -= 4;
-      _say(ch, b('$name mülakatında elendin.', 'You were turned down for the $name job.'), 'bad');
+      ch.interviewsFailed++;
+      ch.happiness -= 3;
+      _say(ch, b('$name mülakatında elendin. Bir dahaki sefere şansın daha yüksek.', 'You were turned down for the $name job. Your odds improve next time.'), 'bad');
     }
     _clampStats(ch);
   }
@@ -816,19 +1090,6 @@ class GameEngine extends ChangeNotifier {
     if (cond['hasJob'] != null && cond['hasJob'] != (ch.job != null)) return false;
     if (cond['hasKids'] != null && cond['hasKids'] != ch.children.isNotEmpty) return false;
     if (cond['retired'] != null && cond['retired'] != ch.retired) return false;
-    if (cond['student'] != null && cond['student'] != (ch.uniUntil != null)) return false;
-    final st = cond['status'] as List?;
-    if (st != null && !st.contains(ch.marital)) return false;
-    if (cond['minKids'] != null && ch.children.length < (cond['minKids'] as num)) return false;
-    if (cond['maxKids'] != null && ch.children.length > (cond['maxKids'] as num)) return false;
-    final ka = cond['kidAge'] as List?;
-    if (ka != null && !ch.children.any((k) => k.age >= (ka[0] as num) && k.age <= (ka[1] as num))) return false;
-    if (cond['parentAlive'] != null && cond['parentAlive'] != ch.parentAlive) return false;
-    if (cond['motherAlive'] != null && cond['motherAlive'] != (ch.mother?.alive ?? false)) return false;
-    if (cond['fatherAlive'] != null && cond['fatherAlive'] != (ch.father?.alive ?? false)) return false;
-    if (cond['hasSiblings'] != null && cond['hasSiblings'] != ch.siblings.any((s) => s.alive)) return false;
-    if (cond['hasGrandkids'] != null && cond['hasGrandkids'] != (ch.grandchildren > 0)) return false;
-    if (cond['minJobLevel'] != null && (ch.job == null || ch.job!.level < (cond['minJobLevel'] as num))) return false;
     for (final f in (cond['flagsAll'] as List? ?? const [])) {
       if (!ch.flags.contains(f)) return false;
     }
@@ -855,8 +1116,6 @@ class GameEngine extends ChangeNotifier {
       if (e.tone == 'good') w *= 0.6 + ch.luck / 125;
       if (e.tone == 'bad') w *= 1.4 - ch.luck / 125;
       if (e.riskScale) w *= 0.3 + ch.country.risk * 2;
-      // Aynı alandan art arda seçim gelmesin: çeşitlilik için son alanlar kısılır.
-      if (e.cat != null && ch.recentCats.contains(e.cat)) w *= 0.3;
       return w;
     });
   }
@@ -868,22 +1127,15 @@ class GameEngine extends ChangeNotifier {
     return null;
   }
 
-  /// Her yıl ~%62 olasılıkla bir seçim gelir (önceden ~%32'ydi).
-  Decision? _eventDecision(Character ch, {bool always = false}) {
-    if (!always && !_p(0.62)) return null;
+  Decision? _eventDecision(Character ch) {
+    if (!_p(0.32)) return null;
     final ev = _pickEvent(ch, auto: false);
     return ev == null ? null : _decisionFromEvent(ch, ev);
   }
 
   Decision _decisionFromEvent(Character ch, GameEvent ev) {
     ch.seen[ev.id] = ch.age;
-    final cat = ev.cat;
-    if (cat != null) {
-      ch.recentCats.add(cat);
-      if (ch.recentCats.length > 3) ch.recentCats.removeAt(0);
-    }
     return Decision(
-      cat: cat,
       title: ev.title != null ? _fill(ch, loc(ev.title, lang)) : b('Karar zamanı · ${ch.age} yaş', 'Decision time · age ${ch.age}'),
       body: _fill(ch, loc(ev.text, lang)),
       options: [
@@ -980,32 +1232,6 @@ class GameEngine extends ChangeNotifier {
           _retire(ch);
         case 'loseSpouse':
           ch.spouse = null;
-        case 'loseParent':
-          _loseParent(ch, v as String);
-        case 'divorce':
-          if (ch.spouse != null) {
-            ch.spouse = null;
-            ch.flags.add('divorced');
-            ch.flags.remove('widowed');
-          }
-        case 'marry':
-          if (ch.spouse == null) {
-            ch.spouse = _genPerson(ch);
-            ch.marriages++;
-            ch.flags
-              ..remove('widowed')
-              ..remove('divorced')
-              ..add('wedding_pending');
-          }
-        case 'promote':
-          final j = ch.job;
-          if (j != null) j.level = min(5, j.level + (v as num).toInt());
-        case 'setJob':
-          final def = jobs.where((x) => x.id == v).firstOrNull;
-          if (def != null) {
-            ch.job = Job(def);
-            ch.jobsHeld++;
-          }
         case 'kids':
           for (var i = 0; i < (v as num).toInt(); i++) {
             final girl = _p(0.49);
