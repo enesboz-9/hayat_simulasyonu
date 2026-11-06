@@ -14,7 +14,7 @@ flutter test              # 800 hayatı simüle eder, ülke bazında ortalama ö
 
 ## Nasıl çalışır
 
-- **Doğum:** Ülke, nüfusun yumuşatılmış ağırlığıyla (`births^0.45`) seçilir; son 12 hayatta doğulan ülkeler geçici olarak daha az çıkar. Böylece birkaç büyük ülke oyunu domine etmez (`_pickBirthCountry`).
+- **Doğum:** Ülke, gerçek yıllık doğum sayısıyla orantılı seçilir (`countries.json` → `births`, milyon). Yani bir ülkede doğma ihtimali = ülkenin doğum sayısı / dünya doğum sayısı (Hindistan ≈ %17). `births` = 2022 nüfusu × ham doğum hızı (Dünya Bankası WDI, UN WPP tabanlı); toplam ≈ 136 milyon. Kişi başı gelir (`gdp`) 2022 nominal GSYİH / nüfus. Tayvan ve Dünya Bankası’nda bulunmayan birkaç ülke elle tahminidir; yaşam beklentisi, doğurganlık ve boşanma değerleri hâlâ yaklaşık değerlerdir.
 - **Ölüm:** Ülkenin yaşam beklentisine dayalı bir eğri; sağlık, gizli şans ve yaşam tarzıyla (sigara, spor) çarpılır. Ölüm sırasında şansa bağlı "kıl payı kurtulma" ihtimali vardır. Yani ortalama istatistiktir, sonuç değil.
 - **Seçimler:** Evlilik adayları, çocuk, iş teklifleri, boşanma (`engine.dart`) ve JSON'daki karar olayları.
 - **Evlilik adayları:** Rastgele üretilir (çekicilik, zekâ, karakter, meslek, **gelir ve varlık**). Eşin varlığı (borçluysa borcu) evlilikle senin varlığına karışır; teklifin kabul edilme ihtimalini de etkiler. Gizli bir özellik (sadık, aldatan, savurgan...) birkaç yıl sonra ortaya çıkar.
@@ -65,7 +65,7 @@ flutter test              # 800 hayatı simüle eder, ülke bazında ortalama ö
 
 ## Veriyi büyütmek
 
-`countries.json` şu an 48 ülke içeriyor; doğum olasılığı bilerek yumuşatılmış olduğu için gerçek nüfus oranlarından sapar. BM WPP / World Bank verisiyle ülke sayısını artırdıkça oranlar gerçeğe yaklaşır.
+`countries.json` şu an 196 ülke içeriyor (193 BM üyesi + Filistin, Tayvan, Kosova). Doğum sayıları yaklaşık değerlerdir; daha doğru oran için BM WPP verisiyle `births` değerlerini güncelle. BM WPP / World Bank verisiyle ülke sayısını artırdıkça oranlar gerçeğe yaklaşır.
 
 ## Bilinen eksikler / sonraki adımlar
 

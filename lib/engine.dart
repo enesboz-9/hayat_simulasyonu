@@ -21,12 +21,6 @@ class GameEngine extends ChangeNotifier {
   Character? c;
   Decision? pending;
 
-  /// Doğum ülkesi seçiminde nüfusun etkisi yumuşatılır (births^0.45); yoksa
-  /// Hindistan/Çin/Nijerya/Pakistan oyunların çoğunu kapardı. Ayrıca son
-  /// doğulan ülkeler geçici olarak daha az çıkar, böylece çeşitlilik artar.
-  static const birthPower = 0.45;
-  static const _recentMax = 12;
-  final List<String> _recentBirths = [];
 
   static const _traitW = {
     'loyal': 24.0,
@@ -114,17 +108,11 @@ class GameEngine extends ChangeNotifier {
 
   // ───────────────────────── Yeni hayat ─────────────────────────
 
-  Country _pickBirthCountry() {
-    final picked = _weighted<Country>(countries, (x) {
-      final seen = _recentBirths.where((k) => k == x.code).length;
-      return pow(x.births, birthPower).toDouble() * pow(0.4, seen).toDouble();
-    });
-    _recentBirths.add(picked.code);
-    if (_recentBirths.length > _recentMax) _recentBirths.removeAt(0);
-    return picked;
-  }
+  /// Doğum ülkesi, gerçek hayattaki yıllık doğum sayısıyla orantılı seçilir:
+  /// bir ülkede doğma ihtimali = o ülkenin doğum sayısı / dünya doğum sayısı.
+  Country _pickBirthCountry() => _weighted<Country>(countries, (x) => x.births);
 
-  /// Doğum ülkesi, (yumuşatılmış) yıllık doğum sayısına göre seçilir.
+  /// Yeni hayat başlatır; doğum ülkesi gerçek doğum oranlarına göre seçilir.
   void newLife() {
     final country = _pickBirthCountry();
     final female = _p(0.488);

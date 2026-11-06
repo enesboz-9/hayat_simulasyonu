@@ -61,9 +61,10 @@ void main() {
     }
 
     expect(avg, inInclusiveRange(45, 90));
-    // Birkaç ülke oyunu domine etmemeli.
-    expect(codes.length, greaterThanOrEqualTo(35));
-    expect(byCountry[codes.first]!.length / n, lessThan(0.12));
+    // Doğum ülkesi gerçek doğum oranlarını izler (Hindistan ~%17).
+    expect(codes.length, greaterThanOrEqualTo(50));
+    final inShare = (byCountry['IN']?.length ?? 0) / n;
+    expect(inShare, inInclusiveRange(0.12, 0.23));
     // Mülakat elenme oranı makul olmalı (eskiden ~%40'tı).
     if (passed + failed > 50) expect(failed / (passed + failed), lessThan(0.3));
   });

@@ -7,11 +7,11 @@
    "en": "India"
   },
   "region": "south_asia",
-  "births": 23.0,
+  "births": 23.404,
   "lifeExp": 70,
   "marriageAge": 22,
   "fertility": 2.0,
-  "gdp": 2.5,
+  "gdp": 2.35,
   "edu": 0.65,
   "risk": 0.45,
   "divorce": 0.3
@@ -24,11 +24,11 @@
    "en": "China"
   },
   "region": "east_asia",
-  "births": 9.0,
+  "births": 10.6196,
   "lifeExp": 78,
   "marriageAge": 28,
   "fertility": 1.1,
-  "gdp": 12.5,
+  "gdp": 12.66,
   "edu": 0.8,
   "risk": 0.3,
   "divorce": 1.2
@@ -41,11 +41,11 @@
    "en": "Nigeria"
   },
   "region": "africa",
-  "births": 7.5,
+  "births": 8.2827,
   "lifeExp": 54,
   "marriageAge": 24,
   "fertility": 5.1,
-  "gdp": 2.2,
+  "gdp": 2.12,
   "edu": 0.5,
   "risk": 0.65,
   "divorce": 0.8
@@ -58,11 +58,11 @@
    "en": "Pakistan"
   },
   "region": "south_asia",
-  "births": 6.9,
+  "births": 6.7064,
   "lifeExp": 67,
   "marriageAge": 22,
   "fertility": 3.6,
-  "gdp": 1.4,
+  "gdp": 1.54,
   "edu": 0.5,
   "risk": 0.55,
   "divorce": 0.6
@@ -75,11 +75,11 @@
    "en": "Indonesia"
   },
   "region": "east_asia",
-  "births": 4.4,
+  "births": 4.5798,
   "lifeExp": 71,
   "marriageAge": 24,
   "fertility": 2.1,
-  "gdp": 4.9,
+  "gdp": 4.73,
   "edu": 0.7,
   "risk": 0.45,
   "divorce": 1.0
@@ -92,11 +92,11 @@
    "en": "United States"
   },
   "region": "west",
-  "births": 3.6,
+  "births": 3.674,
   "lifeExp": 79,
   "marriageAge": 30,
   "fertility": 1.7,
-  "gdp": 80,
+  "gdp": 77.08,
   "edu": 0.9,
   "risk": 0.25,
   "divorce": 1.8
@@ -109,11 +109,11 @@
    "en": "Brazil"
   },
   "region": "latam",
-  "births": 2.5,
+  "births": 2.7094,
   "lifeExp": 76,
   "marriageAge": 27,
   "fertility": 1.6,
-  "gdp": 10,
+  "gdp": 9.28,
   "edu": 0.75,
   "risk": 0.35,
   "divorce": 1.5
@@ -126,11 +126,11 @@
    "en": "Bangladesh"
   },
   "region": "south_asia",
-  "births": 3.4,
+  "births": 3.0186,
   "lifeExp": 73,
   "marriageAge": 20,
   "fertility": 2.0,
-  "gdp": 2.5,
+  "gdp": 2.72,
   "edu": 0.6,
   "risk": 0.5,
   "divorce": 0.5
@@ -143,11 +143,11 @@
    "en": "Ethiopia"
   },
   "region": "africa",
-  "births": 4.0,
+  "births": 4.0603,
   "lifeExp": 67,
   "marriageAge": 21,
   "fertility": 4.0,
-  "gdp": 1.0,
+  "gdp": 1.01,
   "edu": 0.4,
   "risk": 0.6,
   "divorce": 1.2
@@ -160,11 +160,11 @@
    "en": "Mexico"
   },
   "region": "latam",
-  "births": 2.0,
+  "births": 1.9108,
   "lifeExp": 75,
   "marriageAge": 26,
   "fertility": 1.8,
-  "gdp": 11,
+  "gdp": 11.38,
   "edu": 0.75,
   "risk": 0.4,
   "divorce": 1.0
@@ -177,11 +177,11 @@
    "en": "Egypt"
   },
   "region": "mena",
-  "births": 2.3,
+  "births": 2.5404,
   "lifeExp": 72,
   "marriageAge": 25,
   "fertility": 2.8,
-  "gdp": 3.5,
+  "gdp": 4.23,
   "edu": 0.7,
   "risk": 0.4,
   "divorce": 1.6
@@ -194,11 +194,11 @@
    "en": "Philippines"
   },
   "region": "east_asia",
-  "births": 2.3,
+  "births": 2.4859,
   "lifeExp": 71,
   "marriageAge": 26,
   "fertility": 1.9,
-  "gdp": 3.7,
+  "gdp": 3.55,
   "edu": 0.75,
   "risk": 0.5,
   "divorce": 0.15
@@ -211,11 +211,11 @@
    "en": "DR Congo"
   },
   "region": "africa",
-  "births": 3.5,
+  "births": 4.3057,
   "lifeExp": 62,
   "marriageAge": 20,
   "fertility": 6.0,
-  "gdp": 0.6,
+  "gdp": 0.64,
   "edu": 0.4,
   "risk": 0.75,
   "divorce": 1.0
@@ -228,11 +228,11 @@
    "en": "Japan"
   },
   "region": "east_asia",
-  "births": 0.75,
+  "births": 0.8258,
   "lifeExp": 85,
   "marriageAge": 31,
   "fertility": 1.2,
-  "gdp": 34,
+  "gdp": 34.02,
   "edu": 0.95,
   "risk": 0.35,
   "divorce": 1.5
@@ -245,11 +245,11 @@
    "en": "Türkiye"
   },
   "region": "tr",
-  "births": 1.0,
+  "births": 1.2473,
   "lifeExp": 77,
   "marriageAge": 27,
   "fertility": 1.6,
-  "gdp": 13,
+  "gdp": 10.67,
   "edu": 0.8,
   "risk": 0.35,
   "divorce": 1.4
@@ -262,11 +262,11 @@
    "en": "Germany"
   },
   "region": "west",
-  "births": 0.7,
+  "births": 0.7985,
   "lifeExp": 81,
   "marriageAge": 33,
   "fertility": 1.5,
-  "gdp": 52,
+  "gdp": 49.08,
   "edu": 0.93,
   "risk": 0.1,
   "divorce": 1.8
@@ -279,11 +279,11 @@
    "en": "United Kingdom"
   },
   "region": "west",
-  "births": 0.65,
+  "births": 0.6831,
   "lifeExp": 81,
   "marriageAge": 33,
   "fertility": 1.6,
-  "gdp": 49,
+  "gdp": 45.67,
   "edu": 0.92,
   "risk": 0.1,
   "divorce": 1.7
@@ -296,11 +296,11 @@
    "en": "France"
   },
   "region": "west",
-  "births": 0.68,
+  "births": 0.7432,
   "lifeExp": 82,
   "marriageAge": 33,
   "fertility": 1.7,
-  "gdp": 44,
+  "gdp": 40.76,
   "edu": 0.92,
   "risk": 0.1,
   "divorce": 1.8
@@ -313,11 +313,11 @@
    "en": "Italy"
   },
   "region": "west",
-  "births": 0.38,
+  "births": 0.4013,
   "lifeExp": 83,
   "marriageAge": 33,
   "fertility": 1.2,
-  "gdp": 37,
+  "gdp": 35.03,
   "edu": 0.9,
   "risk": 0.15,
   "divorce": 1.0
@@ -330,11 +330,11 @@
    "en": "Sweden"
   },
   "region": "west",
-  "births": 0.1,
+  "births": 0.1154,
   "lifeExp": 83,
   "marriageAge": 33,
   "fertility": 1.5,
-  "gdp": 56,
+  "gdp": 56.3,
   "edu": 0.95,
   "risk": 0.05,
   "divorce": 2.0
@@ -347,11 +347,11 @@
    "en": "South Korea"
   },
   "region": "east_asia",
-  "births": 0.23,
+  "births": 0.2635,
   "lifeExp": 83,
   "marriageAge": 33,
   "fertility": 0.8,
-  "gdp": 33,
+  "gdp": 32.39,
   "edu": 0.95,
   "risk": 0.15,
   "divorce": 1.5
@@ -364,11 +364,11 @@
    "en": "Saudi Arabia"
   },
   "region": "mena",
-  "births": 0.6,
+  "births": 0.5622,
   "lifeExp": 78,
   "marriageAge": 27,
   "fertility": 2.3,
-  "gdp": 32,
+  "gdp": 34.45,
   "edu": 0.8,
   "risk": 0.25,
   "divorce": 1.8
@@ -381,11 +381,11 @@
    "en": "South Africa"
   },
   "region": "africa",
-  "births": 1.2,
+  "births": 1.2364,
   "lifeExp": 65,
   "marriageAge": 29,
   "fertility": 2.3,
-  "gdp": 6.3,
+  "gdp": 6.5,
   "edu": 0.7,
   "risk": 0.5,
   "divorce": 1.0
@@ -398,11 +398,11 @@
    "en": "Argentina"
   },
   "region": "latam",
-  "births": 0.65,
+  "births": 0.6313,
   "lifeExp": 77,
   "marriageAge": 29,
   "fertility": 1.5,
-  "gdp": 13,
+  "gdp": 13.9,
   "edu": 0.85,
   "risk": 0.3,
   "divorce": 1.2
@@ -415,11 +415,11 @@
    "en": "Iran"
   },
   "region": "mena",
-  "births": 1.2,
+  "births": 1.2264,
   "lifeExp": 77,
   "marriageAge": 26,
   "fertility": 1.7,
-  "gdp": 4.5,
+  "gdp": 4.62,
   "edu": 0.8,
   "risk": 0.45,
   "divorce": 1.6
@@ -432,11 +432,11 @@
    "en": "Kenya"
   },
   "region": "africa",
-  "births": 1.6,
+  "births": 1.502,
   "lifeExp": 67,
   "marriageAge": 25,
   "fertility": 3.3,
-  "gdp": 2.1,
+  "gdp": 2.09,
   "edu": 0.6,
   "risk": 0.5,
   "divorce": 0.8
@@ -449,11 +449,11 @@
    "en": "Vietnam"
   },
   "region": "east_asia",
-  "births": 1.5,
+  "births": 1.496,
   "lifeExp": 75,
   "marriageAge": 27,
   "fertility": 1.9,
-  "gdp": 4.3,
+  "gdp": 4.12,
   "edu": 0.8,
   "risk": 0.3,
   "divorce": 1.2
@@ -466,11 +466,11 @@
    "en": "Tanzania"
   },
   "region": "africa",
-  "births": 2.1,
+  "births": 2.3432,
   "lifeExp": 67,
   "marriageAge": 22,
   "fertility": 4.7,
-  "gdp": 1.2,
+  "gdp": 1.17,
   "edu": 0.45,
   "risk": 0.5,
   "divorce": 0.8
@@ -483,11 +483,11 @@
    "en": "Russia"
   },
   "region": "west",
-  "births": 1.4,
+  "births": 1.3847,
   "lifeExp": 73,
   "marriageAge": 28,
   "fertility": 1.5,
-  "gdp": 14,
+  "gdp": 15.71,
   "edu": 0.92,
   "risk": 0.3,
   "divorce": 3.2
@@ -500,11 +500,11 @@
    "en": "Spain"
   },
   "region": "west",
-  "births": 0.32,
+  "births": 0.3393,
   "lifeExp": 83,
   "marriageAge": 35,
   "fertility": 1.2,
-  "gdp": 32,
+  "gdp": 29.67,
   "edu": 0.92,
   "risk": 0.1,
   "divorce": 2.0
@@ -517,11 +517,11 @@
    "en": "Canada"
   },
   "region": "west",
-  "births": 0.37,
+  "births": 0.3739,
   "lifeExp": 82,
   "marriageAge": 32,
   "fertility": 1.4,
-  "gdp": 52,
+  "gdp": 55.49,
   "edu": 0.93,
   "risk": 0.08,
   "divorce": 1.8
@@ -534,11 +534,11 @@
    "en": "Australia"
   },
   "region": "west",
-  "births": 0.3,
+  "births": 0.3148,
   "lifeExp": 83,
   "marriageAge": 32,
   "fertility": 1.6,
-  "gdp": 65,
+  "gdp": 65.07,
   "edu": 0.93,
   "risk": 0.08,
   "divorce": 1.5
@@ -551,11 +551,11 @@
    "en": "Poland"
   },
   "region": "west",
-  "births": 0.3,
+  "births": 0.324,
   "lifeExp": 78,
   "marriageAge": 31,
   "fertility": 1.3,
-  "gdp": 18,
+  "gdp": 18.73,
   "edu": 0.92,
   "risk": 0.12,
   "divorce": 1.4
@@ -568,11 +568,11 @@
    "en": "Ukraine"
   },
   "region": "west",
-  "births": 0.3,
+  "births": 0.2997,
   "lifeExp": 73,
   "marriageAge": 26,
   "fertility": 1.2,
-  "gdp": 5,
+  "gdp": 3.95,
   "edu": 0.9,
   "risk": 0.55,
   "divorce": 2.8
@@ -585,11 +585,11 @@
    "en": "Netherlands"
   },
   "region": "west",
-  "births": 0.17,
+  "births": 0.1806,
   "lifeExp": 82,
   "marriageAge": 33,
   "fertility": 1.5,
-  "gdp": 58,
+  "gdp": 57.03,
   "edu": 0.95,
   "risk": 0.05,
   "divorce": 1.9
@@ -602,11 +602,11 @@
    "en": "Greece"
   },
   "region": "west",
-  "births": 0.07,
+  "births": 0.0835,
   "lifeExp": 82,
   "marriageAge": 32,
   "fertility": 1.4,
-  "gdp": 20,
+  "gdp": 20.85,
   "edu": 0.9,
   "risk": 0.15,
   "divorce": 1.2
@@ -619,11 +619,11 @@
    "en": "Colombia"
   },
   "region": "latam",
-  "births": 0.65,
+  "births": 0.7349,
   "lifeExp": 77,
   "marriageAge": 27,
   "fertility": 1.7,
-  "gdp": 7,
+  "gdp": 6.67,
   "edu": 0.8,
   "risk": 0.45,
   "divorce": 1.0
@@ -636,11 +636,11 @@
    "en": "Peru"
   },
   "region": "latam",
-  "births": 0.55,
+  "births": 0.5899,
   "lifeExp": 77,
   "marriageAge": 28,
   "fertility": 2.1,
-  "gdp": 7,
+  "gdp": 7.36,
   "edu": 0.8,
   "risk": 0.4,
   "divorce": 1.0
@@ -653,11 +653,11 @@
    "en": "Chile"
   },
   "region": "latam",
-  "births": 0.22,
+  "births": 0.2305,
   "lifeExp": 80,
   "marriageAge": 32,
   "fertility": 1.2,
-  "gdp": 16,
+  "gdp": 15.45,
   "edu": 0.88,
   "risk": 0.2,
   "divorce": 1.0
@@ -670,11 +670,11 @@
    "en": "Thailand"
   },
   "region": "east_asia",
-  "births": 0.5,
+  "births": 0.6455,
   "lifeExp": 79,
   "marriageAge": 28,
   "fertility": 1.3,
-  "gdp": 7.5,
+  "gdp": 6.91,
   "edu": 0.85,
   "risk": 0.3,
   "divorce": 1.4
@@ -687,11 +687,11 @@
    "en": "Malaysia"
   },
   "region": "east_asia",
-  "births": 0.5,
+  "births": 0.5288,
   "lifeExp": 76,
   "marriageAge": 29,
   "fertility": 1.8,
-  "gdp": 12,
+  "gdp": 11.73,
   "edu": 0.85,
   "risk": 0.2,
   "divorce": 1.3
@@ -704,11 +704,11 @@
    "en": "Morocco"
   },
   "region": "mena",
-  "births": 0.65,
+  "births": 0.6549,
   "lifeExp": 76,
   "marriageAge": 26,
   "fertility": 2.2,
-  "gdp": 3.7,
+  "gdp": 3.51,
   "edu": 0.6,
   "risk": 0.35,
   "divorce": 1.2
@@ -721,11 +721,11 @@
    "en": "Algeria"
   },
   "region": "mena",
-  "births": 0.9,
+  "births": 0.9789,
   "lifeExp": 77,
   "marriageAge": 28,
   "fertility": 2.8,
-  "gdp": 4.0,
+  "gdp": 4.96,
   "edu": 0.7,
   "risk": 0.4,
   "divorce": 1.2
@@ -738,11 +738,11 @@
    "en": "Iraq"
   },
   "region": "mena",
-  "births": 1.1,
+  "births": 1.2061,
   "lifeExp": 71,
   "marriageAge": 24,
   "fertility": 3.2,
-  "gdp": 5.0,
+  "gdp": 6.5,
   "edu": 0.6,
   "risk": 0.6,
   "divorce": 1.4
@@ -755,11 +755,11 @@
    "en": "Ghana"
   },
   "region": "africa",
-  "births": 0.9,
+  "births": 0.9132,
   "lifeExp": 64,
   "marriageAge": 27,
   "fertility": 3.7,
-  "gdp": 2.4,
+  "gdp": 2.24,
   "edu": 0.6,
   "risk": 0.45,
   "divorce": 0.8
@@ -772,11 +772,11 @@
    "en": "Uganda"
   },
   "region": "africa",
-  "births": 1.7,
+  "births": 1.7409,
   "lifeExp": 64,
   "marriageAge": 23,
   "fertility": 4.5,
-  "gdp": 0.9,
+  "gdp": 0.96,
   "edu": 0.5,
   "risk": 0.55,
   "divorce": 0.7
@@ -789,11 +789,11 @@
    "en": "Nepal"
   },
   "region": "south_asia",
-  "births": 0.55,
+  "births": 0.6063,
   "lifeExp": 70,
   "marriageAge": 23,
   "fertility": 2.0,
-  "gdp": 1.3,
+  "gdp": 1.39,
   "edu": 0.6,
   "risk": 0.4,
   "divorce": 0.4
@@ -806,13 +806,2529 @@
    "en": "Sri Lanka"
   },
   "region": "south_asia",
-  "births": 0.3,
+  "births": 0.311,
   "lifeExp": 77,
   "marriageAge": 27,
   "fertility": 2.0,
-  "gdp": 4.0,
+  "gdp": 3.34,
   "edu": 0.9,
   "risk": 0.3,
   "divorce": 0.3
+ },
+ {
+  "code": "AF",
+  "flag": "🇦🇫",
+  "name": {
+   "tr": "Afganistan",
+   "en": "Afghanistan"
+  },
+  "region": "mena",
+  "births": 1.4544,
+  "lifeExp": 63.0,
+  "marriageAge": 19,
+  "fertility": 4.6,
+  "gdp": 0.36,
+  "edu": 0.33,
+  "risk": 0.85,
+  "divorce": 0.3
+ },
+ {
+  "code": "KZ",
+  "flag": "🇰🇿",
+  "name": {
+   "tr": "Kazakistan",
+   "en": "Kazakhstan"
+  },
+  "region": "tr",
+  "births": 0.4708,
+  "lifeExp": 74.0,
+  "marriageAge": 25,
+  "fertility": 3.0,
+  "gdp": 11.26,
+  "edu": 0.83,
+  "risk": 0.2,
+  "divorce": 2.5
+ },
+ {
+  "code": "UZ",
+  "flag": "🇺🇿",
+  "name": {
+   "tr": "Özbekistan",
+   "en": "Uzbekistan"
+  },
+  "region": "tr",
+  "births": 0.9049,
+  "lifeExp": 72.0,
+  "marriageAge": 21,
+  "fertility": 3.3,
+  "gdp": 2.32,
+  "edu": 0.51,
+  "risk": 0.25,
+  "divorce": 1.0
+ },
+ {
+  "code": "TM",
+  "flag": "🇹🇲",
+  "name": {
+   "tr": "Türkmenistan",
+   "en": "Turkmenistan"
+  },
+  "region": "tr",
+  "births": 0.1561,
+  "lifeExp": 69.0,
+  "marriageAge": 24,
+  "fertility": 2.6,
+  "gdp": 7.82,
+  "edu": 0.73,
+  "risk": 0.3,
+  "divorce": 1.0
+ },
+ {
+  "code": "KG",
+  "flag": "🇰🇬",
+  "name": {
+   "tr": "Kırgızistan",
+   "en": "Kyrgyzstan"
+  },
+  "region": "tr",
+  "births": 0.1562,
+  "lifeExp": 71.0,
+  "marriageAge": 21,
+  "fertility": 2.8,
+  "gdp": 1.74,
+  "edu": 0.47,
+  "risk": 0.3,
+  "divorce": 1.5
+ },
+ {
+  "code": "TJ",
+  "flag": "🇹🇯",
+  "name": {
+   "tr": "Tacikistan",
+   "en": "Tajikistan"
+  },
+  "region": "mena",
+  "births": 0.2724,
+  "lifeExp": 71.0,
+  "marriageAge": 21,
+  "fertility": 3.3,
+  "gdp": 1.05,
+  "edu": 0.43,
+  "risk": 0.35,
+  "divorce": 0.9
+ },
+ {
+  "code": "AZ",
+  "flag": "🇦🇿",
+  "name": {
+   "tr": "Azerbaycan",
+   "en": "Azerbaijan"
+  },
+  "region": "tr",
+  "births": 0.1126,
+  "lifeExp": 74.0,
+  "marriageAge": 24,
+  "fertility": 1.7,
+  "gdp": 7.77,
+  "edu": 0.72,
+  "risk": 0.3,
+  "divorce": 1.0
+ },
+ {
+  "code": "GE",
+  "flag": "🇬🇪",
+  "name": {
+   "tr": "Gürcistan",
+   "en": "Georgia"
+  },
+  "region": "west",
+  "births": 0.0498,
+  "lifeExp": 74.0,
+  "marriageAge": 24,
+  "fertility": 1.9,
+  "gdp": 6.73,
+  "edu": 0.72,
+  "risk": 0.25,
+  "divorce": 1.0
+ },
+ {
+  "code": "AM",
+  "flag": "🇦🇲",
+  "name": {
+   "tr": "Ermenistan",
+   "en": "Armenia"
+  },
+  "region": "west",
+  "births": 0.0358,
+  "lifeExp": 75.0,
+  "marriageAge": 24,
+  "fertility": 1.8,
+  "gdp": 6.57,
+  "edu": 0.7,
+  "risk": 0.3,
+  "divorce": 1.0
+ },
+ {
+  "code": "MN",
+  "flag": "🇲🇳",
+  "name": {
+   "tr": "Moğolistan",
+   "en": "Mongolia"
+  },
+  "region": "east_asia",
+  "births": 0.0735,
+  "lifeExp": 71.0,
+  "marriageAge": 23,
+  "fertility": 2.8,
+  "gdp": 4.99,
+  "edu": 0.65,
+  "risk": 0.2,
+  "divorce": 1.6
+ },
+ {
+  "code": "KP",
+  "flag": "🇰🇵",
+  "name": {
+   "tr": "Kuzey Kore",
+   "en": "North Korea"
+  },
+  "region": "east_asia",
+  "births": 0.3486,
+  "lifeExp": 73.0,
+  "marriageAge": 22,
+  "fertility": 1.8,
+  "gdp": 1.2,
+  "edu": 0.43,
+  "risk": 0.5,
+  "divorce": 0.7
+ },
+ {
+  "code": "TW",
+  "flag": "🇹🇼",
+  "name": {
+   "tr": "Tayvan",
+   "en": "Taiwan"
+  },
+  "region": "east_asia",
+  "births": 0.14,
+  "lifeExp": 81.0,
+  "marriageAge": 30,
+  "fertility": 0.9,
+  "gdp": 33.0,
+  "edu": 0.94,
+  "risk": 0.15,
+  "divorce": 1.5
+ },
+ {
+  "code": "MM",
+  "flag": "🇲🇲",
+  "name": {
+   "tr": "Myanmar",
+   "en": "Myanmar"
+  },
+  "region": "east_asia",
+  "births": 0.9194,
+  "lifeExp": 67.0,
+  "marriageAge": 21,
+  "fertility": 2.1,
+  "gdp": 1.16,
+  "edu": 0.38,
+  "risk": 0.8,
+  "divorce": 0.4
+ },
+ {
+  "code": "KH",
+  "flag": "🇰🇭",
+  "name": {
+   "tr": "Kamboçya",
+   "en": "Cambodia"
+  },
+  "region": "east_asia",
+  "births": 0.3326,
+  "lifeExp": 70.0,
+  "marriageAge": 22,
+  "fertility": 2.4,
+  "gdp": 1.72,
+  "edu": 0.47,
+  "risk": 0.3,
+  "divorce": 0.8
+ },
+ {
+  "code": "LA",
+  "flag": "🇱🇦",
+  "name": {
+   "tr": "Laos",
+   "en": "Laos"
+  },
+  "region": "east_asia",
+  "births": 0.1661,
+  "lifeExp": 69.0,
+  "marriageAge": 22,
+  "fertility": 2.4,
+  "gdp": 2.05,
+  "edu": 0.49,
+  "risk": 0.35,
+  "divorce": 0.9
+ },
+ {
+  "code": "SG",
+  "flag": "🇸🇬",
+  "name": {
+   "tr": "Singapur",
+   "en": "Singapore"
+  },
+  "region": "east_asia",
+  "births": 0.0485,
+  "lifeExp": 84.0,
+  "marriageAge": 33,
+  "fertility": 1.0,
+  "gdp": 88.43,
+  "edu": 0.95,
+  "risk": 0.03,
+  "divorce": 1.2
+ },
+ {
+  "code": "BN",
+  "flag": "🇧🇳",
+  "name": {
+   "tr": "Brunei",
+   "en": "Brunei"
+  },
+  "region": "east_asia",
+  "births": 0.0063,
+  "lifeExp": 75.0,
+  "marriageAge": 30,
+  "fertility": 1.8,
+  "gdp": 36.63,
+  "edu": 0.94,
+  "risk": 0.05,
+  "divorce": 1.2
+ },
+ {
+  "code": "TL",
+  "flag": "🇹🇱",
+  "name": {
+   "tr": "Doğu Timor",
+   "en": "Timor-Leste"
+  },
+  "region": "east_asia",
+  "births": 0.0342,
+  "lifeExp": 69.0,
+  "marriageAge": 20,
+  "fertility": 3.8,
+  "gdp": 2.34,
+  "edu": 0.45,
+  "risk": 0.4,
+  "divorce": 1.2
+ },
+ {
+  "code": "BT",
+  "flag": "🇧🇹",
+  "name": {
+   "tr": "Butan",
+   "en": "Bhutan"
+  },
+  "region": "south_asia",
+  "births": 0.0097,
+  "lifeExp": 72.0,
+  "marriageAge": 23,
+  "fertility": 1.4,
+  "gdp": 3.71,
+  "edu": 0.56,
+  "risk": 0.2,
+  "divorce": 0.3
+ },
+ {
+  "code": "MV",
+  "flag": "🇲🇻",
+  "name": {
+   "tr": "Maldivler",
+   "en": "Maldives"
+  },
+  "region": "south_asia",
+  "births": 0.0074,
+  "lifeExp": 80.0,
+  "marriageAge": 26,
+  "fertility": 1.7,
+  "gdp": 11.77,
+  "edu": 0.83,
+  "risk": 0.15,
+  "divorce": 3.5
+ },
+ {
+  "code": "IL",
+  "flag": "🇮🇱",
+  "name": {
+   "tr": "İsrail",
+   "en": "Israel"
+  },
+  "region": "mena",
+  "births": 0.1883,
+  "lifeExp": 83.0,
+  "marriageAge": 31,
+  "fertility": 2.9,
+  "gdp": 54.93,
+  "edu": 0.95,
+  "risk": 0.4,
+  "divorce": 1.2
+ },
+ {
+  "code": "PS",
+  "flag": "🇵🇸",
+  "name": {
+   "tr": "Filistin",
+   "en": "Palestine"
+  },
+  "region": "mena",
+  "births": 0.1424,
+  "lifeExp": 74.0,
+  "marriageAge": 21,
+  "fertility": 3.6,
+  "gdp": 3.8,
+  "edu": 0.51,
+  "risk": 0.8,
+  "divorce": 1.5
+ },
+ {
+  "code": "LB",
+  "flag": "🇱🇧",
+  "name": {
+   "tr": "Lübnan",
+   "en": "Lebanon"
+  },
+  "region": "mena",
+  "births": 0.0859,
+  "lifeExp": 79.0,
+  "marriageAge": 23,
+  "fertility": 2.0,
+  "gdp": 3.65,
+  "edu": 0.59,
+  "risk": 0.5,
+  "divorce": 0.8
+ },
+ {
+  "code": "SY",
+  "flag": "🇸🇾",
+  "name": {
+   "tr": "Suriye",
+   "en": "Syria"
+  },
+  "region": "mena",
+  "births": 0.4517,
+  "lifeExp": 72.0,
+  "marriageAge": 21,
+  "fertility": 2.7,
+  "gdp": 0.9,
+  "edu": 0.36,
+  "risk": 0.9,
+  "divorce": 1.2
+ },
+ {
+  "code": "JO",
+  "flag": "🇯🇴",
+  "name": {
+   "tr": "Ürdün",
+   "en": "Jordan"
+  },
+  "region": "mena",
+  "births": 0.2471,
+  "lifeExp": 78.0,
+  "marriageAge": 22,
+  "fertility": 2.7,
+  "gdp": 4.32,
+  "edu": 0.61,
+  "risk": 0.3,
+  "divorce": 1.8
+ },
+ {
+  "code": "YE",
+  "flag": "🇾🇪",
+  "name": {
+   "tr": "Yemen",
+   "en": "Yemen"
+  },
+  "region": "mena",
+  "births": 1.1675,
+  "lifeExp": 66.0,
+  "marriageAge": 20,
+  "fertility": 3.7,
+  "gdp": 0.7,
+  "edu": 0.35,
+  "risk": 0.9,
+  "divorce": 0.8
+ },
+ {
+  "code": "OM",
+  "flag": "🇴🇲",
+  "name": {
+   "tr": "Umman",
+   "en": "Oman"
+  },
+  "region": "mena",
+  "births": 0.0871,
+  "lifeExp": 78.0,
+  "marriageAge": 27,
+  "fertility": 2.7,
+  "gdp": 24.24,
+  "edu": 0.9,
+  "risk": 0.15,
+  "divorce": 1.5
+ },
+ {
+  "code": "AE",
+  "flag": "🇦🇪",
+  "name": {
+   "tr": "Birleşik Arap Emirlikleri",
+   "en": "United Arab Emirates"
+  },
+  "region": "mena",
+  "births": 0.1038,
+  "lifeExp": 79.0,
+  "marriageAge": 31,
+  "fertility": 1.4,
+  "gdp": 50.33,
+  "edu": 0.95,
+  "risk": 0.08,
+  "divorce": 1.6
+ },
+ {
+  "code": "QA",
+  "flag": "🇶🇦",
+  "name": {
+   "tr": "Katar",
+   "en": "Qatar"
+  },
+  "region": "mena",
+  "births": 0.0261,
+  "lifeExp": 80.0,
+  "marriageAge": 33,
+  "fertility": 1.8,
+  "gdp": 88.72,
+  "edu": 0.95,
+  "risk": 0.05,
+  "divorce": 1.8
+ },
+ {
+  "code": "KW",
+  "flag": "🇰🇼",
+  "name": {
+   "tr": "Kuveyt",
+   "en": "Kuwait"
+  },
+  "region": "mena",
+  "births": 0.0478,
+  "lifeExp": 79.0,
+  "marriageAge": 30,
+  "fertility": 2.0,
+  "gdp": 39.83,
+  "edu": 0.94,
+  "risk": 0.1,
+  "divorce": 1.8
+ },
+ {
+  "code": "BH",
+  "flag": "🇧🇭",
+  "name": {
+   "tr": "Bahreyn",
+   "en": "Bahrain"
+  },
+  "region": "mena",
+  "births": 0.0182,
+  "lifeExp": 80.0,
+  "marriageAge": 29,
+  "fertility": 1.8,
+  "gdp": 29.11,
+  "edu": 0.94,
+  "risk": 0.1,
+  "divorce": 1.6
+ },
+ {
+  "code": "CY",
+  "flag": "🇨🇾",
+  "name": {
+   "tr": "Kıbrıs",
+   "en": "Cyprus"
+  },
+  "region": "west",
+  "births": 0.0137,
+  "lifeExp": 81.0,
+  "marriageAge": 30,
+  "fertility": 1.3,
+  "gdp": 21.97,
+  "edu": 0.94,
+  "risk": 0.1,
+  "divorce": 1.8
+ },
+ {
+  "code": "BY",
+  "flag": "🇧🇾",
+  "name": {
+   "tr": "Belarus",
+   "en": "Belarus"
+  },
+  "region": "west",
+  "births": 0.0857,
+  "lifeExp": 74.0,
+  "marriageAge": 24,
+  "fertility": 1.3,
+  "gdp": 7.99,
+  "edu": 0.72,
+  "risk": 0.2,
+  "divorce": 3.0
+ },
+ {
+  "code": "MD",
+  "flag": "🇲🇩",
+  "name": {
+   "tr": "Moldova",
+   "en": "Moldova"
+  },
+  "region": "west",
+  "births": 0.0314,
+  "lifeExp": 72.0,
+  "marriageAge": 24,
+  "fertility": 1.7,
+  "gdp": 5.74,
+  "edu": 0.68,
+  "risk": 0.3,
+  "divorce": 2.4
+ },
+ {
+  "code": "RO",
+  "flag": "🇷🇴",
+  "name": {
+   "tr": "Romanya",
+   "en": "Romania"
+  },
+  "region": "west",
+  "births": 0.1772,
+  "lifeExp": 76.0,
+  "marriageAge": 27,
+  "fertility": 1.7,
+  "gdp": 15.69,
+  "edu": 0.88,
+  "risk": 0.12,
+  "divorce": 1.2
+ },
+ {
+  "code": "BG",
+  "flag": "🇧🇬",
+  "name": {
+   "tr": "Bulgaristan",
+   "en": "Bulgaria"
+  },
+  "region": "west",
+  "births": 0.055,
+  "lifeExp": 75.0,
+  "marriageAge": 26,
+  "fertility": 1.6,
+  "gdp": 13.97,
+  "edu": 0.86,
+  "risk": 0.12,
+  "divorce": 1.5
+ },
+ {
+  "code": "HU",
+  "flag": "🇭🇺",
+  "name": {
+   "tr": "Macaristan",
+   "en": "Hungary"
+  },
+  "region": "west",
+  "births": 0.0932,
+  "lifeExp": 77.0,
+  "marriageAge": 28,
+  "fertility": 1.5,
+  "gdp": 18.43,
+  "edu": 0.91,
+  "risk": 0.1,
+  "divorce": 2.0
+ },
+ {
+  "code": "CZ",
+  "flag": "🇨🇿",
+  "name": {
+   "tr": "Çekya",
+   "en": "Czechia"
+  },
+  "region": "west",
+  "births": 0.1131,
+  "lifeExp": 80.0,
+  "marriageAge": 29,
+  "fertility": 1.6,
+  "gdp": 27.23,
+  "edu": 0.94,
+  "risk": 0.06,
+  "divorce": 2.2
+ },
+ {
+  "code": "SK",
+  "flag": "🇸🇰",
+  "name": {
+   "tr": "Slovakya",
+   "en": "Slovakia"
+  },
+  "region": "west",
+  "births": 0.0565,
+  "lifeExp": 78.0,
+  "marriageAge": 28,
+  "fertility": 1.6,
+  "gdp": 21.28,
+  "edu": 0.91,
+  "risk": 0.08,
+  "divorce": 1.7
+ },
+ {
+  "code": "AT",
+  "flag": "🇦🇹",
+  "name": {
+   "tr": "Avusturya",
+   "en": "Austria"
+  },
+  "region": "west",
+  "births": 0.0868,
+  "lifeExp": 82.0,
+  "marriageAge": 32,
+  "fertility": 1.5,
+  "gdp": 52.08,
+  "edu": 0.95,
+  "risk": 0.05,
+  "divorce": 1.9
+ },
+ {
+  "code": "CH",
+  "flag": "🇨🇭",
+  "name": {
+   "tr": "İsviçre",
+   "en": "Switzerland"
+  },
+  "region": "west",
+  "births": 0.0904,
+  "lifeExp": 84.0,
+  "marriageAge": 33,
+  "fertility": 1.5,
+  "gdp": 93.25,
+  "edu": 0.95,
+  "risk": 0.03,
+  "divorce": 2.0
+ },
+ {
+  "code": "BE",
+  "flag": "🇧🇪",
+  "name": {
+   "tr": "Belçika",
+   "en": "Belgium"
+  },
+  "region": "west",
+  "births": 0.1191,
+  "lifeExp": 82.0,
+  "marriageAge": 32,
+  "fertility": 1.6,
+  "gdp": 49.97,
+  "edu": 0.95,
+  "risk": 0.06,
+  "divorce": 2.2
+ },
+ {
+  "code": "LU",
+  "flag": "🇱🇺",
+  "name": {
+   "tr": "Lüksemburg",
+   "en": "Luxembourg"
+  },
+  "region": "west",
+  "births": 0.0069,
+  "lifeExp": 83.0,
+  "marriageAge": 33,
+  "fertility": 1.4,
+  "gdp": 125.01,
+  "edu": 0.95,
+  "risk": 0.03,
+  "divorce": 2.2
+ },
+ {
+  "code": "IE",
+  "flag": "🇮🇪",
+  "name": {
+   "tr": "İrlanda",
+   "en": "Ireland"
+  },
+  "region": "west",
+  "births": 0.0605,
+  "lifeExp": 82.0,
+  "marriageAge": 33,
+  "fertility": 1.7,
+  "gdp": 102.27,
+  "edu": 0.95,
+  "risk": 0.04,
+  "divorce": 0.8
+ },
+ {
+  "code": "PT",
+  "flag": "🇵🇹",
+  "name": {
+   "tr": "Portekiz",
+   "en": "Portugal"
+  },
+  "region": "west",
+  "births": 0.0803,
+  "lifeExp": 82.0,
+  "marriageAge": 29,
+  "fertility": 1.4,
+  "gdp": 24.46,
+  "edu": 0.93,
+  "risk": 0.06,
+  "divorce": 2.0
+ },
+ {
+  "code": "DK",
+  "flag": "🇩🇰",
+  "name": {
+   "tr": "Danimarka",
+   "en": "Denmark"
+  },
+  "region": "west",
+  "births": 0.0638,
+  "lifeExp": 82.0,
+  "marriageAge": 32,
+  "fertility": 1.5,
+  "gdp": 67.79,
+  "edu": 0.95,
+  "risk": 0.03,
+  "divorce": 2.0
+ },
+ {
+  "code": "NO",
+  "flag": "🇳🇴",
+  "name": {
+   "tr": "Norveç",
+   "en": "Norway"
+  },
+  "region": "west",
+  "births": 0.0568,
+  "lifeExp": 83.0,
+  "marriageAge": 33,
+  "fertility": 1.4,
+  "gdp": 108.8,
+  "edu": 0.95,
+  "risk": 0.03,
+  "divorce": 2.0
+ },
+ {
+  "code": "FI",
+  "flag": "🇫🇮",
+  "name": {
+   "tr": "Finlandiya",
+   "en": "Finland"
+  },
+  "region": "west",
+  "births": 0.05,
+  "lifeExp": 82.0,
+  "marriageAge": 32,
+  "fertility": 1.3,
+  "gdp": 50.73,
+  "edu": 0.95,
+  "risk": 0.04,
+  "divorce": 2.0
+ },
+ {
+  "code": "IS",
+  "flag": "🇮🇸",
+  "name": {
+   "tr": "İzlanda",
+   "en": "Iceland"
+  },
+  "region": "west",
+  "births": 0.005,
+  "lifeExp": 83.0,
+  "marriageAge": 32,
+  "fertility": 1.6,
+  "gdp": 75.14,
+  "edu": 0.95,
+  "risk": 0.02,
+  "divorce": 1.8
+ },
+ {
+  "code": "EE",
+  "flag": "🇪🇪",
+  "name": {
+   "tr": "Estonya",
+   "en": "Estonia"
+  },
+  "region": "west",
+  "births": 0.0135,
+  "lifeExp": 78.0,
+  "marriageAge": 29,
+  "fertility": 1.4,
+  "gdp": 28.11,
+  "edu": 0.93,
+  "risk": 0.08,
+  "divorce": 2.4
+ },
+ {
+  "code": "LV",
+  "flag": "🇱🇻",
+  "name": {
+   "tr": "Letonya",
+   "en": "Latvia"
+  },
+  "region": "west",
+  "births": 0.0173,
+  "lifeExp": 76.0,
+  "marriageAge": 28,
+  "fertility": 1.5,
+  "gdp": 21.51,
+  "edu": 0.91,
+  "risk": 0.08,
+  "divorce": 2.5
+ },
+ {
+  "code": "LT",
+  "flag": "🇱🇹",
+  "name": {
+   "tr": "Litvanya",
+   "en": "Lithuania"
+  },
+  "region": "west",
+  "births": 0.0235,
+  "lifeExp": 76.0,
+  "marriageAge": 29,
+  "fertility": 1.2,
+  "gdp": 25.08,
+  "edu": 0.92,
+  "risk": 0.08,
+  "divorce": 2.5
+ },
+ {
+  "code": "HR",
+  "flag": "🇭🇷",
+  "name": {
+   "tr": "Hırvatistan",
+   "en": "Croatia"
+  },
+  "region": "west",
+  "births": 0.0362,
+  "lifeExp": 78.0,
+  "marriageAge": 27,
+  "fertility": 1.5,
+  "gdp": 18.67,
+  "edu": 0.89,
+  "risk": 0.1,
+  "divorce": 1.1
+ },
+ {
+  "code": "SI",
+  "flag": "🇸🇮",
+  "name": {
+   "tr": "Slovenya",
+   "en": "Slovenia"
+  },
+  "region": "west",
+  "births": 0.019,
+  "lifeExp": 81.0,
+  "marriageAge": 29,
+  "fertility": 1.6,
+  "gdp": 28.44,
+  "edu": 0.94,
+  "risk": 0.05,
+  "divorce": 1.3
+ },
+ {
+  "code": "RS",
+  "flag": "🇷🇸",
+  "name": {
+   "tr": "Sırbistan",
+   "en": "Serbia"
+  },
+  "region": "west",
+  "births": 0.0606,
+  "lifeExp": 76.0,
+  "marriageAge": 25,
+  "fertility": 1.5,
+  "gdp": 9.54,
+  "edu": 0.8,
+  "risk": 0.15,
+  "divorce": 1.0
+ },
+ {
+  "code": "BA",
+  "flag": "🇧🇦",
+  "name": {
+   "tr": "Bosna-Hersek",
+   "en": "Bosnia and Herzegovina"
+  },
+  "region": "west",
+  "births": 0.027,
+  "lifeExp": 77.0,
+  "marriageAge": 24,
+  "fertility": 1.4,
+  "gdp": 7.66,
+  "edu": 0.73,
+  "risk": 0.2,
+  "divorce": 0.8
+ },
+ {
+  "code": "ME",
+  "flag": "🇲🇪",
+  "name": {
+   "tr": "Karadağ",
+   "en": "Montenegro"
+  },
+  "region": "west",
+  "births": 0.0071,
+  "lifeExp": 77.0,
+  "marriageAge": 25,
+  "fertility": 1.7,
+  "gdp": 9.99,
+  "edu": 0.8,
+  "risk": 0.12,
+  "divorce": 0.8
+ },
+ {
+  "code": "MK",
+  "flag": "🇲🇰",
+  "name": {
+   "tr": "Kuzey Makedonya",
+   "en": "North Macedonia"
+  },
+  "region": "west",
+  "births": 0.0187,
+  "lifeExp": 76.0,
+  "marriageAge": 24,
+  "fertility": 1.5,
+  "gdp": 7.49,
+  "edu": 0.72,
+  "risk": 0.18,
+  "divorce": 0.8
+ },
+ {
+  "code": "AL",
+  "flag": "🇦🇱",
+  "name": {
+   "tr": "Arnavutluk",
+   "en": "Albania"
+  },
+  "region": "west",
+  "births": 0.0251,
+  "lifeExp": 79.0,
+  "marriageAge": 24,
+  "fertility": 1.4,
+  "gdp": 7.72,
+  "edu": 0.74,
+  "risk": 0.15,
+  "divorce": 0.9
+ },
+ {
+  "code": "XK",
+  "flag": "🇽🇰",
+  "name": {
+   "tr": "Kosova",
+   "en": "Kosovo"
+  },
+  "region": "west",
+  "births": 0.0197,
+  "lifeExp": 77.0,
+  "marriageAge": 24,
+  "fertility": 1.6,
+  "gdp": 5.29,
+  "edu": 0.68,
+  "risk": 0.2,
+  "divorce": 0.5
+ },
+ {
+  "code": "MT",
+  "flag": "🇲🇹",
+  "name": {
+   "tr": "Malta",
+   "en": "Malta"
+  },
+  "region": "west",
+  "births": 0.0045,
+  "lifeExp": 83.0,
+  "marriageAge": 30,
+  "fertility": 1.1,
+  "gdp": 34.56,
+  "edu": 0.94,
+  "risk": 0.05,
+  "divorce": 0.4
+ },
+ {
+  "code": "AD",
+  "flag": "🇦🇩",
+  "name": {
+   "tr": "Andorra",
+   "en": "Andorra"
+  },
+  "region": "west",
+  "births": 0.0006,
+  "lifeExp": 82.0,
+  "marriageAge": 31,
+  "fertility": 1.2,
+  "gdp": 42.41,
+  "edu": 0.95,
+  "risk": 0.02,
+  "divorce": 1.5
+ },
+ {
+  "code": "LI",
+  "flag": "🇱🇮",
+  "name": {
+   "tr": "Lihtenştayn",
+   "en": "Liechtenstein"
+  },
+  "region": "west",
+  "births": 0.0004,
+  "lifeExp": 83.0,
+  "marriageAge": 33,
+  "fertility": 1.5,
+  "gdp": 186.48,
+  "edu": 0.95,
+  "risk": 0.02,
+  "divorce": 1.8
+ },
+ {
+  "code": "MC",
+  "flag": "🇲🇨",
+  "name": {
+   "tr": "Monako",
+   "en": "Monaco"
+  },
+  "region": "west",
+  "births": 0.0002,
+  "lifeExp": 86.0,
+  "marriageAge": 33,
+  "fertility": 1.5,
+  "gdp": 225.63,
+  "edu": 0.95,
+  "risk": 0.02,
+  "divorce": 1.5
+ },
+ {
+  "code": "SM",
+  "flag": "🇸🇲",
+  "name": {
+   "tr": "San Marino",
+   "en": "San Marino"
+  },
+  "region": "west",
+  "births": 0.0002,
+  "lifeExp": 84.0,
+  "marriageAge": 31,
+  "fertility": 1.2,
+  "gdp": 50.0,
+  "edu": 0.95,
+  "risk": 0.02,
+  "divorce": 1.5
+ },
+ {
+  "code": "CU",
+  "flag": "🇨🇺",
+  "name": {
+   "tr": "Küba",
+   "en": "Cuba"
+  },
+  "region": "latam",
+  "births": 0.0987,
+  "lifeExp": 78.0,
+  "marriageAge": 25,
+  "fertility": 1.5,
+  "gdp": 9.0,
+  "edu": 0.76,
+  "risk": 0.25,
+  "divorce": 2.5
+ },
+ {
+  "code": "DO",
+  "flag": "🇩🇴",
+  "name": {
+   "tr": "Dominik Cumhuriyeti",
+   "en": "Dominican Republic"
+  },
+  "region": "latam",
+  "births": 0.207,
+  "lifeExp": 74.0,
+  "marriageAge": 25,
+  "fertility": 2.2,
+  "gdp": 10.11,
+  "edu": 0.79,
+  "risk": 0.3,
+  "divorce": 2.0
+ },
+ {
+  "code": "HT",
+  "flag": "🇭🇹",
+  "name": {
+   "tr": "Haiti",
+   "en": "Haiti"
+  },
+  "region": "latam",
+  "births": 0.2703,
+  "lifeExp": 64.0,
+  "marriageAge": 21,
+  "fertility": 2.7,
+  "gdp": 1.76,
+  "edu": 0.41,
+  "risk": 0.85,
+  "divorce": 1.2
+ },
+ {
+  "code": "JM",
+  "flag": "🇯🇲",
+  "name": {
+   "tr": "Jamaika",
+   "en": "Jamaica"
+  },
+  "region": "latam",
+  "births": 0.0333,
+  "lifeExp": 71.0,
+  "marriageAge": 24,
+  "fertility": 1.4,
+  "gdp": 6.02,
+  "edu": 0.67,
+  "risk": 0.4,
+  "divorce": 1.0
+ },
+ {
+  "code": "TT",
+  "flag": "🇹🇹",
+  "name": {
+   "tr": "Trinidad ve Tobago",
+   "en": "Trinidad and Tobago"
+  },
+  "region": "latam",
+  "births": 0.016,
+  "lifeExp": 74.0,
+  "marriageAge": 27,
+  "fertility": 1.6,
+  "gdp": 22.0,
+  "edu": 0.88,
+  "risk": 0.4,
+  "divorce": 1.3
+ },
+ {
+  "code": "BS",
+  "flag": "🇧🇸",
+  "name": {
+   "tr": "Bahamalar",
+   "en": "Bahamas"
+  },
+  "region": "latam",
+  "births": 0.0045,
+  "lifeExp": 74.0,
+  "marriageAge": 30,
+  "fertility": 1.4,
+  "gdp": 33.04,
+  "edu": 0.94,
+  "risk": 0.2,
+  "divorce": 1.0
+ },
+ {
+  "code": "BB",
+  "flag": "🇧🇧",
+  "name": {
+   "tr": "Barbados",
+   "en": "Barbados"
+  },
+  "region": "latam",
+  "births": 0.0031,
+  "lifeExp": 79.0,
+  "marriageAge": 28,
+  "fertility": 1.6,
+  "gdp": 20.69,
+  "edu": 0.9,
+  "risk": 0.1,
+  "divorce": 1.2
+ },
+ {
+  "code": "BZ",
+  "flag": "🇧🇿",
+  "name": {
+   "tr": "Belize",
+   "en": "Belize"
+  },
+  "region": "latam",
+  "births": 0.0072,
+  "lifeExp": 74.0,
+  "marriageAge": 24,
+  "fertility": 2.0,
+  "gdp": 7.03,
+  "edu": 0.68,
+  "risk": 0.3,
+  "divorce": 1.2
+ },
+ {
+  "code": "GT",
+  "flag": "🇬🇹",
+  "name": {
+   "tr": "Guatemala",
+   "en": "Guatemala"
+  },
+  "region": "latam",
+  "births": 0.3769,
+  "lifeExp": 71.0,
+  "marriageAge": 23,
+  "fertility": 2.4,
+  "gdp": 5.32,
+  "edu": 0.65,
+  "risk": 0.5,
+  "divorce": 1.2
+ },
+ {
+  "code": "HN",
+  "flag": "🇭🇳",
+  "name": {
+   "tr": "Honduras",
+   "en": "Honduras"
+  },
+  "region": "latam",
+  "births": 0.2205,
+  "lifeExp": 71.0,
+  "marriageAge": 22,
+  "fertility": 2.4,
+  "gdp": 3.0,
+  "edu": 0.55,
+  "risk": 0.55,
+  "divorce": 1.2
+ },
+ {
+  "code": "SV",
+  "flag": "🇸🇻",
+  "name": {
+   "tr": "El Salvador",
+   "en": "El Salvador"
+  },
+  "region": "latam",
+  "births": 0.1006,
+  "lifeExp": 72.0,
+  "marriageAge": 23,
+  "fertility": 1.8,
+  "gdp": 5.09,
+  "edu": 0.65,
+  "risk": 0.55,
+  "divorce": 1.2
+ },
+ {
+  "code": "NI",
+  "flag": "🇳🇮",
+  "name": {
+   "tr": "Nikaragua",
+   "en": "Nicaragua"
+  },
+  "region": "latam",
+  "births": 0.138,
+  "lifeExp": 74.0,
+  "marriageAge": 22,
+  "fertility": 2.3,
+  "gdp": 2.33,
+  "edu": 0.51,
+  "risk": 0.4,
+  "divorce": 1.2
+ },
+ {
+  "code": "CR",
+  "flag": "🇨🇷",
+  "name": {
+   "tr": "Kosta Rika",
+   "en": "Costa Rica"
+  },
+  "region": "latam",
+  "births": 0.0603,
+  "lifeExp": 80.0,
+  "marriageAge": 27,
+  "fertility": 1.5,
+  "gdp": 13.63,
+  "edu": 0.88,
+  "risk": 0.15,
+  "divorce": 1.2
+ },
+ {
+  "code": "PA",
+  "flag": "🇵🇦",
+  "name": {
+   "tr": "Panama",
+   "en": "Panama"
+  },
+  "region": "latam",
+  "births": 0.0779,
+  "lifeExp": 79.0,
+  "marriageAge": 27,
+  "fertility": 2.3,
+  "gdp": 17.39,
+  "edu": 0.89,
+  "risk": 0.25,
+  "divorce": 1.2
+ },
+ {
+  "code": "VE",
+  "flag": "🇻🇪",
+  "name": {
+   "tr": "Venezuela",
+   "en": "Venezuela"
+  },
+  "region": "latam",
+  "births": 0.4479,
+  "lifeExp": 72.0,
+  "marriageAge": 23,
+  "fertility": 2.2,
+  "gdp": 4.0,
+  "edu": 0.59,
+  "risk": 0.6,
+  "divorce": 1.2
+ },
+ {
+  "code": "EC",
+  "flag": "🇪🇨",
+  "name": {
+   "tr": "Ekvador",
+   "en": "Ecuador"
+  },
+  "region": "latam",
+  "births": 0.2997,
+  "lifeExp": 77.0,
+  "marriageAge": 24,
+  "fertility": 2.0,
+  "gdp": 6.54,
+  "edu": 0.68,
+  "risk": 0.45,
+  "divorce": 1.2
+ },
+ {
+  "code": "BO",
+  "flag": "🇧🇴",
+  "name": {
+   "tr": "Bolivya",
+   "en": "Bolivia"
+  },
+  "region": "latam",
+  "births": 0.2637,
+  "lifeExp": 69.0,
+  "marriageAge": 22,
+  "fertility": 2.5,
+  "gdp": 3.64,
+  "edu": 0.58,
+  "risk": 0.4,
+  "divorce": 1.2
+ },
+ {
+  "code": "PY",
+  "flag": "🇵🇾",
+  "name": {
+   "tr": "Paraguay",
+   "en": "Paraguay"
+  },
+  "region": "latam",
+  "births": 0.1394,
+  "lifeExp": 74.0,
+  "marriageAge": 23,
+  "fertility": 2.4,
+  "gdp": 6.21,
+  "edu": 0.67,
+  "risk": 0.3,
+  "divorce": 1.2
+ },
+ {
+  "code": "UY",
+  "flag": "🇺🇾",
+  "name": {
+   "tr": "Uruguay",
+   "en": "Uruguay"
+  },
+  "region": "latam",
+  "births": 0.0355,
+  "lifeExp": 78.0,
+  "marriageAge": 28,
+  "fertility": 1.5,
+  "gdp": 20.69,
+  "edu": 0.91,
+  "risk": 0.1,
+  "divorce": 1.2
+ },
+ {
+  "code": "GY",
+  "flag": "🇬🇾",
+  "name": {
+   "tr": "Guyana",
+   "en": "Guyana"
+  },
+  "region": "latam",
+  "births": 0.0167,
+  "lifeExp": 70.0,
+  "marriageAge": 25,
+  "fertility": 2.4,
+  "gdp": 17.91,
+  "edu": 0.8,
+  "risk": 0.3,
+  "divorce": 1.2
+ },
+ {
+  "code": "SR",
+  "flag": "🇸🇷",
+  "name": {
+   "tr": "Surinam",
+   "en": "Suriname"
+  },
+  "region": "latam",
+  "births": 0.0113,
+  "lifeExp": 72.0,
+  "marriageAge": 23,
+  "fertility": 2.3,
+  "gdp": 5.81,
+  "edu": 0.67,
+  "risk": 0.3,
+  "divorce": 1.2
+ },
+ {
+  "code": "AG",
+  "flag": "🇦🇬",
+  "name": {
+   "tr": "Antigua ve Barbuda",
+   "en": "Antigua and Barbuda"
+  },
+  "region": "latam",
+  "births": 0.0011,
+  "lifeExp": 78.0,
+  "marriageAge": 27,
+  "fertility": 1.6,
+  "gdp": 20.12,
+  "edu": 0.89,
+  "risk": 0.1,
+  "divorce": 1.2
+ },
+ {
+  "code": "DM",
+  "flag": "🇩🇲",
+  "name": {
+   "tr": "Dominika",
+   "en": "Dominica"
+  },
+  "region": "latam",
+  "births": 0.0009,
+  "lifeExp": 74.0,
+  "marriageAge": 25,
+  "fertility": 1.7,
+  "gdp": 9.09,
+  "edu": 0.76,
+  "risk": 0.15,
+  "divorce": 1.2
+ },
+ {
+  "code": "GD",
+  "flag": "🇬🇩",
+  "name": {
+   "tr": "Grenada",
+   "en": "Grenada"
+  },
+  "region": "latam",
+  "births": 0.0019,
+  "lifeExp": 76.0,
+  "marriageAge": 25,
+  "fertility": 1.7,
+  "gdp": 10.47,
+  "edu": 0.78,
+  "risk": 0.1,
+  "divorce": 1.2
+ },
+ {
+  "code": "KN",
+  "flag": "🇰🇳",
+  "name": {
+   "tr": "Saint Kitts ve Nevis",
+   "en": "Saint Kitts and Nevis"
+  },
+  "region": "latam",
+  "births": 0.0006,
+  "lifeExp": 77.0,
+  "marriageAge": 28,
+  "fertility": 1.5,
+  "gdp": 21.01,
+  "edu": 0.91,
+  "risk": 0.08,
+  "divorce": 1.2
+ },
+ {
+  "code": "LC",
+  "flag": "🇱🇨",
+  "name": {
+   "tr": "Saint Lucia",
+   "en": "Saint Lucia"
+  },
+  "region": "latam",
+  "births": 0.0021,
+  "lifeExp": 76.0,
+  "marriageAge": 26,
+  "fertility": 1.4,
+  "gdp": 13.11,
+  "edu": 0.82,
+  "risk": 0.12,
+  "divorce": 1.2
+ },
+ {
+  "code": "VC",
+  "flag": "🇻🇨",
+  "name": {
+   "tr": "Saint Vincent ve Grenadinler",
+   "en": "Saint Vincent and the Grenadines"
+  },
+  "region": "latam",
+  "births": 0.0013,
+  "lifeExp": 73.0,
+  "marriageAge": 25,
+  "fertility": 1.8,
+  "gdp": 9.47,
+  "edu": 0.77,
+  "risk": 0.12,
+  "divorce": 1.2
+ },
+ {
+  "code": "TN",
+  "flag": "🇹🇳",
+  "name": {
+   "tr": "Tunus",
+   "en": "Tunisia"
+  },
+  "region": "mena",
+  "births": 0.195,
+  "lifeExp": 77.0,
+  "marriageAge": 23,
+  "fertility": 2.1,
+  "gdp": 3.68,
+  "edu": 0.58,
+  "risk": 0.3,
+  "divorce": 1.9
+ },
+ {
+  "code": "LY",
+  "flag": "🇱🇾",
+  "name": {
+   "tr": "Libya",
+   "en": "Libya"
+  },
+  "region": "mena",
+  "births": 0.1288,
+  "lifeExp": 73.0,
+  "marriageAge": 24,
+  "fertility": 2.3,
+  "gdp": 7.74,
+  "edu": 0.65,
+  "risk": 0.75,
+  "divorce": 1.6
+ },
+ {
+  "code": "SD",
+  "flag": "🇸🇩",
+  "name": {
+   "tr": "Sudan",
+   "en": "Sudan"
+  },
+  "region": "africa",
+  "births": 1.6591,
+  "lifeExp": 66.0,
+  "marriageAge": 20,
+  "fertility": 4.3,
+  "gdp": 1.05,
+  "edu": 0.35,
+  "risk": 0.9,
+  "divorce": 1.0
+ },
+ {
+  "code": "SS",
+  "flag": "🇸🇸",
+  "name": {
+   "tr": "Güney Sudan",
+   "en": "South Sudan"
+  },
+  "region": "africa",
+  "births": 0.3208,
+  "lifeExp": 55.0,
+  "marriageAge": 20,
+  "fertility": 4.1,
+  "gdp": 0.4,
+  "edu": 0.33,
+  "risk": 0.9,
+  "divorce": 0.8
+ },
+ {
+  "code": "SO",
+  "flag": "🇸🇴",
+  "name": {
+   "tr": "Somali",
+   "en": "Somalia"
+  },
+  "region": "africa",
+  "births": 0.7755,
+  "lifeExp": 57.0,
+  "marriageAge": 19,
+  "fertility": 6.0,
+  "gdp": 0.59,
+  "edu": 0.34,
+  "risk": 0.9,
+  "divorce": 0.8
+ },
+ {
+  "code": "DJ",
+  "flag": "🇩🇯",
+  "name": {
+   "tr": "Cibuti",
+   "en": "Djibouti"
+  },
+  "region": "africa",
+  "births": 0.0252,
+  "lifeExp": 63.0,
+  "marriageAge": 22,
+  "fertility": 2.7,
+  "gdp": 3.23,
+  "edu": 0.56,
+  "risk": 0.4,
+  "divorce": 1.5
+ },
+ {
+  "code": "ER",
+  "flag": "🇪🇷",
+  "name": {
+   "tr": "Eritre",
+   "en": "Eritrea"
+  },
+  "region": "africa",
+  "births": 0.0976,
+  "lifeExp": 67.0,
+  "marriageAge": 20,
+  "fertility": 3.7,
+  "gdp": 0.6,
+  "edu": 0.39,
+  "risk": 0.55,
+  "divorce": 0.8
+ },
+ {
+  "code": "RW",
+  "flag": "🇷🇼",
+  "name": {
+   "tr": "Ruanda",
+   "en": "Rwanda"
+  },
+  "region": "africa",
+  "births": 0.4092,
+  "lifeExp": 69.0,
+  "marriageAge": 20,
+  "fertility": 3.8,
+  "gdp": 0.98,
+  "edu": 0.42,
+  "risk": 0.35,
+  "divorce": 0.8
+ },
+ {
+  "code": "BI",
+  "flag": "🇧🇮",
+  "name": {
+   "tr": "Burundi",
+   "en": "Burundi"
+  },
+  "region": "africa",
+  "births": 0.4641,
+  "lifeExp": 62.0,
+  "marriageAge": 19,
+  "fertility": 5.1,
+  "gdp": 0.25,
+  "edu": 0.37,
+  "risk": 0.7,
+  "divorce": 0.8
+ },
+ {
+  "code": "MW",
+  "flag": "🇲🇼",
+  "name": {
+   "tr": "Malavi",
+   "en": "Malawi"
+  },
+  "region": "africa",
+  "births": 0.6759,
+  "lifeExp": 66.0,
+  "marriageAge": 20,
+  "fertility": 3.9,
+  "gdp": 0.64,
+  "edu": 0.39,
+  "risk": 0.45,
+  "divorce": 0.8
+ },
+ {
+  "code": "MZ",
+  "flag": "🇲🇿",
+  "name": {
+   "tr": "Mozambik",
+   "en": "Mozambique"
+  },
+  "region": "africa",
+  "births": 1.1952,
+  "lifeExp": 61.0,
+  "marriageAge": 19,
+  "fertility": 4.7,
+  "gdp": 0.56,
+  "edu": 0.39,
+  "risk": 0.65,
+  "divorce": 0.8
+ },
+ {
+  "code": "ZM",
+  "flag": "🇿🇲",
+  "name": {
+   "tr": "Zambiya",
+   "en": "Zambia"
+  },
+  "region": "africa",
+  "births": 0.6955,
+  "lifeExp": 62.0,
+  "marriageAge": 20,
+  "fertility": 4.2,
+  "gdp": 1.45,
+  "edu": 0.44,
+  "risk": 0.4,
+  "divorce": 0.8
+ },
+ {
+  "code": "ZW",
+  "flag": "🇿🇼",
+  "name": {
+   "tr": "Zimbabve",
+   "en": "Zimbabwe"
+  },
+  "region": "africa",
+  "births": 0.4907,
+  "lifeExp": 62.0,
+  "marriageAge": 20,
+  "fertility": 3.7,
+  "gdp": 1.7,
+  "edu": 0.44,
+  "risk": 0.55,
+  "divorce": 0.8
+ },
+ {
+  "code": "BW",
+  "flag": "🇧🇼",
+  "name": {
+   "tr": "Botsvana",
+   "en": "Botswana"
+  },
+  "region": "africa",
+  "births": 0.0575,
+  "lifeExp": 69.0,
+  "marriageAge": 24,
+  "fertility": 2.6,
+  "gdp": 8.33,
+  "edu": 0.72,
+  "risk": 0.25,
+  "divorce": 0.8
+ },
+ {
+  "code": "NA",
+  "flag": "🇳🇦",
+  "name": {
+   "tr": "Namibya",
+   "en": "Namibia"
+  },
+  "region": "africa",
+  "births": 0.0793,
+  "lifeExp": 65.0,
+  "marriageAge": 22,
+  "fertility": 3.2,
+  "gdp": 4.35,
+  "edu": 0.63,
+  "risk": 0.3,
+  "divorce": 0.8
+ },
+ {
+  "code": "AO",
+  "flag": "🇦🇴",
+  "name": {
+   "tr": "Angola",
+   "en": "Angola"
+  },
+  "region": "africa",
+  "births": 1.383,
+  "lifeExp": 62.0,
+  "marriageAge": 20,
+  "fertility": 5.1,
+  "gdp": 2.93,
+  "edu": 0.5,
+  "risk": 0.6,
+  "divorce": 0.8
+ },
+ {
+  "code": "MG",
+  "flag": "🇲🇬",
+  "name": {
+   "tr": "Madagaskar",
+   "en": "Madagascar"
+  },
+  "region": "africa",
+  "births": 0.942,
+  "lifeExp": 66.0,
+  "marriageAge": 20,
+  "fertility": 3.9,
+  "gdp": 0.5,
+  "edu": 0.39,
+  "risk": 0.5,
+  "divorce": 0.8
+ },
+ {
+  "code": "MU",
+  "flag": "🇲🇺",
+  "name": {
+   "tr": "Mauritius",
+   "en": "Mauritius"
+  },
+  "region": "africa",
+  "births": 0.013,
+  "lifeExp": 75.0,
+  "marriageAge": 25,
+  "fertility": 1.4,
+  "gdp": 10.24,
+  "edu": 0.8,
+  "risk": 0.08,
+  "divorce": 0.8
+ },
+ {
+  "code": "SC",
+  "flag": "🇸🇨",
+  "name": {
+   "tr": "Seyşeller",
+   "en": "Seychelles"
+  },
+  "region": "africa",
+  "births": 0.002,
+  "lifeExp": 74.0,
+  "marriageAge": 27,
+  "fertility": 2.0,
+  "gdp": 17.17,
+  "edu": 0.89,
+  "risk": 0.05,
+  "divorce": 0.8
+ },
+ {
+  "code": "KM",
+  "flag": "🇰🇲",
+  "name": {
+   "tr": "Komorlar",
+   "en": "Comoros"
+  },
+  "region": "africa",
+  "births": 0.0245,
+  "lifeExp": 66.0,
+  "marriageAge": 20,
+  "fertility": 4.2,
+  "gdp": 1.49,
+  "edu": 0.45,
+  "risk": 0.45,
+  "divorce": 0.8
+ },
+ {
+  "code": "LS",
+  "flag": "🇱🇸",
+  "name": {
+   "tr": "Lesotho",
+   "en": "Lesotho"
+  },
+  "region": "africa",
+  "births": 0.0597,
+  "lifeExp": 58.0,
+  "marriageAge": 21,
+  "fertility": 2.7,
+  "gdp": 1.0,
+  "edu": 0.43,
+  "risk": 0.45,
+  "divorce": 0.8
+ },
+ {
+  "code": "SZ",
+  "flag": "🇸🇿",
+  "name": {
+   "tr": "Esvatini",
+   "en": "Eswatini"
+  },
+  "region": "africa",
+  "births": 0.0294,
+  "lifeExp": 60.0,
+  "marriageAge": 22,
+  "fertility": 2.7,
+  "gdp": 3.93,
+  "edu": 0.59,
+  "risk": 0.4,
+  "divorce": 0.8
+ },
+ {
+  "code": "CM",
+  "flag": "🇨🇲",
+  "name": {
+   "tr": "Kamerun",
+   "en": "Cameroon"
+  },
+  "region": "africa",
+  "births": 0.9654,
+  "lifeExp": 63.0,
+  "marriageAge": 20,
+  "fertility": 4.3,
+  "gdp": 1.58,
+  "edu": 0.46,
+  "risk": 0.6,
+  "divorce": 0.8
+ },
+ {
+  "code": "CF",
+  "flag": "🇨🇫",
+  "name": {
+   "tr": "Orta Afrika Cumhuriyeti",
+   "en": "Central African Republic"
+  },
+  "region": "africa",
+  "births": 0.2176,
+  "lifeExp": 54.0,
+  "marriageAge": 19,
+  "fertility": 6.0,
+  "gdp": 0.47,
+  "edu": 0.34,
+  "risk": 0.9,
+  "divorce": 0.8
+ },
+ {
+  "code": "TD",
+  "flag": "🇹🇩",
+  "name": {
+   "tr": "Çad",
+   "en": "Chad"
+  },
+  "region": "africa",
+  "births": 0.8002,
+  "lifeExp": 53.0,
+  "marriageAge": 19,
+  "fertility": 6.3,
+  "gdp": 0.67,
+  "edu": 0.35,
+  "risk": 0.8,
+  "divorce": 0.8
+ },
+ {
+  "code": "NE",
+  "flag": "🇳🇪",
+  "name": {
+   "tr": "Nijer",
+   "en": "Niger"
+  },
+  "region": "africa",
+  "births": 1.1465,
+  "lifeExp": 62.0,
+  "marriageAge": 19,
+  "fertility": 6.7,
+  "gdp": 0.61,
+  "edu": 0.34,
+  "risk": 0.75,
+  "divorce": 0.8
+ },
+ {
+  "code": "ML",
+  "flag": "🇲🇱",
+  "name": {
+   "tr": "Mali",
+   "en": "Mali"
+  },
+  "region": "africa",
+  "births": 0.9608,
+  "lifeExp": 60.0,
+  "marriageAge": 19,
+  "fertility": 5.8,
+  "gdp": 0.81,
+  "edu": 0.36,
+  "risk": 0.85,
+  "divorce": 0.8
+ },
+ {
+  "code": "BF",
+  "flag": "🇧🇫",
+  "name": {
+   "tr": "Burkina Faso",
+   "en": "Burkina Faso"
+  },
+  "region": "africa",
+  "births": 0.8,
+  "lifeExp": 62.0,
+  "marriageAge": 19,
+  "fertility": 4.8,
+  "gdp": 0.84,
+  "edu": 0.36,
+  "risk": 0.8,
+  "divorce": 0.8
+ },
+ {
+  "code": "MR",
+  "flag": "🇲🇷",
+  "name": {
+   "tr": "Moritanya",
+   "en": "Mauritania"
+  },
+  "region": "africa",
+  "births": 0.1618,
+  "lifeExp": 65.0,
+  "marriageAge": 20,
+  "fertility": 4.5,
+  "gdp": 2.0,
+  "edu": 0.48,
+  "risk": 0.5,
+  "divorce": 0.8
+ },
+ {
+  "code": "SN",
+  "flag": "🇸🇳",
+  "name": {
+   "tr": "Senegal",
+   "en": "Senegal"
+  },
+  "region": "africa",
+  "births": 0.5749,
+  "lifeExp": 68.0,
+  "marriageAge": 20,
+  "fertility": 4.3,
+  "gdp": 1.56,
+  "edu": 0.46,
+  "risk": 0.35,
+  "divorce": 0.8
+ },
+ {
+  "code": "GM",
+  "flag": "🇬🇲",
+  "name": {
+   "tr": "Gambiya",
+   "en": "Gambia"
+  },
+  "region": "africa",
+  "births": 0.0877,
+  "lifeExp": 62.0,
+  "marriageAge": 19,
+  "fertility": 4.5,
+  "gdp": 0.83,
+  "edu": 0.41,
+  "risk": 0.35,
+  "divorce": 0.8
+ },
+ {
+  "code": "GW",
+  "flag": "🇬🇼",
+  "name": {
+   "tr": "Gine-Bissau",
+   "en": "Guinea-Bissau"
+  },
+  "region": "africa",
+  "births": 0.0655,
+  "lifeExp": 64.0,
+  "marriageAge": 20,
+  "fertility": 4.2,
+  "gdp": 0.81,
+  "edu": 0.41,
+  "risk": 0.55,
+  "divorce": 0.8
+ },
+ {
+  "code": "GN",
+  "flag": "🇬🇳",
+  "name": {
+   "tr": "Gine",
+   "en": "Guinea"
+  },
+  "region": "africa",
+  "births": 0.4838,
+  "lifeExp": 62.0,
+  "marriageAge": 20,
+  "fertility": 4.2,
+  "gdp": 1.49,
+  "edu": 0.45,
+  "risk": 0.6,
+  "divorce": 0.8
+ },
+ {
+  "code": "SL",
+  "flag": "🇸🇱",
+  "name": {
+   "tr": "Sierra Leone",
+   "en": "Sierra Leone"
+  },
+  "region": "africa",
+  "births": 0.2596,
+  "lifeExp": 62.0,
+  "marriageAge": 20,
+  "fertility": 3.8,
+  "gdp": 0.49,
+  "edu": 0.41,
+  "risk": 0.5,
+  "divorce": 0.8
+ },
+ {
+  "code": "LR",
+  "flag": "🇱🇷",
+  "name": {
+   "tr": "Liberya",
+   "en": "Liberia"
+  },
+  "region": "africa",
+  "births": 0.1681,
+  "lifeExp": 62.0,
+  "marriageAge": 20,
+  "fertility": 4.1,
+  "gdp": 0.74,
+  "edu": 0.4,
+  "risk": 0.5,
+  "divorce": 0.8
+ },
+ {
+  "code": "CI",
+  "flag": "🇨🇮",
+  "name": {
+   "tr": "Fildişi Sahili",
+   "en": "Côte d'Ivoire"
+  },
+  "region": "africa",
+  "births": 1.0314,
+  "lifeExp": 62.0,
+  "marriageAge": 20,
+  "fertility": 4.4,
+  "gdp": 2.31,
+  "edu": 0.52,
+  "risk": 0.5,
+  "divorce": 0.8
+ },
+ {
+  "code": "TG",
+  "flag": "🇹🇬",
+  "name": {
+   "tr": "Togo",
+   "en": "Togo"
+  },
+  "region": "africa",
+  "births": 0.257,
+  "lifeExp": 62.0,
+  "marriageAge": 20,
+  "fertility": 4.2,
+  "gdp": 1.01,
+  "edu": 0.42,
+  "risk": 0.45,
+  "divorce": 0.8
+ },
+ {
+  "code": "BJ",
+  "flag": "🇧🇯",
+  "name": {
+   "tr": "Benin",
+   "en": "Benin"
+  },
+  "region": "africa",
+  "births": 0.5037,
+  "lifeExp": 62.0,
+  "marriageAge": 19,
+  "fertility": 4.7,
+  "gdp": 1.27,
+  "edu": 0.45,
+  "risk": 0.4,
+  "divorce": 0.8
+ },
+ {
+  "code": "GA",
+  "flag": "🇬🇦",
+  "name": {
+   "tr": "Gabon",
+   "en": "Gabon"
+  },
+  "region": "africa",
+  "births": 0.066,
+  "lifeExp": 67.0,
+  "marriageAge": 23,
+  "fertility": 3.6,
+  "gdp": 8.67,
+  "edu": 0.74,
+  "risk": 0.3,
+  "divorce": 0.8
+ },
+ {
+  "code": "CG",
+  "flag": "🇨🇬",
+  "name": {
+   "tr": "Kongo Cumhuriyeti",
+   "en": "Republic of the Congo"
+  },
+  "region": "africa",
+  "births": 0.1852,
+  "lifeExp": 64.0,
+  "marriageAge": 20,
+  "fertility": 4.1,
+  "gdp": 2.62,
+  "edu": 0.51,
+  "risk": 0.5,
+  "divorce": 0.8
+ },
+ {
+  "code": "GQ",
+  "flag": "🇬🇶",
+  "name": {
+   "tr": "Ekvator Ginesi",
+   "en": "Equatorial Guinea"
+  },
+  "region": "africa",
+  "births": 0.055,
+  "lifeExp": 61.0,
+  "marriageAge": 22,
+  "fertility": 4.3,
+  "gdp": 7.48,
+  "edu": 0.72,
+  "risk": 0.4,
+  "divorce": 0.8
+ },
+ {
+  "code": "ST",
+  "flag": "🇸🇹",
+  "name": {
+   "tr": "São Tomé ve Príncipe",
+   "en": "São Tomé and Príncipe"
+  },
+  "region": "africa",
+  "births": 0.0064,
+  "lifeExp": 71.0,
+  "marriageAge": 20,
+  "fertility": 4.1,
+  "gdp": 2.4,
+  "edu": 0.51,
+  "risk": 0.25,
+  "divorce": 0.8
+ },
+ {
+  "code": "CV",
+  "flag": "🇨🇻",
+  "name": {
+   "tr": "Yeşilburun",
+   "en": "Cabo Verde"
+  },
+  "region": "africa",
+  "births": 0.0088,
+  "lifeExp": 74.0,
+  "marriageAge": 23,
+  "fertility": 2.1,
+  "gdp": 4.43,
+  "edu": 0.61,
+  "risk": 0.2,
+  "divorce": 0.8
+ },
+ {
+  "code": "NZ",
+  "flag": "🇳🇿",
+  "name": {
+   "tr": "Yeni Zelanda",
+   "en": "New Zealand"
+  },
+  "region": "west",
+  "births": 0.0583,
+  "lifeExp": 82.0,
+  "marriageAge": 31,
+  "fertility": 1.6,
+  "gdp": 48.55,
+  "edu": 0.95,
+  "risk": 0.03,
+  "divorce": 1.5
+ },
+ {
+  "code": "PG",
+  "flag": "🇵🇬",
+  "name": {
+   "tr": "Papua Yeni Gine",
+   "en": "Papua New Guinea"
+  },
+  "region": "east_asia",
+  "births": 0.2603,
+  "lifeExp": 66.0,
+  "marriageAge": 21,
+  "fertility": 3.1,
+  "gdp": 3.1,
+  "edu": 0.54,
+  "risk": 0.6,
+  "divorce": 0.3
+ },
+ {
+  "code": "FJ",
+  "flag": "🇫🇯",
+  "name": {
+   "tr": "Fiji",
+   "en": "Fiji"
+  },
+  "region": "east_asia",
+  "births": 0.0178,
+  "lifeExp": 68.0,
+  "marriageAge": 23,
+  "fertility": 2.4,
+  "gdp": 5.42,
+  "edu": 0.65,
+  "risk": 0.25,
+  "divorce": 0.5
+ },
+ {
+  "code": "SB",
+  "flag": "🇸🇧",
+  "name": {
+   "tr": "Solomon Adaları",
+   "en": "Solomon Islands"
+  },
+  "region": "east_asia",
+  "births": 0.0233,
+  "lifeExp": 71.0,
+  "marriageAge": 21,
+  "fertility": 3.9,
+  "gdp": 2.01,
+  "edu": 0.5,
+  "risk": 0.35,
+  "divorce": 1.2
+ },
+ {
+  "code": "VU",
+  "flag": "🇻🇺",
+  "name": {
+   "tr": "Vanuatu",
+   "en": "Vanuatu"
+  },
+  "region": "east_asia",
+  "births": 0.0092,
+  "lifeExp": 71.0,
+  "marriageAge": 21,
+  "fertility": 3.6,
+  "gdp": 3.27,
+  "edu": 0.54,
+  "risk": 0.3,
+  "divorce": 1.2
+ },
+ {
+  "code": "WS",
+  "flag": "🇼🇸",
+  "name": {
+   "tr": "Samoa",
+   "en": "Samoa"
+  },
+  "region": "east_asia",
+  "births": 0.0059,
+  "lifeExp": 73.0,
+  "marriageAge": 21,
+  "fertility": 3.8,
+  "gdp": 3.87,
+  "edu": 0.59,
+  "risk": 0.2,
+  "divorce": 1.2
+ },
+ {
+  "code": "TO",
+  "flag": "🇹🇴",
+  "name": {
+   "tr": "Tonga",
+   "en": "Tonga"
+  },
+  "region": "east_asia",
+  "births": 0.0024,
+  "lifeExp": 71.0,
+  "marriageAge": 22,
+  "fertility": 3.4,
+  "gdp": 4.76,
+  "edu": 0.63,
+  "risk": 0.2,
+  "divorce": 1.2
+ },
+ {
+  "code": "KI",
+  "flag": "🇰🇮",
+  "name": {
+   "tr": "Kiribati",
+   "en": "Kiribati"
+  },
+  "region": "east_asia",
+  "births": 0.0035,
+  "lifeExp": 68.0,
+  "marriageAge": 21,
+  "fertility": 3.5,
+  "gdp": 2.07,
+  "edu": 0.48,
+  "risk": 0.25,
+  "divorce": 1.2
+ },
+ {
+  "code": "FM",
+  "flag": "🇫🇲",
+  "name": {
+   "tr": "Mikronezya",
+   "en": "Micronesia"
+  },
+  "region": "east_asia",
+  "births": 0.0023,
+  "lifeExp": 70.0,
+  "marriageAge": 22,
+  "fertility": 3.0,
+  "gdp": 3.84,
+  "edu": 0.58,
+  "risk": 0.25,
+  "divorce": 1.2
+ },
+ {
+  "code": "MH",
+  "flag": "🇲🇭",
+  "name": {
+   "tr": "Marshall Adaları",
+   "en": "Marshall Islands"
+  },
+  "region": "east_asia",
+  "births": 0.0008,
+  "lifeExp": 66.0,
+  "marriageAge": 21,
+  "fertility": 3.7,
+  "gdp": 6.46,
+  "edu": 0.58,
+  "risk": 0.3,
+  "divorce": 1.2
+ },
+ {
+  "code": "PW",
+  "flag": "🇵🇼",
+  "name": {
+   "tr": "Palau",
+   "en": "Palau"
+  },
+  "region": "east_asia",
+  "births": 0.0002,
+  "lifeExp": 73.0,
+  "marriageAge": 26,
+  "fertility": 1.9,
+  "gdp": 13.65,
+  "edu": 0.86,
+  "risk": 0.15,
+  "divorce": 1.2
+ },
+ {
+  "code": "NR",
+  "flag": "🇳🇷",
+  "name": {
+   "tr": "Nauru",
+   "en": "Nauru"
+  },
+  "region": "east_asia",
+  "births": 0.0003,
+  "lifeExp": 64.0,
+  "marriageAge": 24,
+  "fertility": 3.5,
+  "gdp": 13.03,
+  "edu": 0.82,
+  "risk": 0.2,
+  "divorce": 1.2
+ },
+ {
+  "code": "TV",
+  "flag": "🇹🇻",
+  "name": {
+   "tr": "Tuvalu",
+   "en": "Tuvalu"
+  },
+  "region": "east_asia",
+  "births": 0.0002,
+  "lifeExp": 66.0,
+  "marriageAge": 23,
+  "fertility": 3.0,
+  "gdp": 5.91,
+  "edu": 0.65,
+  "risk": 0.3,
+  "divorce": 1.2
  }
 ]
