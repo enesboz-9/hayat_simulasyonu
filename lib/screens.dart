@@ -31,7 +31,10 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('🌍', style: TextStyle(fontSize: 72)),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(28),
+                      child: Image.asset('assets/images/logo.png', width: 120, height: 120),
+                    ),
                     const SizedBox(height: 12),
                     Text(
                       b('Hayat Simülasyonu', 'Life Simulator'),
