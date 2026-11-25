@@ -223,6 +223,26 @@ class GameEngine extends ChangeNotifier {
     final kid = ch.children.isEmpty
         ? b('çocuğun', 'your child')
         : ch.children[rng.nextInt(ch.children.length)].name;
+    final String parent;
+    if (ch.motherAlive && ch.fatherAlive) {
+      parent = rng.nextBool() ? b('annen', 'your mother') : b('baban', 'your father');
+    } else if (ch.motherAlive) {
+      parent = b('annen', 'your mother');
+    } else if (ch.fatherAlive) {
+      parent = b('baban', 'your father');
+    } else {
+      parent = b('ailen', 'your family');
+    }
+    final sibling = b('kardeşin', 'your sibling');
+    // Cümle yer tutucuyla başlıyorsa ilk harf büyük olsun.
+    final startsWithParent = s.startsWith('{parent}');
+    final startsWithSibling = s.startsWith('{sibling}');
+    String cap(String v) => v.isEmpty ? v : v[0].toUpperCase() + v.substring(1);
+    s = s
+        .replaceFirst('{parent}', startsWithParent ? cap(parent) : parent)
+        .replaceFirst('{sibling}', startsWithSibling ? cap(sibling) : sibling)
+        .replaceAll('{parent}', parent)
+        .replaceAll('{sibling}', sibling);
     return s
         .replaceAll('{country}', loc(ch.country.name, lang))
         .replaceAll('{spouse}', ch.spouse?.name ?? ch.partner?.name ?? b('eşin', 'your partner'))
