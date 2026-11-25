@@ -1,88 +1,15 @@
-# Hayat Simülasyonu
+# Life Simulator – Support Site
 
-Rastgele bir ülkede doğ, seçimlerinle ve şansınla bir hayat yaşa. Flutter, harici paket yok.
+## Yayına alma (GitHub Pages)
+1. GitHub'da yeni bir **public** repo aç: `hayat-simulasyonu-support`
+2. Bu klasördeki tüm dosyaları repoya yükle (`.nojekyll` dahil)
+3. Repo → Settings → Pages → Source: **Deploy from a branch**, Branch: `main` / `(root)` → Save
+4. 1–2 dakika sonra site açılır: `https://enesboz-9.github.io/hayat-simulasyonu-support/`
 
-## Kurulum
+## App Store Connect
+- Support URL: `https://enesboz-9.github.io/hayat-simulasyonu-support/`
+- Privacy Policy URL: `https://enesboz-9.github.io/hayat-simulasyonu-support/privacy.html`
 
-```bash
-cd hayat_simulasyonu
-flutter create .          # android/ios klasörlerini üretir (lib ve pubspec'e dokunmaz)
-flutter pub get
-flutter run
-flutter test              # 800 hayatı simüle eder, ülke bazında ortalama ölüm yaşını yazar
-```
-
-## Nasıl çalışır
-
-- **Doğum:** Ülke, gerçek yıllık doğum sayısıyla orantılı seçilir (`countries.json` → `births`, milyon). Yani bir ülkede doğma ihtimali = ülkenin doğum sayısı / dünya doğum sayısı (Hindistan ≈ %17). `births` = 2022 nüfusu × ham doğum hızı (Dünya Bankası WDI, UN WPP tabanlı); toplam ≈ 136 milyon. Kişi başı gelir (`gdp`) 2022 nominal GSYİH / nüfus. Tayvan ve Dünya Bankası’nda bulunmayan birkaç ülke elle tahminidir; yaşam beklentisi, doğurganlık ve boşanma değerleri hâlâ yaklaşık değerlerdir.
-- **Ölüm:** Ülkenin yaşam beklentisine dayalı bir eğri; sağlık, gizli şans ve yaşam tarzıyla (sigara, spor) çarpılır. Ölüm sırasında şansa bağlı "kıl payı kurtulma" ihtimali vardır. Yani ortalama istatistiktir, sonuç değil. **Sağlık iyileşmesi:** hastalık/kaza hasarı her yıl %15 oranında kalıcı düzeye (`healthBase`) geri döner; yaşlanma, sigara ve iş yükü ise düzeyin kendisini düşürür. Yaşlılık ölüm terimi (`0.0045 × e^(0.1 × (yaş − (beklenti − 20)))`) rastgele seçimlerle oynanan hayatların ortalama ölüm yaşını ülke beklentisine yaklaştıracak şekilde ayarlandı (`simulation_test.dart` bunu denetler). Eş ve ebeveynler aynı eğriyi sabit sağlık 60 ile kullanır.
-- **Seçimler:** Evlilik adayları, çocuk, iş teklifleri, boşanma (`engine.dart`) ve JSON'daki karar olayları.
-- **Evlilik adayları:** Rastgele üretilir (çekicilik, zekâ, karakter, meslek, **gelir ve varlık**). Eşin varlığı (borçluysa borcu) evlilikle senin varlığına karışır; teklifin kabul edilme ihtimalini de etkiler. Gizli bir özellik (sadık, aldatan, savurgan...) birkaç yıl sonra ortaya çıkar.
-- **Boşanma:** Yıllık kriz ihtimali `countries.json` → `divorce` (yaklaşık % / evli çift / yıl) değerinden başlar; evlilik süresi, evlenme yaşı, çocuk, para durumu, eğitim, gizli ilişki ve ilişki gücüyle çarpılır (`divorceChance`). Krizde boşan / terapi / görmezden gel seçenekleri çıkar. "Boşan" dersen **anlaşmalı** (ucuz, tazminat pazarlıkla %40 düşer) ya da **çekişmeli** (pahalı, dava şansa göre kazanılır/kaybedilir) seçeneği sorulur. Değerler oyun için yaklaşık rakamlardır, resmi istatistik değildir.
-- **Tazminat / nafaka (`lib/divorce_law.dart`):** Kusur kimdeyse ona göre işler.
-  - **Suçsuz oyuncu** (eş aldattı vb.): hiçbir ülkede tazminat/nafaka **ödemez**, her ülkede tazminat **alır**; dava masrafını da çoğunlukla kusurlu eş yüklenir.
-  - **Kusurlu oyuncu** (gizli ilişkisi ortaya çıktı): kusurun hukuken önemli olduğu ülkelerde (Türkiye, Fransa, Çin, Japonya/Kore, Hindistan, İslam hukuku ülkeleri, Afrika vb.) tazminat öder; ABD, Anglosakson, İskandinav gibi kusursuz boşanma ülkelerinde ek tazminat yoktur.
-  - **Kusur yoksa:** ülkenin olağan senaryosu: mal paylaşımı (ortak mal rejimi ya da ayrı mal rejimi), gelir farkına göre nafaka, İslam hukukunda mehir + iddet nafakası. Ödemeler oyuncunun gücünü aşmaz.
-  - Her ülkenin rejimi `regimeFor` içindedir; rakamlar oyunlaştırılmış yaklaşık değerlerdir, hukuki tavsiye değildir.
-- **Aldatma:** Evliyken gizli ilişki fırsatı çıkabilir; ilişki yıllar içinde ortaya çıkma riski taşır. Eşin de seni aldatabilir (`cheater` karakterinde çok daha sık). Her iki durumda affet / boşan / terapi / inkâr gibi seçimler çıkar.
-- **Mülakat:** Kabul ihtimali `_hireChance` ile hesaplanır ve seçenekte yüzde olarak görünür. Zekâ, şans, sosyallik, eğitim fazlalığı, deneyim ve uzun işsizlik ihtimali artırır.
-- **Başarılar / rozetler (`lib/achievements.dart`):** 64 başarı (bronz / gümüş / altın), 6 kategori: ömür, para, aşk-aile, kariyer-eğitim, dünya, kader. Örnekler: "100 yaşına ulaş", "3 ülkede yaşa", "manken ol", "boşanıp tazminat kazan". Bazıları gizlidir (açılana kadar `???`). Motor her yıl ve her karardan sonra koşulları kontrol eder (`_achieve`); yeni açılan başarı oyun ekranının üstünde bantla görünür, hayat özetinde "bu hayatta kazanılanlar" listelenir, ana ekran ve oyun içi 🏆 düğmesi tüm listeyi açar. Açılanlar hayatlar arasında `shared_preferences` ile kalıcıdır (`achievements_storage.dart`). Yeni başarı eklemek için `kAchievements` listesine bir `_a(...)` satırı yeter; koşul `Character` alanlarına bakan küçük bir fonksiyondur. `flutter test test/achievements_test.dart` 150 hayat oynatıp her başarının açılma oranını yazar (denge ayarı için).
-- **İlişkiler, yönelim ve birlikte yaşama (`lib/relationships.dart`, `engine.dart`):** Evlilik artık tek aşama değil: tanış → **sevgili** (`ch.partner`) → **birlikte yaşa** (`living`) → **evlen** (`ch.spouse`). Sevgili yıllık bağ puanı alır; bağ düşerse ayrılırsınız, aldatan karakter erken ortaya çıkabilir, sevgili ölebilir. Birlikte yaşayan sevgili gelire katkı verir, ayrılınca taşınma masrafı çıkar. Evlenince aynı kişi eş olur ve mevcut evlilik / boşanma sistemi aynen çalışır. **Yönelim ayarı** ana ekranda: karşı cins / aynı cins / her ikisi / rastgele (~%88 / %4 / %8); seçim yeni hayatlara uygulanır ve kaydedilir. Aynı cinsler arasında evlilik yalnızca `marriageEqualityCodes` listesindeki ülkelerde mümkündür (yaklaşık, güncellenmeli); diğerlerinde sevgili olunur ve birlikte yaşanır ama evlenme teklifi çıkmaz. Olay koşulları: `partnered` (true/false), `canMarry` (true: oyuncu bulunduğu ülkede evlenebilir). Henüz yok: evlenmemiş çiftlerde çocuk, sevgilide aldatma.
-- **Sonuç görseli:** Hayat bitince özet ekranındaki kart PNG olarak galeriye kaydedilir ya da paylaşılır (`result_image.dart`).
-- **Olaylar:** `assets/data/events.json` ve `assets/data/events_more.json` (ek 130 olay, çoğu seçimli). Kod değiştirmeden yeni olay eklenir. Aynı kimlikli olay varsa ek dosyadaki `_2` eklenerek ayrı varyant olur.
-- **Estetik ameliyatlar:** `events_cosmetic.json`: burun, saç ekimi, yüz germe/botoks, liposuction, diş estetiği, vücut şekillendirme. Nadir çıkar; çoğunlukla çekiciliği artırır (~%70), bazen etkisiz kalır (~%20), nadiren kötü geçer (~%5, çekicilik ve sağlık düşer, ardından düzeltme ameliyatı seçeneği çıkar), çok çok nadiren ölümle biter (~%0,25).
-- **İş teklifleri:** `jobs.json` 43 mesleğe çıktı. Teklifler ağırlıklı seçilir: eğitim, istatistikler (`stat`: zekâ/çekicilik/sosyal/sağlık) ve geçmiş seçimler (`favor`: `athlete`, `track_art/sci/hum/voc`, `has_pet`, `business_owner`...) ilgili işleri öne çıkarır. İşsizken 4, çalışırken 3 teklif görürsün. `special: true` işler (manken, oyuncu) sıradan tekliflerde çıkmaz.
-- **Manken / oyuncu teklifi (`starChance`):** Çekicilik 80+ gerekir. Yıllık ihtimal: düşük refahlı ülkede %0,001, yüksek refahlı ülkede %0,01 (kişi başı gelir 2→15 arasında doğrusal geçiş). Çekicilik 90 üstünde ×10, 95 üstünde ×120. Manken kariyeri 38 yaşından sonra sona erebilir.
-- **Seçim sıklığı:** 6 yaşından önce seçim ekranı çıkmaz. Sonrasında çoğunlukla 2-3 yılda bir (%42 + %42), nadiren 1 (%6) ya da 4 (%10) yılda bir çıkar (`_nextDecision`, `_decisionGap`). Aldatılma / ilişkinin ortaya çıkması gibi acil kararlar beklemez. Havuz: `events.json` + `events_more.json` + `events_cosmetic.json` + `events_life.json`.
-- **Cinsiyet rozeti:** Oyuncunun cinsiyeti ♂/♀ simgesiyle üst çubukta, karakter kartında ve sonuç görselinde görünür (`gender_badge.dart`).
-
-## Görsel kaydetme için platform ayarı
-
-`flutter create .` sonrası bir kez yapılır:
-
-- **iOS** → `ios/Runner/Info.plist` içine ekle:
-  `<key>NSPhotoLibraryAddUsageDescription</key><string>Hayat özetini galeriye kaydetmek için</string>`
-- **Android** → `android/app/build.gradle` içinde `minSdkVersion 21` (veya üstü) olmalı;
-  `AndroidManifest.xml` içine
-  `<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="29"/>`
-- Web'de galeriye kaydetme desteklenmez.
-
-## Yeni olay eklemek
-
-`events.json` içindeki bir olay:
-
-```json
-{
-  "id": "gym", "minAge": 18, "maxAge": 60, "weight": 0.8, "cooldown": 8,
-  "cond": {"flagsNone": ["athlete"]},
-  "text": {"tr": "...", "en": "..."},
-  "choices": [
-    {"text": {"tr": "Üye ol", "en": "Join"},
-     "effects": {"health": 6, "money": -0.1}, "setFlags": ["athlete"],
-     "result": {"tr": "...", "en": "..."}}
-  ]
-}
-```
-
-- `choices` yoksa olay otomatiktir; `effects` ve `text` doğrudan olaya yazılır.
-- Bir seçimde birden fazla sonuç için `outcomes: [{w, lucky, check, effects, result, death}]` kullan.
-  `lucky: true` sonucun ağırlığını oyuncunun şansıyla, `check: "smarts"` ilgili istatistikle çarpar.
-- `money` etkisi, ülkenin kişi başı gelirinin katıdır (0.5 = yarım yıllık ortalama gelir).
-- `tone: "good" | "bad"`: şans yüksekse iyi olaylar, düşükse kötü olaylar daha sık çıkar.
-- `riskScale: true`: ülke riski yüksekse daha sık çıkar. `force: true`: koşul sağlanınca önce bu çıkar.
-- Koşullar (`cond`): `minAge`-`maxAge` (olay seviyesinde), `female`, `country`, `region`, `minHealth`/`maxHealth`,
-  `minMoney`/`maxMoney`, `minEdu`/`maxEdu`, `married`, `hasJob`, `hasKids`, `retired`, `flagsAll`, `flagsNone`, `minRisk`, `student`, `status` (single/married/divorced/widowed), `kidAge` ([min, max]), `motherAlive`, `fatherAlive`, `parentAlive`, `hasSiblings`, `hasGrandkids`.
-- Metinlerde `{spouse}`, `{child}`, `{job}`, `{country}`, `{name}` kullanılabilir.
-- Özel etkiler: `emigrate` ("rich"/"any"), `quitJob`, `retire`, `startUni`, `kids`, `bond`, `loseSpouse`, `marry`, `promote`, `setJob`.
-
-## Veriyi büyütmek
-
-`countries.json` şu an 196 ülke içeriyor (193 BM üyesi + Filistin, Tayvan, Kosova). Doğum sayıları yaklaşık değerlerdir; daha doğru oran için BM WPP verisiyle `births` değerlerini güncelle. BM WPP / World Bank verisiyle ülke sayısını artırdıkça oranlar gerçeğe yaklaşır.
-
-## Bilinen eksikler / sonraki adımlar
-
-- Kod henüz bir Flutter derleyicisinde çalıştırılmadı; ilk `flutter pub get` / `flutter run` / `flutter test` çıktısına göre küçük düzeltmeler gerekebilir (özellikle `gal` ve `share_plus` sürümleri).
-- Kayıt sistemi yok (Hive / shared_preferences eklenebilir).
-- Üniversite sınavı başarısız olursa yeniden deneme olayı yok.
-- Eş seçimi şimdilik karşı cinse göre; yönelim ayarı eklenebilir.
-- Log metinleri üretildiği dilde saklanır; oyun içinde dil değişince eski satırlar çevrilmez.
+## Yapman gerekenler
+- `EMAIL_ADRESIN` yazısını kendi e-postanla değiştir (index.html ve privacy.html)
+- İstersen uygulama ikonunu `icon.png` adıyla ekle (yoksa gizlenir)
