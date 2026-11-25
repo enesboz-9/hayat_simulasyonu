@@ -26,10 +26,10 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Hayat özetini galeriye kaydetmek için fotoğraf erişimi gerekir</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Hayat özetini galeriye kaydetmek için</string>
+	<string>Save your life summary image to your photo library.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access your photo library to save your life summary image.</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>
