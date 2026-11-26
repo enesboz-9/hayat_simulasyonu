@@ -19,6 +19,9 @@ class _LifeAppState extends State<LifeApp> {
   @override
   void initState() {
     super.initState();
+    // İlk açılışta cihaz dili; kayıtlı bir seçim varsa load() onu uygular.
+    final device = WidgetsBinding.instance.platformDispatcher.locale.languageCode;
+    engine.lang = device == 'tr' ? 'tr' : 'en';
     engine.load();
   }
 

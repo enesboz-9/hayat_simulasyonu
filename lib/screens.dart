@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
         return Scaffold(
           body: SafeArea(
             child: Center(
-              child: Padding(
+              child: SingleChildScrollView(
                 padding: const EdgeInsets.all(24),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -541,13 +541,15 @@ class _SummaryScreenState extends State<SummaryScreen> {
   Future<void> _shareImage() async {
     if (_busy) return;
     final b = engine.b;
+    final box = context.findRenderObject() as RenderBox?;
+    final origin = box == null ? null : box.localToGlobal(Offset.zero) & box.size;
     setState(() => _busy = true);
     try {
       final png = await captureCard(_cardKey);
       if (png == null) {
         _toast(b('Görsel oluşturulamadı', 'Could not create the image'));
       } else {
-        await shareImage(png, _shareText(engine.c!));
+        await shareImage(png, _shareText(engine.c!), origin: origin);
       }
     } on UnsupportedError {
       _toast(b('Bu platformda paylaşım desteklenmiyor', 'Sharing is not supported here'));

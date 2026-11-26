@@ -35,12 +35,13 @@ Future<void> saveToGallery(Uint8List png) async {
 }
 
 /// Sistem paylaşım menüsünü açar (oradan "Resimlere kaydet" de seçilebilir).
-Future<void> shareImage(Uint8List png, String text) async {
+Future<void> shareImage(Uint8List png, String text, {Rect? origin}) async {
   if (kIsWeb) throw UnsupportedError('web');
   final dir = await getTemporaryDirectory();
   final file = File('${dir.path}/hayat_ozeti.png');
   await file.writeAsBytes(png);
-  await Share.shareXFiles([XFile(file.path)], text: text);
+  // iPad'de paylaşım penceresi için konum zorunlu.
+  await Share.shareXFiles([XFile(file.path)], text: text, sharePositionOrigin: origin);
 }
 
 /// Hayat sonunda görsel olarak kaydedilen sonuç kartı. Tema bağımsızdır:

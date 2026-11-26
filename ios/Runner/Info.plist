@@ -27,9 +27,9 @@
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Hayat özetini galeriye kaydetmek için fotoğraf erişimi gerekir</string>
+	<string>Life Simulator needs photo access to save your life summary image to your library.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Hayat özetini galeriye kaydetmek için</string>
+	<string>Life Simulator saves the life summary image you create to your photo library.</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>

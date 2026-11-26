@@ -54,6 +54,7 @@ class GameEngine extends ChangeNotifier {
 
   void setLang(String l) {
     lang = l;
+    if (loaded) _saveProgress();
     notifyListeners();
   }
 
@@ -117,6 +118,8 @@ class GameEngine extends ChangeNotifier {
       if (raw == null || raw.isEmpty) return;
       final m = Map<String, dynamic>.from(jsonDecode(raw) as Map);
       livesStarted = (m['lives'] as num?)?.toInt() ?? 0;
+      final l = m['lang'];
+      if (l == 'tr' || l == 'en') lang = l as String;
       final o = m['orientation'];
       if (o is String && kAttractionModes.contains(o)) orientationSetting = o;
       unlocked.clear();
@@ -132,6 +135,7 @@ class GameEngine extends ChangeNotifier {
     final data = jsonEncode({
       'lives': livesStarted,
       'orientation': orientationSetting,
+      'lang': lang,
       'unlocked': {for (final e in unlocked.entries) e.key: e.value.toJson()},
     });
     storage.write(data).catchError((_) {});
